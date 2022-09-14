@@ -1,0 +1,19 @@
+@import "../../StyleSource/variables.scss";
+
+.buttonContainer{
+    @include body();
+    height: 50px;
+    margin-bottom: 13%;
+    letter-spacing: 0.5px;
+    padding: 0 35px 0 35px;
+    line-height: 50px;
+    text-transform: lowercase;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    border: 2px solid $black;
+    transition: 300ms ease-in-out all;
+}
+
