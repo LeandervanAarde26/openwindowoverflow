@@ -1,0 +1,23 @@
+@import "../../StyleSource/variables.scss";
+
+#halfSize{
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 50% !important;
+}
+
+#giveButtonId{
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 20% !important;
+}
+
+#discordId{
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 22%;
+
+    img{
+        margin-left: -35% !important;
+    }
+}
