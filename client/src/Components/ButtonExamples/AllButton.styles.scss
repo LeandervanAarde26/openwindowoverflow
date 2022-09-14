@@ -10,6 +10,11 @@
     margin-left: 2%;
     margin-top: 2%;
     width: 20% !important;
+//Just not tthat this is needed
+    &:hover:before {
+        width: 20%;
+        margin-left: 2%;
+    }
 }
 
 #discordId{
