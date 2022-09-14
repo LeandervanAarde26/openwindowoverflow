@@ -1,9 +1,10 @@
-import React from 'react';
+import styles from './Home.module.scss';
+import AllButtons from '../../Components/ButtonExamples/AllButtons.component';
 
 const Home = () => {
     return (
-        <div>
-            
+        <div className={styles.container}>
+            <AllButtons/>
         </div>
     );
 };

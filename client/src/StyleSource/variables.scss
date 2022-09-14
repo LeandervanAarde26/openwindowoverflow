@@ -14,6 +14,20 @@ $warning: #F5DD00;
 $body: 'Montserrat', sans-serif;
 $headings: 'Quicksand', sans-serif;
 
+/* Styling Properties for everything */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styling for App.js */
+.App {
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
 @mixin headingOne {
     font-family: $headings;
     font-size: 40px;
@@ -64,8 +78,8 @@ $headings: 'Quicksand', sans-serif;
 
 @mixin dropShadow{
     box-shadow: 7px 7px 20px -1px rgba(0,0,0,0.11);
--webkit-box-shadow: 7px 7px 20px -1px rgba(0,0,0,0.11);
--moz-box-shadow: 7px 7px 20px -1px rgba(0,0,0,0.11);
+    -webkit-box-shadow: 7px 7px 20px -1px rgba(0,0,0,0.11);
+    -moz-box-shadow: 7px 7px 20px -1px rgba(0,0,0,0.11);
 }
 
 * {
