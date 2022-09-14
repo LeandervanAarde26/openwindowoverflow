@@ -2,10 +2,9 @@
 import React, {useState} from 'react';
 /* Styling for App.js will be done in variables.scss */
 import './StyleSource/variables.scss';
-
 import NavBar from './Components/NavigationBar/NavBar';
 import Footer from './Components/Footer/Footer';
-import Home from './Routes/Home/Home';
+import Home from './Routes/Home/Home.route';
 
 function App() {
     return (
