@@ -1,0 +1,14 @@
+@import "../../StyleSource/variables.scss";
+
+.container {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.container:hover {
+    cursor: pointer;
+}
