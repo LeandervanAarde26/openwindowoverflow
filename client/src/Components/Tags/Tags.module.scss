@@ -1,0 +1,13 @@
+@import "../../StyleSource/variables.scss";
+
+.container{
+    max-width: 5vw;
+    height: 30px;
+    background-color: $grey;
+    width: auto;
+    text-align: center;
+    padding-top: 10%;
+    @include smallText();
+    font-weight: 500;
+    text-transform: uppercase;
+}

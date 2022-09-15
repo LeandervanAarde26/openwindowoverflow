@@ -1,0 +1,84 @@
+@import "../../StyleSource/variables.scss";
+
+.container {
+    width: 60vw;
+    height: auto;
+    max-height: 31vh;
+    min-height: 10vh;
+    background-color: $white;
+    margin-top: 1.5%;
+    @include dropShadow();
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-right: 1%;
+
+    .innerLeft {
+        height: 100%;
+        width: 16%;
+        background-color: red;
+        margin-right: 2%;
+    }
+
+    h4 {
+        @include headingFour();
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
+
+    .tagsContainer {
+        width: 80%;
+        display: grid;
+        flex-direction: column;
+        grid-template-columns: repeat(10, 20fr);
+        column-gap: 8px;
+    }
+
+    .profileContainer {
+        width: 80%;
+
+        .profile {
+            width: 7%;
+            aspect-ratio: 1/1;
+            background-color: RED;
+            border-radius: 55%;
+            margin-top: 1%;
+            display: inline-flex;
+            vertical-align: middle;
+            background-image: url("../../Assets/car.jpg");
+            background-position: center;
+            background-size: cover;
+
+        }
+
+        .name {
+            display: inline-flex;
+            vertical-align: middle;
+            margin-left: 2%;
+            @include body();
+
+        }
+
+    }
+
+    .description {
+        width: 75% !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        /* number of lines to show */
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        margin-top: 1%;
+        @include body();
+
+    }
+
+    .answeringUser {
+        @include body();
+        text-align: end;
+        margin-top: 1.5%;
+    }
+
+}

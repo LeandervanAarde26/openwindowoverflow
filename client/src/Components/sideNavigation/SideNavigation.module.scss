@@ -1,10 +1,10 @@
 @import "../../StyleSource/variables.scss";
 
 .container{
-    height: 80vh;
+    height: auto;
+    min-height: 80vh;
     width: 20vw;
     padding: 2%;
-    flex: 1;
 }
 
 .buttonContainer{
