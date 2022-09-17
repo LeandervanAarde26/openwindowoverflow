@@ -82,6 +82,15 @@ $body: 'Quicksand', sans-serif;
     -moz-box-shadow: 7px 7px 20px -1px rgba(0,0,0,0.10);
 }
 
+//Input animation
+
+@mixin shrinkLabel {
+    top: -10px;
+    font-size: 12px;
+    color: $black;
+  }
+  
+
 * {
     margin: 0;
     padding: 0;
