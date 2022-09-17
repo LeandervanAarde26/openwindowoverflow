@@ -3,24 +3,22 @@
 #halfSize{
     margin-left: 2%;
     margin-top: 2%;
-    width: 50% !important;
 }
 
 #giveButtonId{
     margin-left: 2%;
     margin-top: 2%;
-    width: 20% !important;
+
 //Just not tthat this is needed
     &:hover:before {
-        width: 20%;
-        margin-left: 2%;
+        width: 21.6%;
     }
 }
 
 #discordId{
     margin-left: 2%;
     margin-top: 2%;
-    width: 22%;
+    width: 100%;
 
     img{
         margin-left: -35% !important;

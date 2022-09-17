@@ -2,7 +2,7 @@ import React from 'react';
 import Tags from '../Tags/Tags.component';
 import styles from "./Preview.module.scss"
 
-const QuestionPreview = ({ votes, answers, resolved, children, }) => {
+const Preview = ({ votes, answers, resolved, children, }) => {
     const testerTags = ['html', 'scss', 'css', 'React']
     const visuals = testerTags.map(tag => <Tags title={tag} />)
     const user = "Leander van Aarde"
@@ -11,7 +11,9 @@ const QuestionPreview = ({ votes, answers, resolved, children, }) => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.innerLeft}></div>
+            <div className={styles.innerLeft}>
+                Hello
+            </div>
             <h4>This is the Question Title</h4>
             <div className={styles.tagsContainer}>
                 {visuals}
@@ -26,4 +28,4 @@ const QuestionPreview = ({ votes, answers, resolved, children, }) => {
     );
 };
 
-export default QuestionPreview;
+export default Preview;

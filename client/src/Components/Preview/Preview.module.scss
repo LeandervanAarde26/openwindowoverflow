@@ -14,10 +14,10 @@
     padding-right: 1%;
 
     .innerLeft {
-        height: 100%;
-        width: 16%;
+        height: 30vh;
+        width: 14%;
         background-color: red;
-        margin-right: 2%;
+        // margin-right: 1%;
     }
 
     h4 {
@@ -58,11 +58,10 @@
             @include body();
 
         }
-
     }
 
     .description {
-        width: 75% !important;
+        width: 82% !important;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
