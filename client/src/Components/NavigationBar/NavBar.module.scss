@@ -2,6 +2,35 @@
 
 /* This Container will Auto Grow to the Full Width of the Screen */
 .container {
-    height: 100px;
+    display: flex;
+    max-height: 100px;
+    padding: 10px 30px;
     background-color: red;
+
+    &__logo {
+        display: flex;
+        flex-basis: 25%;
+
+        img {
+            object-fit: cover;
+        }
+    }
+
+    &__search {
+        display: flex;
+        flex-basis: 25%;
+        background-color: aqua;
+    }
+
+    &__login {
+        display: flex;
+        flex-basis: 25%;
+        background-color: black;
+    }
+
+    &__profile {
+        display: flex;
+        flex-basis: 25%;
+        background-color: blue;
+    }
 }
