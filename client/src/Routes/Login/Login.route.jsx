@@ -50,10 +50,6 @@ const Login = () => {
         <div className={styles.outer}>
                 {/* left div, where image is going to be  */}
                 <div className={styles.left}>
-                    <img
-                        src={Image} 
-                        alt="" 
-                    /> 
                 </div>
                 {/* Right div aka login form */}
                 <div className={styles.right}>

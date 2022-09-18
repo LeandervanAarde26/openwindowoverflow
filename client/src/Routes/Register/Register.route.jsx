@@ -3,6 +3,7 @@ import styles from "./Register.module.scss"
 import Input from '../../Components/Input/Input.component';
 import { Outlet, useNavigate } from 'react-router';
 import Button from '../../Components/Button/Button.component';
+import Image from '../../Assets/RegisterImage.png';
 
 const defaultValues = {
     username: '',
@@ -32,7 +33,7 @@ const Register = () => {
         navigate("/")
     }
 
-    const test = () =>{
+    const test = () => {
         navigate(("/Home"))
     }
 
@@ -59,12 +60,12 @@ const Register = () => {
         }
     }
 
-    const validatePassword = (e) =>{
+    const validatePassword = (e) => {
         const { name, value } = e.target;
-        if(formValues.password == formValues.confirmPassword){
+        if (formValues.password == formValues.confirmPassword) {
             setpasswordError(false)
 
-        } else{
+        } else {
             setpasswordError(true)
         }
     }
@@ -107,8 +108,8 @@ const Register = () => {
                         required={true}
                         onChange={handleChange}
                         placeholder="eg. 2"
-                        min ={1}
-                        max= {4}
+                        min={1}
+                        max={4}
                     />
 
                     <Input
@@ -140,7 +141,7 @@ const Register = () => {
                                 buttonType={'black'}
                                 children={"Sign up"}
                                 buttonSize={styles.buttonSize}
-                                onClick = {test}
+                                onClick={test}
                             />
                             <p className={styles.option}>Already a user on __ ?</p>
 
@@ -157,7 +158,9 @@ const Register = () => {
                         </>
                 }
             </div>
-            <div className={styles.right}></div>
+            <div className={styles.right}>
+ 
+            </div>
 
         </div>
     );

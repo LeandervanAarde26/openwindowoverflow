@@ -3,14 +3,14 @@
 
 .outer{
     display: flex;
+    flex: 1;
+    
+
     .right{
-        height: auto;
-        min-height: 79vh;
-        width: 65vw;
-       background-image: url('../../Assets/RegisterImage.png');
-        background-position: center;
-        background-size: 95%;
-        background-repeat: no-repeat;
+        flex-basis: 60%;
+        padding: 0;
+        background-image: url("../../Assets/RegisterImage.png");
+        background-size: cover;
     }   
     
     .left{
