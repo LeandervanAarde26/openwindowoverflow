@@ -104,7 +104,6 @@ $body: 'Quicksand', sans-serif;
     min-height: 100vh;
 }
 
-
 .slide-enter,
 .slide-exit {
   transition: transform 600ms ease-out;
@@ -119,10 +118,7 @@ $body: 'Quicksand', sans-serif;
 }
 
 .slide-exit {
-  position: absolute;
-  top: 100px;
   left: 0;
-  width: 100%;
   transform: translateX(0%);
 }
 

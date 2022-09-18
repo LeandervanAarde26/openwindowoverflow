@@ -2,20 +2,21 @@
 
 .outer{
     display: flex;
+    flex: 1;
+
     .left{
-        height: auto;
-        min-height: 79vh;
-        width: 60vw;
-       background-image: url('../../Assets/LoginImage.png');
-        background-position: center;
-        background-size: 95%;
-        background-repeat: no-repeat;
+        flex-basis: 60%;
+
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
     }   
     
     .right{
-        height: auto;
-        min-height: 75vh;
-        width: 40vw;
+        height: 100%;
+        flex: 1;
+
         #err{
             color: $danger !important;
           }
