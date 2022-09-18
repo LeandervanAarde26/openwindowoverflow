@@ -22,7 +22,7 @@ const Login = () => {
         setFormValues({ ...formValues, [name]: value })
     }
 
-    const Register = () =>{
+    const Register = () => {
         navigate("/Register")
     }
 
@@ -96,9 +96,9 @@ const Login = () => {
                                 buttonType={'secondary'}
                                 children={'Sign Up'}
                                 buttonSize={styles.secondary}
-                                onClick = {Register}
-                                 />
-                                 </>
+                                onClick={Register}
+                            />
+                        </>
 
                         :
                         <>
@@ -106,7 +106,7 @@ const Login = () => {
                 }
             </div>
 
-            <Outlet/>
+            <Outlet />
         </div>
     );
 };

@@ -1,44 +1,59 @@
 @import "../../StyleSource/variables.scss";
+@import "../../StyleSource/variables.scss";
 
 .outer{
     display: flex;
-    .left{
+    .right{
         height: auto;
         min-height: 79vh;
-        width: 60vw;
-       background-image: url('../../Assets/LoginImage.png');
+        width: 65vw;
+       background-image: url('../../Assets/RegisterImage.png');
         background-position: center;
         background-size: 95%;
         background-repeat: no-repeat;
     }   
     
-    .right{
+    .left{
         height: auto;
         min-height: 75vh;
-        width: 40vw;
+        width: 35vw;
+        padding-left: 4%;
         #err{
             color: $danger !important;
           }
 
         #buttonSize, #secondary{
             width: 51%;
-            margin-left: 20%;
+            margin-left: 18%;
         }
 
         #secondary{
             &:hover:before {
-                width: 20.5%;
-                margin-left: 68%;
+                width: 15.9%;
+                margin-left: 9.6%;
             }
         }
 
 
         .option{
-            margin-left: 32% ;
-            margin-top: 3%;
+            margin-left: 30% ;
             margin-bottom: 3%;
+            margin-top: 3%;
             @include body();
             color: darken($color: $grey, $amount: 30%);
+        }
+
+        .reset{
+            margin-left: 30% ;
+            margin-top: 1%;
+            margin-bottom: 3%;
+            @include body();
+            color: darken($color: $grey, $amount: 50%);
+            
+            span{
+                color: blue;
+                cursor: pointer;
+            }
         }
 
         .heading{
@@ -46,8 +61,8 @@
             margin-bottom: 7%;
             font-weight: 400;
             @include headingTwo();
-            margin-top: 25%;
-            margin-left: 38%;
+            margin-top: 10%;
+            margin-left: 32%;
         }
     }
 }
