@@ -2,6 +2,6 @@
 
 /* This Container will Auto Grow to the Full Width of the Screen */
 .container {
-    height: 100px;
+    height: fit-content;
     background-color: purple;
 }

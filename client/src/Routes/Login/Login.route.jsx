@@ -3,14 +3,17 @@ import styles from "./Login.module.scss"
 import Input from '../../Components/Input/Input.component';
 import { Outlet, useNavigate } from 'react-router';
 import Button from '../../Components/Button/Button.component';
-import Image from '../../Assets/LoginImage.png';
+
 const defaultValues = {
     email: '',
     password: ''
 }
 
 const Login = () => {
-    const [formValues, setFormValues] = useState(defaultValues)
+    const [formValues, setFormValues] = useState({
+        email: '',
+        password: ''
+    });
     const { email, password } = formValues;
     const navigate = useNavigate()
     const [error, setError] = useState(false)
@@ -49,8 +52,7 @@ const Login = () => {
     return (
         <div className={styles.outer}>
                 {/* left div, where image is going to be  */}
-                <div className={styles.left}>
-                </div>
+                <div className={styles.left}></div>
                 {/* Right div aka login form */}
                 <div className={styles.right}>
                     <h2 className={styles.heading}>Login</h2>
@@ -93,7 +95,6 @@ const Login = () => {
                                     onClick={Register}
                                 />
                             </>
-
                             :
                             ""
                     }

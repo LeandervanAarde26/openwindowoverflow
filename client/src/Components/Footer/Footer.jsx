@@ -3,12 +3,11 @@ import { useLocation } from 'react-router';
 
 const Footer = ({path}) => {
     const pathName = useLocation();
-    console.log(pathName.pathname)
     if(pathName.pathname === '/' || pathName.pathname === "/Register") return null;
 
     return (
         <div className={styles.container}> 
-        
+            <h1>hey</h1>
         </div>
     )
 };
