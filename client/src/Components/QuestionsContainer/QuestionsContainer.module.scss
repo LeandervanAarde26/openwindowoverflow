@@ -1,0 +1,21 @@
+@import "../../StyleSource/variables.scss";
+
+.container{
+    width: 61.5vw;
+    max-height: 70vh;
+    overflow: scroll;
+}
+.outer{
+    margin-top: 3vh;
+    margin-bottom: 1.5vh;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    h3{
+        @include headingThree();
+        margin-bottom: 1.5vh;
+    }
+    & ::-webkit-scrollbar{
+        display: none;
+    }
+}

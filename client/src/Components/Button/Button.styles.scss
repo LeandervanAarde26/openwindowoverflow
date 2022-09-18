@@ -1,0 +1,164 @@
+@import "../../StyleSource/variables.scss";
+
+.button {
+    @include body();
+    height: 50px;
+    letter-spacing: 0.5px;
+    padding: 0 35px 0 35px;
+    line-height: 50px;
+    text-transform: lowercase;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+
+    &.primary {
+        background-color: $orange;
+        color: $white;
+        outline: 1px solid;
+        outline-color: $orange;
+        outline-offset: 0px;
+        transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+
+        &:hover {
+            border: 1px solid;
+            outline-color: rgba(255, 64, 0, 0.5);
+            outline-offset: 15px;
+            text-shadow: 1px 1px 2px #00000052;
+        }
+    }
+
+    &.secondary {
+        background-color: transparent;
+        color: $black;
+        outline: 4px solid;
+        outline-color: $orange;
+        overflow: hidden;
+        outline-offset: 0px;
+        transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+
+        &:before {
+            content: "";
+            position: absolute;
+            height: 50px;
+            width: 0;
+            background: $orange;
+            outline-color: $orange;
+            left: 0;
+
+            transition: all .3s;
+            opacity: 0.3;
+
+        }
+
+        &:hover:before {
+            width: 100%;
+        }
+
+        &:hover {
+            outline: 1px solid $orange;
+        }
+    }
+
+    &.discord {
+        background-color: $discord;
+        color: $white;
+        outline: 1px solid;
+        text-transform: uppercase;
+        font-weight: 800 !important;
+        outline-offset: 0px;
+
+        // transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+        img {
+            height: auto;
+            position: relative;
+            transition: 0.5s ease-in-out;
+
+        }
+
+        &:hover img {
+            transform: rotate(360deg);
+            transform: scale(1.1);
+            -ms-transform: rotate(180deg);
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    &.outline {
+        background-color: transparent;
+        color: $black;
+        outline: 4px solid;
+        outline-color: $black;
+        outline-offset: 0px;
+        transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+
+        &:before {
+            content: "";
+            position: absolute;
+            height: 50px;
+            width: 0;
+            background: $black;
+            outline-color: $black;
+            left: 0;
+
+            transition: all .3s;
+            opacity: 0.3;
+
+        }
+
+        &:hover:before {
+            width: 100%;
+
+        }
+
+        &:hover {
+            outline: 1px solid $black;
+        }
+    }
+
+    &.github {
+        background-color: $black;
+        color: $white;
+        outline: 1px solid;
+        text-transform: uppercase;
+        font-weight: 800 !important;
+        outline-offset: 0px;
+
+        // transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+        img {
+            height: auto;
+            position: relative;
+            transition: 0.5s ease-in-out;
+
+        }
+
+        &:hover img {
+            transform: rotate(360deg);
+            transform: scale(1.1);
+            -ms-transform: rotate(180deg);
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+
+    }
+
+    &.black{
+        background-color: $black;
+        color: $white;
+        outline: 1px solid;
+        outline-color: $black;
+        outline-offset: 0px;
+        transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+
+        &:hover {
+            border: 2px solid;
+            outline-color: rgba(255, 64, 0, 0.5);
+            outline-offset: 15px;
+            text-shadow: 1px 1px 2px #00000052;
+        }
+    }
+}

@@ -1,0 +1,68 @@
+@import "../../StyleSource/variables.scss";
+@import "../../StyleSource/variables.scss";
+
+.outer{
+    display: flex;
+    .right{
+        height: auto;
+        min-height: 79vh;
+        width: 65vw;
+       background-image: url('../../Assets/RegisterImage.png');
+        background-position: center;
+        background-size: 95%;
+        background-repeat: no-repeat;
+    }   
+    
+    .left{
+        height: auto;
+        min-height: 75vh;
+        width: 35vw;
+        padding-left: 4%;
+        #err{
+            color: $danger !important;
+          }
+
+        #buttonSize, #secondary{
+            width: 51%;
+            margin-left: 18%;
+        }
+
+        #secondary{
+            &:hover:before {
+                width: 15.9%;
+                margin-left: 9.6%;
+            }
+        }
+
+
+        .option{
+            margin-left: 30% ;
+            margin-bottom: 3%;
+            margin-top: 3%;
+            @include body();
+            color: darken($color: $grey, $amount: 30%);
+        }
+
+        .reset{
+            margin-left: 30% ;
+            margin-top: 1%;
+            margin-bottom: 3%;
+            @include body();
+            color: darken($color: $grey, $amount: 50%);
+            
+            span{
+                color: blue;
+                cursor: pointer;
+            }
+        }
+
+        .heading{
+            // text-align: center;
+            margin-bottom: 7%;
+            font-weight: 400;
+            @include headingTwo();
+            margin-top: 10%;
+            margin-left: 32%;
+        }
+    }
+}

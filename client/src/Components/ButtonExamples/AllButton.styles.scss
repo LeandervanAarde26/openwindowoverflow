@@ -1,0 +1,26 @@
+@import "../../StyleSource/variables.scss";
+
+#halfSize{
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+#giveButtonId{
+    margin-left: 2%;
+    margin-top: 2%;
+
+//Just not tthat this is needed
+    &:hover:before {
+        width: 21.6%;
+    }
+}
+
+#discordId{
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 100%;
+
+    img{
+        margin-left: -35% !important;
+    }
+}

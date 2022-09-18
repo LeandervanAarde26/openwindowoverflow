@@ -2,7 +2,7 @@
 $white: rgb(255, 255, 255);
 $orange: #FF3F00;
 $black: #000000;
-$grey: #888888;
+$grey: #e5e3e3;
 $discord: #5865F2;
 // Semantic Colors 
 $danger: #DE0000;
@@ -11,8 +11,8 @@ $warning: #F5DD00;
 
 //Typography
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-$body: 'Montserrat', sans-serif;
-$headings: 'Quicksand', sans-serif;
+$headings: 'Montserrat', sans-serif;
+$body: 'Quicksand', sans-serif;
 
 /* Styling Properties for everything */
 * {
@@ -77,7 +77,55 @@ $headings: 'Quicksand', sans-serif;
 }
 
 @mixin dropShadow{
-    box-shadow: 7px 7px 20px -1px rgba(0,0,0,0.11);
-    -webkit-box-shadow: 7px 7px 20px -1px rgba(0,0,0,0.11);
-    -moz-box-shadow: 7px 7px 20px -1px rgba(0,0,0,0.11);
+    box-shadow: 7px 7px 20px -1px rgba(0,0,0,0.10);
+    -webkit-box-shadow: 7px 7px 20px -1px rgba(0,0,0,0.10);
+    -moz-box-shadow: 7px 7px 20px -1px rgba(0,0,0,0.10);
+}
+
+//Input animation
+
+@mixin shrinkLabel {
+    top: -10px;
+    font-size: 12px;
+    color: $black;
+  }
+  
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styling for App.js */
+.App {
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
+
+.slide-enter,
+.slide-exit {
+  transition: transform 600ms ease-out;
+}
+
+.slide-enter {
+  transform: translateX(100%);
+}
+
+.slide-enter.slide-enter-active {
+  transform: translateX(0%);
+}
+
+.slide-exit {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  transform: translateX(0%);
+}
+
+.slide-exit-active {
+  transform: translateX(-100%);
 }

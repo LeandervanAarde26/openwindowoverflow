@@ -1,0 +1,53 @@
+@import "../../StyleSource/variables.scss";
+
+.outer{
+    display: flex;
+    .left{
+        height: auto;
+        min-height: 79vh;
+        width: 60vw;
+       background-image: url('../../Assets/LoginImage.png');
+        background-position: center;
+        background-size: 95%;
+        background-repeat: no-repeat;
+    }   
+    
+    .right{
+        height: auto;
+        min-height: 75vh;
+        width: 40vw;
+        #err{
+            color: $danger !important;
+          }
+
+        #buttonSize, #secondary{
+            width: 51%;
+            margin-left: 20%;
+        }
+
+        #secondary{
+            &:hover:before {
+                width: 20.5%;
+                margin-left: 68%;
+            }
+        }
+
+
+        .option{
+            margin-left: 32% ;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            @include body();
+            color: darken($color: $grey, $amount: 30%);
+        }
+
+        .heading{
+            // text-align: center;
+            margin-bottom: 7%;
+            font-weight: 400;
+            @include headingTwo();
+            margin-top: 25%;
+            margin-left: 38%;
+        }
+    }
+}
