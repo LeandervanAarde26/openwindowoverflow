@@ -8,7 +8,7 @@ import ic_star from '../../Assets/Icons/ic_star.svg';
 import test from '../../Assets/car.jpg'
 
 const Preview = (props, { votes, answers, resolved, children, }) => {
-    const testerTags = ['html', 'scss', 'css', 'React']
+    const testerTags = ['html', 'scss', 'scss','scss','css', 'React', '1', '2', '3']
     const visuals = testerTags.map((tag, index) => <Tags key={index} title={tag} />)
     const user = "Leander van Aarde"
     const answeringUser = "Armand Pretorius"
