@@ -1,13 +1,15 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from "./NavigationButton.module.scss"
 
-const NavigationButton = ({ active, children,activeClass, ...otherProps }) => {
-
-    console.log(activeClass)
+const NavigationButton = (props, { active, children,activeClass, ...otherProps }) => {
     return (
-        <div className={`${activeClass}`}  {...otherProps}>
-            {children}
-        </div>
+        <NavLink 
+            to={props.route}
+            className={({isActive}) => isActive ? styles.active : styles.buttonContainer}  
+        >
+            {props.label}
+        </NavLink>
     );
 };
 

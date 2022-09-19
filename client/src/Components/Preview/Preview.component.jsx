@@ -1,4 +1,3 @@
-import React from 'react';
 import Tags from '../Tags/Tags.component';
 import styles from "./Preview.module.scss"
 import Icon from '../Icon/Icon';
@@ -6,6 +5,7 @@ import ic_votes from '../../Assets/Icons/ic_clipboard.svg';
 import ic_answers from '../../Assets/Icons/ic_checkmark.svg';
 import ic_correct from '../../Assets/Icons/ic_correct.svg';
 import ic_star from '../../Assets/Icons/ic_star.svg';
+import test from '../../Assets/car.jpg'
 
 const Preview = (props, { votes, answers, resolved, children, }) => {
     const testerTags = ['html', 'scss', 'css', 'React']
@@ -22,22 +22,26 @@ const Preview = (props, { votes, answers, resolved, children, }) => {
                         icon={ic_votes}
                     />
 
-                    <h5>0 Votes</h5>
+                    <h5>0 {votes}</h5>
                 </div>
                 <div>
                     <Icon
                         icon={ic_answers}
                     />
 
-                    <h5>0 Answers</h5>
+                    <h5>0 {answers}</h5>
                 </div>
-                <div>
-                    <Icon
-                        icon={ic_correct}
-                    />
+                {
+                    props.resolved
+                    &&
+                    <div>
+                        <Icon
+                            icon={ic_correct}
+                        />
 
-                    <h5>Resolved</h5>
-                </div>
+                        <h5>Resolved</h5>
+                    </div>
+                }
             </div>
 
             <div className={styles.right}>
@@ -62,7 +66,10 @@ const Preview = (props, { votes, answers, resolved, children, }) => {
                 </div>
 
                 <div className={styles.profileContainer}>
-                    <div className={styles.profile}></div>
+                    <img 
+                        src={test}
+                        alt="" 
+                    />
                     <p className={styles.name}><strong>{user}</strong>&nbsp;asked this 5 hours ago</p>
                 </div>
         

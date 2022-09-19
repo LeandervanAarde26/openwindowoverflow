@@ -1,12 +1,7 @@
 @import "../../StyleSource/variables.scss";
 
 .backButton{
-    width: 100%;
-    height: auto;
-    min-height: 33px;
     @include headingFive();
-    margin-top: 0;
-    margin-bottom: 5%;
     cursor: pointer;
     transition: 300ms ease-in-out all;
 

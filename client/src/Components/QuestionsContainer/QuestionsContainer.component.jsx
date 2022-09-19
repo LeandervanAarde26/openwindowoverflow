@@ -10,9 +10,8 @@ const QuestionsContainer = () => {
                 <div className={styles.container}>
                     <Preview 
                         goodQuestion={true}
+                        resolved={true}
                     />
-                    <Preview />
-                    <Preview />
                     <Preview />
                 </div>
             </div>

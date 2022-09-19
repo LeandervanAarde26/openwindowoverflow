@@ -1,15 +1,17 @@
 @import "../../StyleSource/variables.scss";
 
-.container{
-    width: 61.5vw;
-    max-height: 70vh;
-    overflow: scroll;
-}
 .outer{
-    margin-top: 3vh;
-    margin-bottom: 1.5vh;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    overflow: scroll;
+    padding: 20px 0;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    
+    & {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
 
     h3{
         @include headingThree();

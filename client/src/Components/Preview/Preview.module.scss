@@ -1,14 +1,17 @@
 @import "../../StyleSource/variables.scss";
 
 .container {
+    @include body();
     @include dropShadow();
-    min-width: 800px;
+    max-width: 1000px;
     background-color: $white;
     width: fit-content;
     height: fit-content;
     display: flex;
     padding: 10px;
     gap: 10px;
+    margin-bottom: 50px;
+    border: 1px solid rgba($color: $black, $alpha: 0.1);
 
     .left {
         width: fit-content;
@@ -35,6 +38,10 @@
             align-items: center;
             justify-content: space-between;
 
+            h4 {
+                @include headingFour();
+            }
+
             &__sub {
                 display: flex;
                 align-items: center;
@@ -52,76 +59,74 @@
             flex-wrap: wrap;
             gap: 5px;
         }
+
+        .profileContainer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+    
+            img {
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+                border-radius: 50%;
+                outline: 1px solid $black;
+            }
+        }
+    
+        .description {
+            width: 85%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            /* number of lines to show */
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+    
+        }
+    
+        .answeringUser {
+            text-align: end;
+        }
     }
 }
 
-.container {
-    /* min-width: 800px;
-    height: auto;
-    min-height: fit-content;
-    background-color: $white;
-    margin-top: 1.5%;
-    @include dropShadow();
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding-right: 1%; */
+@media only screen and (max-width: 700px) {
+    .container {
+        @include body();
+        @include dropShadow();
+        max-width: 300px;
+        background-color: $white;
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px;
+        margin-bottom: 50px;
+        border: 1px solid rgba($color: $black, $alpha: 0.1);
 
-    .innerLeft {
-        height: 100%;
-        width: 14%;
-        background-color: red;
-    }
-
-    h4 {
-        @include headingFour();
-    }
-
-
-    .profileContainer {
-        width: 80%;
-
-        .profile {
-            width: 7%;
-            aspect-ratio: 1/1;
-            background-color: RED;
-            border-radius: 55%;
-            margin-top: 1%;
-            display: inline-flex;
-            vertical-align: middle;
-            background-image: url("../../Assets/car.jpg");
-            background-position: center;
-            background-size: cover;
-
+        .left {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            gap: 0;
+            padding: 10px 0;
+            border-bottom: 1px solid $black;
         }
 
-        .name {
-            display: inline-flex;
-            vertical-align: middle;
-            margin-left: 2%;
-            @include body();
+        .right {
+            .heading {
+                .heading__sub {
+                    display: none;
+                }
+            }
 
+            .answeringUser {
+                text-align:start;
+            }
         }
     }
-
-    .description {
-        width: 82% !important;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        /* number of lines to show */
-        line-clamp: 3;
-        -webkit-box-orient: vertical;
-        margin-top: 1%;
-        @include body();
-
-    }
-
-    .answeringUser {
-        @include body();
-        text-align: end;
-        margin-top: 1.5%;
-    }
-
 }
