@@ -1,6 +1,7 @@
 import styles from './SearchBar.module.scss';
 
 import Icon from '../Icon/Icon';
+import search from "../../Assets/Icons/ic_search.svg"
 
 const SearchBar = (props) => {
     return (
@@ -18,7 +19,7 @@ const SearchBar = (props) => {
 
                 <Icon
                     className={styles['container__button--icon']}
-                    icon={'ic_search'}
+                    icon={search}
                 />
             </div>
         </div>

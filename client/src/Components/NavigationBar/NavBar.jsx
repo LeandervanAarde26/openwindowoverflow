@@ -9,6 +9,12 @@ import Button from '../Button/Button.component'
 import ProfileCard from '../Profile/ProfileCard';
 import Dropdown from '../Dropdown/Dropdown';
 
+//Import icons
+
+import trophy from "../../Assets/Icons/ic_trophy.svg";
+import inbox from "../../Assets/Icons/ic_inbox.svg";
+
+
 const NavBar = () => {
     return (
         <div className={styles.container}>
@@ -31,10 +37,10 @@ const NavBar = () => {
                 />
 
                 <div className={styles['container__login--dropdown']}>
-                    <NavLink to='/s'>
+                    <NavLink to='/'>
                         <Icon
                             className={styles['container__login--trophy']}
-                            icon={'ic_trophy'}
+                            icon={trophy}
                         />
                     </NavLink>
                     <div className={styles.dropContent}>
@@ -46,7 +52,7 @@ const NavBar = () => {
 
                 <Icon
                     className={styles['container__login--trophy']}
-                    icon={'ic_inbox'}
+                    icon={inbox}
                 />
             </div>
             <div className={styles.container__profile}>

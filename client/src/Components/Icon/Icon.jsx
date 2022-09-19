@@ -1,6 +1,6 @@
 import {useRef, useEffect} from 'react';
-
 import styles from './Icon.module.scss';
+
 
 const Icon = ( props ) => {
 
@@ -90,7 +90,7 @@ const Icon = ( props ) => {
             <img 
                 ref={ image }
                 src={ 
-                    require( `../../Assets/Icons/${ props.icon }.svg` )
+                    props.icon
                 }
             />
         </span>
