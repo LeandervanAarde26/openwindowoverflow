@@ -21,6 +21,7 @@
 
     &__search {
         display: flex;
+        flex-basis: 25%;
     }
 
     &__login {
@@ -38,5 +39,6 @@
 
     &__profile {
         display: flex;
+        align-items: center;
     }
 }
