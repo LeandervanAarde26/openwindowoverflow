@@ -154,14 +154,11 @@
         color: $white;
         outline: 1px solid;
         outline-color: $black;
-        outline-offset: 0px;
         transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
 
         &:hover {
-            border: 2px solid;
             outline-color: rgba(255, 64, 0, 0.5);
             outline-offset: 15px;
-            text-shadow: 1px 1px 2px #00000052;
         }
     }
 }

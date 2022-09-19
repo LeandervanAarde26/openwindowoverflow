@@ -1,9 +1,13 @@
+import {NavLink} from 'react-router-dom';
+
 import styles from './NavBar.module.scss';
 
 import logo from '../../Assets/Icons/testLogo.svg';
 import SearchBar from '../Input/SearchBar';
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button.component'
+import ProfileCard from '../Profile/ProfileCard';
+import Dropdown from '../Dropdown/Dropdown';
 
 const NavBar = () => {
     return (
@@ -26,10 +30,19 @@ const NavBar = () => {
                     children={"Sign out"}
                 />
 
-                <Icon
-                    className={styles['container__login--trophy']}
-                    icon={'ic_trophy'}
-                />
+                <div className={styles['container__login--dropdown']}>
+                    <NavLink to='/s'>
+                        <Icon
+                            className={styles['container__login--trophy']}
+                            icon={'ic_trophy'}
+                        />
+                    </NavLink>
+                    <div className={styles.dropContent}>
+                        <Dropdown
+                            title={'Notifications'}
+                        />
+                    </div>
+                </div>
 
                 <Icon
                     className={styles['container__login--trophy']}
@@ -37,7 +50,9 @@ const NavBar = () => {
                 />
             </div>
             <div className={styles.container__profile}>
-                <h1>Stranger</h1>
+                <ProfileCard
+                    profileImage={logo}
+                />
             </div>
         </div>
     );

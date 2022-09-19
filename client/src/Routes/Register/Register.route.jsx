@@ -26,7 +26,31 @@ const Register = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        let correctEmail = value.includes("@openwindow.co.za") || value.includes("@virtualwindow.co.za");
+        const emailCheck = emailRegex.test(value);
+        
         setFormValues({ ...formValues, [name]: value })
+
+        if (name == "email" && value.length > 2) {
+            if (emailCheck && correctEmail) {
+                setError(false);
+                setClickable(true);
+            } else {
+                setError(true);
+                setClickable(false);
+            }
+        } else {
+            setError(false);
+            setClickable(true);
+        }
+
+        if (formValues.password == formValues.confirmPassword ) {
+            setpasswordError(true);
+            console.log('hey')
+        } else {
+            setpasswordError(false);
+        }
     }
 
     const SignIn = () => {
@@ -36,41 +60,6 @@ const Register = () => {
     const test = () => {
         navigate(("/Home"))
     }
-
-    const validateEmail = (e) => {
-        const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        const { name, value } = e.target;
-        //To test if the email is indeed an email
-        const checker = emailRegex.test(value);
-        // This splits the email into two , returning @virtualwindow or whatever is in the email
-        const atPosition = value.indexOf('@');
-        let mailHost = value.slice(atPosition)
-        if (checker === true) {
-            if (mailHost == "@virtualwindow.co.za" || mailHost == '@openwindow.co.za') {
-                setError(false);
-                setClickable(true)
-
-            } else {
-                setError(true)
-                setClickable(false)
-            }
-        } else {
-            setError(true)
-            setClickable(false)
-        }
-    }
-
-    const validatePassword = (e) => {
-        const { name, value } = e.target;
-        if (formValues.password == formValues.confirmPassword) {
-            setpasswordError(false)
-
-        } else {
-            setpasswordError(true)
-        }
-    }
-
-    console.log(formValues)
 
     return (
         <div className={styles.outer}>
@@ -85,7 +74,6 @@ const Register = () => {
                         name="username"
                         required={true}
                         onChange={handleChange}
-                        onBlur={validateEmail}
                         placeholder="eg. "
                     />
 
@@ -97,7 +85,6 @@ const Register = () => {
                         name="email"
                         required={true}
                         onChange={handleChange}
-                        onBlur={validateEmail}
                     />
 
                     <Input

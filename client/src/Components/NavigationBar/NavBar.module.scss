@@ -27,13 +27,27 @@
     &__login {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 50px;
 
-        &--trophy {
-            svg {
-                width: 34px;
-                height: 34px;
+        &--dropdown {
+            position: relative;
+
+            &:hover .dropContent {
+                display: block;
             }
+
+            .dropContent {
+                display: none;
+                top: 100%;
+                right: 0;
+                left: 0;
+                position: absolute;
+            }
+        }
+
+        svg {
+            width: 34px;
+            height: 34px;
         }
     }
 
