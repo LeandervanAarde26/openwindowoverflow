@@ -3,34 +3,40 @@
 /* This Container will Auto Grow to the Full Width of the Screen */
 .container {
     display: flex;
-    max-height: 100px;
-    padding: 10px 30px;
-    background-color: red;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid $black;
+    margin: 0 10px;
 
     &__logo {
         display: flex;
-        flex-basis: 25%;
+        flex-basis: 10%;
 
         img {
+            width: 100%;
             object-fit: cover;
         }
     }
 
     &__search {
         display: flex;
-        flex-basis: 25%;
-        background-color: aqua;
     }
 
     &__login {
         display: flex;
-        flex-basis: 25%;
-        background-color: black;
+        align-items: center;
+        gap: 20px;
+
+        &--trophy {
+            svg {
+                width: 34px;
+                height: 34px;
+            }
+        }
     }
 
     &__profile {
         display: flex;
-        flex-basis: 25%;
-        background-color: blue;
     }
 }

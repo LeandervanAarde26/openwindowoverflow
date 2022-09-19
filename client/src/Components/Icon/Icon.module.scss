@@ -7,6 +7,12 @@
     justify-content: center;
     align-items: center;
     background-color: transparent;
+
+    svg {
+        *[stroke] {
+            stroke: $white;
+        }
+    }
 }
 
 .container:hover {

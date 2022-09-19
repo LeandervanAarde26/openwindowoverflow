@@ -1,6 +1,9 @@
 import styles from './NavBar.module.scss';
 
-import logo from '../../Assets/Icons/logo.svg';
+import logo from '../../Assets/Icons/testLogo.svg';
+import SearchBar from '../Input/SearchBar';
+import Icon from '../Icon/Icon';
+import Button from '../Button/Button.component'
 
 const NavBar = () => {
     return (
@@ -12,10 +15,26 @@ const NavBar = () => {
                 />
             </div>
             <div className={styles.container__search}>
-                <h1>Hey</h1>
+                <SearchBar
+                    label={"Search"}
+                    placeholder={"Search..."}
+                />
             </div>
             <div className={styles.container__login}>
-                <h1>There</h1>
+                <Button
+                    buttonType={'black'}
+                    children={"Sign out"}
+                />
+
+                <Icon
+                    className={styles['container__login--trophy']}
+                    icon={'ic_trophy'}
+                />
+
+                <Icon
+                    className={styles['container__login--trophy']}
+                    icon={'ic_inbox'}
+                />
             </div>
             <div className={styles.container__profile}>
                 <h1>Stranger</h1>

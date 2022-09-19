@@ -1,0 +1,39 @@
+@import "../../StyleSource/variables.scss";
+
+.container {
+    display: flex;
+    
+    input {
+        padding: 13px 10px;
+        border: 2px solid $orange;
+        
+        &:focus {
+            outline: none;
+        }
+    }
+    
+    &__button {
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 13px 10px;
+        background-color: $orange;
+        color: $white;
+        
+        h1 {
+            @include smallText();
+            font-size: 14px;
+        }
+
+        svg {
+            *[fill] {
+                fill: $white;
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
