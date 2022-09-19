@@ -14,6 +14,10 @@ $warning: #F5DD00;
 $headings: 'Montserrat', sans-serif;
 $body: 'Quicksand', sans-serif;
 
+html, body {
+    height: 100%;
+}
+
 /* Styling Properties for everything */
 * {
     margin: 0;

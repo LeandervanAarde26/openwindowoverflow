@@ -22,14 +22,14 @@ const Preview = (props, { votes, answers, resolved, children, }) => {
                         icon={ic_votes}
                     />
 
-                    <h5>0 {votes}</h5>
+                    <h5>{votes} votes</h5>
                 </div>
                 <div>
                     <Icon
                         icon={ic_answers}
                     />
 
-                    <h5>0 {answers}</h5>
+                    <h5>{answers} answers</h5>
                 </div>
                 {
                     props.resolved

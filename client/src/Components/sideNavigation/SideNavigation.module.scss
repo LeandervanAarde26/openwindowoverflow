@@ -3,8 +3,11 @@
 .container{
     width: 20vw;
     min-width: fit-content;
+    height: fit-content;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 40px
+    gap: 40px;
+    position: sticky;
+    top: 0;
 }

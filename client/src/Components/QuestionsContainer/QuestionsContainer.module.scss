@@ -1,17 +1,22 @@
 @import "../../StyleSource/variables.scss";
 
 .outer{
-    overflow: scroll;
+    display: flex;
+    flex-direction: column;
     padding: 20px 0;
-
-    &::-webkit-scrollbar {
-        display: none;
-    }
     
-    & {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+    .container {
+        flex: 1;
     }
+
+/*     &::-webkit-scrollbar {
+        display: none;
+    } */
+    
+/*     & {
+        -ms-overflow-style: none;  
+        scrollbar-width: none; 
+    } */
 
     h3{
         @include headingThree();

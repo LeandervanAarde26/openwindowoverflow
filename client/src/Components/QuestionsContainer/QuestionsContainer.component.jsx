@@ -13,6 +13,10 @@ const QuestionsContainer = () => {
                         resolved={true}
                     />
                     <Preview />
+                    <Preview />
+                    <Preview />
+                    <Preview />
+                    <Preview />
                 </div>
             </div>
         </>
