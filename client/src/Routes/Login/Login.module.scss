@@ -25,6 +25,20 @@
 
         form {
             width: 50%;
+
+            
+        }
+
+        .reset{
+            margin-top: 1%;
+            margin-bottom: 3%;
+            @include body();
+            color: darken($color: $grey, $amount: 50%);
+            
+            span{
+                color: blue;
+                cursor: pointer;
+            }
         }
 
         #err {

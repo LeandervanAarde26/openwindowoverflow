@@ -31,7 +31,7 @@ function App() {
                         <Routes location={location}>
                             <Route path='/' index element={<Login />} />
                             <Route path='/Register' element={<Register />} />
-                            {/* <Route path='/Home' element={<Home />} /> */}
+                            <Route path='/Home' element={<Home />} />
 
                             {/* INSERT ROUTES HERE */}
                         </Routes>

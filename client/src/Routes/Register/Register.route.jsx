@@ -123,7 +123,6 @@ const Register = () => {
                 {
                     clickable ?
                         <>
-                            <p className={styles.reset}>Forgot password? <br /> <span>Click here to reset</span></p>
                             <Button
                                 buttonType={'black'}
                                 children={"Sign up"}
