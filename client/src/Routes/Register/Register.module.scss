@@ -3,40 +3,40 @@
 
 .outer{
     display: flex;
+    align-items: center;
     flex: 1;
+    gap: 20px;
     
-
     .right{
+        height: 100%;
         flex-basis: 60%;
-        padding: 0;
         background-image: url("../../Assets/RegisterImage.png");
         background-size: cover;
     }   
     
     .left{
-        height: auto;
-        min-height: 75vh;
-        width: 35vw;
-        padding-left: 4%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 25px;
+        width: fit-content;
+        height: fit-content;
+
+        form {
+            width: 50%;
+        }
+
         #err{
             color: $danger !important;
           }
 
         #buttonSize, #secondary{
-            width: 51%;
-            margin-left: 18%;
+            min-width: fit-content;
+            width: 50%;
         }
-
-        #secondary{
-            &:hover:before {
-                width: 15.9%;
-                margin-left: 9.6%;
-            }
-        }
-
 
         .option{
-            margin-left: 30% ;
             margin-bottom: 3%;
             margin-top: 3%;
             @include body();
@@ -44,7 +44,6 @@
         }
 
         .reset{
-            margin-left: 30% ;
             margin-top: 1%;
             margin-bottom: 3%;
             @include body();
@@ -62,7 +61,35 @@
             font-weight: 400;
             @include headingTwo();
             margin-top: 10%;
-            margin-left: 32%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .outer {
+        background-image: url("../../Assets/LoginImage.png");
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .right {
+            display: none;
+        }
+
+        .left {
+            min-width: 70%;
+            max-width: fit-content;
+            background-color: rgba($color: $white, $alpha: .9);
+
+            form {
+                min-width: 100%;
+            }
+
+            #buttonSize,
+            #secondary {
+                min-width: 70%;
+            }
         }
     }
 }

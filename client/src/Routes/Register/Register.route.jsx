@@ -139,16 +139,11 @@ const Register = () => {
                                 onClick={SignIn}
                             />
                         </>
-
                         :
-                        <>
-                        </>
+                        null
                 }
             </div>
-            <div className={styles.right}>
- 
-            </div>
-
+            <div className={styles.right}></div>
         </div>
     );
 };
