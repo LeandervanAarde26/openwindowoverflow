@@ -1,38 +1,82 @@
 @import "../../StyleSource/variables.scss";
 
 .container {
-    width: 60vw;
+    @include dropShadow();
+    min-width: 800px;
+    background-color: $white;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+
+    .left {
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        div {
+            @include headingSix();
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        flex: 1;
+
+        .heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &__sub {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+            svg {
+                *[fill] {
+                    fill: $orange;
+                }
+            }
+        }
+
+        .tagsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+    }
+}
+
+.container {
+    /* min-width: 800px;
     height: auto;
-    max-height: 31vh;
-    min-height: 10vh;
+    min-height: fit-content;
     background-color: $white;
     margin-top: 1.5%;
     @include dropShadow();
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    padding-right: 1%;
+    padding-right: 1%; */
 
     .innerLeft {
-        height: 30vh;
+        height: 100%;
         width: 14%;
         background-color: red;
-        // margin-right: 1%;
     }
 
     h4 {
         @include headingFour();
-        margin-top: 1%;
-        margin-bottom: 1%;
     }
 
-    .tagsContainer {
-        width: 80%;
-        display: grid;
-        flex-direction: column;
-        grid-template-columns: repeat(10, 20fr);
-        column-gap: 8px;
-    }
 
     .profileContainer {
         width: 80%;

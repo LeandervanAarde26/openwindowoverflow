@@ -8,7 +8,9 @@ const QuestionsContainer = () => {
             <div className={styles.outer}>
                 <h3>Questions</h3>
                 <div className={styles.container}>
-                    <Preview />
+                    <Preview 
+                        goodQuestion={true}
+                    />
                     <Preview />
                     <Preview />
                     <Preview />
