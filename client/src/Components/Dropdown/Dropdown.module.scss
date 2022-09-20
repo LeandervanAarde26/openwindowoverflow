@@ -7,6 +7,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    z-index: +99;
+    max-height: 300px;
+    overflow: scroll;
 
     &__top {
         display: flex;
