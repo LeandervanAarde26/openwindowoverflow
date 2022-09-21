@@ -21,7 +21,7 @@ const RightContainer = () => {
                 buttonSize={"discordButton"}
             />
 
-            <AdSenseContainer />
+            {/* <AdSenseContainer /> */}
 
         </div>
     );

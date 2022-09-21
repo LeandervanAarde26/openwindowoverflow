@@ -22,7 +22,7 @@ function App() {
         <div className='App'>
             <NavBar />
             {
-                location.pathname === '/' || location.pathname === "/Register" || location.pathname === "/Home"
+                location.pathname === '/' || location.pathname === "/Register"
                 ?
                 <TransitionGroup
                     style={{display: "flex", flex: 1}}
@@ -42,6 +42,7 @@ function App() {
                     <Route path='/' index element={<Login />} />
                     <Route path='/Register' element={<Register />} />
                     <Route path='/Home' element={<Home />} />
+                    <Route path="/Articles" element={<Home/>}/>
                      {/* INSERT ROUTES HERE */}
                 </Routes>
             }
