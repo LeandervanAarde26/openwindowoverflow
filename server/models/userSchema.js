@@ -8,10 +8,10 @@ const users = mongoose.Schema({
         required: true,
         trim: true
     },
-    joined:{
+    joined: {
         type: Date,
         default: Date.now
-    }, 
+    },
     email: {
         type: String,
         required: [true, 'Please provide a valid email'],
@@ -31,7 +31,7 @@ const users = mongoose.Schema({
         default: "student"
     },
     userSuspension: {
-        type: Number, 
+        type: Number,
         default: 0
     },
     userFlags: {
