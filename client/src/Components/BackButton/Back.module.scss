@@ -1,0 +1,11 @@
+@import "../../StyleSource/variables.scss";
+
+.backButton{
+    @include headingFive();
+    cursor: pointer;
+    transition: 300ms ease-in-out all;
+
+    &:hover{
+        transform: scale(1.1);
+    }
+}

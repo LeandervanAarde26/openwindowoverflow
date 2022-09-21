@@ -1,0 +1,7 @@
+@import "../../StyleSource/variables.scss";
+
+/* This Container will Auto Grow to the Full Width of the Screen */
+.container {
+    height: fit-content;
+    background-color: purple;
+}

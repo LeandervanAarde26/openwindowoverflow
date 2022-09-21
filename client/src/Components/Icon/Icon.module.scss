@@ -1,0 +1,20 @@
+@import "../../StyleSource/variables.scss";
+
+.container {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+
+    svg {
+        *[stroke] {
+            stroke: $black;
+        }
+    }
+}
+
+.container:hover {
+    cursor: pointer;
+}

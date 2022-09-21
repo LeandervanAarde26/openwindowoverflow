@@ -1,0 +1,28 @@
+@import "../../StyleSource/variables.scss";
+
+.outer{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    
+    .container {
+        flex: 1;
+    }
+
+/*     &::-webkit-scrollbar {
+        display: none;
+    } */
+    
+/*     & {
+        -ms-overflow-style: none;  
+        scrollbar-width: none; 
+    } */
+
+    h3{
+        @include headingThree();
+        margin-bottom: 1.5vh;
+    }
+    & ::-webkit-scrollbar{
+        display: none;
+    }
+}

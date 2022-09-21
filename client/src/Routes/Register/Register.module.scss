@@ -1,0 +1,95 @@
+@import "../../StyleSource/variables.scss";
+@import "../../StyleSource/variables.scss";
+
+.outer{
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 20px;
+    
+    .right{
+        height: 100%;
+        flex-basis: 60%;
+        background-image: url("../../Assets/RegisterImage.png");
+        background-size: cover;
+    }   
+    
+    .left{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 25px;
+        width: fit-content;
+        height: fit-content;
+
+        form {
+            width: 50%;
+        }
+
+        #err{
+            color: $danger !important;
+          }
+
+        #buttonSize, #secondary{
+            min-width: fit-content;
+            width: 50%;
+        }
+
+        .option{
+            margin-bottom: 3%;
+            margin-top: 3%;
+            @include body();
+            color: darken($color: $grey, $amount: 30%);
+        }
+
+        .reset{
+            margin-top: 1%;
+            margin-bottom: 3%;
+            @include body();
+            color: darken($color: $grey, $amount: 50%);
+            
+            span{
+                color: blue;
+                cursor: pointer;
+            }
+        }
+
+        .heading{
+            // text-align: center;
+            margin-bottom: 7%;
+            font-weight: 400;
+            @include headingTwo();
+            margin-top: 10%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .outer {
+        background-image: url("../../Assets/LoginImage.png");
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .right {
+            display: none;
+        }
+
+        .left {
+            min-width: 70%;
+            max-width: fit-content;
+            background-color: rgba($color: $white, $alpha: .9);
+
+            form {
+                min-width: 100%;
+            }
+
+            #buttonSize,
+            #secondary {
+                min-width: 70%;
+            }
+        }
+    }
+}
