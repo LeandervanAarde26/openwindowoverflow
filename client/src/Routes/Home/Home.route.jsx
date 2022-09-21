@@ -10,24 +10,22 @@ import ArticlesContainer from '../../Components/ArticlesContainer/ArticlesContai
 
 const Home = () => {
     const [currentLocation, setCurrentLocation] = useState()
-    const pathName = useLocation();    
+    const pathName = useLocation();
     return (
         <div className={styles.container}>
-            <SideNavigation/>
-
+            <SideNavigation />
             {
                 pathName.pathname === '/Home'
-                ?
-                <QuestionsContainer/>
-                : 
-                pathName.pathname === '/Articles'
-                ?
-                <ArticlesContainer/>
-                : 
-                null
-
+                    ?
+                    <QuestionsContainer />
+                    :
+                    pathName.pathname === '/Articles'
+                        ?
+                        <ArticlesContainer />
+                        :
+                        null
             }
-          <RightContainer/>
+            <RightContainer />
         </div>
     );
 };
