@@ -2,14 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from "./NavigationButton.module.scss"
 
-const NavigationButton = (props, { active, children,activeClass, ...otherProps }) => {
+const NavigationButton = ({route, active, children,activeClass,label, ...otherProps }) => {
 
     return (
         <NavLink 
-            to={props.route}
+            to={route}
             className={({isActive}) => isActive ? styles.active : styles.buttonContainer}  
         >
-            {props.label}
+            {label}
         </NavLink>
     );
 };

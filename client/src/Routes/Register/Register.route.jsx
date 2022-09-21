@@ -29,7 +29,7 @@ const Register = () => {
         const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         let correctEmail = value.includes("@openwindow.co.za") || value.includes("@virtualwindow.co.za");
         const emailCheck = emailRegex.test(value);
-        
+
         setFormValues({ ...formValues, [name]: value })
 
         if (name == "email" && value.length > 2) {
@@ -45,7 +45,7 @@ const Register = () => {
             setClickable(true);
         }
 
-        if (formValues.password == formValues.confirmPassword ) {
+        if (formValues.password == formValues.confirmPassword) {
             setpasswordError(true);
             console.log('hey')
         } else {

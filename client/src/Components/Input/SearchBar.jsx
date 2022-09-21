@@ -3,19 +3,19 @@ import styles from './SearchBar.module.scss';
 import Icon from '../Icon/Icon';
 import search from "../../Assets/Icons/ic_search.svg"
 
-const SearchBar = (props) => {
+const SearchBar = ({placeholder, onChange, onClick, label}) => {
     return (
         <div className={styles.container}>
             <input
-                placeholder={props.placeholder}
-                onChange={props.onChange}
+                placeholder={placeholder}
+                onChange={onChange}
             />
 
             <div 
                 className={styles.container__button}
-                onClick={props.onClick}
+                onClick={onClick}
             >
-                <h1>{props.label}</h1>
+                <h1>{label}</h1>
 
 {/*                 <Icon
                     className={styles['container__button--icon']}
