@@ -1,7 +1,12 @@
 @import "../../StyleSource/variables.scss";
 
-.container{
+.AdContainer{
     width: 100%;
-    height: 45vh;
+    height: 10px;
     @include dropShadow();
+}
+
+.adsbygoogle{
+    position: relative;
+    z-index: +9999;
 }

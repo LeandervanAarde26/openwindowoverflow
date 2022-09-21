@@ -5,14 +5,13 @@ import QuestionsContainer from '../../Components/QuestionsContainer/QuestionsCon
 import RightContainer from '../../Components/RightContainer/RightContainer.component';
 
 
-
 const Home = () => {
     return (
         <div className={styles.container}>
             <SideNavigation/>
             <QuestionsContainer/>
             {/* <AllButtons/> */}
-            <RightContainer/>
+          <RightContainer/>
         </div>
     );
 };
