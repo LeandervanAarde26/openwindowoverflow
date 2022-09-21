@@ -51,7 +51,7 @@ const users = mongoose.Schema({
     ],
     likedArticles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'articles' }],
     postedArticles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'articles' }],
-    
+
     userReputation: {
         type: Number,
         default: 0, 
@@ -69,4 +69,4 @@ UserSchema.methods.comparePassword = async function (userPassword) {
 	return matchPasswords;
 }
 
-module.expors = mongoose.model('user', users)
+module.exports = mongoose.model('user', users)
