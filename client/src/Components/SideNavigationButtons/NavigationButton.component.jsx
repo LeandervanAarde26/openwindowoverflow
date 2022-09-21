@@ -8,7 +8,7 @@ const NavigationButton = (props, { active, children,activeClass, ...otherProps }
             to={props.route}
             className={({isActive}) => isActive ? styles.active : styles.buttonContainer}  
         >
-            {props.label}
+            {children}
         </NavLink>
     );
 };
