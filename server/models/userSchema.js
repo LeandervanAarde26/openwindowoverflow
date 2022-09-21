@@ -30,7 +30,10 @@ const users = mongoose.Schema({
         type: String,
         default: "student"
     },
-
+    userSuspension: {
+        type: Number, 
+        default: 0
+    },
     userFlags: {
         type: Number,
         default: 0
