@@ -4,9 +4,11 @@ import styles from "./AdSenseContainer.module.scss";
 export default class AdSenseContainer extends React.Component {
     componentDidMount() {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
+        console.log('DID IT!!');
     }
     render() {
         return (
+            <div className={styles.AdContainer}>
                 <ins className="adsbygoogle"
                     style={{ display: 'block' }}
                     data-ad-client="ca-pub-6509798972020180"
@@ -14,6 +16,7 @@ export default class AdSenseContainer extends React.Component {
                     data-adtest="on"
                     data-ad-format="auto"
                     data-full-width-responsive="true"/>
+            </div>
         );
 
     }

@@ -1,9 +1,9 @@
 @import "../../StyleSource/variables.scss";
 
 .container{
-    width: 22vw;
+    width: 24.5vw;
     min-width: fit-content;
-    height: fit-content;
+    max-height: 90vh;
     padding: 20px;
     display: flex;
     flex-direction: column;

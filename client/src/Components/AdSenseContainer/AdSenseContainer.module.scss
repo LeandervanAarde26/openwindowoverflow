@@ -2,11 +2,12 @@
 
 .AdContainer{
     width: 100%;
-    height: 10px;
     @include dropShadow();
+    padding: 0;
+
+    .adsbygoogle{
+        position: relative;
+        z-index: +9999;
+    }
 }
 
-.adsbygoogle{
-    position: relative;
-    z-index: +9999;
-}

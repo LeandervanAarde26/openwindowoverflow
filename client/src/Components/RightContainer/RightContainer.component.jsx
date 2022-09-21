@@ -22,6 +22,7 @@ const RightContainer = () => {
             />
 
             <AdSenseContainer />
+
         </div>
     );
 };
