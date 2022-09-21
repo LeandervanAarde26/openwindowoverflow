@@ -8,6 +8,10 @@ const users = mongoose.Schema({
         required: true,
         trim: true
     },
+    joined:{
+        type: Date,
+        default: Date.now
+    }, 
     email: {
         type: String,
         required: [true, 'Please provide a valid email'],
@@ -20,6 +24,7 @@ const users = mongoose.Schema({
         trim: true,
         select: false
     },
+    userImage: String,
 
     userRole: {
         type: String,
@@ -54,19 +59,19 @@ const users = mongoose.Schema({
 
     userReputation: {
         type: Number,
-        default: 0, 
+        default: 0,
     }
 });
 
-users.pre('save', async function (){
+users.pre('save', async function () {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt)
     console.log(this.password)
 });
 
 UserSchema.methods.comparePassword = async function (userPassword) {
-	const matchPasswords = await bcrypt.compare(userPassword, this.password);
-	return matchPasswords;
+    const matchPasswords = await bcrypt.compare(userPassword, this.password);
+    return matchPasswords;
 }
 
 module.exports = mongoose.model('user', users)
