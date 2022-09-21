@@ -7,7 +7,7 @@ import styles from "./SideNavigation.module.scss";
 
 const SideNavigation = () => {
     const [active, setActive] = useState(null)
-    const categories = [ "home","1st year","2nd year","3rd year","Honors","Contact","Articles"]
+    const categories = [ "home","1st year","2nd year","3rd year","Honours","Contact","Articles"]
     const navigationButton = categories.map((item, idx) => 
         <NavigationButton 
             route={`/${item}`}
