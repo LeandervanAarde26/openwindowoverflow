@@ -4,14 +4,14 @@
     @include body();
     height: 50px;
     letter-spacing: 0.5px;
-    padding: 0 35px 0 35px;
-    line-height: 50px;
+    padding: 10px 20px;
     text-transform: lowercase;
     font-weight: 500;
     border: none;
     cursor: pointer;
     display: flex;
     justify-content: center;
+    align-items: center;
 
     &.primary {
         background-color: $orange;

@@ -17,10 +17,10 @@ const SearchBar = (props) => {
             >
                 <h1>{props.label}</h1>
 
-                <Icon
+{/*                 <Icon
                     className={styles['container__button--icon']}
                     icon={search}
-                />
+                /> */}
             </div>
         </div>
     );

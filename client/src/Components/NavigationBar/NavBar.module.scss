@@ -2,57 +2,84 @@
 
 /* This Container will Auto Grow to the Full Width of the Screen */
 .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid $black;
-    margin: 0 10px;
-
-    &__logo {
-        display: flex;
-        flex-basis: 10%;
-
-        img {
-            width: 100%;
-            object-fit: cover;
-        }
-    }
 
     &__search {
-        display: flex;
-        flex-basis: 25%;
+        display: none;
     }
 
-    &__login {
+    &Outer {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 50px;
+        padding: 10px;
+        border-bottom: 1px solid $black;
+        margin: 0 10px;
 
-        &--dropdown {
-            position: relative;
-
-            &:hover .dropContent {
-                display: block;
+        &__logo {
+            display: flex;
+            flex-basis: 10%;
+            min-width: 150px;
+    
+            img {
+                width: 100%;
+                object-fit: cover;
             }
+        }
+    
+        &__search {
+            display: flex;
+            flex-basis: 25%;
+        }
+    
+        &__login {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: fit-content;
+    
+            &--dropdown {
+                position: relative;
+    
+                &:hover .dropContent {
+                    display: block;
+                }
+    
+                .dropContent {
+                    display: none;
+                    top: 100%;
+                    right: 0;
+                    left: 0;
+                    position: absolute;
+                }
+            }
+    
+            svg {
+                width: 34px;
+                height: 34px;
+            }
+        }
+    
+        &__profile {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
 
-            .dropContent {
+@media only screen and (max-width: 800px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+
+        &Outer {
+            &__search {
                 display: none;
-                top: 100%;
-                right: 0;
-                left: 0;
-                position: absolute;
             }
         }
 
-        svg {
-            width: 34px;
-            height: 34px;
+        &__search {
+            display: flex;
+            padding: 0 10px;
         }
-    }
-
-    &__profile {
-        display: flex;
-        align-items: center;
     }
 }
