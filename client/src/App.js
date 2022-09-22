@@ -12,6 +12,8 @@ import Footer from './Components/Footer/Footer';
 import Home from './Routes/Home/Home.route';
 import Login from './Routes/Login/Login.route';
 import Register from './Routes/Register/Register.route';
+import { Component } from 'react';
+import Components from './Routes/Components/Components';
 
 
 function App() {
@@ -43,6 +45,7 @@ function App() {
                     <Route path='/Register' element={<Register />} />
                     <Route path='/Home' element={<Home />} />
                     <Route path="/Articles" element={<Home/>}/>
+                    <Route path="/test" element={<Components/>}/>
                      {/* INSERT ROUTES HERE */}
                 </Routes>
             }
