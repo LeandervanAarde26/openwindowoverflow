@@ -46,6 +46,7 @@ function App() {
                     <Route path='/Home' element={<Home />} />
                     <Route path="/Articles" element={<Home/>}/>
                     <Route path="/test" element={<Components/>}/>
+    
                      {/* INSERT ROUTES HERE */}
                 </Routes>
             }

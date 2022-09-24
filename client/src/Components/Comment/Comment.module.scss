@@ -1,0 +1,23 @@
+@import "../../StyleSource/variables.scss";
+
+.container{
+    height: 50px;
+    background-color: $white;
+    @include dropShadow();
+    border-bottom: 1px solid $black;
+
+
+    .left {
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        div {
+            @include headingSix();
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+}
