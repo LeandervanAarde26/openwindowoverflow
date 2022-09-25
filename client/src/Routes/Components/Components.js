@@ -12,7 +12,7 @@ import RightContainer from '../../Components/RightContainer/RightContainer.compo
 import IndividualQuestionContainer from '../../Components/IndividualQuestionContainer/IndividualQuestionContainer.component';
 import QuestionsContainer from '../../Components/QuestionsContainer/QuestionsContainer.component';
 import MyQuestionsAnswersContainer from '../../Components/MyQuestionsAnswersContainer/MyQuestionsAnswersContainer.component';
-
+import PostedFollowedArticles from '../../Components/PostedFollowedArticles/PostedFollowedArticles.component';
 
 
 
@@ -29,6 +29,9 @@ const Components = () => {
 
         <div className={styles.container}>
             <SideNavigation />
+
+            <PostedFollowedArticles/>
+
             
             {/* <MyQuestionsAnswersContainer/> */}
 
