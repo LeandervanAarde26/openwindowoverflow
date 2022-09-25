@@ -11,6 +11,7 @@ import SideNavigation from '../../Components/sideNavigation/SideNavigation.compo
 import RightContainer from '../../Components/RightContainer/RightContainer.component';
 import IndividualQuestionContainer from '../../Components/IndividualQuestionContainer/IndividualQuestionContainer.component';
 import QuestionsContainer from '../../Components/QuestionsContainer/QuestionsContainer.component';
+import MyQuestionsAnswersContainer from '../../Components/MyQuestionsAnswersContainer/MyQuestionsAnswersContainer.component';
 
 
 
@@ -28,7 +29,8 @@ const Components = () => {
 
         <div className={styles.container}>
             <SideNavigation />
-
+            
+            <MyQuestionsAnswersContainer/>
 
             {/* <CommentsContainer />
 
