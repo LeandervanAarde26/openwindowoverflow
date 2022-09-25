@@ -1,31 +1,20 @@
 @import "../../StyleSource/variables.scss";
 
-.outer {
-    display: flex;
-    flex-direction: row;
-    padding: 20px 0;
-    flex: 1;
-    background-color: red;
+
 
     .container {
+
         .top,
         .bottom {
             width: 100%;
-            float: left;
             padding: 20px;
-            background-color: red;
-
+            gap: 2%;
+            margin-top: 1%;
 
             h4{
                 @include headingFour();
-                margin-bottom: 4vh;
             }
 
         }
 
-        .top{
-            background-color: navy;
-        }
     }
-
-}
