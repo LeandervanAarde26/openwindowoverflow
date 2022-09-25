@@ -18,7 +18,7 @@ const PostedFollowedArticles = () => {
                         icon={ic_votes}
                     />
                     <break></break>
-                    <h5>84 Likes</h5>
+                    <h3>84 Likes</h3>
                 </div>
             </div>
         </div>

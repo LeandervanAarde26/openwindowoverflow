@@ -11,9 +11,14 @@ const PostedFollowedArticlesContainer = () => {
                 <div className={styles.top}>
                     <h4>Posted Articles</h4>
                     <PostedFollowedArticles/>
+                    <PostedFollowedArticles/>
+                    <PostedFollowedArticles/>
+
                 </div>
                 <div className={styles.bottom}>
                     <h4>Followed Articles</h4>
+                    <PostedFollowedArticles/>
+                    <PostedFollowedArticles/>
                     <PostedFollowedArticles/>
                 </div>
             </div>
