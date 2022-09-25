@@ -30,7 +30,7 @@ const Components = () => {
         <div className={styles.container}>
             <SideNavigation />
             
-            <MyQuestionsAnswersContainer/>
+            {/* <MyQuestionsAnswersContainer/> */}
 
             {/* <CommentsContainer />
 
