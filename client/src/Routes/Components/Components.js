@@ -7,7 +7,10 @@ import ic_answers from '../../Assets/Icons/ic_checkmark.svg';
 import ic_correct from '../../Assets/Icons/ic_correct.svg';
 import Tags from '../../Components/Tags/Tags.component';
 import CommentsContainer from '../../Components/CommentsContainer/CommentsContainer.component';
-
+import SideNavigation from '../../Components/sideNavigation/SideNavigation.component';
+import RightContainer from '../../Components/RightContainer/RightContainer.component';
+import IndividualQuestionContainer from '../../Components/IndividualQuestionContainer/IndividualQuestionContainer.component';
+import QuestionsContainer from '../../Components/QuestionsContainer/QuestionsContainer.component';
 
 
 
@@ -22,7 +25,27 @@ const Components = () => {
 
     return (
 
-        <CommentsContainer/>
+
+        <div className={styles.container}>
+            <SideNavigation />
+
+
+            {/* <CommentsContainer />
+
+
+            <RightContainer /> */}
+
+        </div>
+
+
+
+
+
+
+
+
+        // <CommentsContainer />
+
         // <div className={styles.container}>
 
         //     <div className={styles.heading}>

@@ -1,6 +1,8 @@
 import React from 'react';
 import Comment from '../Comment/Comment.component';
 import styles from "./CommentsContainer.module.scss";
+import Button from '../Button/Button.component';
+
 const CommentsContainer = () => {
     return (
         <>
@@ -8,6 +10,12 @@ const CommentsContainer = () => {
             <h3>Comments</h3>
                 <div className={styles.container}>
                     <Comment/>
+                    <Comment/>
+                    <div className={styles.buttonContainer}>
+                        <Button
+                        buttonType={"outline"}
+                        children={"View more"}/>
+                    </div>
                 </div>
             </div>
         </>
