@@ -14,6 +14,7 @@ import Login from './Routes/Login/Login.route';
 import Register from './Routes/Register/Register.route';
 import { Component } from 'react';
 import Components from './Routes/Components/Components';
+import Profile from './Routes/Profile/Profile.route';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
                             <Route path='/' index element={<Login />} />
                             <Route path='/Register' element={<Register />} />
                             <Route path='/Home' element={<Home />} />
+                            <Route path='/profile' element={<Profile/>}/>
 
                             {/* INSERT ROUTES HERE */}
                         </Routes>
@@ -46,6 +48,7 @@ function App() {
                     <Route path='/Home' element={<Home />} />
                     <Route path="/Articles" element={<Home/>}/>
                     <Route path="/test" element={<Components/>}/>
+                    <Route path='/profile' element={<Profile/>}/>
                      {/* INSERT ROUTES HERE */}
                 </Routes>
             }
