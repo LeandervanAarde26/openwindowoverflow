@@ -15,9 +15,14 @@
     }
 
     .tags {
-        display: grid;
-        grid-template: repeat(5, 1fr) / repeat(5, 1fr);
-        grid-gap: 2px;
-        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
     }
 }
+
+// display: grid;
+// grid-template: repeat(4, 1fr) / repeat(6, 1fr);
+// grid-gap: 2px;
+// overflow: hidden;
