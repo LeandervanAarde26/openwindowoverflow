@@ -1,52 +1,68 @@
 @import "../../StyleSource/variables.scss";
 
 .container{
+    @include body();
     @include dropShadow();
-        width: 100%;
-        height: 140px;
-        max-width: 150vh;
-        margin-bottom: 2px;
-        border: 1px solid rgba($color: $black, $alpha: 0.1);
-        padding: 10px;
-        margin-bottom: 10px;
-        margin-top: 3vh;
-        h3{
-            @include headingThree();
-            font-size: 10px; // why vh? 
-            margin-bottom: 1vh;
-            font-weight: 600;
-        }
-        h5{
+    background-color: $white;
+    width: fit-content;
+    height: fit-content;
+    min-height: 15vh;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    margin-bottom: 2vh;
+    border: 1px solid rgba($color: $black, $alpha: 0.1);
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        flex: 1;
+
+        h4{
             @include headingFour();
-            font-size: 25px; // why vh? 
+            font-size: 25px;
             margin-bottom: 1vh;
             font-weight: 600;
         }
+
         p{
-            @include headingFour();
+            @include body();
             font-size: 13px;
             font-weight: 400;
             width: 80%;
         }
+    }
 
-        .informationContainer{
+    .right{
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        padding-right: 10px;
+        // background-color: red;
+        padding-top: 2%;
+
+        div {
+            @include headingSix();
             display: flex;
-            justify-content:end;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+
+        // .informationContainer{
+        //     display: flex;
+        //     justify-content:end;
        
 
-            .information{
-                margin-top: -3vh;
-                justify-content:center;
-                margin-left: 10vh;
+        //     .information{
+        //         margin-top: -3vh;
+        //         justify-content:center;
+        //         margin-left: 10vh;
     
 
-                break{
-                    margin-left: 7%;
-                    display: flex;
-                    flex-flow: row wrap;
-                    justify-content: center;
-    
-                  }
-            }          
-        }
+        //     }          
+        // }
     }

@@ -1,20 +1,25 @@
 @import "../../StyleSource/variables.scss";
 
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    flex: 1;
+    .top,
+    .bottom {
+        padding-right: 20px;
+        padding-left: 20px;
 
-
-    .container {
-
-        .top,
-        .bottom {
-            width: 100%;
-            padding: 20px;
-            gap: 2%;
-            margin-top: 1%;
-
-            h4{
-                @include headingFour();
-            }
-
+        h4 {
+            @include headingFour();
+            margin-bottom: 1%;
         }
-
     }
+
+    .bottom{
+        h4{
+            margin-top: 2%;
+        }
+    }
+
+}

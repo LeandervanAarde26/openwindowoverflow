@@ -29,9 +29,9 @@ const Components = () => {
 
         <div className={styles.container}>
             <SideNavigation />
-            <CommentsContainer />
+            {/* <CommentsContainer /> */}
 
-            {/* <PostedFollowedArticlesContainer/> */}
+            <PostedFollowedArticlesContainer/>
 
             
             {/* <MyQuestionsAnswersContainer/> */}
