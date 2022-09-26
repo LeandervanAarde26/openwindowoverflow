@@ -1,23 +1,41 @@
 import React from 'react';
 import styles from './ArticlesFilter.module.scss';
 import Icon from '../Icon/Icon';
+import ic_flag from '../../Assets/Icons/ic_flag.svg';
+import Tags from '../Tags/Tags.component';
 
 
 const ArticlesFilter = () => {
+    const tags = ["Html, css, scss, React"]
+    const visuals = tags.map((tag, index) => <Tags key={index} title={tag} />)
 
     return (
         <div className={styles.container}>
-            <h5>This is the title of the Question</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Commodo, natoque venenatis parturient phasellus sit. Quisque pharetra viverra nulla lectus integer mattis id pretium fusce. Lectus risus sollicitudin amet, lacus, tincidunt gravida mi cursus elementum.</p>
-            <div className={styles.informationContainer}>
-                <div className={styles.information}>
-                    {/* <Icon
-                        icon={ic_votes}
-                    /> */}
-                    <break></break>
-                    <h3>84 Likes</h3>
-                </div>
+            <div className={styles.left}>
+                <Icon
+                    icon={ic_flag}
+                />
+                <h3>84 Likes</h3>
             </div>
+            <div>
+            
+            <h5>This is the title of the Article</h5>
+            <div className={styles.recommend}>
+            <Icon
+                    icon={ic_flag}
+                />
+                Recommended
+            </div>
+                <div className={styles.tagsContainer}>
+                    {visuals}
+                </div>
+            <p className={styles.comment}>Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this.</p>
+            
+            
+            
+            
+            </div>
+
         </div>
     );
 };

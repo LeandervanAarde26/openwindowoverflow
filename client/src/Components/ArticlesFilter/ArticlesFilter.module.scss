@@ -1,52 +1,89 @@
 @import "../../StyleSource/variables.scss";
 
 .container{
+    @include body();
     @include dropShadow();
-        width: 100%;
-        height: 140px;
-        max-width: 150vh;
-        margin-bottom: 2px;
-        border: 1px solid rgba($color: $black, $alpha: 0.1);
-        padding: 10px;
-        margin-bottom: 10px;
-        margin-top: 3vh;
-        h3{
-            @include headingThree();
-            font-size: 10px; // why vh? 
-            margin-bottom: 1vh;
-            font-weight: 600;
-        }
-        h5{
-            @include headingFour();
-            font-size: 25px; // why vh? 
-            margin-bottom: 1vh;
-            font-weight: 600;
-        }
-        p{
-            @include headingFour();
-            font-size: 13px;
-            font-weight: 400;
-            width: 80%;
-        }
-
-        .informationContainer{
-            display: flex;
-            justify-content:end;
-       
-
-            .information{
-                margin-top: -3vh;
-                justify-content:center;
-                margin-left: 10vh;
-    
-
-                break{
-                    margin-left: 7%;
-                    display: flex;
-                    flex-flow: row wrap;
-                    justify-content: center;
-    
-                  }
-            }          
-        }
+    max-width: 800px;
+    background-color: $white;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    margin: auto;
+    h5{
+        @include headingFour();
+        font-size: 25px;
+        margin-bottom: 1.5vh;
+        font-weight: light;
     }
+    .tagsContainer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+
+    }
+    h3{
+        @include body();
+        font-size: 13px;
+        font-weight: 400;
+        width: 80%;
+    }
+    .recommend{
+        @include headingSix();
+        color: $success;
+        float: right;
+        margin-top: -5vh;
+        width: fit-content;
+        display: flex;
+        gap: 2vh;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .left {
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding-right: 10px;
+    }
+
+.name{
+    width: 100%;
+    @include headingFive();
+    margin: 0;
+    
+}
+.time{
+    @include smallText();
+    color: darken($grey, 30%);
+}
+
+.comment{
+    width: 85%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 2%;
+}
+
+
+@media only screen and (max-width: 780px) {
+    .left {
+        width: fit-content;
+        min-width: 10%;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        padding-right: 10px;
+    }
+
+    .comment{
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 2%;
+    }
+}
+}
+

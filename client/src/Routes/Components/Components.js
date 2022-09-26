@@ -38,17 +38,10 @@ const Components = () => {
             
             {/* <MyQuestionsAnswersContainer/> */}
 
-<<<<<<< HEAD
             {/* <CommentsContainer /> */}
 
 
             <RightContainer />
-=======
-
-
-
-            {/*<RightContainer /> */}
->>>>>>> 436d41bde356b9138a8e559516c86d55f636af37
 
         </div>
     );
