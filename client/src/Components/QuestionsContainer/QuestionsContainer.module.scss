@@ -9,10 +9,7 @@
         flex: 1;
     }
 
-
-    
-
-    h4{
+    h3{
         @include headingThree();
         margin-bottom: 1.5vh;
     }

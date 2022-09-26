@@ -4,7 +4,7 @@ import Icon from '../Icon/Icon';
 import ic_arrow from "../../Assets/Icons/ic_arrow.svg"
 import RightContainer from '../RightContainer/RightContainer.component';
 
-const IndividualQuestion = () => {
+const IndividualQuestion = ({children}) => {
     return (
         <div className={styles.outer}>
             <div className={styles.votingContainer}>
@@ -24,8 +24,6 @@ const IndividualQuestion = () => {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum blandit in odio elementum. Enim amet lorem tellus ultricies egestas etiam in. Dictumst accumsan nec sed ut felis diam gravida nam sed. Porta sociis augue rhoncus ante porta cursus nulla. Habitasse et scelerisque vitae vestibulum elit tortor. Imperdiet viverra mauris, facilisi sed leo congue sed. Gravida ut aliquet eget viverra sed sem quis pellentesque.
                 </p>
             </div>
-
-            <RightContainer />
         </div>
     );
 };

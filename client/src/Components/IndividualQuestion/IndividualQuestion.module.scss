@@ -3,8 +3,12 @@
 .outer{
     display: flex;
     padding: 20px 0;
+    gap: 10px;
     margin-left: 1%;
-
+    width: fit-content;
+    height: fit-content;
+    max-width: 1000px;
+    flex: 1;
     h3{
         @include headingThree();
     }

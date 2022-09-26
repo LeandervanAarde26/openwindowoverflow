@@ -17,8 +17,7 @@ const Comment = () => {
                 <p className={styles.time}>29 June 2021 @ 21:00</p>
                 <p className={styles.comment}>Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this.
                     Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this
-                    Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this
-                    Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this
+                    Please be clearer with this this this
                 </p>
             </div>
         </div>
