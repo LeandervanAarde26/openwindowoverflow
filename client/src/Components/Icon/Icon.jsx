@@ -2,7 +2,7 @@ import {useRef, useEffect} from 'react';
 import styles from './Icon.module.scss';
 
 
-const Icon = ( props ) => {
+const Icon = ( props, {...otherProps} ) => {
 
 /*     const convertImages = (query, callback) => {
         const images = document.querySelectorAll(query);

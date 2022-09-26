@@ -1,0 +1,62 @@
+@import "../../StyleSource/variables.scss";
+
+.container{
+    @include dropShadow();
+        width: 100%;
+        height: 250px;
+        max-width: 500px;
+        background-color: white;
+        margin-bottom: 2px;
+        border: 1px solid rgba($color: $black, $alpha: 0.1);
+        padding: 10px;
+        margin-bottom: 10px;
+
+        .tagsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 4vh;
+
+        }
+        h5{
+            @include headingFour();
+            font-size: 3vh;
+            margin-bottom: 1.5vh;
+            margin-top: 1.5vh;
+            font-weight: 600;
+
+        }
+        h3{
+            @include headingFour();
+            font-size: 2.5vh;
+            font-weight: 400;
+            margin-top: -1vh;
+        }
+
+
+        .informationContainer{
+            display: flex;
+            justify-content: center;
+       
+
+            .information{
+                margin-left: 7%;
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: center;
+        
+                break{
+                    flex-basis: 100%;
+                    width: 0px; 
+                    height: 0px; 
+                    overflow: hidden;
+                  }
+
+
+            }
+
+            
+        }
+
+
+}
