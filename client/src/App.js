@@ -11,6 +11,7 @@ import Footer from "./Components/Footer/Footer";
 import Home from "./Routes/Home/Home.route";
 import Login from "./Routes/Login/Login.route";
 import Register from "./Routes/Register/Register.route";
+import Contact from "./Routes/Contact/Contact.route";
 
 function App() {
   //Get Location of User
@@ -28,6 +29,7 @@ function App() {
               <Route path="/" index element={<Login />} />
               <Route path="/Register" element={<Register />} />
               <Route path="/Home" element={<Home />} />
+              <Route path="/Contact" element={<Contact />} />
 
               {/* INSERT ROUTES HERE */}
             </Routes>
@@ -38,6 +40,7 @@ function App() {
           <Route path="/" index element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Home" element={<Home />} />
+          <Route path="/Contact" element={<Contact />} />
           {/* INSERT ROUTES HERE */}
         </Routes>
       )}
