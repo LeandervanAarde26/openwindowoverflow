@@ -3,8 +3,8 @@
 .outer{
     display: flex;
     flex-direction: column;
-    padding: 50px 0;
-    justify-content: center;
+    padding: 20px 0;
+
     h3{
         @include headingThree();
         margin-bottom: 1.5vh;
@@ -28,11 +28,13 @@
     
     .container {
         flex: 1;
- 
+
+
+         
         .buttonContainer{
             width: 25%;
             margin-left: 25%;
-            margin-top: -2%;
+            margin-top: 2%;
         }
 
     }
@@ -43,23 +45,49 @@
 
     .left{
         margin-right: 20vh;
-
-       
     }
+
+
+}
+
+@media only screen and (max-width: 780px) {
+    .left {
+        width: fit-content;
+        min-width: 10%;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        padding-right: 10px;
+    }
+
+    .comment{
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 2%;
+    }
+
+    .buttonContainer{
+        width: 90% !important;
+        margin: 5% !important;
+
+    }
+
+
 }
 
 
-@media only screen and (max-width: 1440px){
-    .outer{
-        max-width: 800px;
-    }
+// @media only screen and (max-width: 1440px){
+//     .outer{
+//         max-width: 800px;
+//     }
     
-}
+// }
 
-@media only screen and (min-width: 1442px){
-    .outer{
-        max-width: 80%;
-    }
+// @media only screen and (min-width: 1442px){
+//     .outer{
+//         max-width: 80%;
+//     }
     
-}
+// }
 

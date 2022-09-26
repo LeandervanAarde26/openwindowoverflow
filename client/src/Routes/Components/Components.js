@@ -29,99 +29,19 @@ const Components = () => {
 
         <div className={styles.container}>
             <SideNavigation />
+            <CommentsContainer />
 
-            <PostedFollowedArticlesContainer/>
+            {/* <PostedFollowedArticlesContainer/> */}
 
             
             {/* <MyQuestionsAnswersContainer/> */}
 
-            {/* <CommentsContainer />
 
 
-            <RightContainer /> */}
+
+            {/*<RightContainer /> */}
 
         </div>
-
-
-
-
-
-
-
-
-        // <CommentsContainer />
-
-        // <div className={styles.container}>
-
-        //     <div className={styles.heading}>
-        //         <h4>This is the Title of the Article</h4>
-        //     </div>
-
-        //     <div className={styles.tagsContainer}>
-        //         {visuals}
-        //     </div>
-
-        //     <p className={styles.description}>{reply}</p>
-
-
-        //     <div className={styles.leftIcon}>
-        //         <Icon
-        //             icon={ic_votes}
-        //         />
-        //         <p>84 Likes</p>
-        //     </div>
-
-        //     <Button
-        //         className={styles.button}
-        //         buttonType={"black"}
-        //         children="Follow"
-        //     />
-        //     <p className={styles.description}>{right}</p>
-
-
-        //     <div className={styles.heading}>
-        //         <h4>This is the Title of the Question</h4>
-        //     </div>
-
-        //     <div className={styles.tagsContainer}>
-        //         {visuals}
-        //     </div>
-
-        //     <div className={styles.voteIcon}>
-        //         <Icon
-        //             icon={ic_votes}
-        //         />
-        //         <p>0 Votes</p>
-        //     </div>
-
-        //     <div className={styles.resolvedIcon}>
-        //         <Icon
-        //             icon={ic_correct}
-        //         />
-        //         <p>0 Resolved</p>
-        //     </div>
-
-        //     <div className={styles.answerIcon}>
-        //         <Icon
-        //             icon={ic_answers}
-        //         />
-        //         <p>0 Answers</p>
-        //     </div>
-
-        //     <div className={styles.heading}>
-        //         <h4>Comments</h4>
-        //     </div>
-
-        //     <p className={styles.description}>{user}</p>
-        //     <p className={styles.description}>{date}</p>
-        //     <p className={styles.description}>{reply}</p>
-
-        //     <Button
-        //         className={styles.outlinebutton}
-        //         buttonType={"outline"}
-        //         children="View more Comments"
-        //     />
-        // </div>
     );
 };
 

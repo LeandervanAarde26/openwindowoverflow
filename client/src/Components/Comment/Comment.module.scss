@@ -9,7 +9,7 @@
     display: flex;
     padding: 10px;
     gap: 10px;
-    margin-bottom: 50px;
+    margin: auto;
     border-bottom: 1.5px solid $black;
 
 
@@ -17,18 +17,15 @@
     .left {
         width: fit-content;
         display: flex;
-        flex-direction: column;
+        align-items: center;
         gap: 20px;
+        padding-right: 10px;
 
 
 
-        div {
-            @include headingSix();
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+
     }
+
 .name{
     width: 100%;
     @include headingFive();
@@ -44,14 +41,28 @@
     width: 85%;
     overflow: hidden;
     text-overflow: ellipsis;
-    // display: -webkit-box;
-    // -webkit-line-clamp: 3;
-    // /* number of lines to show */
-    // line-clamp: 4;
-    // -webkit-box-orient: vertical;
+    margin-top: 2%;
 }
 
-.loadmore{
-    width: 30%
+
+@media only screen and (max-width: 780px) {
+    .left {
+        width: fit-content;
+        min-width: 10%;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        padding-right: 10px;
+    }
+
+    .comment{
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 2%;
+    }
+
+
 }
 }
+

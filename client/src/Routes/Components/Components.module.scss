@@ -1,32 +1,4 @@
-// .container {
-//     flex: 1;
-// }
-
-// .button {
-//     width: 200px;
-//     background-color: black;
-//     color: white;
-//     width: 8vh;
-
-// }
-
-// .outlinebutton {
-//     border: 3px solid black;
-//     width: 22vh;
-// }
-
-// .description {
-//     width: 85%;
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-//     display: -webkit-box;
-//     -webkit-line-clamp: 3;
-//     /* number of lines to show */
-//     line-clamp: 3;
-//     -webkit-box-orient: vertical;
-
-// }
-
+@import "../../StyleSource/variables.scss";
 
 .container {
     display: flex;
