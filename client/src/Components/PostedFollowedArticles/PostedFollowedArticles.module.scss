@@ -1,0 +1,41 @@
+@import "../../StyleSource/variables.scss";
+
+.container{
+    @include dropShadow();
+        width: 100%;
+        height: 150px;
+        max-width: 150vh;
+        background-color: rgb(191, 77, 77);
+        margin-bottom: 2px;
+        border: 1px solid rgba($color: $black, $alpha: 0.1);
+        padding: 10px;
+        margin-bottom: 10px;
+        margin-top: 3vh;
+        h5{
+            @include headingFour();
+            font-size: 3vh; // why vh? 
+            margin-bottom: 1vh;
+            font-weight: 600;
+        }
+        p{
+            @include headingFour();
+            font-size: 13px;
+            font-weight: 400;
+            width: 80%;
+        }
+
+        .informationContainer{
+            display: flex;
+            justify-content:end;
+       
+
+            .information{
+                display: flex;
+                flex-flow: row wrap;
+            }          
+        }
+
+
+
+        
+}

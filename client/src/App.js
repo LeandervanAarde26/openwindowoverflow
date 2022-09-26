@@ -6,17 +6,31 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./StyleSource/variables.scss";
 
 /* Imports for components */
+<<<<<<< HEAD
 import NavBar from "./Components/NavigationBar/NavBar";
 import Footer from "./Components/Footer/Footer";
 import Home from "./Routes/Home/Home.route";
 import Login from "./Routes/Login/Login.route";
 import Register from "./Routes/Register/Register.route";
 import Contact from "./Routes/Contact/Contact.route";
+=======
+import NavBar from './Components/NavigationBar/NavBar';
+import Footer from './Components/Footer/Footer';
+import Home from './Routes/Home/Home.route';
+import Login from './Routes/Login/Login.route';
+import Register from './Routes/Register/Register.route';
+import { Component } from 'react';
+import Components from './Routes/Components/Components';
+import Profile from './Routes/Profile/Profile.route';
+import Question from './Routes/Question/Question.component';
+
+>>>>>>> main
 
 function App() {
   //Get Location of User
   const location = useLocation();
 
+<<<<<<< HEAD
   return (
     <div className="App">
       <NavBar />
@@ -47,6 +61,44 @@ function App() {
       <Footer />
     </div>
   );
+=======
+    return (
+        <div className='App'>
+            <NavBar />
+            {
+                location.pathname === '/' || location.pathname === "/Register"
+                ?
+                <TransitionGroup
+                    style={{display: "flex", flex: 1}}
+                >
+                     <CSSTransition key={location.key} classNames="slide" timeout={600}>
+                        <Routes location={location}>
+                            <Route path='/' index element={<Login />} />
+                            <Route path='/Register' element={<Register />} />
+                            <Route path='/Home' element={<Home />} />
+                            <Route path='/profile' element={<Profile/>}/>
+                            <Route path = "/Question" element={<Question/>}/>
+
+                            {/* INSERT ROUTES HERE */}
+                        </Routes>
+                    </CSSTransition>
+                </TransitionGroup>
+                :
+                <Routes location={location}>
+                    <Route path='/' index element={<Login />} />
+                    <Route path='/Register' element={<Register />} />
+                    <Route path='/Home' element={<Home />} />
+                    <Route path="/Articles" element={<Home/>}/>
+                    <Route path="/test" element={<Components/>}/>
+                    <Route path='/profile' element={<Profile/>}/>
+                    <Route path = "/Question" element={<Question/>}/>
+                     {/* INSERT ROUTES HERE */}
+                </Routes>
+            }
+            <Footer />
+        </div>
+    )
+>>>>>>> main
 }
 
 export default App;

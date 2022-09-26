@@ -9,14 +9,7 @@
         flex: 1;
     }
 
-/*     &::-webkit-scrollbar {
-        display: none;
-    } */
     
-/*     & {
-        -ms-overflow-style: none;  
-        scrollbar-width: none; 
-    } */
 
     h3{
         @include headingThree();
@@ -25,4 +18,19 @@
     & ::-webkit-scrollbar{
         display: none;
     }
+}
+
+
+@media only screen and (max-width: 1440px){
+    .outer{
+        max-width: 800px;
+    }
+    
+}
+
+@media only screen and (min-width: 1442px){
+    .outer{
+        max-width: 80%;
+    }
+    
 }

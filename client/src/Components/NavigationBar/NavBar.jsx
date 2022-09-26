@@ -33,10 +33,10 @@ const NavBar = () => {
                     />
                 </div>
                 <div className={styles.containerOuter__login}>
-   {/*                  <Button
-                        buttonType={'outline'}
+                    <Button
+                        buttonType={'black'}
                         children={"Sign out"}
-                    /> */}
+                    />
 
                     <div className={styles['containerOuter__login--dropdown']}>
                         <NavLink to='/'>

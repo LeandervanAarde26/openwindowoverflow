@@ -1,0 +1,13 @@
+@import "../../StyleSource/variables.scss";
+
+.AdContainer{
+    width: 20vw;
+    @include dropShadow();
+    padding: 0;
+
+    .adsbygoogle{
+        position: relative;
+        z-index: +9999;
+    }
+}
+
