@@ -23,11 +23,21 @@
         gap: 5px;
 
     }
+    h1{
+        @include headingSix();
+        margin-top: 10vh;
+        font-weight: 600;
+        font-size: 15px;
+        float: right;
+    }
+
     h3{
         @include body();
         font-size: 13px;
         font-weight: 400;
-        width: 80%;
+        width: 100px;
+        margin-top: 50%;
+        margin-left: -45px;
     }
     .recommend{
         @include headingSix();
@@ -47,6 +57,16 @@
         align-items: center;
         gap: 20px;
         padding-right: 10px;
+        padding-top: 2%;
+
+    }
+    .follow{
+        width: 25%;
+        width: fit-content;
+        display: flex;
+        padding-top: 130px;
+        margin-left: -120px;
+
     }
 
 .name{

@@ -11,11 +11,9 @@ const ArticlesFilterContainer = () => {
                 <div className={styles.top}>
                     <h4>Articles</h4>
                     <ArticlesFilter/>
-                </div>
-                {/* <div className={styles.bottom}>
-                    <h4>Followed Articles</h4>
                     <ArticlesFilter/>
-                </div> */}
+
+                </div>
             </div>
     );
 };
