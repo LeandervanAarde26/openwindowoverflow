@@ -14,6 +14,7 @@ import QuestionsContainer from '../../Components/QuestionsContainer/QuestionsCon
 import MyQuestionsAnswersContainer from '../../Components/MyQuestionsAnswersContainer/MyQuestionsAnswersContainer.component';
 import PostedFollowedArticlesContainer from '../../Components/PostedFollowedArticlesContainer/PostedFollowedArticlesContainer.component';
 import ArticlesFilterContainer from '../../Components/ArticlesFilterContainer/ArticlesFilterContainer.component';
+import Answers from '../../Components/Answers/Answers.component';
 
 
 
@@ -32,7 +33,8 @@ const Components = () => {
             <SideNavigation />
             {/* <CommentsContainer /> */}
 
-            <ArticlesFilterContainer/>
+            {/* <ArticlesFilterContainer/> */}
+            <Answers/>
 
             {/* <PostedFollowedArticlesContainer/> */}
             
