@@ -1,0 +1,31 @@
+@import "../../StyleSource/variables.scss";
+
+.outer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    flex: 1;
+
+    .container {
+
+
+        .left,
+        .right {
+            width: 45%;
+            float: left;
+            padding: 20px;
+
+
+            h4{
+                @include headingFour();
+                margin-bottom: 4vh;
+            }
+
+        }
+
+        .left{
+            margin-left: 6%;
+        }
+    }
+
+}

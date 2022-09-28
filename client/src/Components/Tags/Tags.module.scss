@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: fit-content;
+    width: auto;
     height: 30px;
     // min-width: 40px;
     padding: 3px 5px;
@@ -13,4 +13,5 @@
     @include smallText();
     font-weight: 500;
     text-transform: uppercase;
+
 }
