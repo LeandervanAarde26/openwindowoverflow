@@ -17,7 +17,7 @@ const Badges = ({badgeType}) => {
   };
 
 
-
+//Extract this into a JSON format , and rather Mapa a bade component. Desc, title , hover and image <- inside JSON
     if (badgeType === "level1"){
     var badge = styles.badgelevel1;
     var title = "Murmurer"
@@ -138,3 +138,15 @@ const Badges = ({badgeType}) => {
 }
 
 export default Badges;
+
+
+
+
+
+// return(
+//     <div className={styles.container}>
+//         <img>{badge}</img>
+//         <h4>{badgeTitle}</h4>
+//         <h6>{badeHover}</h6>
+//     </div>
+// )
