@@ -5,10 +5,22 @@ import Github from "../../Assets/Github.png"
 import Car from "../../Assets/car.jpg"
 import Tags from '../Tags/Tags.component';
 import BadgeContainer from '../BadgeContainer/BadgeContainer.component';
+import Userbadges from "../Badges/userbadges.json"
+import Badges from '../Badges/Badges.component';
+import { useState } from 'react';
+
 
 const ProfileContainer = ({ image }) => {
+    const [state, setState] = useState()
     const testerTags = ['html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3', 'html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3']
     const visuals = testerTags.map((tag, index) => <Tags key={index} title={tag} />)
+    const listBadges = Userbadges
+    const tester = listBadges.map((i, index) =>(
+        <Badges key={index}  title={i.title} badgeImage={i.badgeImage} badgeDescription={i.badgeDescription}/> 
+    ))
+
+    console.log(listBadges)
+
     return (
         <div className={styles.container}>
             <div className={styles.topContainer}>
@@ -40,7 +52,9 @@ const ProfileContainer = ({ image }) => {
                         } />
                 </div>
 
-                <BadgeContainer />
+                <BadgeContainer 
+                    children={tester}
+                />
 
                 <h4>Following Tags</h4>
                 <div className={styles.tagsContainer}>

@@ -2,127 +2,30 @@
 
 .main {
     padding: 3px;
-    height: 250px;
-    border: 1px solid;
-    border-color: rgb(155, 155, 155);
-    width: 250px;
+    height: fit-content;
+    min-height: 25vh;
+    max-height: 28vh;
+    border: 1px solid rgba($color: $black, $alpha: 0.1);
+    aspect-ratio: 1/1;
     @include dropShadow();
-    display: inline-block;
-    margin-right: 25px;
-
+   
     .badgeIcon {
 
         margin-top: 10px;
         width: 100%;
-        height: 60%;
+        height: 50%;
         background-size: 100%;
         background-position: center;
         background-repeat: no-repeat;
+    
+    }
 
-
-        .badgedefault {
-            height: 100%;
-        }
-
-        .badgelevel1 {
-            height: 100%;
-            background-image: url("../../Assets/Badges/level1.png");
-        }
-
-        .badgelevel2 {
-            height: 100%;
-            background-image: url("../../Assets/Badges/level2.png");
-        }
-
-        .badgelevel3 {
-            height: 100%;
-            background-image: url("../../Assets/Badges/level3.png");
-        }
-
-        .badgelevel4 {
-            height: 100%;
-            background-image: url("../../Assets/Badges/level4.png");
-        }
-
-        .badgelevel5 {
-            height: 100%;
-            background-image: url(../../Assets/Badges/level5.png);
-        }
-
-        .badgelevel6 {
-            height: 100%;
-            background-image: url(../../Assets/Badges/level6.png);
-        }
-
-        .badgelevel7 {
-            height: 100%;
-            background-image: url(../../Assets/Badges/level7.png);
-        }
-
-        .badgelevel8 {
-            height: 100%;
-            background-image: url(../../Assets/Badges/level8.png);
-        }
-
-        .badgelevel9 {
-            height: 100%;
-            background-image: url(../../Assets/Badges/level9.png);
-        }
-
-        .badgebug {
-            height: 100%;
-            background-image: url(../../Assets/Badges/bugfinder.png);
-        }
-
-        .badgefox {
-            height: 100%;
-            background-image: url(../../Assets/Badges/defendofox.png);
-        }
-
-        .badgehappypc {
-            height: 100%;
-            background-image: url(../../Assets/Badges/happypc.png);
-        }
-
-        .badgeidea {
-            height: 100%;
-            background-image: url(../../Assets/Badges/idea.png);
-        }
-
-        .badgemultiscreen {
-            height: 100%;
-            background-image: url(../../Assets/Badges/multiscreen.png);
-        }
-
-        .badgenetwork {
-            height: 100%;
-            background-image: url(../../Assets/Badges/network.png);
-        }
-
-        .badgephoneapp {
-            height: 100%;
-            background-image: url(../../Assets/Badges/phoneapp.png);
-        }
-
-        .badgestudybot {
-            height: 100%;
-            background-image: url(../../Assets/Badges/studybot.png);
-        }
-
-        .badgesyntax {
-            height: 100%;
-            background-image: url(../../Assets/Badges/syntax.png);
-        }
-
-        .badgeteamwork {
-            height: 100%;
-            background-image: url(../../Assets/Badges/teamwork.png);
-        }
-
-        .badgewireframe {
-            height: 100%;
-            background-image: url(../../Assets/Badges/wireframe.png);
-        }
+    .image{
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        // background-image: url("../../Assets/Badges/level1.png");
     }
 
     .badgeTitle {
