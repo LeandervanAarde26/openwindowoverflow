@@ -4,6 +4,7 @@ import Button from '../Button/Button.component';
 import Github from "../../Assets/Github.png"
 import Car from "../../Assets/car.jpg"
 import Tags from '../Tags/Tags.component';
+import BadgeContainer from '../BadgeContainer/BadgeContainer.component';
 
 const ProfileContainer = ({ image }) => {
     const testerTags = ['html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3', 'html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3']
@@ -38,6 +39,8 @@ const ProfileContainer = ({ image }) => {
                             </>
                         } />
                 </div>
+
+                <BadgeContainer />
 
                 <h4>Following Tags</h4>
                 <div className={styles.tagsContainer}>
