@@ -33,3 +33,28 @@
 
 
 }
+
+@media only screen and (max-width: 700px){
+
+    .container{
+        width: 100%;
+        height: 40vh;
+        // max-width: 300px;
+        padding: 10px;
+        margin-bottom: 15px;
+        flex-basis: 45%;
+        #height{
+          margin-top: 5%;
+        }
+    }
+
+    .desc{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        /* number of lines to show */
+        line-clamp: 4;
+        -webkit-box-orient: vertical;
+    }   
+}

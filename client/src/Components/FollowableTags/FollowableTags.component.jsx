@@ -5,7 +5,7 @@ import styles from "./FollowableTags.module.scss"
 import { RegisterContext } from '../../Contexts/Register.context';
 // const defaultArr = []
 
-const FollowableTags = ({ tag, number, today }) => {
+const FollowableTags = ({ tag, number, today, desc }) => {
     const {addtoTags} = useContext(RegisterContext)
 
     const addTag = () => {
@@ -23,10 +23,10 @@ const FollowableTags = ({ tag, number, today }) => {
                     children={"Follow"}
                     buttonSize={styles.height}
                     onClick={addTag} />
-            </div>
+            </div> 
  
             <div className={styles.informationContainer}>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum blandit in odio elementum. Enim amet lorem tellus ultricies egestas etiam in. Dictumst accumsan nec sed ut felis diam gravida nam sed. </p>
+                <p className={styles.desc}>{desc} </p>
                 <br />
                 <p>
                     <span>{number}</span>

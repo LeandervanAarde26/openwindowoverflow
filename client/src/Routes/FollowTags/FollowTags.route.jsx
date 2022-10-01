@@ -92,7 +92,7 @@ const FollowTags = () => {
         },
         {
             tag: "Python2",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum blandit in odio elementum. Enim amet lorem tellus ultricies egestas etiam in. Dictumst accumsan nec sed ut felis diam gravida nam sed. ",
+            description: " ipsum dolor sit amet, consectetur adipiscing elit. Elementum blandit in odio elementum. Enim amet lorem tellus ultricies egestas etiam in. Dictumst accumsan nec sed ut felis diam gravida nam sed. ",
             questions: 34,
             questionToday: 23
         }
@@ -106,8 +106,7 @@ const FollowTags = () => {
                 <div className={styles.inner}>
 
                     {
-                        tagData.map((i, index) => (<FollowableTags key={index} tag={<Tags title={i.tag} />} number={i.questions} today={i.questionToday}
-                        />))
+                        tagData.map((i, index) => (<FollowableTags key={index} tag={<Tags title={i.tag} />} number={i.questions} today={i.questionToday} desc={i.description}/>))
                     }
                 </div>
                 <h2>Your tags</h2>
