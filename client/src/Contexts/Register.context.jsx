@@ -6,9 +6,16 @@ const addTag = (tags, tagToAdd) => {
     return [...tags,  tagToAdd ];
 }
 
+const removeItem = (tags, tagToRemove) => {
+    tags = tags.filter(i => i !== tagToRemove);
+    const tag = tags.find((tag) => tag === tagToRemove);
+    return (tags.filter(tag => tag !== tagToRemove));
+}
+
 export const RegisterContext = createContext({
     tags: [],
     addtoTags: () => { },
+    removeFronTags: () => { },
 });
 
 export const RegisterActionTypes = {
@@ -45,9 +52,16 @@ export const TagProvider = ({ children }) => {
         updateTagReducer(newTags);
     }
 
+    const removeFromTags = (tagToRemove) =>{
+        const newTags = removeItem(tags, tagToRemove);
+        updateTagReducer(newTags);
+        
+    }
+
     const val = {
         addtoTags,
         tags,
+        removeFromTags
     }
 
     return (

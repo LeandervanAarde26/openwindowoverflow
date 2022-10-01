@@ -6,8 +6,7 @@ import { RegisterContext } from '../../Contexts/Register.context';
 // const defaultArr = []
 
 const FollowableTags = ({ tag, number, today }) => {
-    const [theTags, setTheTags] = useState()
-    const {addtoTags, tags} = useContext(RegisterContext)
+    const {addtoTags} = useContext(RegisterContext)
 
     const addTag = () => {
         const tagName = tag.props.title
