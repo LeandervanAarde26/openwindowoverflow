@@ -1,0 +1,29 @@
+@import "../../StyleSource/variables.scss";
+
+
+
+.container {
+    display: flex;
+    flex: 1;
+
+    .outer {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 0;
+        h2{
+            @include headingTwo();    
+        }
+
+        .inner {
+            display: flex;
+            padding: 20px 0;
+            flex: 1;
+            grid-template-columns: 1fr 1fr 1fr;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+    }
+
+
+}

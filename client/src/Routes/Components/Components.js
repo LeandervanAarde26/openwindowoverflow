@@ -34,7 +34,7 @@ const Components = () => {
             {/* <CommentsContainer /> */}
 
             {/* <ArticlesFilterContainer/> */}
-            <Answers/>
+            {/* <Answers/> */}
 
             {/* <PostedFollowedArticlesContainer/> */}
             

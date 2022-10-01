@@ -1,0 +1,35 @@
+@import "../../StyleSource/variables.scss";
+
+.container{
+    @include dropShadow();
+        width: 100%;
+        height: fit-content;
+        max-width: 500px;
+        background-color: white;
+        border: 1px solid rgba($color: $black, $alpha: 0.1);
+        padding: 10px;
+        margin-bottom: 10px;
+        flex-basis: 32%;
+
+        .tagsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: flex-start;
+            margin-bottom: 2vh;
+
+            #height{
+                height: 30px ; 
+            
+            }
+        }
+
+        .informationContainer{
+            p{
+                @include body();
+            }
+            
+        }
+
+
+}

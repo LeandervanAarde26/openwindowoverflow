@@ -58,7 +58,7 @@ const Register = () => {
     }
 
     const test = () => {
-        navigate(("/Home"))
+        navigate(("/Choosetags"))
     }
 
     return (
