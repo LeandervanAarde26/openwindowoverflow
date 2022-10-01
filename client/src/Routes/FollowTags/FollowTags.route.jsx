@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from "./FollowTags.module.scss"
 import SideNavigation from '../../Components/sideNavigation/SideNavigation.component';
 import RightContainer from '../../Components/RightContainer/RightContainer.component';
 import FollowableTags from '../../Components/FollowableTags/FollowableTags.component';
 import Tags from '../../Components/Tags/Tags.component';
+import Button from '../../Components/Button/Button.component';
+import { RegisterContext } from '../../Contexts/Register.context';
+
 const FollowTags = () => {
+    const {addtoTags, tags} = useContext(RegisterContext)
+    
+    console.log(tags)
+
     const tagData = [
         {
             tag: "Html",
@@ -52,12 +59,17 @@ const FollowTags = () => {
                 <div className={styles.inner}>
 
                     {
-                        tagData.map(i => (<FollowableTags tag={<Tags title={i.tag}/>} number={i.questions} today={i.questionToday}/>))
+                        tagData.map(i => (<FollowableTags tag={<Tags title={i.tag}/>} number={i.questions} today={i.questionToday}
+                        />))
                     }
 
                 </div>
-
+                <Button
+                    buttonType={"primary"}
+                    children={"Finish"}
+                    buttonSize={styles.height}/>
             </div>
+  
 
             <RightContainer />
         </div>

@@ -1,21 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { useState } from 'react';
 import Button from '../Button/Button.component';
 import styles from "./FollowableTags.module.scss"
-const defaultArr = []
+import { RegisterContext } from '../../Contexts/Register.context';
+// const defaultArr = []
 
 const FollowableTags = ({ tag, number, today }) => {
     const [theTags, setTheTags] = useState()
+    const {addtoTags, tags} = useContext(RegisterContext)
 
-    const addTag = (e) => {
+    const addTag = () => {
         const tagName = tag.props.title
-        const exists = defaultArr.find(i => i === tagName);
-        if (exists) return;
-        defaultArr.push(tagName)
-        setTheTags(defaultArr);
+        addtoTags(tagName)
     }
 
-    console.log(theTags)
     return (
         <div className={styles.container}>
 
