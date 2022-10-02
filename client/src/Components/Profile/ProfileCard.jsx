@@ -9,7 +9,12 @@ const ProfileCard = (props) => {
         navigate("/Profile")
     }
     return (
-        <div className={styles.container} onClick={goToProfile}>
+        <div className={`
+                styles.container
+                ${props.className}
+            `} 
+            onClick={goToProfile}
+        >
             <img 
                 src={props.profileImage} 
                 alt="" 

@@ -17,6 +17,7 @@ import Components from './Routes/Components/Components';
 import Profile from './Routes/Profile/Profile.route';
 import Question from './Routes/Question/Question.component';
 import FollowTags from './Routes/FollowTags/FollowTags.route';
+import Contact from './Routes/Contact/Contact.route';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
                             <Route path='/profile' element={<Profile/>}/>
                             <Route path = "/Question" element={<Question/>}/>
                             <Route path = "/Choosetags" element={<FollowTags/>}/>
+                            <Route path = "/Contact" element={<Contact/>}/>
                             {/* INSERT ROUTES HERE */}
                         </Routes>
                     </CSSTransition>
@@ -54,6 +56,7 @@ function App() {
                     <Route path='/profile' element={<Profile/>}/>
                     <Route path = "/Question" element={<Question/>}/>
                     <Route path = "/Choosetags" element={<FollowTags/>}/>
+                    <Route path = "/Contact" element={<Contact/>}/>
                      {/* INSERT ROUTES HERE */}
                 </Routes>
             }
