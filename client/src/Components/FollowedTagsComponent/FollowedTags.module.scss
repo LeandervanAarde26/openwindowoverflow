@@ -1,0 +1,28 @@
+@import "../../StyleSource/variables.scss";
+
+.main {
+    padding: 5px;
+    height: auto;
+    border: 1px solid $black;
+    width: 24vw;
+
+    .title {
+        height: 45px;
+        text-align: center !important;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: $body;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+    }
+}
+
+// display: grid;
+// grid-template: repeat(4, 1fr) / repeat(6, 1fr);
+// grid-gap: 2px;
+// overflow: hidden;

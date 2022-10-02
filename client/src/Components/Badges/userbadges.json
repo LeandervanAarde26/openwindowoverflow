@@ -1,0 +1,38 @@
+[
+   
+    {
+        "title": "Murmurer",
+        "badgeImage": "level1.png",
+        "description": "Post and answer at least 5 tickets."
+    },
+    {
+        "title": "Mumbler",
+        "badgeImage": "level2.png",
+        "badgeDescription": "Post and answer at least 10 tickets."
+    },
+    {
+        "title": "Whisperer",
+        "badgeImage": "level3.png",
+        "badgeDescription": "Post and answer at least 12 tickets."
+    },
+    {
+        "title": "Chatterer",
+        "badgeImage": "level4.png",
+        "badgeDescription": "Post and answer at least 20 tickets."
+    },
+    {
+        "title": "Lightning Idea",
+        "badgeImage": "level1.png",
+        "badgeDescription": "Respond to a ticket in no longer than 20 minutes of it's posted time."
+    },
+    {
+        "title": "Lightning Idea",
+        "badgeImage": "level1.png",
+        "badgeDescription": "Respond to a ticket in no longer than 20 minutes of it's posted time."
+    },
+    {
+        "title": "Lightning Idea",
+        "badgeImage": "level1.png",
+        "badgeDescription": "Respond to a ticket in no longer than 20 minutes of it's posted time."
+    }
+]

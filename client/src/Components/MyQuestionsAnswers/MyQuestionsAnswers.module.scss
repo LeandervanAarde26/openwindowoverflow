@@ -2,7 +2,7 @@
 
 .container{
     @include dropShadow();
-        width: 100%;
+        width: 90%;
         height: 250px;
         max-width: 500px;
         background-color: white;
@@ -10,6 +10,7 @@
         border: 1px solid rgba($color: $black, $alpha: 0.1);
         padding: 10px;
         margin-bottom: 10px;
+
 
         .tagsContainer {
             display: flex;
