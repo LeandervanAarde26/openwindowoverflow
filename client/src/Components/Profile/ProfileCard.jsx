@@ -10,7 +10,7 @@ const ProfileCard = (props) => {
     }
     return (
         <div className={`
-                styles.container
+                ${styles.container}
                 ${props.className}
             `} 
             onClick={goToProfile}
