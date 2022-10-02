@@ -13,5 +13,11 @@
     @include smallText();
     font-weight: 500;
     text-transform: uppercase;
+    cursor: pointer;
+    &:hover{
+        background-color: $danger !important;
+        transform: scale(1.1);
+        @include dropShadow();  
+    }
 
 }

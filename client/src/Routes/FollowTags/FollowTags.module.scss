@@ -1,0 +1,53 @@
+@import "../../StyleSource/variables.scss";
+
+
+
+.container {
+    display: flex;
+    flex: 1;
+
+    .outer {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 0;
+        flex: 1;
+        h2{
+            @include headingTwo();    
+        }
+
+        .inner {
+            display: flex;
+            padding: 20px 0;
+            // grid-template-columns: 1fr 1fr 1fr;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            gap: 10px;
+            max-height: 67vh;
+            overflow: scroll;
+            flex: 1;
+            // max-width: 1000px;
+        }
+
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .buttonContainer{
+            display: flex;
+            align-items: flex-end;
+            justify-content: right;
+            // margin-left: 25%;
+            padding-right: 2.2%;
+        }
+
+        .tagContainer{
+            margin-top: 2vh;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            max-width: 50%;
+        }
+    }
+}
+

@@ -16,6 +16,7 @@ import { Component } from 'react';
 import Components from './Routes/Components/Components';
 import Profile from './Routes/Profile/Profile.route';
 import Question from './Routes/Question/Question.component';
+import FollowTags from './Routes/FollowTags/FollowTags.route';
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
         <div className='App'>
             <NavBar />
             {
-                location.pathname === '/' || location.pathname === "/Register"
+                location.pathname === '/' || location.pathname === "/Register" || location.pathname === "/Choosetags" 
                 ?
                 <TransitionGroup
                     style={{display: "flex", flex: 1}}
@@ -38,7 +39,7 @@ function App() {
                             <Route path='/Home' element={<Home />} />
                             <Route path='/profile' element={<Profile/>}/>
                             <Route path = "/Question" element={<Question/>}/>
-
+                            <Route path = "/Choosetags" element={<FollowTags/>}/>
                             {/* INSERT ROUTES HERE */}
                         </Routes>
                     </CSSTransition>
@@ -52,6 +53,7 @@ function App() {
                     <Route path="/test" element={<Components/>}/>
                     <Route path='/profile' element={<Profile/>}/>
                     <Route path = "/Question" element={<Question/>}/>
+                    <Route path = "/Choosetags" element={<FollowTags/>}/>
                      {/* INSERT ROUTES HERE */}
                 </Routes>
             }
