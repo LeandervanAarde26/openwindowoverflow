@@ -5,7 +5,7 @@ import {useState} from 'react';
 
 
 
-const Badges = ({badgeImage, title, badgeDescription}) => {
+const Badges = ({badgeImage, title, badgeDescription, ...otherProps}) => {
 
   const [isHovering, setIsHovering] = useState(false);
 
@@ -18,13 +18,13 @@ const Badges = ({badgeImage, title, badgeDescription}) => {
   };
 
     return (<>
-        <div className={styles.main} onMouseOver={mouseHover} onMouseOut={mouseOut}>
+        <div className={styles.main} onMouseOver={mouseHover} onMouseOut={mouseOut} {...otherProps}>
             <div className={styles.badgeIcon}>
                 <div className={styles.image} style={{ backgroundImage: `url(${badgeImage})`}}>
     
                 </div>
                 <div className={styles.badgeTitle}>
-                    {title}
+                    <h4>{title}</h4>
                     {isHovering && <h6>{badgeDescription}</h6>}
                 </div>
             </div>

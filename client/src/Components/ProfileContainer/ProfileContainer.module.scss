@@ -2,14 +2,14 @@
 
 
 .container{
-    width: 100%;
+    flex: 1;
+    overflow: scroll;
 
     .topContainer{
-        max-height: 20vh;
         min-height: 19vh;
         display: flex;
         justify-content: flex-start;
-        gap: 2%;
+        gap: 15px;
         margin-top: 1%;
         
         .profilePhoto{
@@ -28,14 +28,11 @@
                 height: 100%; 
                 object-fit: cover;
             }
-
         }
 
         .userIntro{
             background-color: white;
             padding-top: 3%;
-            
-
             
             h3{
                 @include headingFour();
@@ -64,6 +61,11 @@
             }
         }
 
+    }
+        
+    .title {
+        @include headingFive();
+        margin-top: 2vh;
     }
 
     .description{
@@ -100,5 +102,7 @@
             }
         }
     }
+
+
 
 }

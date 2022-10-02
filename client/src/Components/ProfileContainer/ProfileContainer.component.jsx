@@ -15,8 +15,12 @@ const ProfileContainer = ({ image }) => {
     const testerTags = ['html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3', 'html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3']
     const visuals = testerTags.map((tag, index) => <Tags key={index} title={tag} />)
     const listBadges = Userbadges
-    const tester = listBadges.map((i, index) =>(
-        <Badges key={index}  title={i.title} badgeImage={i.badgeImage} badgeDescription={i.badgeDescription}/> 
+    const tester = listBadges.map((i, index) => (
+        index === 0
+            ?
+            <Badges key={index} title={i.title} badgeImage={i.badgeImage} badgeDescription={i.badgeDescription} id={styles.left} />
+            :
+            <Badges key={index} title={i.title} badgeImage={i.badgeImage} badgeDescription={i.badgeDescription} />
     ))
 
     console.log(listBadges)
@@ -52,15 +56,19 @@ const ProfileContainer = ({ image }) => {
                         } />
                 </div>
 
-                <BadgeContainer 
-                    children={tester}
-                />
-
                 <h4>Following Tags</h4>
                 <div className={styles.tagsContainer}>
                     {visuals}
                 </div>
+
+                <div className={styles.title}>
+                    <h3>Badges</h3>
+                </div>
             </div>
+
+            <BadgeContainer
+                    children={tester}
+                />
         </div>
     );
 };

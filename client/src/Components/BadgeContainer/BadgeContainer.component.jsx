@@ -9,12 +9,7 @@ const BadgeContainer = ({children}) => {
 
     return (
         <div className={styles.main}>
-            <div className={styles.title}>
-                <h3>Badges</h3>
-            </div>
-            <div className={styles.badge_row}>
                 {children}
-            </div>
         </div>
         )
 }

@@ -1,0 +1,9 @@
+@import "../../StyleSource/variables.scss";
+
+.container{
+    display: flex;
+    justify-content: flex-start;
+    flex: 1;
+    min-height: 20vh;
+    background-color: red;
+}
