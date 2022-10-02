@@ -8,6 +8,9 @@ import BadgeContainer from '../BadgeContainer/BadgeContainer.component';
 import Userbadges from "../Badges/userbadges.json"
 import Badges from '../Badges/Badges.component';
 import { useState } from 'react';
+import UserReputation from '../UserReputation/UserReputation.component';
+import MyQuestionsAnswers from '../MyQuestionsAnswers/MyQuestionsAnswers.component';
+import MyQuestionsAnswersContainer from '../MyQuestionsAnswersContainer/MyQuestionsAnswersContainer.component';
 
 
 const ProfileContainer = ({ image }) => {
@@ -69,6 +72,11 @@ const ProfileContainer = ({ image }) => {
             <BadgeContainer
                     children={tester}
                 />
+
+            <div className={styles.reputationCon}>
+            <UserReputation/>
+            </div>
+            <MyQuestionsAnswersContainer/>
         </div>
     );
 };

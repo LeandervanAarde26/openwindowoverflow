@@ -12,6 +12,7 @@ const Profile = () => {
                 <SideNavigation />
                 <ProfileContainer />
             </div>
+
         </>
 
     );

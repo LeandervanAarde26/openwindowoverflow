@@ -55,6 +55,12 @@ h6 {
     letter-spacing: 2px;
 }
 
+@mixin Title {
+    font-family: $headings;
+    font-size: 45px;
+    letter-spacing: 2px;
+}
+
 @mixin headingTwo{
     font-family: $headings;
     font-size: 32px;

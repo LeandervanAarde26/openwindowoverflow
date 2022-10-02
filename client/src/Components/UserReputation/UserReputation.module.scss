@@ -2,8 +2,23 @@
 
 .container{
     display: flex;
-    justify-content: flex-start;
     flex: 1;
-    min-height: 20vh;
-    background-color: red;
+    height: fit-content;
+
+    .headingCon{
+        width: 100%;
+        padding-left: 1%;
+
+        h4{
+            @include headingFour();
+        }
+    
+        h1{
+            @include Title();
+            color: $orange;
+            margin-top: .5em;
+            text-align: center;
+        }
+    }
 }
+
