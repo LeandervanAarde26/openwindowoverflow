@@ -8,6 +8,10 @@ const users = mongoose.Schema({
         required: true,
         trim: true
     },
+    activeAccount: {
+        type: Boolean,
+        default: false
+    },
     joined: {
         type: Date,
         default: Date.now
