@@ -1,6 +1,6 @@
 @import "../../StyleSource/variables.scss";
 
-.outer{
+.outer {
     display: flex;
     flex: 1;
     align-items: center;
@@ -10,30 +10,28 @@
     padding: 20px 0;
     gap: 20px;
 
-    .votingContainer{
+    .votingContainer {
         height: fit-content;
         
-        h5{
+        h5 {
             font-weight: 700;
             text-align: center;
         }
     }
 
-    .votingContainer :nth-child(3){
+    .votingContainer :nth-child(3) {
         transform: rotate(180deg);
     }
 
-    .questionContainer{
-        .description{
+    .questionContainer {
+        .description {
             @include body();
             margin-top: 10px;
         }
 
-        .userInformation{
+        .userInformation {
             @include smallText();
             color: darken($grey, 35%);
         }
     }
 }
-
-
