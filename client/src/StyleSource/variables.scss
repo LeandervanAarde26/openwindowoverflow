@@ -92,6 +92,30 @@ font-size: 15px;
     color: $black;
 }
 
+h1 {
+    @include headingOne();
+}
+
+h2 {
+    @include headingTwo();
+}
+
+h3 {
+    @include headingThree();
+}
+
+h4 {
+    @include headingFour();
+}
+
+h5 {
+    @include headingFive();
+}
+
+h6 {
+    @include headingSix();
+}
+
 @mixin body{
     font-family: $body;
     font-weight: 400;

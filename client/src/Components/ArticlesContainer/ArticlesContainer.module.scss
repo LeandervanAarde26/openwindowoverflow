@@ -3,18 +3,12 @@
 .outer{
     display: flex;
     flex-direction: column;
-    padding: 20px 0;
-    
+    gap: 20px;
+
     .container {
         flex: 1;
-    }
-
-    h3{
-        @include headingThree();
-        margin-bottom: 1.5vh;
-    }
-    
-    & ::-webkit-scrollbar{
-        display: none;
+        display: flex;
+        flex-direction: column;
+        gap: 25px
     }
 }
