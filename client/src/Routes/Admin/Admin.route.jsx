@@ -9,8 +9,16 @@ const AdminRoute = () => {
       <div className={styles.container}>
         <SideNavigation />
         <div>
-          <h2 style={{ margin: 30 }}>Flagged comments</h2>
+          <h2 style={{ marginLeft: 2, marginTop: 30, marginBottom: 10 }}>
+            Flagged comments
+          </h2>
           <FlaggedComment />
+          <FlaggedComment />
+        </div>
+        <div>
+          <h2 style={{ marginTop: 590, marginLeft: -400 }}>
+            Oldest unanswered questions
+          </h2>
         </div>
       </div>
     </>
