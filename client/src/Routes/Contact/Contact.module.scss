@@ -4,13 +4,19 @@
 .container {
     display: flex;
     flex: 1;
-    background-color: bisque;
- }
-h2 {
-    font-family:'Quicksand', sans-serif;
-    margin: 30px;
+    
 }
-h3 {
-    margin-top: 90px;
+h4 {
     font-family:'Quicksand', sans-serif;
+    margin-top: 50px;
+    margin-left: 40px;
+    font-size: x-large;
+}
+
+h2 {
+    margin-top: 20px;
+    margin-left: 40px;
+    font-size: xx-large;
+    font-family:'Quicksand', sans-serif;
+
 }
