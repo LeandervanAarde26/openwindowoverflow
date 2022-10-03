@@ -14,13 +14,6 @@ const RightContainer = () => {
 
             <Button
                 buttonType={'discord'}
-                children={
-                    <>
-                        <img src={Discord}
-                            style={{ height: 50 }} />
-                        <p>Join the Discord</p></>
-                }
-                buttonSize={"discordButton"}
             />
 
             {/* <AdSenseContainer /> */}

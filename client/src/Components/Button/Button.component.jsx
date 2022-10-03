@@ -1,5 +1,7 @@
 import React from 'react';
-import "./Button.styles.scss";
+import styles from './Button.module.scss';
+import Discord from '../../Assets/Discord.png'
+import Github from '../../Assets/Github.png'
 
 const buttonTypes = {
     primary: 'primary',
@@ -12,8 +14,22 @@ const buttonTypes = {
 
 const Button = ({children, buttonType, buttonSize, ...otherProps}) => {
     return (
-        <div className={`button ${buttonTypes[buttonType]}`} id={`${buttonSize}`} {...otherProps}>
-            {children}
+        <div className={`${styles.button} ${styles[buttonType]}`} id={`${buttonSize}`} {...otherProps}>
+            {
+                buttonType == 'discord'
+                ?   <>
+                        <img src={Discord}
+                            style={{ height: 50 }} />
+                        <p>Join the Discord</p>
+                    </>
+                : buttonType == 'github'
+                ?   <>
+                        <img src={Github}
+                            style={{ height: 50 }} />
+                        <p>View Github</p>
+                    </>
+                : children
+            }
         </div>
     );
 };

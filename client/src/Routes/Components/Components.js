@@ -6,6 +6,7 @@ import ArticlesFilter from "../../Components/ArticlesFilter/ArticlesFilter.compo
 import ArticlesFilterContainer from "../../Components/ArticlesFilterContainer/ArticlesFilterContainer.component";
 import Back from "../../Components/BackButton/Back.component";
 import Badges from "../../Components/Badges/Badges.component";
+import Button from "../../Components/Button/Button.component";
 import styles from "./Components.module.scss";
 
 const Components = () => {
@@ -14,6 +15,11 @@ const Components = () => {
         <Badges
             title={"Murmurer"}
             description={"Post and answer at least 5 tickets."}
+        />
+
+        <Button
+            buttonType={"black"}
+            children={"Hey you are awesome"}
         />
     </div>
   );

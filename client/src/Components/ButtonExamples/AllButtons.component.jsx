@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '../Button/Button.component';
-import Discord from "../../Assets/Discord.png"
-import Github from "../../Assets/Github.png"
+
 import "./AllButton.styles.scss"
 
 const AllButtons = () => {
@@ -21,12 +20,6 @@ const AllButtons = () => {
 
             <Button
                 buttonType={'discord'}
-                children={
-                    <>
-                        <img src={Discord}
-                            style={{ height: 50 }} />
-                        <p>Join the Discord</p></>
-                } 
                 buttonSize={"discordId"}
             />
             <br />
@@ -36,15 +29,7 @@ const AllButtons = () => {
                 children={'This is a secondary button'} />
 
             <br />
-            <Button
-                buttonType={'github'}
-                children={
-                    <>
-                        <img src={Github}
-                            style={{ height: 50 }} />
-                        <p>View Github</p>
-                    </>
-                } />
+            <Button buttonType={'github'} />
             <br />
 
             <Button
