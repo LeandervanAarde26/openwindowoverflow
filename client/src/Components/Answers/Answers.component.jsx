@@ -10,7 +10,7 @@ const Answers = () => {
                 <Icon
                     icon={ic_arrow}
                 />
-                <h6>12</h6>
+                <h5>12</h5>
                 <Icon
                     icon={ic_arrow}
                 />

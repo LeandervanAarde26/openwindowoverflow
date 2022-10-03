@@ -10,15 +10,10 @@
     padding: 20px 0;
     gap: 20px;
 
-    h3{
-        @include headingThree();
-    }
-
     .votingContainer{
         height: fit-content;
         
-        h6{
-            @include headingFive();
+        h5{
             font-weight: 700;
             text-align: center;
         }
