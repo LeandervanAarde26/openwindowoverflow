@@ -1,38 +1,34 @@
 @import "../../StyleSource/variables.scss";
 
 .button {
+    width: fit-content;
     @include body();
-    height: 50px;
+    height: fit-content;
     letter-spacing: 0.5px;
     padding: 10px 20px;
     text-transform: lowercase;
     font-weight: 500;
-    border: none;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
 
     &.primary {
-        background-color: $orange;
         color: $white;
+        background-color: $orange;
         outline: 1px solid;
         outline-color: $orange;
-        outline-offset: 0px;
         transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
 
         &:hover {
-            border: 1px solid;
             outline-color: rgba(255, 64, 0, 0.5);
             outline-offset: 15px;
-            text-shadow: 1px 1px 2px #00000052;
         }
     }
 
     &.secondary {
-        background-color: transparent;
         color: $black;
-        outline: 4px solid;
+        outline: 1px solid;
         outline-color: $orange;
         transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
         position: relative;
@@ -69,9 +65,11 @@
         color: $white;
         outline: 1px solid none;
         text-transform: uppercase;
-        font-weight: 800 !important;
-        outline-offset: 0px;
-        padding : 5px;
+        font-weight: 800;
+        padding: 8px 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
         // transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
         img {
@@ -94,7 +92,7 @@
     &.outline {
         background-color: transparent;
         color: $black;
-        outline: 4px solid;
+        outline: 1px solid;
         outline-color: $black;
         transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
         position: relative;
@@ -131,15 +129,18 @@
         color: $white;
         outline: 1px solid;
         text-transform: uppercase;
-        font-weight: 800 !important;
-        outline-offset: 0px;
+        font-weight: 800;
+        padding: 8px 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
         // transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
         img {
             height: auto;
+            max-height: 40px;
             position: relative;
             transition: 0.5s ease-in-out;
-
         }
 
         &:hover img {

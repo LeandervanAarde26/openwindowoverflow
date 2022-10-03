@@ -1,15 +1,26 @@
 import React from 'react';
-import styles from "./Back.module.scss"
+import styles from './Back.module.scss';
 import { useNavigate } from 'react-router';
+import ic_back from '../../Assets/Icons/ic_arrow.svg';
+import Icon from '../Icon/Icon';
 
 const Back = () => {
     const navigate = useNavigate()
     const goBack = () =>{
         navigate(-1)
     }
+
     return (
-        <div className={styles.backButton} onClick={goBack}>
-            <span>&#10094; Back</span>
+        <div 
+            className={styles.container} 
+            onClick={goBack}
+        >
+            <Icon
+                className={styles.container__icon}
+                icon={ic_back}
+            />
+
+            <h5>Back</h5>
         </div>
     );
 };
