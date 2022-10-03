@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Contact.module.scss";
 import SideNavigation from "../../Components/sideNavigation/SideNavigation.component";
 import ContactCard from "../../Components/Contact/ContactCard";
-import FlaggedComment from "../../Components/FlaggedComment/FlaggedComment.component";
+
 export default function Contact() {
   return (
     <>
@@ -26,9 +26,6 @@ export default function Contact() {
           </div>
         </div>
       </div>
-      {/* <div>
-        <FlaggedComment />
-      </div> */}
     </>
   );
 }

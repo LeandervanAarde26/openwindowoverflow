@@ -14,6 +14,7 @@ import Register from "./Routes/Register/Register.route";
 import Contact from "./Routes/Contact/Contact.route";
 import Profile from "./Routes/Profile/Profile.route";
 import Question from "./Routes/Question/Question.component";
+import Admin from "./Routes/Admin/Admin.route";
 
 function App() {
   //Get Location of User
@@ -32,6 +33,7 @@ function App() {
               <Route path="/Profile" element={<Profile />} />
               <Route path="/Question" element={<Question />} />
               <Route path="/Contact" element={<Contact />} />
+              <Route path="/Admin" element={<Admin />} />
               {/* INSERT ROUTES HERE */}
             </Routes>
           </CSSTransition>
@@ -46,6 +48,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/Question" element={<Question />} />
           <Route path="/Contact" element={<Contact />} />
+          <Route path="/Admin" element={<Admin />} />
           {/* INSERT ROUTES HERE */}
         </Routes>
       )}

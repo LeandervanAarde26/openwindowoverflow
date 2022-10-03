@@ -32,6 +32,7 @@ export default function BasicCard() {
         <Typography variant="h5" component="div"></Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           <BiUser style={{ height: "30px", width: "30px" }} />
+
           <br />
           <BiUser style={{ height: "30px", width: "30px" }} />
         </Typography>
