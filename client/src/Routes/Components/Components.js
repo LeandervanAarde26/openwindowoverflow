@@ -7,20 +7,13 @@ import ArticlesFilterContainer from "../../Components/ArticlesFilterContainer/Ar
 import Back from "../../Components/BackButton/Back.component";
 import Badges from "../../Components/Badges/Badges.component";
 import Button from "../../Components/Button/Button.component";
+import Comment from "../../Components/Comment/Comment.component";
 import styles from "./Components.module.scss";
 
 const Components = () => {
   return (
     <div className={styles.container}>
-        <Badges
-            title={"Murmurer"}
-            description={"Post and answer at least 5 tickets."}
-        />
-
-        <Button
-            buttonType={"black"}
-            children={"Hey you are awesome"}
-        />
+        <Comment/>
     </div>
   );
 };
