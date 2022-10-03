@@ -1,8 +1,9 @@
 @import "../../StyleSource/variables.scss";
 
 .AdContainer{
-    width: 20vw;
     @include dropShadow();
+    width: 100%;
+    width: fit-content;
     padding: 0;
 
     .adsbygoogle{
