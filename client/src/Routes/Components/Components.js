@@ -10,12 +10,13 @@ import Button from "../../Components/Button/Button.component";
 import Comment from "../../Components/Comment/Comment.component";
 import CommentsContainer from "../../Components/CommentsContainer/CommentsContainer.component";
 import styles from "./Components.module.scss";
+import Dropdown from '../../Components/Dropdown/Dropdown'
 
 const Components = () => {
   return (
     <div className={styles.container}>
-        <CommentsContainer
-            children={<Comment/>}
+        <Dropdown
+            title={"Hey man"}
         />
     </div>
   );
