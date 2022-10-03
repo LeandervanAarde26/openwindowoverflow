@@ -8,12 +8,15 @@ import Back from "../../Components/BackButton/Back.component";
 import Badges from "../../Components/Badges/Badges.component";
 import Button from "../../Components/Button/Button.component";
 import Comment from "../../Components/Comment/Comment.component";
+import CommentsContainer from "../../Components/CommentsContainer/CommentsContainer.component";
 import styles from "./Components.module.scss";
 
 const Components = () => {
   return (
     <div className={styles.container}>
-        <Comment/>
+        <CommentsContainer
+            children={<Comment/>}
+        />
     </div>
   );
 };

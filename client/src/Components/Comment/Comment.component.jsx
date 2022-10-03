@@ -12,7 +12,7 @@ const Comment = () => {
                     icon={ic_flag}
                 />
             </div>
-            <div>
+            <div className={styles.right}>
                 <h5 className={styles.name}>Leander van Aarde</h5>
                 <p className={styles.time}>29 June 2021 @ 21:00</p>
                 <p className={styles.comment}>

@@ -7,15 +7,14 @@
     width: fit-content;
     height: fit-content;
     display: flex;
-    padding: 10px;
-    gap: 10px;
+    gap: 5px;
     border-bottom: 1px solid $black;
+    padding: 5px 0;
 
     .left {
         width: fit-content;
         display: flex;
         align-items: center;
-        gap: 20px;
         padding-right: 10px;
 
         svg{
@@ -28,6 +27,16 @@
                 }
             }
         }
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .name {
+        @include headingFive();
     }
 
     .time {
