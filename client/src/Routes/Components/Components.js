@@ -5,12 +5,16 @@ import ArticlesContainer from "../../Components/ArticlesContainer/ArticlesContai
 import ArticlesFilter from "../../Components/ArticlesFilter/ArticlesFilter.component";
 import ArticlesFilterContainer from "../../Components/ArticlesFilterContainer/ArticlesFilterContainer.component";
 import Back from "../../Components/BackButton/Back.component";
+import Badges from "../../Components/Badges/Badges.component";
 import styles from "./Components.module.scss";
 
 const Components = () => {
   return (
     <div className={styles.container}>
-        <Back/>
+        <Badges
+            title={"Murmurer"}
+            description={"Post and answer at least 5 tickets."}
+        />
     </div>
   );
 };
