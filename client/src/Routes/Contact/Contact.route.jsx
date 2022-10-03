@@ -2,8 +2,6 @@ import React from "react";
 import styles from "./Contact.module.scss";
 import SideNavigation from "../../Components/sideNavigation/SideNavigation.component";
 import ContactCard from "../../Components/Contact/ContactCard";
-import Avatar from "@mui/material/Avatar";
-import Button from "../../Components/Button/Button.component";
 import FlaggedComment from "../../Components/FlaggedComment/FlaggedComment.component";
 export default function Contact() {
   return (
@@ -18,8 +16,9 @@ export default function Contact() {
           <ContactCard />
           <ContactCard />
 
-          <h4>Creators</h4>
-          <div style={{ float: "left" }}>
+          <div>
+            <h4 style={{ marginTop: 350 }}>Creators</h4>
+            <ContactCard />
             <ContactCard />
             <ContactCard />
             <ContactCard />

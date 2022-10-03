@@ -6,7 +6,7 @@ import Button from "../Button/Button.component";
 function ContactCard() {
   return (
     <>
-      <div style={{ float: "right" }}>
+      <div style={{ float: "left" }}>
         <Avatar
           id="avatar"
           sx={{ width: 100, height: 100, marginTop: 5, marginLeft: "120px" }}

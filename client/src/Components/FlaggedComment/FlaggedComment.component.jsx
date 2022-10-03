@@ -6,6 +6,8 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { BiUser } from "react-icons/bi";
+import styles from "./FlaggedComment.module.scss";
+import { AiFillFlag } from "react-icons/ai";
 
 const bull = (
   <Box
@@ -18,7 +20,7 @@ const bull = (
 
 export default function BasicCard() {
   return (
-    <Card sx={{ width: 300 }}>
+    <Card sx={{ width: 400, height: 220, marginBottom: 5 }}>
       <CardContent>
         <Typography
           sx={{ fontSize: 18, fontWeight: 900 }}
@@ -30,16 +32,24 @@ export default function BasicCard() {
         <Typography variant="h5" component="div"></Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           <BiUser style={{ height: "30px", width: "30px" }} />
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
           <br />
-          {'"a benevolent smile"'}
+          <BiUser style={{ height: "30px", width: "30px" }} />
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
+      <AiFillFlag style={{ height: " 40px", width: "40px", marginLeft: 10 }} />
+      <Button
+        className="view-btn"
+        sx={{
+          float: "right",
+          color: " white",
+          height: 30,
+          width: 40,
+          backgroundColor: "#FF3F00",
+          marginRight: 2,
+        }}
+      >
+        View
+      </Button>
     </Card>
   );
 }
