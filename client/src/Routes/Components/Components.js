@@ -32,9 +32,9 @@ const Components = () => {
             <SideNavigation />
             {/* <CommentsContainer /> */}
 
-            <ArticlesFilterContainer/>
+            {/* <ArticlesFilterContainer/> */}
 
-            {/* <PostedFollowedArticlesContainer/> */}
+            {/* <PostedFollowedArticlesContainer/>  */}
             
             {/* <MyQuestionsAnswersContainer/> */}
 
