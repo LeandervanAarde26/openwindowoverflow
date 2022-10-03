@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Admin.module.scss";
 import SideNavigation from "../../Components/sideNavigation/SideNavigation.component";
 import FlaggedComment from "../../Components/FlaggedComment/FlaggedComment.component";
+import AskQuestionComponent from "../../Components/QuestionsContainer/AskQuestion.component";
 
 const AdminRoute = () => {
   return (
@@ -20,6 +21,8 @@ const AdminRoute = () => {
             Oldest unanswered questions
           </h2>
         </div>
+
+        {/* <AskQuestionComponent /> */}
       </div>
     </>
   );
