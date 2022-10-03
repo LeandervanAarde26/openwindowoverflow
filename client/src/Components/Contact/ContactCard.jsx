@@ -23,9 +23,7 @@ function ContactCard() {
             marginTop: "10px",
           }}
         >
-          <Button buttonType={"black"}>
-            <h3>Email</h3>
-          </Button>
+          <Button buttonType={"black"} children={"Email"} />
         </div>
       </div>
     </>

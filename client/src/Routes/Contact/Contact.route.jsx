@@ -19,9 +19,12 @@ export default function Contact() {
           <ContactCard />
 
           <h4>Creators</h4>
-          <ContactCard />
-          <ContactCard />
-          <ContactCard />
+          <div style={{ float: "left" }}>
+            <ContactCard />
+            <ContactCard />
+            <ContactCard />
+            <ContactCard />
+          </div>
         </div>
       </div>
       {/* <div>
