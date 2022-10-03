@@ -2,12 +2,12 @@
 
     .container {
         flex: 1;
+        gap:10px;
         background-color: rgb(255, 255, 255);
 
         h5{
-            @include headingFour();
+            @include headingSix();
             margin-bottom: 4vh;
-            color: red;
             }
     
         .information{
@@ -17,6 +17,11 @@
             border: 1px solid red;
         }
 
+        .button{
+            width: 200px;
+            float: right;
+            margin-top: 20px;
+        }
 
     }
 
