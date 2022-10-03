@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './PostAnswer.module.scss';
 import Button from '../Button/Button.component'
+// import Icon from '../Icon/Icon';
+// import bold from "../../Assets/Icons/bold.png";
 
 const PostAnswer = () => {
 
@@ -8,7 +10,9 @@ const PostAnswer = () => {
         <div className={styles.container}>
             <h5>Your answer</h5>
             <div className={styles.icons}>
-                
+                {/* <Icon 
+                icon={bold}
+                /> */}
             </div>
 
                 <div className={styles.information}>
@@ -25,15 +29,3 @@ const PostAnswer = () => {
 };
 
 export default PostAnswer;
-
-// /* Icons/Images */
-// import logo from '../../Assets/Icons/testLogo.svg';
-// import trophy from "../../Assets/Icons/ic_trophy.svg";
-// import inbox from "../../Assets/Icons/ic_inbox.svg";
-// import Icon from '../Icon/Icon';
-
-
-{/* <Icon
-className={styles['containerOuter__login--trophy']}
-icon={inbox}
-/> */}
