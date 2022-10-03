@@ -1,0 +1,22 @@
+@import "../../StyleSource/variables.scss";
+
+    .container {
+        flex: 1;
+        background-color: rgb(255, 255, 255);
+
+        h5{
+            @include headingFour();
+            margin-bottom: 4vh;
+            color: red;
+            }
+    
+        .information{
+            background-color: rgb(255, 255, 255);
+            height: 250px;
+            width: 100%;
+            border: 1px solid red;
+        }
+
+
+    }
+
