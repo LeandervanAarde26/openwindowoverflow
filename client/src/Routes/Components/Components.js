@@ -4,12 +4,13 @@ import Answers from "../../Components/Answers/Answers.component";
 import ArticlesContainer from "../../Components/ArticlesContainer/ArticlesContainer.component";
 import ArticlesFilter from "../../Components/ArticlesFilter/ArticlesFilter.component";
 import ArticlesFilterContainer from "../../Components/ArticlesFilterContainer/ArticlesFilterContainer.component";
+import Back from "../../Components/BackButton/Back.component";
 import styles from "./Components.module.scss";
 
 const Components = () => {
   return (
     <div className={styles.container}>
-        <ArticlesFilterContainer/>
+        <Back/>
     </div>
   );
 };

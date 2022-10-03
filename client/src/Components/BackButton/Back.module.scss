@@ -1,11 +1,17 @@
 @import "../../StyleSource/variables.scss";
 
-.backButton{
-    @include headingFive();
-    cursor: pointer;
+.container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
     transition: 300ms ease-in-out all;
 
-    &:hover{
+    &__icon {
+        transform: rotate(-90deg);
+    }
+
+    &:hover {
         transform: scale(1.1);
+        cursor: pointer;
     }
 }
