@@ -1,0 +1,37 @@
+@import "../../StyleSource/variables.scss";
+
+.outer {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+    max-width: 1000px;
+    padding: 20px 0;
+    gap: 20px;
+
+    .votingContainer {
+        height: fit-content;
+        
+        h5 {
+            font-weight: 700;
+            text-align: center;
+        }
+    }
+
+    .votingContainer :nth-child(3) {
+        transform: rotate(180deg);
+    }
+
+    .questionContainer {
+        .description {
+            @include body();
+            margin-top: 10px;
+        }
+
+        .userInformation {
+            @include smallText();
+            color: darken($grey, 35%);
+        }
+    }
+}

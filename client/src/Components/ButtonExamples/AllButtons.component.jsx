@@ -28,7 +28,7 @@ const AllButtons = () => {
                         <p>Join the Discord</p></>
                 } 
                 buttonSize={"discordId"}
-                />
+            />
             <br />
             
             <Button

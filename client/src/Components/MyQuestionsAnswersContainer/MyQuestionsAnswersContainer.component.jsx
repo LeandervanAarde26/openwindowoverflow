@@ -31,7 +31,7 @@ const MyQuestionsAnswersContainer = () => {
         <div className={styles.outer}>
             <div className={styles.container}>
                 <div className={styles.left}>
-                    <h4>Questions</h4>
+                <h4>Questions</h4>
                 <MyQuestionsAnswers/>
                 <MyQuestionsAnswers/>
                 <MyQuestionsAnswers/>

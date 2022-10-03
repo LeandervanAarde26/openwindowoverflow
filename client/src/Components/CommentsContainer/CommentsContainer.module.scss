@@ -5,17 +5,14 @@
     flex-direction: column;
     padding: 20px 0;
 
-    h3{
-        @include headingThree();
-        margin-bottom: 1.5vh;
-        font-size: 28px;
-    }
+
     h4{
         @include headingFour();
         font-size: 14px;
+        margin-left: 6%
     }
     h5{
-        @include headingThree();
+        @include headingFive();
         margin-bottom: 1.5vh;
         font-size: 10px;
         color: rgb(153, 153, 153);
@@ -28,12 +25,15 @@
     
     .container {
         flex: 1;
-
+        align-items:center;
+        justify-content: center;
 
          
         .buttonContainer{
-            width: 25%;
-            margin-left: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // margin-left: 25%;
             margin-top: 2%;
         }
 

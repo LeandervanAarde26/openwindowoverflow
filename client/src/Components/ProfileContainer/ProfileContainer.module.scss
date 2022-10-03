@@ -1,0 +1,114 @@
+@import "../../StyleSource/variables.scss";
+
+
+.container{
+    flex: 1;
+    overflow: scroll;
+
+    .topContainer{
+        min-height: 19vh;
+        display: flex;
+        justify-content: flex-start;
+        gap: 15px;
+        margin-top: 1%;
+        
+        .profilePhoto{
+            height: 100%;
+            max-height: 20vh;
+            min-height: 19vh;
+            aspect-ratio: 1/1;
+            background-color: orange;
+            border-radius: 55%;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+
+            img{
+                width: 100%; /* or any custom size */
+                height: 100%; 
+                object-fit: cover;
+            }
+        }
+
+        .userIntro{
+            background-color: white;
+            padding-top: 3%;
+            
+            h3{
+                @include headingFour();
+                font-weight: 500;
+            }
+
+            p{
+                @include body();
+                color: darken($grey, 40%);
+            }
+
+            .year{
+                margin-top: 3%;
+            }
+
+            .accContainer{
+                display: flex;
+                justify-content: flex-start;
+                gap: 15px;
+            }
+
+            .accomplishments{
+               display: flex;
+               margin-top: 3%;
+               
+            }
+        }
+
+    }
+        
+    .title {
+        @include headingFive();
+        margin-top: 2vh;
+    }
+
+    .description{
+        margin-left: 1%;
+        margin-top: 1%;
+
+        h4{
+            @include headingFour();
+            margin-bottom: 1%;
+        }
+
+        p{
+            @include body();
+            width: 50%;
+        }
+
+        .button{
+            display: flex;
+            align-items: flex-start;
+            justify-content: left;
+            margin-top: 2%;
+        }
+
+        h4{
+            @include headingFour();
+            margin-top: 2%;
+        }
+
+        .tagsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+
+            :nth-child(1){
+                    width: auto;
+            }
+        }
+    }
+
+    .reputationCon{
+        margin-top: 2em;
+    }
+
+
+
+}

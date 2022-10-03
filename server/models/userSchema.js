@@ -8,6 +8,10 @@ const users = mongoose.Schema({
         required: true,
         trim: true
     },
+    activeAccount: {
+        type: Boolean,
+        default: false
+    },
     joined: {
         type: Date,
         default: Date.now
@@ -49,12 +53,11 @@ const users = mongoose.Schema({
     },
     currentStudyYear: Number,
     earnedBadges: [{ type: mongoose.Schema.Types.ObjectId, ref: 'badges' }],
-    followedTags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'tags' }],
+    followedTags: [String],
     userQuestions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'questions' }],
     userAnswers: [
         {
             questionId: { type: mongoose.Schema.Types.ObjectId, ref: 'questions' },
-            answerId: { type: mongoose.Schema.Types.ObjectId, ref: 'answers' },
         }
     ],
     likedArticles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'articles' }],

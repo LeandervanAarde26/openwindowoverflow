@@ -3,20 +3,21 @@ import Comment from '../Comment/Comment.component';
 import styles from "./CommentsContainer.module.scss";
 import Button from '../Button/Button.component';
 
-const CommentsContainer = () => {
+const CommentsContainer = ({children, loadMore,}) => {
+
     return (
 
         <div className={styles.outer}>
-            <h3>Comments</h3>
+            <h4>Comments</h4>
             <div className={styles.container}>
-                <Comment />
-                <Comment />
+                {children}
 
                 <div className={styles.buttonContainer}>
                     <Button
                         buttonType={"outline"}
-                        children={"View more comments"} />
-                      
+                        children={"View more comments"} 
+                        onClick={loadMore}/>
+                     
                 </div>
             </div>
         </div>
