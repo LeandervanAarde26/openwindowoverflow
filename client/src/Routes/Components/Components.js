@@ -7,6 +7,7 @@ import ArticlesFilterContainer from "../../Components/ArticlesFilterContainer/Ar
 import MyQuestionsAnswers from "../../Components/MyQuestionsAnswers/MyQuestionsAnswers.component";
 import SideNavigation from "../../Components/sideNavigation/SideNavigation.component";
 import RightContainer from "../../Components/RightContainer/RightContainer.component";
+import ValidationComplete from "../../Components/ValidationComplete/ValidationComplete.component"
 import styles from "./Components.module.scss";
 import PostAnswer from "../../Components/PostAnswer/PostAnswer.component";
 
@@ -14,15 +15,16 @@ const Components = () => {
   return (
     <div className={styles.container}>
 
-      <SideNavigation/>
+      {/* <SideNavigation/> */}
 
-        <PostAnswer/>
+      <ValidationComplete/>
+        {/* <PostAnswer/> */}
         {/* <ArticlesFilterContainer/> */}
         {/* <MyQuestionsAnswers/> */}
         {/* <ArticlesFilter/> */}
         {/* <Answers/> */}
 
-      <RightContainer/>
+      {/* <RightContainer/> */}
 
     </div>
   );
