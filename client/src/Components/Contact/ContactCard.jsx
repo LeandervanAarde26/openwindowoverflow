@@ -1,12 +1,11 @@
 import React from "react";
-// import Avatar from "@mui/material/Avatar";
 import styles from "./ContactCard.module.scss";
 import Button from "../Button/Button.component";
 import image from "../../Assets/car.jpg";
 
 function ContactCard() {
   return (
-    
+    <>
       <div style={{ float: "left" }}>
         <img
           src={image}
@@ -31,9 +30,9 @@ function ContactCard() {
         >
           <Button buttonType={"black"} children={"Email"} />
         </div>
-      <div/>
-    </>  
-    );
-};
+      </div>
+    </>
+  );
+}
 
 export default ContactCard;
