@@ -10,6 +10,7 @@ import RightContainer from "../../Components/RightContainer/RightContainer.compo
 import ValidationComplete from "../../Components/ValidationComplete/ValidationComplete.component"
 import styles from "./Components.module.scss";
 import PostAnswer from "../../Components/PostAnswer/PostAnswer.component";
+import Dropdown from "../../Components/Dropdown/Dropdown";
 
 const Components = () => {
   return (
@@ -23,6 +24,9 @@ const Components = () => {
       {/* <ArticlesFilter/> */}
       {/* <Answers/> */}
       {/* <RightContainer/> */}
+      <Dropdown
+        title={"Hey Sexy"}
+      />
 
     </div>
   );
