@@ -1,56 +1,43 @@
-// import * as React from "react";
-// import Box from "@mui/material/Box";
-// import Card from "@mui/material/Card";
-// import CardActions from "@mui/material/CardActions";
-// import CardContent from "@mui/material/CardContent";
-// import Button from "@mui/material/Button";
-// import Typography from "@mui/material/Typography";
-// import { BiUser } from "react-icons/bi";
-// import styles from "./FlaggedComment.module.scss";
-// import { AiFillFlag } from "react-icons/ai";
+import React from 'react';
+import styles from './FlaggedComment.module.scss';
+import ic_user from '../../Assets/Icons/ic_user.svg';
+import ic_flag from '../../Assets/Icons/ic_flag.svg';
+import Icon from '../Icon/Icon';
+import Button from '../Button/Button.component';
 
-// const bull = (
-//   <Box
-//     component="span"
-//     sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-//   >
-//     •
-//   </Box>
-// );
+const FlaggedComment = () => {
+    return (
+        <div className={styles.container}>
+            <div className={styles.container__top}>
+                <h4>User flagged users comment on question This is thsfas fasfsfa sfasfe title of the question that the user h</h4>
+            </div>
+            <div className={styles.container__info}>
+                <div className={styles['container__info--content']}>
+                    <Icon
+                        icon={ic_user}
+                    />
 
-// export default function BasicCard() {
-//   return (
-//     <Card sx={{ width: 400, height: 220, marginBottom: 5 }}>
-//       <CardContent>
-//         <Typography
-//           sx={{ fontSize: 18, fontWeight: 900 }}
-//           color="text.secondary"
-//           gutterBottom
-//         >
-//           User comment has been flagged due to....
-//         </Typography>
-//         <Typography variant="h5" component="div"></Typography>
-//         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-//           <BiUser style={{ height: "30px", width: "30px" }} />
+                    <p><strong>User</strong> asked question 5 hours ago</p>
+                </div>
+                <div className={styles['container__info--content']}>
+                    <Icon
+                        icon={ic_user}
+                    />
 
-//           <br />
-//           <BiUser style={{ height: "30px", width: "30px" }} />
-//         </Typography>
-//       </CardContent>
-//       <AiFillFlag style={{ height: " 40px", width: "40px", marginLeft: 10 }} />
-//       <Button
-//         className="view-btn"
-//         sx={{
-//           float: "right",
-//           color: " white",
-//           height: 30,
-//           width: 40,
-//           backgroundColor: "#FF3F00",
-//           marginRight: 2,
-//         }}
-//       >
-//         View
-//       </Button>
-//     </Card>
-//   );
-// }
+                    <p><strong>User</strong> asked question 5 hours ago</p>
+                </div>
+            </div>
+            <div className={styles.container__bottom}>
+                <Icon
+                    icon={ic_flag}
+                />
+                <Button
+                    buttonType='primary'
+                    children='View'
+                />
+            </div>
+        </div>
+    );
+};
+
+export default FlaggedComment;

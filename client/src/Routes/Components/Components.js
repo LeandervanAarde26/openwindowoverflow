@@ -11,6 +11,7 @@ import ValidationComplete from "../../Components/ValidationComplete/ValidationCo
 import styles from "./Components.module.scss";
 import PostAnswer from "../../Components/PostAnswer/PostAnswer.component";
 import Dropdown from "../../Components/Dropdown/Dropdown";
+import FlaggedComment from "../../Components/FlaggedComment/FlaggedComment.component"
 
 const Components = () => {
   return (
@@ -24,9 +25,7 @@ const Components = () => {
       {/* <ArticlesFilter/> */}
       {/* <Answers/> */}
       {/* <RightContainer/> */}
-      <Dropdown
-        title={"Hey Sexy"}
-      />
+      <FlaggedComment/>
 
     </div>
   );
