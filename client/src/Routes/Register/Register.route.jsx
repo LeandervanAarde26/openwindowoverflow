@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./Register.module.scss"
 import Input from '../../Components/Input/Input.component';
 import { Outlet, useNavigate } from 'react-router';
@@ -41,6 +41,10 @@ const Register = () => {
         imageFive,
     ]
 
+    useEffect(() => {
+        document.title = "Sign up"
+    }, [])
+
     const changeImage = (e) =>{
         setProfileImage(e.target.src)
         setFormValues({ ...formValues, "image": e.target.src })
@@ -77,13 +81,27 @@ const Register = () => {
     const test = (e) => {
         // navigate(("/Choosetags"))
 
-        console.log(formValues)
-
         if (formValues.password != formValues.confirmPassword) {
             setpasswordError(true);
             console.log('hey')
         } else {
             setpasswordError(false);
+            let payload = {
+                username: formValues['username'].trim(),
+                email: formValues['email'].trim(),
+                password: formValues['password'].trim(),
+                userImage: formValues['image'],
+                currentStudyYear: +formValues['year'],
+            }
+
+            // axios.post('http://localhost:5001/api/', payload)
+            // .then(res =>{
+            //     console.log(payload)
+            //     navigate("/signIn")
+            // })
+            // .catch(err =>{
+            //     console.log(err)
+            // })
         }
     }
 

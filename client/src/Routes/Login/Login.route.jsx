@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./Login.module.scss"
 import Input from '../../Components/Input/Input.component';
 import { Outlet, useNavigate } from 'react-router';
@@ -23,6 +23,10 @@ const Login = () => {
     const Register = () => {
         navigate("/Register")
     }
+    
+    useEffect(() => {
+        document.title = "Sign In"
+    }, [])
 
     const handleChange = (e) => {
         // This refers to e.target.name && e.target.value
@@ -47,6 +51,29 @@ const Login = () => {
             setError(false);
             setClickable(true);
         }
+    }
+
+    const signInUser = (e) =>{
+        let payload ={
+            email: formValues['email'].trim(),
+            password: formValues['password'].trim(),
+        }
+
+        console.log(payload)
+
+        // axios.post('http://localhost:5001/api/', payload)
+        // .then((res) =>{
+        //     if(!res.data){
+        //         //Do something here aswell
+        //     } else{
+        //         // do something here
+        //     }
+
+        // })
+        // .catch((err) =>{
+        //     console.log(err)
+        // })
+
     }
 
     return (
@@ -85,6 +112,7 @@ const Login = () => {
                                 buttonType={'black'}
                                 children={"Sign In"}
                                 buttonSize={styles.buttonSize}
+                                onClick={signInUser}
                             />
 
                             <p className={styles.option}>Don't have an Account?</p>
@@ -97,7 +125,7 @@ const Login = () => {
                             />
                         </>
                         :
-                        ""
+                        null
                 }
             </div>
 
