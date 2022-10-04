@@ -17,6 +17,7 @@ import Profile from "./Routes/Profile/Profile.route";
 import Question from "./Routes/Question/Question.component";
 import FollowTags from "./Routes/FollowTags/FollowTags.route";
 import Contact from "./Routes/Contact/Contact.route";
+import Admin from "./Routes/Admin/Admin.route";
 
 function App() {
   //Get Location of User
@@ -38,6 +39,7 @@ function App() {
               <Route path="/Question" element={<Question />} />
               <Route path="/Choosetags" element={<FollowTags />} />
               <Route path="/Contact" element={<Contact />} />
+              <Route path="/Admin" element={<Admin />} />
               {/* INSERT ROUTES HERE */}
             </Routes>
           </CSSTransition>
@@ -53,6 +55,7 @@ function App() {
           <Route path="/Question" element={<Question />} />
           <Route path="/Choosetags" element={<FollowTags />} />
           <Route path="/Contact" element={<Contact />} />
+          <Route path="/Admin" element={<Admin />} />
           {/* INSERT ROUTES HERE */}
         </Routes>
       )}

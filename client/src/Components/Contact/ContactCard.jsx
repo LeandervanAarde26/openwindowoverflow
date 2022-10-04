@@ -1,36 +1,38 @@
 import React from "react";
-// import Avatar from "@mui/material/Avatar";
 import styles from "./ContactCard.module.scss";
 import Button from "../Button/Button.component";
+import image from "../../Assets/car.jpg";
 
-const ContactCard = () => {
-    return (
-        <div 
-            style={{ float: "right" }}
-            className={styles.container}
+function ContactCard() {
+  return (
+    <>
+      <div style={{ float: "left" }}>
+        <img
+          src={image}
+          style={{
+            borderRadius: "50%",
+            height: 80,
+            width: 85,
+            marginLeft: 130,
+          }}
+        />
+        <p>Mike Maynard (Subject head)</p>
+        <p style={{ marginLeft: 85, fontWeight: 500 }}>mike@openwindow.co.za</p>
+
+        <div
+          style={{
+            height: "20px",
+            width: "80px",
+            marginLeft: "130px",
+            marginBottom: "50px",
+            marginTop: "10px",
+          }}
         >
-            {/* <Avatar
-                id="avatar"
-                sx={{ width: 100, height: 100, marginTop: 5, marginLeft: "120px" }}
-            /> */}
-            <p>Mike Maynard (Subject head)</p>
-            <p style={{ marginLeft: 85, fontWeight: 500 }}>mike@openwindow.co.za</p>
-
-            <div
-                style={{
-                    height: "20px",
-                    width: "80px",
-                    marginLeft: "130px",
-                    marginBottom: "50px",
-                    marginTop: "10px",
-                }}
-            >
-            <Button buttonType={"black"}>
-                <h3>Email</h3>
-            </Button>
-            </div>
+          <Button buttonType={"black"} children={"Email"} />
         </div>
-    );
-};
+      </div>
+    </>
+  );
+}
 
 export default ContactCard;
