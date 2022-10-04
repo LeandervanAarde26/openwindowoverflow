@@ -4,20 +4,28 @@ import Answers from "../../Components/Answers/Answers.component";
 import ArticlesContainer from "../../Components/ArticlesContainer/ArticlesContainer.component";
 import ArticlesFilter from "../../Components/ArticlesFilter/ArticlesFilter.component";
 import ArticlesFilterContainer from "../../Components/ArticlesFilterContainer/ArticlesFilterContainer.component";
-import Back from "../../Components/BackButton/Back.component";
-import Badges from "../../Components/Badges/Badges.component";
-import Button from "../../Components/Button/Button.component";
-import Comment from "../../Components/Comment/Comment.component";
-import CommentsContainer from "../../Components/CommentsContainer/CommentsContainer.component";
+import MyQuestionsAnswers from "../../Components/MyQuestionsAnswers/MyQuestionsAnswers.component";
+import SideNavigation from "../../Components/sideNavigation/SideNavigation.component";
+import RightContainer from "../../Components/RightContainer/RightContainer.component";
+import ValidationComplete from "../../Components/ValidationComplete/ValidationComplete.component"
 import styles from "./Components.module.scss";
-import Dropdown from '../../Components/Dropdown/Dropdown'
+import PostAnswer from "../../Components/PostAnswer/PostAnswer.component";
 
 const Components = () => {
   return (
     <div className={styles.container}>
-        <Dropdown
-            title={"Hey man"}
-        />
+
+      {/* <SideNavigation/> */}
+
+      <ValidationComplete/>
+        {/* <PostAnswer/> */}
+        {/* <ArticlesFilterContainer/> */}
+        {/* <MyQuestionsAnswers/> */}
+        {/* <ArticlesFilter/> */}
+        {/* <Answers/> */}
+
+      {/* <RightContainer/> */}
+
     </div>
   );
 };

@@ -1,0 +1,30 @@
+@import "../../StyleSource/variables.scss";
+
+    .container {
+        flex: 1;
+        gap:10px;
+        background-color: rgb(255, 255, 255);
+
+        h5{
+            @include headingSix();
+            margin-bottom: 4vh;
+            }
+    
+        .information{
+            background-color: rgb(255, 255, 255);
+            height: 250px;
+            width: 100%;
+            border: 1px solid red;
+        }
+
+        .button{
+            width: 200px;
+            float: right;
+            margin-top: 20px;
+        }
+        .containerOuter__login--trophy{
+            height: 10px;
+            width: 10px;
+        }
+    }
+
