@@ -1,5 +1,6 @@
 /* React */
 import {NavLink} from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 /* Styling */
 import styles from './NavBar.module.scss';
@@ -17,6 +18,13 @@ import trophy from "../../Assets/Icons/ic_trophy.svg";
 import inbox from "../../Assets/Icons/ic_inbox.svg";
 
 const NavBar = () => {
+
+    const navigate = useNavigate();
+
+    const goToProfile = () => {
+        navigate("/Profile")
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.containerOuter}>
@@ -60,6 +68,7 @@ const NavBar = () => {
                 <div className={styles.containerOuter__profile}>
                     <ProfileCard
                         profileImage={logo}
+                        function ={goToProfile}
                     />
                 </div>
             </div>

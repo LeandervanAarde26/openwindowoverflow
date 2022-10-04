@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Contact.module.scss";
 import SideNavigation from "../../Components/sideNavigation/SideNavigation.component";
-import Avatar from "@mui/material/Avatar";
+// import Avatar from "@mui/material/Avatar";
 import Button from "../../Components/Button/Button.component";
 import ContactCard from '../../Components/Contact/ContactCard'
 

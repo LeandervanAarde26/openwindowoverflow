@@ -4,6 +4,14 @@ import Input from '../../Components/Input/Input.component';
 import { Outlet, useNavigate } from 'react-router';
 import Button from '../../Components/Button/Button.component';
 import Image from '../../Assets/RegisterImage.png';
+import ProfileCard from '../../Components/Profile/ProfileCard';
+import logo from '../../Assets/Icons/testLogo.svg';
+import imageOne from "../../Assets/DefaultProfileImages/Default1.png"
+import imageTwo from "../../Assets/DefaultProfileImages/Default2.png"
+import imageThree from "../../Assets/DefaultProfileImages/Default3.png"
+import imageFour from "../../Assets/DefaultProfileImages/Default4.png"
+import imageFive from "../../Assets/DefaultProfileImages/Default5.png"
+import Default from "../../Assets/DefaultProfileImages/DefaultImage.jpeg"
 
 const defaultValues = {
     username: '',
@@ -23,6 +31,22 @@ const Register = () => {
     const [error, setError] = useState(false);
     const [passErrr, setpasswordError] = useState(false)
     const [clickable, setClickable] = useState(true);
+    const [profileImage, setProfileImage] = useState(Default)
+
+    const defaultImageArray = [
+        imageOne,
+        imageTwo,
+        imageThree,
+        imageFour,
+        imageFive,
+    ]
+
+    const changeImage = (e) =>{
+        setProfileImage(e.target.src)
+        setFormValues({ ...formValues, "image": e.target.src })
+    }
+
+    const mappedImages = defaultImageArray.map(image => (<ProfileCard key={image} profileImage={image} function={changeImage}/>))
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -44,8 +68,18 @@ const Register = () => {
             setError(false);
             setClickable(true);
         }
+    }
 
-        if (formValues.password == formValues.confirmPassword) {
+    const SignIn = () => {
+        navigate("/")
+    }
+
+    const test = (e) => {
+        // navigate(("/Choosetags"))
+
+        console.log(formValues)
+
+        if (formValues.password != formValues.confirmPassword) {
             setpasswordError(true);
             console.log('hey')
         } else {
@@ -53,19 +87,22 @@ const Register = () => {
         }
     }
 
-    const SignIn = () => {
-        navigate("/")
-    }
-
-    const test = () => {
-        navigate(("/Choosetags"))
-    }
-
     return (
         <div className={styles.outer}>
             <div className={styles.left}>
 
                 <h2 className={styles.heading}>Sign Up</h2>
+
+                <div className={styles.previewContainer}> 
+                        <img
+                            src={profileImage}
+                        />
+                </div>
+                <div className={styles.profileCon}>
+                    {
+                        mappedImages
+                    }
+                </div>
                 <form>
                     <Input
                         label={"Username"}
@@ -142,7 +179,8 @@ const Register = () => {
                         null
                 }
             </div>
-            <div className={styles.right}></div>
+            <div className={styles.right}>
+            </div>
         </div>
     );
 };
