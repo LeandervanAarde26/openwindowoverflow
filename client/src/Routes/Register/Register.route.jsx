@@ -108,9 +108,7 @@ const Register = () => {
     return (
         <div className={styles.outer}>
             <div className={styles.left}>
-
                 <h2 className={styles.heading}>Sign Up</h2>
-
                 <div className={styles.previewContainer}> 
                         <img
                             src={profileImage}

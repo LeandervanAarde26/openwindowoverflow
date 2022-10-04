@@ -16,14 +16,12 @@ const Components = () => {
     <div className={styles.container}>
 
       {/* <SideNavigation/> */}
-
-      <ValidationComplete/>
-        {/* <PostAnswer/> */}
-        {/* <ArticlesFilterContainer/> */}
-        {/* <MyQuestionsAnswers/> */}
-        {/* <ArticlesFilter/> */}
-        {/* <Answers/> */}
-
+      {/* <ValidationComplete/> */}
+      {/* <PostAnswer/> */}
+      {/* <ArticlesFilterContainer/> */}
+      {/* <MyQuestionsAnswers/> */}
+      {/* <ArticlesFilter/> */}
+      {/* <Answers/> */}
       {/* <RightContainer/> */}
 
     </div>

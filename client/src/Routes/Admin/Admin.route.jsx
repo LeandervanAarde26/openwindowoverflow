@@ -13,8 +13,8 @@ const AdminRoute = () => {
           <h2 style={{ marginLeft: 2, marginTop: 30, marginBottom: 10 }}>
             Flagged comments
           </h2>
-          <FlaggedComment />
-          <FlaggedComment />
+          {/* <FlaggedComment />
+          <FlaggedComment /> */}
         </div>
         <div>
           <h2 style={{ marginTop: 590, marginLeft: -400 }}>
