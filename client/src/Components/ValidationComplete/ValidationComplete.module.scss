@@ -1,0 +1,58 @@
+@import "../../StyleSource/variables.scss";
+
+.container {
+    @include body();
+    max-width: 2000px;
+    background-color: $white;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    gap: 5px;
+    padding: 5px 0;
+
+    .left {
+        width: fit-content;
+        display: flex;
+        background-color: rgb(112, 181, 158);
+        width: 1000px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 10%;
+        margin-right: 20px;
+        margin-left: 10%;
+
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        // background-color: aquamarine;
+        height: 200px;
+        width: 350px;
+        margin-top: 20%;
+        p{
+            display: flex;
+            font-size: 20px;
+        }
+        .button{
+            align-items: center;
+            width: fit-content;
+            display: flex;
+            margin-left: 30%;
+            margin-top: 30px;
+        }
+    }
+
+
+    @media only screen and (max-width: 780px) {
+        .left {
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+    }
+}
