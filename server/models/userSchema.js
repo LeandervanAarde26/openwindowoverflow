@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const validator = requre('validator')
+const validator = require('validator')
 
 const users = mongoose.Schema({
     username: {
@@ -75,7 +75,7 @@ users.pre('save', async function () {
     console.log(this.password)
 });
 
-UserSchema.methods.comparePassword = async function (userPassword) {
+users.methods.comparePassword = async function (userPassword) {
     const matchPasswords = await bcrypt.compare(userPassword, this.password);
     return matchPasswords;
 }

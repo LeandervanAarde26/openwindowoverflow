@@ -12,6 +12,7 @@ import imageThree from "../../Assets/DefaultProfileImages/Default3.png"
 import imageFour from "../../Assets/DefaultProfileImages/Default4.png"
 import imageFive from "../../Assets/DefaultProfileImages/Default5.png"
 import Default from "../../Assets/DefaultProfileImages/DefaultImage.jpeg"
+import axios from 'axios'
 
 const defaultValues = {
     username: '',
@@ -91,17 +92,20 @@ const Register = () => {
                 email: formValues['email'].trim(),
                 password: formValues['password'].trim(),
                 userImage: formValues['image'],
-                currentStudyYear: +formValues['year'],
+                currentStudyYear: +formValues['year'].trim(),
             }
 
-            // axios.post('http://localhost:5001/api/', payload)
-            // .then(res =>{
-            //     console.log(payload)
-            //     navigate("/signIn")
-            // })
-            // .catch(err =>{
-            //     console.log(err)
-            // })
+            console.log(payload)
+
+            axios.post('http://localhost:5001/api/registeruser', payload)
+            .then(res =>{
+                console.log(payload)
+                console.log(res)
+                // navigate("/signIn")
+            })
+            .catch(err =>{
+                console.log(err)
+            })
         }
     }
 

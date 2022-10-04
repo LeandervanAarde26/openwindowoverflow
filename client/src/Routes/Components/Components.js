@@ -10,6 +10,7 @@ import RightContainer from "../../Components/RightContainer/RightContainer.compo
 import ValidationComplete from "../../Components/ValidationComplete/ValidationComplete.component"
 import styles from "./Components.module.scss";
 import PostAnswer from "../../Components/PostAnswer/PostAnswer.component";
+import Emailer from "../../Components/Emailer/Emailer.component";
 
 const Components = () => {
   return (
@@ -23,6 +24,7 @@ const Components = () => {
       {/* <ArticlesFilter/> */}
       {/* <Answers/> */}
       {/* <RightContainer/> */}
+      {/* <Emailer/> */}
 
     </div>
   );
