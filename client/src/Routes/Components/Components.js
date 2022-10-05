@@ -30,7 +30,7 @@ const Components = () => {
             {/* <Answers/> */}
             {/* <RightContainer/> */}
             {/* <IndividualQuestion/> */}
-            <Input/>
+            {/* <Input/> */}
 
         </div>
     );
