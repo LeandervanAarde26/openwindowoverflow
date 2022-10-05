@@ -25,7 +25,7 @@ const Components = () => {
       {/* <ArticlesFilter/> */}
       {/* <Answers/> */}
       {/* <RightContainer/> */}
-      <FlaggedComment/>
+      {/* <FlaggedComment/> */}
 
     </div>
   );

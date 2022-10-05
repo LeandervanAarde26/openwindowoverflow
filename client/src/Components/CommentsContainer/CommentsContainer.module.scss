@@ -3,6 +3,8 @@
 .outer{
     display: flex;
     flex-direction: column;
+   justify-content: center;
+   align-items: center;
 
     .container {
         flex: 1;
@@ -12,6 +14,7 @@
         .buttonContainer{
             display: flex;
             justify-content: center;
+
             margin-top: 20px;
         }
     }

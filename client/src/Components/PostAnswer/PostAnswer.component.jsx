@@ -8,16 +8,20 @@ const PostAnswer = () => {
 
     return (
         <div className={styles.container}>
+          
+
+            <div className={styles.areaContainer}>
             <h5>Your answer</h5>
-            <div className={styles.icons}>
-                {/* <Icon 
+    
+                <div className={styles.icons}>
+                    {/* <Icon 
                 icon={bold}
                 /> */}
+                </div>
+                <textarea></textarea>
             </div>
 
-        <textarea></textarea>
-
-            <div className={styles.button}>
+            <div className={styles.buttonContainer}>
                 <Button
                     buttonType={'primary'}
                     children={"Post answer"}

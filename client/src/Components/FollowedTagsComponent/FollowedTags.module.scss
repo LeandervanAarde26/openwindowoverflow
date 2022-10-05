@@ -4,7 +4,8 @@
     padding: 5px;
     height: auto;
     border: 1px solid $black;
-    width: 24vw;
+    width: fit-content;
+    max-width: 350px;
 
     .title {
         height: 45px;
