@@ -5,18 +5,18 @@
         gap:10px;
         background-color: rgb(255, 255, 255);
 
-        h5{
-            @include headingSix();
-            margin-bottom: 4vh;
-            }
-    
-        .information{
+        textarea{
             background-color: rgb(255, 255, 255);
             height: 250px;
             width: 100%;
             border: 1px solid red;
         }
 
+        h5{
+            @include headingSix();
+            margin-bottom: 4vh;
+            }
+            
         .button{
             width: 200px;
             float: right;
