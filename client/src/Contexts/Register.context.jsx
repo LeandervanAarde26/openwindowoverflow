@@ -12,14 +12,19 @@ const removeItem = (tags, tagToRemove) => {
     return (tags.filter(tag => tag !== tagToRemove));
 }
 
+
+
 export const RegisterContext = createContext({
     tags: [],
     addtoTags: () => { },
     removeFronTags: () => { },
+    currentUser: null,
+    setCurrentUser: () => null 
 });
 
 export const RegisterActionTypes = {
     SET_TAG_ITEM: "SET_TAG_ITEM",
+    SET_ACTIVE_USER: "SET_ACTIVE_USER"
 }
 
 
@@ -30,6 +35,11 @@ const tagReducer = (state, action) => {
             return {
                 ...state,
                 ...payload,
+            } 
+            case RegisterActionTypes.SET_ACTIVE_USER:
+            return {
+                ...state, 
+                currentUser: payload
             }
         default:
             throw new Error(`Error in ${type} found in Tag Reducer`)
@@ -38,13 +48,18 @@ const tagReducer = (state, action) => {
 
 const initialState = {
     tags: [],
+    currentUser: null
 }
 
 export const TagProvider = ({ children }) => {
-    const [{tags}, dispatch] = useReducer(tagReducer, initialState);
+    const [{tags, currentUser}, dispatch] = useReducer(tagReducer, initialState);
 
     const updateTagReducer = (newTags) => {
         dispatch({ type: RegisterActionTypes.SET_TAG_ITEM, payload: {  tags: newTags } });
+    }
+
+    const setCurrentUser = (newUser) =>{
+        dispatch({type: RegisterActionTypes.SET_ACTIVE_USER, payload: {currentUser: newUser}});
     }
 
     const addtoTags = (tagToAdd) => {
@@ -54,14 +69,15 @@ export const TagProvider = ({ children }) => {
 
     const removeFromTags = (tagToRemove) =>{
         const newTags = removeItem(tags, tagToRemove);
-        updateTagReducer(newTags);
-        
+        updateTagReducer(newTags);   
     }
 
     const val = {
         addtoTags,
         tags,
-        removeFromTags
+        removeFromTags,
+        currentUser,
+        setCurrentUser
     }
 
     return (

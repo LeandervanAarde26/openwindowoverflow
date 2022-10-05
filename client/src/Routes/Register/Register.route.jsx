@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styles from "./Register.module.scss"
 import Input from '../../Components/Input/Input.component';
 import { Outlet, useNavigate } from 'react-router';
@@ -12,6 +12,8 @@ import imageThree from "../../Assets/DefaultProfileImages/Default3.png"
 import imageFour from "../../Assets/DefaultProfileImages/Default4.png"
 import imageFive from "../../Assets/DefaultProfileImages/Default5.png"
 import Default from "../../Assets/DefaultProfileImages/DefaultImage.jpeg"
+import axios from 'axios'
+import { RegisterContext } from '../../Contexts/Register.context';
 
 const defaultValues = {
     username: '',
@@ -24,7 +26,6 @@ const defaultValues = {
 const Register = () => {
 
     //RANDOM USERNAME GENERATOR
-
     const [formValues, setFormValues] = useState(defaultValues)
     const { username, email, password, confirmPassword, year } = formValues;
     const navigate = useNavigate()
@@ -32,6 +33,7 @@ const Register = () => {
     const [passErrr, setpasswordError] = useState(false)
     const [clickable, setClickable] = useState(true);
     const [profileImage, setProfileImage] = useState(Default)
+    const {setCurrentUser} = useContext(RegisterContext)
 
     const defaultImageArray = [
         imageOne,
@@ -91,17 +93,12 @@ const Register = () => {
                 email: formValues['email'].trim(),
                 password: formValues['password'].trim(),
                 userImage: formValues['image'],
-                currentStudyYear: +formValues['year'],
+                currentStudyYear: +formValues['year'].trim(),
             }
 
-            // axios.post('http://localhost:5001/api/', payload)
-            // .then(res =>{
-            //     console.log(payload)
-            //     navigate("/signIn")
-            // })
-            // .catch(err =>{
-            //     console.log(err)
-            // })
+            setCurrentUser(payload)
+            navigate("/Choosetags")
+
         }
     }
 
