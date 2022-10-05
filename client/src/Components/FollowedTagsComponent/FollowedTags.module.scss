@@ -8,8 +8,8 @@
     padding: 10px;
     gap: 10px;
     border: 1px solid $black;
-    min-width: 300px;
-    flex-basis: 20%;
+    width: fit-content;
+    max-width: 350px;
 
     .title {
         font-size: 25px;
