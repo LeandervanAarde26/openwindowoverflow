@@ -15,8 +15,7 @@ const PostAnswer = () => {
                 /> */}
             </div>
 
-                <div className={styles.information}>
-                </div>
+        <textarea></textarea>
 
             <div className={styles.button}>
                 <Button
