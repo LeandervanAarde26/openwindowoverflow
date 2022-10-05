@@ -12,23 +12,28 @@ import styles from "./Components.module.scss";
 import PostAnswer from "../../Components/PostAnswer/PostAnswer.component";
 import Dropdown from "../../Components/Dropdown/Dropdown";
 import FlaggedComment from "../../Components/FlaggedComment/FlaggedComment.component"
+import FollowableTags from "../../Components/FollowableTags/FollowableTags.component";
+import FollowedTags from "../../Components/FollowedTagsComponent/FollowedTags.component";
+import IndividualQuestion from "../../Components/IndividualQuestion/IndividualQuestion.component";
+import Input from "../../Components/Input/Input.component";
 
 const Components = () => {
-  return (
-    <div className={styles.container}>
+    return (
+        <div className={styles.container}>
 
-      {/* <SideNavigation/> */}
-      {/* <ValidationComplete/> */}
-      {/* <PostAnswer/> */}
-      {/* <ArticlesFilterContainer/> */}
-      {/* <MyQuestionsAnswers/> */}
-      {/* <ArticlesFilter/> */}
-      {/* <Answers/> */}
-      {/* <RightContainer/> */}
-      {/* <FlaggedComment/> */}
+            {/* <SideNavigation/> */}
+            {/* <ValidationComplete/> */}
+            {/* <PostAnswer/> */}
+            {/* <ArticlesFilterContainer/> */}
+            {/* <MyQuestionsAnswers/> */}
+            {/* <ArticlesFilter/> */}
+            {/* <Answers/> */}
+            {/* <RightContainer/> */}
+            {/* <IndividualQuestion/> */}
+            <Input/>
 
-    </div>
-  );
+        </div>
+    );
 };
 
 export default Components;
