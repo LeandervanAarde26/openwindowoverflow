@@ -2,6 +2,51 @@
 
 /* This Container will Auto Grow to the Full Width of the Screen */
 .container {
+    position: relative;
+    display: flex;
+    padding: 30px;
     height: fit-content;
-    background-color: purple;
+    background-color: $black;
+
+    &__logo {
+        height: 50px;
+
+        img {
+            width: auto;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__text {
+        position: absolute;
+        left:0;
+        right:0;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+        
+        p {
+            color: $white;
+            font-weight: 100;
+
+            strong {
+                font-weight: 800;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+        &__text {
+            position: relative;
+        }
+    }
 }

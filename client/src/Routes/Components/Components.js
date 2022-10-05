@@ -13,6 +13,7 @@ import PostAnswer from "../../Components/PostAnswer/PostAnswer.component";
 import Dropdown from "../../Components/Dropdown/Dropdown";
 import FlaggedComment from "../../Components/FlaggedComment/FlaggedComment.component"
 import FollowableTags from "../../Components/FollowableTags/FollowableTags.component";
+import FollowedTags from "../../Components/FollowedTagsComponent/FollowedTags.component";
 
 const Components = () => {
     return (
@@ -26,12 +27,7 @@ const Components = () => {
             {/* <ArticlesFilter/> */}
             {/* <Answers/> */}
             {/* <RightContainer/> */}
-            <FollowableTags
-                tag='asf'
-                number={1}
-                today={"sfasf"}
-                desc='Hey this will be a really awesome description of the tag just so that you know'
-            />
+            <FollowedTags/>
 
         </div>
     );
