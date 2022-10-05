@@ -6,17 +6,17 @@ import RightContainer from '../RightContainer/RightContainer.component';
 
 const IndividualQuestion = ({children}) => {
     return (
-        <div className={styles.outer}>
-            <div className={styles.votingContainer}>
+        <div className={styles.container}>
+            <div className={styles.voting}>
                 <Icon
                     icon={ic_arrow}
                 />
-                <h6>12</h6>
+                <h5>12</h5>
                 <Icon
                     icon={ic_arrow}
                 />
             </div>
-            <div className={styles.questionContainer}>
+            <div className={styles.question}>
                 <h3>How to use the JQuery something function correctly something something somethign</h3>
                 <p className={styles.userInformation}>Leander van Aarde</p>
                 <p className={styles.userInformation}>Asked 29 October 2022 at 12:19</p>

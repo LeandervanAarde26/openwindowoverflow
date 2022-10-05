@@ -14,6 +14,8 @@ import Dropdown from "../../Components/Dropdown/Dropdown";
 import FlaggedComment from "../../Components/FlaggedComment/FlaggedComment.component"
 import FollowableTags from "../../Components/FollowableTags/FollowableTags.component";
 import FollowedTags from "../../Components/FollowedTagsComponent/FollowedTags.component";
+import IndividualQuestion from "../../Components/IndividualQuestion/IndividualQuestion.component";
+import Input from "../../Components/Input/Input.component";
 
 const Components = () => {
     return (
@@ -27,7 +29,8 @@ const Components = () => {
             {/* <ArticlesFilter/> */}
             {/* <Answers/> */}
             {/* <RightContainer/> */}
-            <FollowedTags/>
+            {/* <IndividualQuestion/> */}
+            <Input/>
 
         </div>
     );
