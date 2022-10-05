@@ -14,7 +14,7 @@ const FollowTags = () => {
     const { removeFromTags, tags } = useContext(RegisterContext);
 
     useEffect(() => {
-        setTags(tags.map((i) => <Tags title={i} id={'remove'} onClick={(e) => removeFromTags(e.target.innerHTML)} />))
+        setTags(tags.map((i) => <Tags title={i} id={styles.remove} onClick={(e) => removeFromTags(e.target.innerHTML)} />))
     }, [tags]);
 
     const handleClick = (e) => {

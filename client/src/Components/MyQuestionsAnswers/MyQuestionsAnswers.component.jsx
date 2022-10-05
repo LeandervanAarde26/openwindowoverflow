@@ -8,13 +8,14 @@ import ic_correct from '../../Assets/Icons/ic_correct.svg';
 
 const MyQuestionsAnswers = () => {
     const tags = ["Html, css, scss, React"]
-    const visuals = tags.map((tag, index) => <Tags key={index} title={tag} />)
+    
+    // const visuals = tags.map((tag, index) => <Tags key={index} title={tag}/>)
 
     return (
         <div className={styles.container}>
             <h5>This is the title of the Question</h5>
             <div className={styles.tagsContainer}>
-                {visuals}
+                {tags.map((tag, index) => (<Tags key={index} title={tag}/>))}
             </div>
             {/* Insert margin top here */}
             <div className={styles.informationContainer}>

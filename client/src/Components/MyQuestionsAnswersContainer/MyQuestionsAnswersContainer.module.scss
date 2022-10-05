@@ -12,15 +12,13 @@
         // align-items: flex-start;
         // justify-content: center;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         gap: 10px;
         flex: 1;
         .left,
         .right {
             padding: 20px;
             flex: 1;
-
-
             h4{
                 @include headingFour();
                 margin-bottom: 4vh;

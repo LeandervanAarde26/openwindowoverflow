@@ -2,23 +2,26 @@
 
 .container{
     @include dropShadow();
-        width: 90%;
-        height: 250px;
-        max-width: 500px;
-        background-color: white;
+        flex: 1;
+        height: fit-content;
+        // max-width: 500px;
+        background-color: $white;
         margin-bottom: 2px;
         border: 1px solid rgba($color: $black, $alpha: 0.1);
-        padding: 10px;
+        padding: 15px;
         margin-bottom: 10px;
+        
 
 
         .tagsContainer {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 4vh;
-
+            gap: 5px !important;
+            justify-content: flex-start;
+            margin-bottom: 2vh;
         }
+
+
         h5{
             @include headingFour();
             font-size: 3vh;
