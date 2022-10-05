@@ -12,23 +12,29 @@ import styles from "./Components.module.scss";
 import PostAnswer from "../../Components/PostAnswer/PostAnswer.component";
 import Dropdown from "../../Components/Dropdown/Dropdown";
 import FlaggedComment from "../../Components/FlaggedComment/FlaggedComment.component"
+import FollowableTags from "../../Components/FollowableTags/FollowableTags.component";
 
 const Components = () => {
-  return (
-    <div className={styles.container}>
+    return (
+        <div className={styles.container}>
 
-      {/* <SideNavigation/> */}
-      {/* <ValidationComplete/> */}
-      {/* <PostAnswer/> */}
-      {/* <ArticlesFilterContainer/> */}
-      {/* <MyQuestionsAnswers/> */}
-      {/* <ArticlesFilter/> */}
-      {/* <Answers/> */}
-      {/* <RightContainer/> */}
-      <FlaggedComment/>
+            {/* <SideNavigation/> */}
+            {/* <ValidationComplete/> */}
+            {/* <PostAnswer/> */}
+            {/* <ArticlesFilterContainer/> */}
+            {/* <MyQuestionsAnswers/> */}
+            {/* <ArticlesFilter/> */}
+            {/* <Answers/> */}
+            {/* <RightContainer/> */}
+            <FollowableTags
+                tag='asf'
+                number={1}
+                today={"sfasf"}
+                desc='Hey this will be a really awesome description of the tag just so that you know'
+            />
 
-    </div>
-  );
+        </div>
+    );
 };
 
 export default Components;

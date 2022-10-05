@@ -2,56 +2,29 @@
 
 .container{
     @include dropShadow();
-    width: 100%;
     height: fit-content;
-    max-width: 500px;
+    max-width: 350px;
     background-color: white;
-    border: 1px solid rgba($color: $black, $alpha: 0.1);
+    border: 1px solid $grey;
     padding: 10px;
     margin-bottom: 10px;
-    flex-basis: 32%;
+    flex-basis: 40%;
+    min-width: 250px;
 
-    .tagsContainer {
+    .tag {
         display: flex;
-        flex-wrap: wrap;
+        align-items: center;
         gap: 5px;
-        justify-content: flex-start;
-        margin-bottom: 2vh;
-
-        #height{
-            height: 30px ; 
-        
-        }
+        margin-bottom: 15px;
     }
 
     .informationContainer{
-        p{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        
+        p {
             @include body();
         }
     }
-}
-
-@media only screen and (max-width: 700px){
-
-    .container{
-        width: 100%;
-        height: fit-content;
-        // max-width: 300px;
-        padding: 10px;
-        margin-bottom: 15px;
-        flex-basis: 100%;
-        #height{
-          margin-left: 5%;
-        }
-    }
-
-    .desc{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        /* number of lines to show */
-        line-clamp: 4;
-        -webkit-box-orient: vertical;
-    }   
 }
