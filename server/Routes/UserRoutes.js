@@ -35,7 +35,7 @@ router.get('/api/loginuser', async (req, res) => {
 // http://localhost:5001/api/registeruser
 
 router.post('/api/registeruser', async (req, res) =>{
-    const {username, email, password, userImage, currentStudyYear} = req.body
+    const {username, email, password, userImage, currentStudyYear, followedTags} = req.body
     const findUser = await userSchema.findOne({
         email: email
     });
@@ -46,7 +46,8 @@ router.post('/api/registeruser', async (req, res) =>{
             email: email,
             password: password,
             userImage: userImage,
-            currentStudyYear: currentStudyYear
+            currentStudyYear: currentStudyYear,
+            followedTags: followedTags
         });
 
         newUser.save()

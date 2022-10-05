@@ -7,19 +7,35 @@ import Tags from '../../Components/Tags/Tags.component';
 import Button from '../../Components/Button/Button.component';
 import { RegisterContext } from '../../Contexts/Register.context';
 import { useNavigate } from 'react-router';
+import axios from "axios"
 
 const FollowTags = () => {
     const navigate = useNavigate()
     const [tag, setTags] = useState()
-    const { removeFromTags, tags } = useContext(RegisterContext);
+    const { removeFromTags, tags, currentUser, setCurrentUser } = useContext(RegisterContext);
+
 
     useEffect(() => {
         setTags(tags.map((i) => <Tags title={i} id={'remove'} onClick={(e) => removeFromTags(e.target.innerHTML)} />))
+     
     }, [tags]);
+
+    // console.log(currentUser.currentUser)
 
     const handleClick = (e) => {
         //Do the axios call and navigate in the .then function
-        navigate("/Home")
+        let payload = {...currentUser.currentUser, followedTags: tags}
+        console.log(payload)
+    
+        axios.post('http://localhost:5001/api/registeruser', payload)
+        .then(res =>{
+            console.log(payload)
+            console.log(res)
+            navigate("/Home")
+        })
+        .catch(err =>{
+            console.log(err)
+        })
     }
 
     console.log(tags)

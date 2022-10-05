@@ -64,7 +64,7 @@ const users = mongoose.Schema({
     postedArticles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'articles' }],
 
     userReputation: {
-        type: Number,
+        type: Number,   
         default: 0,
     }
 });
