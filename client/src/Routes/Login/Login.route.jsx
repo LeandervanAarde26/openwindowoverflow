@@ -60,8 +60,9 @@ const Login = () => {
         }
 
         console.log(payload)
+        
 
-        // axios.post('http://localhost:5001/api/', payload)
+        // axios.post('http://localhost:5001/api/loginuser', payload)
         // .then((res) =>{
         //     if(!res.data){
         //         //Do something here aswell

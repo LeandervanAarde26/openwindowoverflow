@@ -2,8 +2,8 @@ const express = require('express');
 const userSchema = require('../models/userSchema');
 const router = express();
 const bcrypt = require('bcrypt');
-const nodeMailer = require('nodemailer')
-
+const nodeMailer = require('nodemailer');
+const jwt = require('jsonwebtoken');
 
 
 // Login the user
@@ -24,6 +24,10 @@ router.get('/api/loginuser', async (req, res) => {
 
     if (!correctPassword) {
         return res.status(404).json({ msg: 'Password is incorrect' });
+    } 
+
+    if(!user.activeAccount){
+        return res.status(400).json({msg: "The user account is not verified!"})
     }
 
     console.log(user)
@@ -95,16 +99,40 @@ router.post('/api/registeruser', async (req, res) =>{
 });
 
 //Validate the new user
-// http://localhost:5001/api/verifyuser
+// http://localhost:5001/api/validateUser
 
 
-// router.patch('/api/verifyuser', async (req, res) =>{
-//     let userId = req.params.dictionary;
-
-//     const user = await AudioScheduledSourceNode.findOne({
+// router.patch('/api/validateUser/:id', async (req, res) =>{
+//     let userId = req.params.id;
+//     const user = await UserSchema.findOne({
 //         _id: userId
+        
 //     });
 
+//     if(user){
+//         try {
+//             let decryptedToken = jwt.verify(user.userToken, process.env.SECRET_TOKEN);
+    
+//             const authorisedUser = user.findOne({
+//                 username: decryptedToken.username,
+//                 email: decryptedToken.email
+//             });
+    
+//             if(authorisedUser){
+//                 const update = user.updateOne(
+//                     {_id: userId},
+//                     {$set: {activeAccount: true}}
+//                 )
+//             } else{
+//                 res.status(400).status({msg:'user is not verified, please verify account'})
+//             }
+//         } catch (err) {
+            
+//         } 
+
+//     }else {
+//         res.status(404).json({msg: "The user is not verified, please contact support"})
+//     } 
 // })
 
 

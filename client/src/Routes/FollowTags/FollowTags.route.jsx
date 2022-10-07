@@ -27,15 +27,17 @@ const FollowTags = () => {
         let payload = {...currentUser.currentUser, followedTags: tags}
         console.log(payload)
     
-        axios.post('http://localhost:5001/api/registeruser', payload)
-        .then(res =>{
-            console.log(payload)
-            console.log(res)
-            navigate("/Home")
-        })
-        .catch(err =>{
-            console.log(err)
-        })
+        // axios.post('http://localhost:5001/api/registeruser', payload)
+        // .then(res =>{
+        //     console.log(payload)
+        //     console.log(res)
+        //     navigate("/Home")
+        // })
+        // .catch(err =>{
+        //     console.log(err)
+        // })
+
+        navigate("/UserValidation");
     }
 
     console.log(tags)
