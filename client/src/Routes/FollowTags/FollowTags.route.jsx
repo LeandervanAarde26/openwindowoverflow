@@ -28,20 +28,16 @@ const FollowTags = () => {
         //Do the axios call and navigate in the .then function
         let payload = { ...currentUser.currentUser, followedTags: tags }
         console.log(payload)
-        setOpenModal(prev => !prev )
-  
 
-        // axios.post('http://localhost:5001/api/registeruser', payload)
-        // .then(res =>{
-        //     console.log(payload)
-        //     console.log(res)
-        //     navigate("/Home")
-        // })
-        // .catch(err =>{
-        //     console.log(err)
-        // })
-
-        // navigate("/UserValidation");
+        axios.post('http://localhost:5001/api/registeruser', payload)
+        .then(res =>{
+            console.log(payload)
+            console.log(res)
+            setOpenModal(prev => !prev )
+        })
+        .catch(err =>{
+            console.log(err)
+        })
     }
 
     console.log(openModal)

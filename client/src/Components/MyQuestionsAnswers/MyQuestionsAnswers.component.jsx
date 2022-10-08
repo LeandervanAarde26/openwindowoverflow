@@ -7,7 +7,7 @@ import ic_answers from '../../Assets/Icons/ic_checkmark.svg';
 import ic_correct from '../../Assets/Icons/ic_correct.svg';
 
 const MyQuestionsAnswers = () => {
-    const tags = ["Html, css, scss, React"]
+    const tags = ["Html", "css", "scss", "React"]
     
     // const visuals = tags.map((tag, index) => <Tags key={index} title={tag}/>)
 

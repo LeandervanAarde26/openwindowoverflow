@@ -38,7 +38,7 @@ function App() {
               <Route path="/Register" element={<Register />} />
               <Route path="/UserValidation" element={<ValidateUser/>} />
               <Route path="/Home" element={<Home />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/:username/:userId" element={<Profile />} />
               <Route path="/Question" element={<Question />} />
               <Route path="/Choosetags" element={<FollowTags />} />
               <Route path="/Contact" element={<Contact />} />
@@ -55,7 +55,7 @@ function App() {
           <Route path="/Home" element={<Home />} />
           <Route path="/Articles" element={<Home />} />
           <Route path="/test" element={<Components />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/Question" element={<Question />} />
           <Route path="/Choosetags" element={<FollowTags />} />
           <Route path="/Contact" element={<Contact />} />

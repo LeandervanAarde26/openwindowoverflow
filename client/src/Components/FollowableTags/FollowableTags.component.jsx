@@ -6,7 +6,7 @@ import { RegisterContext } from '../../Contexts/Register.context';
 import Tags from '../Tags/Tags.component';
 // const defaultArr = []
 
-const FollowableTags = ({ tag, number, today, desc }) => {
+const FollowableTags = ({ tag, number, today, desc, }) => {
     const {addtoTags} = useContext(RegisterContext)
 
     const addTag = () => {
@@ -17,9 +17,7 @@ const FollowableTags = ({ tag, number, today, desc }) => {
     return (
         <div className={styles.container}>
             <div className={styles.tag}>
-                <Tags
-                    title='HTML'
-                />
+                {tag}
                 <Button
                     buttonType={"black"}
                     children={"Follow"}

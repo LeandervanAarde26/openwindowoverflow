@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styles from "./Login.module.scss"
 import Input from '../../Components/Input/Input.component';
 import { Outlet, useNavigate } from 'react-router';
 import Button from '../../Components/Button/Button.component';
+import { RegisterContext } from '../../Contexts/Register.context';
+import axios from 'axios';
 
 const defaultValues = {
     email: '',
@@ -10,15 +12,13 @@ const defaultValues = {
 }
 
 const Login = () => {
-    const [formValues, setFormValues] = useState({
-        email: '',
-        password: ''
-    });
+    const [formValues, setFormValues] = useState(defaultValues);
     const { email, password } = formValues;
     const navigate = useNavigate()
     const [error, setError] = useState(false)
     const [passwordError, setpasswordError] = useState(false)
     const [clickable, setClickable] = useState(true);
+    const {setCurrentUser, currentUser} = useContext(RegisterContext)
 
     const Register = () => {
         navigate("/Register")
@@ -59,22 +59,15 @@ const Login = () => {
             password: formValues['password'].trim(),
         }
 
-        console.log(payload)
-        
-
-        // axios.post('http://localhost:5001/api/loginuser', payload)
-        // .then((res) =>{
-        //     if(!res.data){
-        //         //Do something here aswell
-        //     } else{
-        //         // do something here
-        //     }
-
-        // })
-        // .catch((err) =>{
-        //     console.log(err)
-        // })
-
+        axios.post('http://localhost:5001/api/loginuser', payload)
+        .then(res =>{
+            navigate("/Home")
+            setCurrentUser({userId: res.data._id, username: res.data.username})
+            sessionStorage.setItem("currentUser", res.data._id)
+        })
+        .catch(err =>{
+            console.log(err)
+        })
     }
 
     return (
@@ -87,7 +80,7 @@ const Login = () => {
                 <form>
                     <Input
                         id={error ? styles.err : ""}
-                        label={error ? "Invalid email, please try again" : "Email"}
+                        label={!error ? "Invalid email, please try again" : "Email"}
                         value={email}
                         type="email"
                         name="email"
