@@ -8,25 +8,29 @@ import Button from '../../Components/Button/Button.component';
 import { RegisterContext } from '../../Contexts/Register.context';
 import { useNavigate } from 'react-router';
 import axios from "axios"
+import RegComplete from '../../Components/RegCompleteModal/RegComplete.component';
 
 const FollowTags = () => {
     const navigate = useNavigate()
     const [tag, setTags] = useState()
     const { removeFromTags, tags, currentUser, setCurrentUser } = useContext(RegisterContext);
+    const [openModal, setOpenModal] = useState(false);
 
 
     useEffect(() => {
         setTags(tags.map((i) => <Tags title={i} id={'remove'} onClick={(e) => removeFromTags(e.target.innerHTML)} />))
-     
+        console.log(currentUser)
     }, [tags]);
 
     // console.log(currentUser.currentUser)
 
     const handleClick = (e) => {
         //Do the axios call and navigate in the .then function
-        let payload = {...currentUser.currentUser, followedTags: tags}
+        let payload = { ...currentUser.currentUser, followedTags: tags }
         console.log(payload)
-    
+        setOpenModal(prev => !prev )
+  
+
         // axios.post('http://localhost:5001/api/registeruser', payload)
         // .then(res =>{
         //     console.log(payload)
@@ -37,8 +41,10 @@ const FollowTags = () => {
         //     console.log(err)
         // })
 
-        navigate("/UserValidation");
+        // navigate("/UserValidation");
     }
+
+    console.log(openModal)
 
     console.log(tags)
     const tagData = [
@@ -117,37 +123,44 @@ const FollowTags = () => {
     ]
 
     return (
-        <div className={styles.container}>
-            <SideNavigation />
-            <div className={styles.outer}>
-                <h2>Choose your Tags to follow</h2>
-                <div className={styles.inner}>
-
-                    {
-                        tagData.map((i, index) => (<FollowableTags key={index} tag={<Tags title={i.tag} />} number={i.questions} today={i.questionToday} desc={i.description}/>))
-                    }
-                </div>
-                <h2>Your tags</h2>
-                <div className={styles.bottom}>
-                    <div className={styles.tagContainer}>
+        <>
+            <div className={styles.container}>
+                <SideNavigation />
+                <div className={styles.outer}>
+                    <h2>Choose your Tags to follow</h2>
+                    <div className={styles.inner}>
 
                         {
-                            tag
+                            tagData.map((i, index) => (<FollowableTags key={index} tag={<Tags title={i.tag} />} number={i.questions} today={i.questionToday} desc={i.description} />))
                         }
                     </div>
+                    <h2>Your tags</h2>
+                    <div className={styles.bottom}>
+                        <div className={styles.tagContainer}>
 
-                    <div className={styles.buttonContainer}>
-                        <Button
-                            buttonType={"primary"}
-                            children={"Finish registration"}
-                            buttonSize={styles.height}
-                            onClick={handleClick} />
+                            {
+                                tag
+                            }
+
+                        </div>
+
+                        <div className={styles.buttonContainer}>
+                            <Button
+                                buttonType={"primary"}
+                                children={"Finish registration"}
+                                buttonSize={styles.height}
+                                onClick={handleClick} />
+                        </div>
                     </div>
-                </div>
 
+                </div>
+                <RightContainer />
+
+                {
+                             openModal && <RegComplete name={currentUser.currentUser.username} email={currentUser.currentUser.email}/>
+                }
             </div>
-            <RightContainer />
-        </div>
+        </>
     );
 };
 

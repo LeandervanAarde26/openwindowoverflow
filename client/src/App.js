@@ -29,6 +29,7 @@ function App() {
       <NavBar />
       {location.pathname === "/" ||
       location.pathname === "/Register" ||
+      location.pathname === "/UserValidation" ||
       location.pathname === "/Choosetags" ? (
         <TransitionGroup style={{ display: "flex", flex: 1 }}>
           <CSSTransition key={location.key} classNames="slide" timeout={600}>

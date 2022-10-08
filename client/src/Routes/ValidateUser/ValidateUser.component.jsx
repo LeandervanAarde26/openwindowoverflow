@@ -3,10 +3,12 @@ import styles from "./ValidateUser.module.scss";
 import theImage from "../../Assets/LoginImage.png"
 import { RegisterContext } from '../../Contexts/Register.context';
 import Button from '../../Components/Button/Button.component';
+import { useNavigate } from 'react-router';
 
 const ValidateUser = () => {
     const { currentUser } = useContext(RegisterContext)
     const curr = currentUser.currentUser
+    const navigate = useNavigate();
     console.log(curr)
     return (
         <div className={styles.container}>
@@ -16,17 +18,18 @@ const ValidateUser = () => {
             <div className={styles.right}>
                 <h3>Welcome, {curr.username}!
                     <br />
-                    Before we get started, please validate your account on: {curr.email}
+             Your account has succesfully verified! Let's login and get started! 
                 </h3>
 
                 <div className={styles.buttonContainer}>
                     {/* Link didnt work because it is looking for a local path to redirect ti, a href takes anylink */}
-                    <a href="https://mail.google.com/mail/u/0/" target={"_self"}>
+     
                         <Button
-                            buttonType={"black"}
-                            children={"validate my account"}
+                            buttonType={"primary"}
+                            children={"Go to Login"}
+                            onClick={() => {navigate("/")}}
                         />
-                    </a>
+ 
                 </div>
             </div>
         </div>
