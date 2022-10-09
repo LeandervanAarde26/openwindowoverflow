@@ -51,7 +51,7 @@ function App() {
         <Routes location={location}>
           <Route path="/" index element={<Login />} />
           <Route path="/Register" element={<Register />} />
-          <Route path="/UserValidation" element={<ValidateUser/>} />
+          <Route path="/Auth" element={<ValidateUser/>} />
           <Route path="/Home" element={<Home />} />
           <Route path="/Articles" element={<Home />} />
           <Route path="/test" element={<Components />} />

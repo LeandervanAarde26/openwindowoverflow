@@ -17,11 +17,11 @@ router.post('/api/loginuser', async (req, res) => {
     }).select(['password', 'username'])
 
     if (!user) {
-         console.log("wrong")
+        console.log("wrong")
         return res.status(404).json({ msg: 'User does not exist' });
     }
 
-    
+
     const correctPassword = await user.comparePassword(password);
 
     console.log(correctPassword)
@@ -29,8 +29,8 @@ router.post('/api/loginuser', async (req, res) => {
     if (!correctPassword) {
         console.log("wrong")
         return res.status(404).json({ msg: 'Password is incorrect' });
-       
-    } 
+
+    }
 
     // if(!user.activeAccount){
     //     return res.status(400).json({msg: "The user account is not verified!"})
@@ -44,13 +44,13 @@ router.post('/api/loginuser', async (req, res) => {
 // Register a new user 
 // http://localhost:5001/api/registeruser
 
-router.post('/api/registeruser', async (req, res) =>{
-    const {username, email, password, userImage, currentStudyYear, followedTags} = req.body
+router.post('/api/registeruser', async (req, res) => {
+    const { username, email, password, userImage, currentStudyYear, followedTags } = req.body
     const findUser = await userSchema.findOne({
         email: email
     });
 
-    if(!findUser){
+    if (!findUser) {
         const newUser = new userSchema({
             username: username,
             email: email,
@@ -60,99 +60,100 @@ router.post('/api/registeruser', async (req, res) =>{
             followedTags: followedTags
         });
 
+        console.log(newUser)
+
         newUser.save()
-        .then(async user => {
-            res.status(200).json({msg: `user has been added to the db: ${user}`})
+            .then(async user => {
+                res.status(200).json({ msg: `user has been added to the db: ${user}` })
 
-            const findUser = await userSchema.findOne({
-                email: email
-            });
+                const findUser = await userSchema.findOne({
+                    email: email
+                });
 
-            let userLink = 'http://localholst:3000/Auth?id='+findUser._id
-            let mailContent = `Welcome to __ ${username} we are excited to have you here!`;
+                let userLink = 'http://localhost:3000/Auth?id=' + findUser._id
+                let mailContent = `<h1>Welcome ${user.username} to openOverflow, we are excited to have you here! This is totally not a Skelm/ </h1>
+                             <p>Before you can login, we are going to have to verify you...</p>
+                             <a href=${userLink}>Click to Verify</a>`;
 
-            const transporter = nodeMailer.createTransport({
-                host: "mail.openoverflow.co.za",
-                port: 465,
-                secure: true,
-                auth: {
-                    user: "welcome@openoverflow.co.za",
-                    pass: "Fjr5carZG2EvwbM"
+                const transporter = nodeMailer.createTransport({
+                    host: "mail.openoverflow.co.za",
+                    port: 465,
+                    secure: true,
+                    auth: {
+                        user: "welcome@openoverflow.co.za",
+                        pass: "Fjr5carZG2EvwbM"
+                    }
+                });
+
+                const mailInformation = {
+                    from: '"OpenOverflow welcome" <welcome@openoverflow.com>',
+                    to: email,
+                    subject: "Welcome! Let's verify!",
+                    html: mailContent
                 }
-            });
 
-            const mailInformation = {
-                from: '"Website Mailer Client" <welcome@openoverflow.com>',
-                to: email,
-                subject: "Welcome! Let's verify!",
-                html: mailContent
-            }
-
-            transporter.sendMail(mailInformation, (error, info) =>{
-                if (error){
-                    return console.log(error)
-                }
-                console.log(`message sent to ${username}`, info.messageId)
+                transporter.sendMail(mailInformation, (error, info) => {
+                    if (error) {
+                        return console.log(error)
+                    }
+                    console.log(`message sent to ${username}`, info.messageId)
+                })
             })
-        })
-        .catch(err => {
-            res.status(400).json({msg: `The user was not added, there was an eror:`, err: err});
-        })
-    } else{
-        res.status(400).json({msg: `This user already exists`});
-    }  
+            .catch(err => {
+                res.status(400).json({ msg: `The user was not added, there was an eror:`, err: err });
+            })
+    } else {
+        res.status(400).json({ msg: `This user already exists` });
+    }
 });
 
 //Validate the new user
 // http://localhost:5001/api/validateUser
 
 
-// router.patch('/api/validateUser/:id', async (req, res) =>{
-//     let userId = req.params.id;
-//     const user = await UserSchema.findOne({
-//         _id: userId
-        
-//     });
+router.patch('/api/validateUser/:id', async (req, res) => {
+    let userId = req.params.id;
+    const user = await userSchema.findOne({
+        _id: userId
+    });
+    if (user) {
+        try {
+            const tokenCheck = jwt.verify(user.userToken, process.env.SECRET_TOKEN);
+            const authorisedUser = userSchema.findOne({
+                _id: userId,
+                username: tokenCheck.username,
+                email: tokenCheck.email
+            });
 
-//     if(user){
-//         try {
-//             let decryptedToken = jwt.verify(user.userToken, process.env.SECRET_TOKEN);
-    
-//             const authorisedUser = user.findOne({
-//                 username: decryptedToken.username,
-//                 email: decryptedToken.email
-//             });
-    
-//             if(authorisedUser){
-//                 const update = user.updateOne(
-//                     {_id: userId},
-//                     {$set: {activeAccount: true}}
-//                 )
-//             } else{
-//                 res.status(400).status({msg:'user is not verified, please verify account'})
-//             }
-//         } catch (err) {
-            
-//         } 
-
-//     }else {
-//         res.status(404).json({msg: "The user is not verified, please contact support"})
-//     } 
-// })
+            if (authorisedUser) {
+                const updateStatus = await userSchema.updateOne(
+                    { _id: userId },
+                    { $set: { activeAccount: true } }
+                );
+                res.status(200).json({ msg: 'Account has been validate', stat: true })
+            } else {
+                res.status(400).json({ msg: 'Profile was not verified', stat: false })
+            }
+        } catch (error) {
+            res.status(400).json({ msg: 'user token is not valid, try again', stat: false })
+        }
+    } else {
+        res.status(404).json({ msg: 'user not found, please contact support', stat: false })
+    }
+})
 
 
 //Get information about the user
 // http://localhost:5001/api/individualuser/:
-router.get('/api/individualuser/:id', async (req, res) =>{
+router.get('/api/individualuser/:id', async (req, res) => {
     const user = await userSchema.findById(req.params.id);
 
-    if(!user){
-        res.status(404).json({msg: 'No user was found with the requested credentials'})
-    }  
+    if (!user) {
+        res.status(404).json({ msg: 'No user was found with the requested credentials' })
+    }
 
     console.log(user)
     return res.status(200).json(user)
 })
-
 
 module.exports = router; 

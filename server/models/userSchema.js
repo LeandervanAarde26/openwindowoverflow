@@ -26,7 +26,6 @@ const users = mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minLength: 6,
         trim: true,
         select: false
     },
@@ -77,7 +76,7 @@ users.pre('save', async function (next) {
     // console.log(this.password)
     let tokenPayload = {username: this.username, email: this.email}
     this.userToken = await jwt.sign(tokenPayload, process.env.SECRET_TOKEN);
-    next()
+    next();
 });
 
 users.methods.comparePassword = async function (userPassword) {
