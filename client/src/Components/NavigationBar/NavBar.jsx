@@ -21,13 +21,7 @@ import inbox from "../../Assets/Icons/ic_inbox.svg";
 
 const NavBar = () => {
 
-    // const {currentUser} = useContext(RegisterContext)
-    // console.log(currentUser)
-    // const {userId, username} = currentUser.currentUser
-
     const user = sessionStorage.getItem("currentUser")
-
-    // console.log(userId, username)
 
     const navigate = useNavigate();
 
@@ -36,13 +30,6 @@ const NavBar = () => {
         // navigate("/Profile")
         navigate(`/profile/${user}`)
     }
-
-    // const viewItem = () => {
-    //     navigate(`/Shop/Product/${name}/${id}`);
-    //     setUpdate(!update)
-    //     window.scrollTo(0, 0)
-    // }
-
     return (
         <div className={styles.container}>
             <div className={styles.containerOuter}>
