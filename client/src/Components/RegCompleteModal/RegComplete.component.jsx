@@ -16,13 +16,12 @@ const RegComplete = ({ name, email }) => {
 
                     <div className={styles.buttonContainer}>
                     {/* Link didnt work because it is looking for a local path to redirect ti, a href takes anylink */}
-                    {/* <a href="https://mail.google.com/mail/u/0/" target={"_self"}> */}
+                    <a href="https://mail.google.com/mail/u/0/" target={"_self"}>
                         <Button
                             buttonType={"black"}
                             children={"validate my account"}
-                            onClick={() => { navigate("/UserValidation")}}
                         />
-                    {/* </a> */}
+                    </a>
                 </div>
             </div>
         </div>

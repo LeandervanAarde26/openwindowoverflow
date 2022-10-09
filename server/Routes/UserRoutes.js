@@ -17,7 +17,7 @@ router.post('/api/loginuser', async (req, res) => {
     }).select(['password', 'username'])
 
     if (!user) {
-        console.log("wrong")
+        console.log("Please make sure all fieds are correct")
         return res.status(404).json({ msg: 'User does not exist' });
     }
 
@@ -27,8 +27,8 @@ router.post('/api/loginuser', async (req, res) => {
     console.log(correctPassword)
 
     if (!correctPassword) {
-        console.log("wrong")
-        return res.status(404).json({ msg: 'Password is incorrect' });
+        console.log("Please make sure all fieds are correct password")
+        return res.status(404).json({ msg: 'User does not exist' });
 
     }
 
@@ -130,7 +130,7 @@ router.patch('/api/validateUser/:id', async (req, res) => {
                     { _id: userId },
                     { $set: { activeAccount: true } }
                 );
-                res.status(200).json({ msg: 'Account has been validate', stat: true })
+                res.status(200).json({user: authorisedUser.username, msg: 'Account has been validated', stat: true, })
             } else {
                 res.status(400).json({ msg: 'Profile was not verified', stat: false })
             }
@@ -141,7 +141,6 @@ router.patch('/api/validateUser/:id', async (req, res) => {
         res.status(404).json({ msg: 'user not found, please contact support', stat: false })
     }
 })
-
 
 //Get information about the user
 // http://localhost:5001/api/individualuser/:
