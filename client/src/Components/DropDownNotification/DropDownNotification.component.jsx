@@ -1,18 +1,18 @@
 import React from 'react';
-import styles from "../Dropdown/Dropdown.module.scss";
+import styles from "../DropDownNotification/DropDownNotification.module.scss";
 import test from '../../Assets/car.jpg';
 
-const DropDownNotification = () => {
+const DropDownNotification = (props) => {
     return (
-        <div className={styles['container__notifications--content']}>
+        <div className={styles['container--content']}>
             <img
                 src={test}
                 alt=""
             />
 
-            <div className={styles['container__notifications--content__right']}>
-                <h1>Title of Question</h1>
-                <h2>Someone added a comment</h2>
+            <div className={styles['container--content__right']}>
+                <h5>{props.title}</h5>
+                <h6>{props.notification}</h6>
             </div>
         </div>
     );

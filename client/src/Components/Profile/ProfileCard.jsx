@@ -1,15 +1,15 @@
 import styles from './ProfileCard.module.scss';
 import test from '../../Assets/car.jpg';
-import { useNavigate } from 'react-router';
 
 const ProfileCard = (props) => {
-    const navigate = useNavigate();
 
-    const goToProfile = () => {
-        navigate("/Profile")
-    }
     return (
-        <div className={styles.container} onClick={goToProfile}>
+        <div className={`
+                ${styles.container}
+                ${props.className}
+            `} 
+            onClick={props.function}
+        >
             <img 
                 src={props.profileImage} 
                 alt="" 

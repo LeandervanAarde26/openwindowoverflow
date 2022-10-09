@@ -1,46 +1,35 @@
 @import "../../StyleSource/variables.scss";
 
-.outer{
+.container {
     display: flex;
-    padding: 20px 0;
-    gap: 10px;
-    margin-left: 1%;
+    padding: 20px 10;
+    gap: 30px;
     width: fit-content;
     height: fit-content;
-    max-width: 1000px;
+    max-width: 1130px;
     flex: 1;
-    h3{
-        @include headingThree();
-    }
 
-    .votingContainer{
+    .voting {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
         height: fit-content;
-        h6{
-            @include headingFive();
-            font-weight: 700;
-            text-align: center;
+
+        & :nth-child(3) {
+            transform: rotate(180deg);
         }
     }
-    .votingContainer :nth-child(3){
-        transform: rotate(180deg);
 
-    }
-    .questionContainer{
-        padding-left: 2%;
-        padding-right: 2%;
-
-
-        .description{
+    .question {
+        .description {
             @include body();
-            margin-top: 1%;
+            margin-top: 10px;
         }
 
-        .userInformation{
+        .userInformation {
             @include smallText();
-            color: darken($grey, 35%);
+            color: #B1ACAC;
         }
-        
-     }
+    }
 }
-
-

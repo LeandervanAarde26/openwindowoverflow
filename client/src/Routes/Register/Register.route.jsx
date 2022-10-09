@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styles from "./Register.module.scss"
 import Input from '../../Components/Input/Input.component';
 import { Outlet, useNavigate } from 'react-router';
 import Button from '../../Components/Button/Button.component';
 import Image from '../../Assets/RegisterImage.png';
+import ProfileCard from '../../Components/Profile/ProfileCard';
+import logo from '../../Assets/Icons/testLogo.svg';
+import imageOne from "../../Assets/DefaultProfileImages/Default1.png"
+import imageTwo from "../../Assets/DefaultProfileImages/Default2.png"
+import imageThree from "../../Assets/DefaultProfileImages/Default3.png"
+import imageFour from "../../Assets/DefaultProfileImages/Default4.png"
+import imageFive from "../../Assets/DefaultProfileImages/Default5.png"
+import Default from "../../Assets/DefaultProfileImages/DefaultImage.jpeg"
+import axios from 'axios'
+import { RegisterContext } from '../../Contexts/Register.context';
 
 const defaultValues = {
     username: '',
@@ -16,13 +26,33 @@ const defaultValues = {
 const Register = () => {
 
     //RANDOM USERNAME GENERATOR
-
     const [formValues, setFormValues] = useState(defaultValues)
     const { username, email, password, confirmPassword, year } = formValues;
     const navigate = useNavigate()
     const [error, setError] = useState(false);
     const [passErrr, setpasswordError] = useState(false)
     const [clickable, setClickable] = useState(true);
+    const [profileImage, setProfileImage] = useState(Default)
+    const {setCurrentUser} = useContext(RegisterContext)
+
+    const defaultImageArray = [
+        imageOne,
+        imageTwo,
+        imageThree,
+        imageFour,
+        imageFive,
+    ]
+
+    useEffect(() => {
+        document.title = "Sign up"
+    }, [])
+
+    const changeImage = (e) =>{
+        setProfileImage(e.target.src)
+        setFormValues({ ...formValues, "image": e.target.src })
+    }
+
+    const mappedImages = defaultImageArray.map(image => (<ProfileCard key={image} profileImage={image} function={changeImage}/>))
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -44,28 +74,48 @@ const Register = () => {
             setError(false);
             setClickable(true);
         }
-
-        if (formValues.password == formValues.confirmPassword) {
-            setpasswordError(true);
-            console.log('hey')
-        } else {
-            setpasswordError(false);
-        }
     }
 
     const SignIn = () => {
         navigate("/")
     }
 
-    const test = () => {
-        navigate(("/Choosetags"))
+    const test = (e) => {
+        // navigate(("/Choosetags"))
+
+        if (formValues.password != formValues.confirmPassword) {
+            setpasswordError(true);
+            console.log('hey')
+        } else {
+            setpasswordError(false);
+            let payload = {
+                username: formValues['username'].trim(),
+                email: formValues['email'].trim(),
+                password: formValues['password'].trim(),
+                userImage: formValues['image'],
+                currentStudyYear: +formValues['year'].trim(),
+            }
+
+            setCurrentUser(payload)
+            navigate("/Choosetags")
+
+        }
     }
 
     return (
         <div className={styles.outer}>
             <div className={styles.left}>
-
                 <h2 className={styles.heading}>Sign Up</h2>
+                <div className={styles.previewContainer}> 
+                        <img
+                            src={profileImage}
+                        />
+                </div>
+                <div className={styles.profileCon}>
+                    {
+                        mappedImages
+                    }
+                </div>
                 <form>
                     <Input
                         label={"Username"}
@@ -142,7 +192,8 @@ const Register = () => {
                         null
                 }
             </div>
-            <div className={styles.right}></div>
+            <div className={styles.right}>
+            </div>
         </div>
     );
 };

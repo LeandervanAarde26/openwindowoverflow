@@ -1,43 +1,48 @@
 @import "../../StyleSource/variables.scss";
 
-.main {
-    padding: 3px;
+.container {
+    @include dropShadow();   
+    padding: 5px;
     height: fit-content;
-    min-height: 25vh;
-    max-height: 28vh;
+    max-width: 250px;
+    min-width: 250px;
+    width: fit-content;
     border: 1px solid rgba($color: $black, $alpha: 0.1);
-    aspect-ratio: 1/1;
-    @include dropShadow();
-   
-    .badgeIcon {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
 
-        margin-top: 10px;
-        width: 100%;
-        height: 50%;
-        background-size: 100%;
-        background-position: center;
-        background-repeat: no-repeat;
+    .badgeDescription {
+        display: none;
+    }
     
+    &:hover {
+        .badgeDescription {
+            display: flex;
+        }
     }
 
-    .image{
-        width: 100%;
-        height: 100%;
-        background-position: center;
-        background-size: cover;
-        // background-image: url("../../Assets/Badges/level1.png");
+    &__image{
+        width: 150px;
+        height: 150px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
     }
 
-    .badgeTitle {
-        width: 100%;
-        height: 40px;
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
-        font-family: $body;
+    &__badgeTitle {
         display: flex;
         flex-direction: column;
-        padding: 20px 0;
-        flex: 1;
+        gap: 10px;
+        align-items: center;
+
+        p {
+            font-weight: 400;
+            @include body()
+        }
     }
 }

@@ -3,76 +3,19 @@
 .outer{
     display: flex;
     flex-direction: column;
-    padding: 20px 0;
+   justify-content: center;
+   align-items: center;
 
-
-    h4{
-        @include headingFour();
-        font-size: 14px;
-        margin-left: 6%
-    }
-    h5{
-        @include headingFive();
-        margin-bottom: 1.5vh;
-        font-size: 10px;
-        color: rgb(153, 153, 153);
-        font-weight: light;
-    }
-    p{
-        font-size: 14px;
-    }
-    
-    
     .container {
         flex: 1;
         align-items:center;
         justify-content: center;
 
-         
         .buttonContainer{
             display: flex;
-            align-items: center;
             justify-content: center;
-            // margin-left: 25%;
-            margin-top: 2%;
+
+            margin-top: 20px;
         }
-
     }
-   
-    & ::-webkit-scrollbar{
-        display: none;
-    }
-
-    .left{
-        margin-right: 20vh;
-    }
-
-
 }
-
-@media only screen and (max-width: 780px) {
-    .left {
-        width: fit-content;
-        min-width: 10%;
-        display: flex;
-        align-items: flex-start;
-        gap: 20px;
-        padding-right: 10px;
-    }
-
-    .comment{
-        width: 90%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin-top: 2%;
-    }
-
-    .buttonContainer{
-        width: 90% !important;
-        margin: 5% !important;
-
-    }
-
-
-}
-

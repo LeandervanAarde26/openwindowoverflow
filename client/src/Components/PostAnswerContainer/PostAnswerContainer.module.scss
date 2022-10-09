@@ -1,0 +1,13 @@
+@import "../../StyleSource/variables.scss";
+
+.outer {
+    flex: 1;
+
+    h1{
+        @include headingFour();
+        margin-bottom: 4vh;
+        color: red;
+        }
+
+
+}

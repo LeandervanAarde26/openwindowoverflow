@@ -3,9 +3,10 @@ import { useState } from 'react';
 import Button from '../Button/Button.component';
 import styles from "./FollowableTags.module.scss"
 import { RegisterContext } from '../../Contexts/Register.context';
+import Tags from '../Tags/Tags.component';
 // const defaultArr = []
 
-const FollowableTags = ({ tag, number, today, desc }) => {
+const FollowableTags = ({ tag, number, today, desc, }) => {
     const {addtoTags} = useContext(RegisterContext)
 
     const addTag = () => {
@@ -15,29 +16,26 @@ const FollowableTags = ({ tag, number, today, desc }) => {
 
     return (
         <div className={styles.container}>
-
-            <div className={styles.tagsContainer}>
+            <div className={styles.tag}>
                 {tag}
                 <Button
                     buttonType={"black"}
                     children={"Follow"}
                     buttonSize={styles.height}
-                    onClick={addTag} />
+                    onClick={addTag} 
+                />
             </div> 
  
             <div className={styles.informationContainer}>
-                <p className={styles.desc}>{desc} </p>
-                <br />
-                <p>
-                    <span>{number}</span>
-                    <br />
-                    <strong>Questions</strong>
-                    <br />
-                    <br />
-                    <span>{today}</span>
-                    <br />
-                    <strong>Asked today</strong>
-                </p>
+                <p className={styles.desc}>{desc}</p>
+                <div className={styles.questions}>
+                    <p>{number}</p>
+                    <p><strong>Questions</strong></p>
+                </div>
+                <div className={styles.today}>
+                    <p>{today}</p>
+                    <p><strong>Questions asked today</strong></p>
+                </div>
             </div>
         </div>
     );

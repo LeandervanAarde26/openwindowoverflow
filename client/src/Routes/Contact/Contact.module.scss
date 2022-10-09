@@ -1,0 +1,27 @@
+@import "../../StyleSource/variables.scss";
+
+.container {
+    display: flex;
+    flex: 1;
+
+    &__content {
+        padding: 30px 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        &__cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+    }
+
+    &__rightContent {
+        padding: 10px;
+        min-width: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

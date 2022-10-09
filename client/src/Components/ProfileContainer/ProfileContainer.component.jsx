@@ -8,15 +8,22 @@ import BadgeContainer from '../BadgeContainer/BadgeContainer.component';
 import Userbadges from "../Badges/userbadges.json"
 import Badges from '../Badges/Badges.component';
 import { useState } from 'react';
+import UserReputation from '../UserReputation/UserReputation.component';
+import MyQuestionsAnswers from '../MyQuestionsAnswers/MyQuestionsAnswers.component';
+import MyQuestionsAnswersContainer from '../MyQuestionsAnswersContainer/MyQuestionsAnswersContainer.component';
 
 
-const ProfileContainer = ({ image }) => {
+const ProfileContainer = ({ image, username, year, questions, answers, badges,tags }) => {
     const [state, setState] = useState()
     const testerTags = ['html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3', 'html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3']
     const visuals = testerTags.map((tag, index) => <Tags key={index} title={tag} />)
     const listBadges = Userbadges
-    const tester = listBadges.map((i, index) =>(
-        <Badges key={index}  title={i.title} badgeImage={i.badgeImage} badgeDescription={i.badgeDescription}/> 
+    const tester = listBadges.map((i, index) => (
+        index === 0
+            ?
+            <Badges key={index} title={i.title} badgeImage={i.badgeImage} badgeDescription={i.badgeDescription} id={styles.left} />
+            :
+            <Badges key={index} title={i.title} badgeImage={i.badgeImage} badgeDescription={i.badgeDescription} />
     ))
 
     console.log(listBadges)
@@ -25,15 +32,15 @@ const ProfileContainer = ({ image }) => {
         <div className={styles.container}>
             <div className={styles.topContainer}>
                 <div className={styles.profilePhoto}>
-                    <img src={Car} />
+                    <img src={image} />
                 </div>
                 <div className={styles.userIntro}>
-                    <h3>Some Person</h3>
-                    <p className={styles.year}>2nd Year Development Student</p>
+                    <h3>{username}</h3>
+                    <p className={styles.year}>{year === 1? `${year}st` : year === 2 ? `${year}nd` : year === 3 ? `${year}rd` : ''} Year Development Student</p>
                     <div className={styles.accContainer}>
-                        <p className={styles.accomplishments}>12 Questions</p>
-                        <p className={styles.accomplishments}>15 Answers</p>
-                        <p className={styles.accomplishments}>4 Badges</p>
+                        <p className={styles.accomplishments}>{questions} Questions</p>
+                        <p className={styles.accomplishments}>{answers} Answers</p>
+                        <p className={styles.accomplishments}>{badges} Badges</p>
                     </div>
                 </div>
             </div>
@@ -52,15 +59,24 @@ const ProfileContainer = ({ image }) => {
                         } />
                 </div>
 
-                <BadgeContainer 
+                <h4>Following Tags</h4>
+                <div className={styles.tagsContainer}>
+                    {tags}
+                </div>
+
+                <div className={styles.title}>
+                    <h3>Badges</h3>
+                </div>
+            </div>
+
+            <BadgeContainer
                     children={tester}
                 />
 
-                <h4>Following Tags</h4>
-                <div className={styles.tagsContainer}>
-                    {visuals}
-                </div>
+            <div className={styles.reputationCon}>
+            <UserReputation/>
             </div>
+            <MyQuestionsAnswersContainer/>
         </div>
     );
 };
