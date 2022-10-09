@@ -15,6 +15,8 @@ const FollowedTags = () => {
         .then(res =>{
             console.log(res);
             let data = res.data
+
+            console.log(data)
             setTags(res.data.followedTags.map((tag, index) => (<Tags key={index} title={tag}/>)))
             setBusy(false)
             

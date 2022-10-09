@@ -9,10 +9,14 @@ const question = mongoose.Schema({
         type: Number,
         default: 0
     }, 
+    resolved:{
+        type: Boolean,
+        default: false
+    },
     author:{type: mongoose.Schema.Types.ObjectId, ref: 'users'},
     postedDate: {
         type: Date,
-        default: Date.now()
+        default: Date.now()/1000
     }, 
     question:{
         type: String,
@@ -20,6 +24,7 @@ const question = mongoose.Schema({
     }, 
     code: String, 
     Images: [String],
+    links: String,
     comments: [
         {
             user: {type: mongoose.Schema.Types.ObjectId, ref: 'users'},
@@ -38,4 +43,25 @@ const question = mongoose.Schema({
     ], 
 
     tags:[String], 
+
+    answers:[
+        {
+            user: {type: mongoose.Schema.Types.ObjectId, ref: 'users'},
+            rating: {
+                type: Number,
+                default: 0
+            }, 
+            resolved: {
+                type: Boolean,
+                default: false,
+                answer:{
+                    type: String, 
+                    required: true
+                }, 
+                code: String,
+                images: String, 
+                links: String
+            }
+        }
+    ]
 })

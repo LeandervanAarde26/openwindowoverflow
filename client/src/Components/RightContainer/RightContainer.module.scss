@@ -13,15 +13,9 @@
     top: 0;
     // background-color: red;
     // background-color: red;
-
-    #discordButton{
-        margin-left: 2%;
-        margin-top: 2%;
-        width: 100%;
-
-        img{
-            margin-left: -30% ;
-        }
+    .buttonContainer{
+        display: flex;
+        justify-content: center;
     }
 }
 

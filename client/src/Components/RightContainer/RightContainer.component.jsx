@@ -11,17 +11,19 @@ const RightContainer = () => {
     return (
         <div className={styles.container}>
             {/* Insert followed Tags Component Here */}
-                {
-                    location.pathname === "/Choosetags"
-                    ? 
-                    null 
+            {
+                location.pathname === "/Choosetags"
+                    ?
+                    null
                     :
-                    <FollowedTags/>
-                }
+                    <FollowedTags />
+            }
             {/* End followed Tags Component Here */}
-            <Button
-                buttonType={'discord'}
-            />
+            <div className={styles.buttonContainer}>
+                <Button
+                    buttonType={'discord'}
+                />
+            </div>
 
             {/* <AdSenseContainer /> */}
 
