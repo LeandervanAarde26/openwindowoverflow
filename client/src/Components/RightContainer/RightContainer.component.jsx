@@ -5,6 +5,8 @@ import Discord from "../../Assets/Discord.png";
 import AdSenseContainer from '../AdSenseContainer/AdSenseContainer.component';
 import FollowedTags from '../FollowedTagsComponent/FollowedTags.component';
 const RightContainer = () => {
+
+
     return (
         <div className={styles.container}>
             {/* Insert followed Tags Component Here */}

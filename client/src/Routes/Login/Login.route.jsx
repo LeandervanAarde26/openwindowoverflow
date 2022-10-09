@@ -35,23 +35,26 @@ const Login = () => {
         const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         let correctEmail = value.includes("@openwindow.co.za") || value.includes("@virtualwindow.co.za");
         // Check if the correct email is supplied by checking it against the regex
-        const emailCheck = emailRegex.test(value);
-
-        setFormValues({ ...formValues, [name]: value });
-
-        if (value.length > 2) {
-            if (emailCheck && correctEmail) {
+        if(name === "email"){
+            const emailCheck = emailRegex.test(value);
+                
+            if (value.length > 3) {
+                if (emailCheck && correctEmail) {
+                    setError(false);
+                    setClickable(true);
+                } else {
+                    setError(true);
+                    setClickable(false);
+                }
+            } else {
                 setError(false);
                 setClickable(true);
-            } else {
-                setError(true);
-                setClickable(false);
             }
-        } else {
-            setError(false);
-            setClickable(true);
         }
+        setFormValues({ ...formValues, [name]: value });
     }
+
+    console.log(formValues)
 
     const signInUser = (e) =>{
         let payload ={
@@ -80,7 +83,7 @@ const Login = () => {
                 <form>
                     <Input
                         id={error ? styles.err : ""}
-                        label={!error ? "Invalid email, please try again" : "Email"}
+                        label={error ? "Invalid email, please try again" : "Email"}
                         value={email}
                         type="email"
                         name="email"
