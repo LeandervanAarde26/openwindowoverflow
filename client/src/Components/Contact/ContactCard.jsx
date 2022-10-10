@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./ContactCard.module.scss";
 import Button from "../Button/Button.component";
 import image from "../../Assets/car.jpg";
 
