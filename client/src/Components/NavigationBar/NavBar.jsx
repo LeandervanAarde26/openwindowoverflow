@@ -15,9 +15,10 @@ import ProfileCard from '../Profile/ProfileCard';
 import Dropdown from '../Dropdown/Dropdown';
 
 /* Icons/Images */
-import logo from '../../Assets/Icons/testLogo.svg';
+// import logo from '../../Assets/Icons/testLogo.svg';
 import trophy from "../../Assets/Icons/ic_trophy.svg";
 import inbox from "../../Assets/Icons/ic_inbox.svg";
+import logo from '../../Assets/Logo/FinalLogo.png'
 
 const NavBar = () => {
 
