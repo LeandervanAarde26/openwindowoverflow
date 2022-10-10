@@ -28,14 +28,6 @@ const FollowableTags = ({ tag, number, today, desc, }) => {
  
             <div className={styles.informationContainer}>
                 <p className={styles.desc}>{desc}</p>
-                <div className={styles.questions}>
-                    <p>{number}</p>
-                    <p><strong>Questions</strong></p>
-                </div>
-                <div className={styles.today}>
-                    <p>{today}</p>
-                    <p><strong>Questions asked today</strong></p>
-                </div>
             </div>
         </div>
     );

@@ -2,7 +2,9 @@ const express = require("express");
 require ('dotenv/config');
 const mongoose = require('mongoose');
 //add routes
-const userRouter = require('./Routes/UserRoutes')
+const tagsRouter = require('./Routes/TagsRoutes');
+const userRouter = require('./Routes/UserRoutes');
+
 const app = express();
 const cors = require('cors');
 const PORT = process.env.PORT || 5001;
@@ -13,14 +15,13 @@ const uri = process.env.DB_CONNECTION;
 //app.use
 
 app.use(cors({origin:'http://localhost:3000'}));
-
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(userRouter);
+app.use(tagsRouter);
 
 mongoose.connect(uri,(err) =>{
     err? console.log('not connected to DB'): (console.log("Connected to DB"));
-    // console.log(mongoose.connection.db) 
 });
 
 app.listen(PORT, () =>{console.log(`Server is now running on ${PORT}`)}); 

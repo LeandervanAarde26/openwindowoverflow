@@ -5,11 +5,10 @@ const tags = mongoose.Schema({
     type: String,
     required: true
    }, 
-   description:{
+   Description:{
     type: String, 
     required: true,
    },
-   questions:[{type: mongoose.Schema.Types.ObjectId, ref: 'questions'}]
 });
 
 module.exports = mongoose.model("tags", tags)
