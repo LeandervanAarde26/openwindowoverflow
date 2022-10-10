@@ -18,6 +18,7 @@ import Question from "./Routes/Question/Question.component";
 import FollowTags from "./Routes/FollowTags/FollowTags.route";
 import Contact from "./Routes/Contact/Contact.route";
 import Admin from "./Routes/Admin/Admin.route";
+import ValidateUser from "./Routes/ValidateUser/ValidateUser.component";
 
 function App() {
   //Get Location of User
@@ -28,14 +29,16 @@ function App() {
       <NavBar />
       {location.pathname === "/" ||
       location.pathname === "/Register" ||
+      location.pathname === "/UserValidation" ||
       location.pathname === "/Choosetags" ? (
         <TransitionGroup style={{ display: "flex", flex: 1 }}>
           <CSSTransition key={location.key} classNames="slide" timeout={600}>
             <Routes location={location}>
               <Route path="/" index element={<Login />} />
               <Route path="/Register" element={<Register />} />
+              <Route path="/UserValidation" element={<ValidateUser/>} />
               <Route path="/Home" element={<Home />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/:username/:userId" element={<Profile />} />
               <Route path="/Question" element={<Question />} />
               <Route path="/Choosetags" element={<FollowTags />} />
               <Route path="/Contact" element={<Contact />} />
@@ -48,10 +51,11 @@ function App() {
         <Routes location={location}>
           <Route path="/" index element={<Login />} />
           <Route path="/Register" element={<Register />} />
+          <Route path="/Auth" element={<ValidateUser/>} />
           <Route path="/Home" element={<Home />} />
           <Route path="/Articles" element={<Home />} />
           <Route path="/test" element={<Components />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/Question" element={<Question />} />
           <Route path="/Choosetags" element={<FollowTags />} />
           <Route path="/Contact" element={<Contact />} />

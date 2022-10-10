@@ -1,6 +1,8 @@
 /* React */
 import {NavLink} from 'react-router-dom';
 import { useNavigate } from 'react-router';
+import { useContext } from 'react';
+import { RegisterContext } from '../../Contexts/Register.context';
 
 /* Styling */
 import styles from './NavBar.module.scss';
@@ -19,12 +21,15 @@ import inbox from "../../Assets/Icons/ic_inbox.svg";
 
 const NavBar = () => {
 
+    const user = sessionStorage.getItem("currentUser")
+
     const navigate = useNavigate();
 
-    const goToProfile = () => {
-        navigate("/Profile")
-    }
 
+    const goToProfile = () => {
+        // navigate("/Profile")
+        navigate(`/profile/${user}`)
+    }
     return (
         <div className={styles.container}>
             <div className={styles.containerOuter}>
