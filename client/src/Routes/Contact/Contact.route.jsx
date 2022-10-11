@@ -14,7 +14,7 @@ export default function Contact() {
         <div>
           <h2>Contact</h2>
           <h4>Staff</h4>
-          <AnswerBoxComponent />
+          {/* <AnswerBoxComponent /> */}
           <ContactCard />
           <ContactCard />
           <ContactCard />
