@@ -18,6 +18,7 @@ import Dropdown from '../Dropdown/Dropdown';
 import logo from '../../Assets/Icons/testLogo.svg';
 import trophy from "../../Assets/Icons/ic_trophy.svg";
 import inbox from "../../Assets/Icons/ic_inbox.svg";
+// import logo from '../../Assets/Logo/FinalLogo.png'
 
 const NavBar = () => {
 
@@ -48,7 +49,7 @@ const NavBar = () => {
             <div className={styles.containerOuter}>
                 <div className={styles.containerOuter__logo}>
                     <img
-                        src={logo} 
+                        // src={logo} 
                         alt="" 
                     />
                 </div>
@@ -85,7 +86,7 @@ const NavBar = () => {
                 </div>
                 <div className={styles.containerOuter__profile}>
                     <ProfileCard
-                        profileImage={logo}
+                        // profileImage={logo}
                         function ={goToProfile}
                     />
                 </div>

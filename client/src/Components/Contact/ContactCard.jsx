@@ -2,32 +2,19 @@ import React from "react";
 import styles from "./ContactCard.module.scss";
 import Button from "../Button/Button.component";
 import image from "../../Assets/car.jpg";
+import styles from "./ContactCard.module.scss";
 
-function ContactCard() {
+
+function ContactCard(props) {
   return (
     <>
-      <div style={{ float: "left" }}>
-        <img
-          src={image}
-          style={{
-            borderRadius: "50%",
-            height: 80,
-            width: 85,
-            marginLeft: 130,
-          }}
-        />
-        <p>Mike Maynard (Subject head)</p>
-        <p style={{ marginLeft: 85, fontWeight: 500 }}>mike@openwindow.co.za</p>
+      <div className={styles.main}>
+        <img className={styles.image} src={image}/>
+        <br/>
+        <p className={styles.name}>{props.contactName}</p>
+        <p className={styles.address}>{props.contactEmail}</p>
 
-        <div
-          style={{
-            height: "20px",
-            width: "80px",
-            marginLeft: "130px",
-            marginBottom: "50px",
-            marginTop: "10px",
-          }}
-        >
+        <div>
           <Button buttonType={"black"} children={"Email"} />
         </div>
       </div>

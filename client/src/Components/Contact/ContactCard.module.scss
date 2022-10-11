@@ -2,12 +2,37 @@
 
 .container {
     p {
-        font-family:'Quicksand', sans-serif;
+        font-family: 'Quicksand', sans-serif;
         font-weight: 1000;
         margin-top: 20px;
     }
 }
 
+.main{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 250px;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+}
+
+.name{
+    @include headingSix();
+    font-weight: bold;
+    text-align: center
+}
+.address{
+    @include smallText();
+    margin-bottom: 10px;
+}
 
 #email-btn {
     background-color: black;
