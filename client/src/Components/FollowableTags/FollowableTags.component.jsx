@@ -1,10 +1,16 @@
+/* React */
 import React, {useContext} from 'react';
 import { useState } from 'react';
-import Button from '../Button/Button.component';
+
+/* Styling */
 import styles from "./FollowableTags.module.scss"
+
+/* Context */
 import { RegisterContext } from '../../Contexts/Register.context';
+
+/* Components */
+import Button from '../Button/Button.component';
 import Tags from '../Tags/Tags.component';
-// const defaultArr = []
 
 const FollowableTags = ({ tag, number, today, desc, }) => {
     const {addtoTags} = useContext(RegisterContext)

@@ -1,15 +1,20 @@
-import React, { useContext } from 'react';
+/* React */
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+import axios from 'axios'
+import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router';
+
+/* Styling */
 import styles from "./ValidateUser.module.scss";
+
+/* Components */
+import Button from '../../Components/Button/Button.component';
+
+/* Icons/Images */
 import theImage from "../../Assets/LoginImage.png";
 import brokenBrowser from "../../Assets/brokenbrowser.png"
 // import { RegisterContext } from '../../Contexts/Register.context';
-import Button from '../../Components/Button/Button.component';
-import { useNavigate } from 'react-router';
-import { useEffect } from 'react';
-import axios from 'axios'
-import { useSearchParams } from 'react-router-dom';
-import { useState } from 'react';
-import { useParams } from 'react-router';
 
 const ValidateUser = () => {
     // const { currentUser } = useContext(RegisterContext)
@@ -61,6 +66,7 @@ const ValidateUser = () => {
                 setLogin(false)
             })
     }, [])
+
     return (
         <div className={styles.container}>
             <div className={styles.left}>
@@ -72,13 +78,13 @@ const ValidateUser = () => {
                     {/* Link didnt work because it is looking for a local path to redirect ti, a href takes anylink */}
                     {
                         login
-                            ?
+                        ?
                             <Button
                                 buttonType={"primary"}
                                 children={"Go to Login"}
                                 onClick={() => { navigate("/") }}
                             />
-                            :
+                        :
                             <Button
                                 buttonType={"black"}
                                 children={"Register Again"}

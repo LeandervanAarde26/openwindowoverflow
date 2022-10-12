@@ -1,7 +1,14 @@
+/* React */
 import React from 'react';
+
+/* Styling */
 import styles from './MyQuestionsAnswers.module.scss';
+
+/* Components */
 import Tags from '../Tags/Tags.component';
 import Icon from '../Icon/Icon';
+
+/* Icons/Images */
 import ic_votes from '../../Assets/Icons/ic_clipboard.svg';
 import ic_answers from '../../Assets/Icons/ic_checkmark.svg';
 import ic_correct from '../../Assets/Icons/ic_correct.svg';
@@ -9,8 +16,6 @@ import ic_correct from '../../Assets/Icons/ic_correct.svg';
 const MyQuestionsAnswers = () => {
     const tags = ["Html", "css", "scss", "React"]
     
-    // const visuals = tags.map((tag, index) => <Tags key={index} title={tag}/>)
-
     return (
         <div className={styles.container}>
             <h5>This is the title of the Question</h5>

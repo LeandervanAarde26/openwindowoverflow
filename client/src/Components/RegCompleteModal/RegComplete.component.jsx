@@ -1,12 +1,18 @@
+/* React */
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import styles from "./RegComplete.module.scss"
-import regImg from "../../Assets/remotework.png"
-import Button from "../Button/Button.component";
 import { useNavigate } from "react-router";
 
+/* Styling */
+import styles from "./RegComplete.module.scss";
+
+/* Components */
+import Button from "../Button/Button.component";
+
+/* Icons/Images */
+import regImg from "../../Assets/remotework.png";
+
 const RegComplete = ({ name, email }) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     return (
         <div className={styles.modalContainer}>
             <div className={styles.modalBody}>

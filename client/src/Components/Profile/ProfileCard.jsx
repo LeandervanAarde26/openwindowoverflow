@@ -1,4 +1,7 @@
+/* Styling */
 import styles from './ProfileCard.module.scss';
+
+/* Icons/Images */
 import test from '../../Assets/car.jpg';
 
 const ProfileCard = (props) => {

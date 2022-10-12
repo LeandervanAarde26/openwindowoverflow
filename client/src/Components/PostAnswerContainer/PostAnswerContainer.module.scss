@@ -3,11 +3,9 @@
 .outer {
     flex: 1;
 
-    h1{
+    h1 {
         @include headingFour();
         margin-bottom: 4vh;
         color: red;
-        }
-
-
+    }
 }

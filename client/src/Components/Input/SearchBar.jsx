@@ -1,6 +1,10 @@
+/* Styling */
 import styles from './SearchBar.module.scss';
 
+/* Components */
 import Icon from '../Icon/Icon';
+
+/* Icons/Images */
 import search from "../../Assets/Icons/ic_search.svg"
 
 const SearchBar = ({placeholder, onChange, onClick, label}) => {

@@ -5,6 +5,7 @@
     flex-direction: column;
     padding: 20px 0;
     flex: 1;
+    
     .top,
     .bottom {
         padding-right: 20px;
@@ -16,10 +17,9 @@
         }
     }
 
-    .bottom{
+    .bottom {
         h4{
             margin-top: 2%;
         }
     }
-
 }

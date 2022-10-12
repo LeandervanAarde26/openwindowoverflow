@@ -1,6 +1,11 @@
+/* React */
 import React from 'react';
-import Preview from '../Preview/Preview.component';
+
+/* Styling */
 import styles from "./ArticlesContainer.module.scss";
+
+/* Components */
+import Preview from '../Preview/Preview.component';
 const ArticlesContainer = () => {
     return (
         <div className={styles.outer}>

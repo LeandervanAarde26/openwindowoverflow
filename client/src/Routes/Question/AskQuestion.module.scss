@@ -1,0 +1,104 @@
+@import '../../StyleSource/variables.scss';
+
+.container {
+    display: flex;
+    flex: 1;
+
+    .content {
+        flex: 1;
+        padding: 20px ;
+
+        .top {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            input {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid $orange;
+    
+                &:focus {
+                    outline: none;
+                    border: 1px solid $orange;
+                }
+            }
+
+            textarea {
+                padding: 12px;
+                min-width: 100%;
+                min-height: 350px;
+                resize: vertical;
+                border: 1px solid $orange;
+
+                &:focus {
+                    border:  1px solid $orange;
+                    outline: none;
+                }
+            }
+
+            .tags {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .searchTag {
+                .searchedTags {
+                    position: absolute;
+                    padding: 15px;
+                    width: fit-content;
+                    background-color: $grey;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    h6 {
+                        border-bottom: 1px solid $black;
+
+                        &:hover {
+                            cursor: pointer;
+                            border-bottom: 1px solid $orange;
+                        }
+                    }
+                }
+            }
+        }
+
+        .preview {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .tags {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .question {
+                p {
+                    @include body();
+                }
+            }
+
+            .code {
+                border: 1px solid $orange;
+            
+                pre {
+                    width: 100%;
+                    margin: 0 !important;
+                }
+            }
+        }
+
+        .bottom {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+    }
+}

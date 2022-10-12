@@ -1,6 +1,11 @@
+/* React */
 import React from 'react';
-import Comment from '../Comment/Comment.component';
+
+/* Styling */
 import styles from "./CommentsContainer.module.scss";
+
+/* Components */
+import Comment from '../Comment/Comment.component';
 import Button from '../Button/Button.component';
 
 const CommentsContainer = ({children, loadMore,}) => {

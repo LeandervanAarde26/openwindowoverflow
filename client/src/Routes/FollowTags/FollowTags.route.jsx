@@ -1,14 +1,20 @@
-
+/* React */
 import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router";
+import axios from "axios";
+
+/* Styling */
 import styles from "./FollowTags.module.scss";
+
+/* Context */
+import { RegisterContext } from "../../Contexts/Register.context";
+
+/* Components */
 import SideNavigation from "../../Components/sideNavigation/SideNavigation.component";
 import RightContainer from "../../Components/RightContainer/RightContainer.component";
 import FollowableTags from "../../Components/FollowableTags/FollowableTags.component";
 import Tags from "../../Components/Tags/Tags.component";
 import Button from "../../Components/Button/Button.component";
-import { RegisterContext } from "../../Contexts/Register.context";
-import { useNavigate } from "react-router";
-import axios from "axios";
 import RegComplete from "../../Components/RegCompleteModal/RegComplete.component";
 
 
@@ -47,32 +53,30 @@ const FollowTags = () => {
     }
 
     return (
-        <>
-            <div className={styles.container}>
-                <SideNavigation />
-                <div className={styles.outer}>
-                    <h2>Choose your Tags to follow</h2>
-                    <div className={styles.inner}>
-                        {viewTags}
+        <div className={styles.container}>
+            <SideNavigation />
+            <div className={styles.outer}>
+                <h2>Choose your Tags to follow</h2>
+                <div className={styles.inner}>
+                    {viewTags}
+                </div>
+                <h2>Your tags</h2>
+                <div className={styles.bottom}>
+                    <div className={styles.tagContainer}>
+                        {tag}
                     </div>
-                    <h2>Your tags</h2>
-                    <div className={styles.bottom}>
-                        <div className={styles.tagContainer}>
-                            {tag}
-                        </div>
-                        <div className={styles.buttonContainer}>
-                            <Button
-                                buttonType={"primary"}
-                                children={"Finish registration"}
-                                buttonSize={styles.height}
-                                onClick={handleClick} />
-                        </div>
+                    <div className={styles.buttonContainer}>
+                        <Button
+                            buttonType={"primary"}
+                            children={"Finish registration"}
+                            buttonSize={styles.height}
+                            onClick={handleClick} />
                     </div>
                 </div>
-                <RightContainer />
-                {openModal && <RegComplete name={currentUser.currentUser.username} email={currentUser.currentUser.email}/>}
             </div>
-        </>
+            <RightContainer />
+            {openModal && <RegComplete name={currentUser.currentUser.username} email={currentUser.currentUser.email}/>}
+        </div>
     );
 }
 export default FollowTags;

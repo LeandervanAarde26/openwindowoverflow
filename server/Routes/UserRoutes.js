@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const nodeMailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 
-
 // Login the user
 // http://localhost:5001/api/loginuser
 
@@ -29,7 +28,6 @@ router.post('/api/loginuser', async (req, res) => {
     if (!correctPassword) {
         console.log("Please make sure all fieds are correct password")
         return res.status(404).json({ msg: 'User does not exist' });
-
     }
 
     // if(!user.activeAccount){

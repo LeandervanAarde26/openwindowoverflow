@@ -1,5 +1,5 @@
+/* React */
 import React from 'react';
-
 
 const NavigationButton = ({ active, children,activeClass, ...otherProps }) => {
 

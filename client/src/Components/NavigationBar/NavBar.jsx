@@ -1,5 +1,5 @@
 /* React */
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { useContext } from 'react';
 import { RegisterContext } from '../../Contexts/Register.context';
@@ -15,18 +15,14 @@ import ProfileCard from '../Profile/ProfileCard';
 import Dropdown from '../Dropdown/Dropdown';
 
 /* Icons/Images */
-// import logo from '../../Assets/Icons/testLogo.svg';
 import trophy from "../../Assets/Icons/ic_trophy.svg";
 import inbox from "../../Assets/Icons/ic_inbox.svg";
-import logo from '../../Assets/Logo/FinalLogo.png'
+import logo from '../../Assets/Logo/finalLogo.svg';
 
 const NavBar = () => {
-
     const user = sessionStorage.getItem("currentUser")
 
     const navigate = useNavigate();
-
-
     const goToProfile = () => {
         // navigate("/Profile")
         navigate(`/profile/${user}`)

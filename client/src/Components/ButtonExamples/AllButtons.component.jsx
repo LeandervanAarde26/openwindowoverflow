@@ -1,7 +1,11 @@
+/* React */
 import React from 'react';
-import Button from '../Button/Button.component';
 
+/* Styling */
 import "./AllButton.styles.scss"
+
+/* Components */
+import Button from '../Button/Button.component';
 
 const AllButtons = () => {
     return (

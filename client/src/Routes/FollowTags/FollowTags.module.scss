@@ -1,7 +1,5 @@
 @import "../../StyleSource/variables.scss";
 
-
-
 .container {
     display: flex;
     flex: 1;
@@ -11,6 +9,7 @@
         flex-direction: column;
         padding: 20px 0;
         flex: 1;
+
         h2{
             @include headingTwo();    
         }
@@ -50,4 +49,3 @@
         }
     }
 }
-

@@ -1,9 +1,16 @@
+/* React */
 import React from 'react';
+
+/* Styling */
 import styles from './FlaggedComment.module.scss';
-import ic_user from '../../Assets/Icons/ic_user.svg';
-import ic_flag from '../../Assets/Icons/ic_flag.svg';
+
+/* Components */
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button.component';
+
+/* Icons/Images */
+import ic_user from '../../Assets/Icons/ic_user.svg';
+import ic_flag from '../../Assets/Icons/ic_flag.svg';
 
 const FlaggedComment = () => {
     return (

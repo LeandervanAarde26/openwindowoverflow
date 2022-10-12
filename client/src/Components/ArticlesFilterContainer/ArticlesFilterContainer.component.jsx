@@ -1,5 +1,10 @@
+/* React */
 import React from 'react';
+
+/* Styling */
 import styles from "./ArticlesFilterContainer.module.scss"
+
+/* Components */
 import ArticlesFilter from '../ArticlesFilter/ArticlesFilter.component';
 
 const ArticlesFilterContainer = () => {

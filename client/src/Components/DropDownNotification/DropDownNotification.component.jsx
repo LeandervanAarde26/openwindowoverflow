@@ -1,5 +1,10 @@
+/* React */
 import React from 'react';
+
+/* Styling */
 import styles from "../DropDownNotification/DropDownNotification.module.scss";
+
+/* Icons/Images */
 import test from '../../Assets/car.jpg';
 
 const DropDownNotification = (props) => {

@@ -1,5 +1,10 @@
+/* React */
 import React from 'react';
+
+/* Styling */
 import styles from './Button.module.scss';
+
+/* Icons/Images */
 import Discord from '../../Assets/Discord.png'
 import Github from '../../Assets/Github.png'
 

@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 //add routes
 const tagsRouter = require('./Routes/TagsRoutes');
 const userRouter = require('./Routes/UserRoutes');
+const questionRouter = require('./Routes/QuestionRoutes');
 
 const app = express();
 const cors = require('cors');
@@ -19,6 +20,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(userRouter);
 app.use(tagsRouter);
+app.use(questionRouter);
 
 mongoose.connect(uri,(err) =>{
     err? console.log('not connected to DB'): (console.log("Connected to DB"));

@@ -1,13 +1,13 @@
 @import "../../StyleSource/variables.scss";
 
 
-.container{
+.container {
     display: flex;
     align-items: center;
     flex: 1;
     gap: 20px;
 
-    .left{
+    .left {
         height: 100%;
         max-height: 76vh;
         flex-basis: 45%;
@@ -15,7 +15,7 @@
         min-width: 200px;
         // background-color: red;
 
-        img{
+        img {
            margin: 0;
            padding: 0;
            max-height: 76vh;
@@ -33,13 +33,12 @@
         justify-content: center;
         align-items: center;
 
-        
-        h3{
+        h3 {
             @include headingThree();
             text-align: center;
         }
 
-        .buttonContainer{
+        .buttonContainer {
             display: flex;
             align-items: center;
             justify-content: center;

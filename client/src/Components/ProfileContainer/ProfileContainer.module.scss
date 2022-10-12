@@ -1,18 +1,17 @@
 @import "../../StyleSource/variables.scss";
 
-
-.container{
+.container {
     flex: 1;
     overflow: scroll;
 
-    .topContainer{
+    .topContainer {
         min-height: 19vh;
         display: flex;
         justify-content: flex-start;
         gap: 15px;
         margin-top: 1%;
         
-        .profilePhoto{
+        .profilePhoto {
             height: 100%;
             max-height: 20vh;
             min-height: 19vh;
@@ -23,44 +22,42 @@
             background-position: center;
             overflow: hidden;
 
-            img{
+            img {
                 width: 100%; /* or any custom size */
                 height: 100%; 
                 object-fit: cover;
             }
         }
 
-        .userIntro{
+        .userIntro {
             background-color: white;
             padding-top: 3%;
             
-            h3{
+            h3 {
                 @include headingFour();
                 font-weight: 500;
             }
 
-            p{
+            p {
                 @include body();
                 color: darken($grey, 40%);
             }
 
-            .year{
+            .year {
                 margin-top: 3%;
             }
 
-            .accContainer{
+            .accContainer {
                 display: flex;
                 justify-content: flex-start;
                 gap: 15px;
             }
 
-            .accomplishments{
+            .accomplishments {
                display: flex;
                margin-top: 3%;
-               
             }
         }
-
     }
         
     .title {
@@ -68,28 +65,28 @@
         margin-top: 2vh;
     }
 
-    .description{
+    .description {
         margin-left: 1%;
         margin-top: 1%;
 
-        h4{
+        h4 {
             @include headingFour();
             margin-bottom: 1%;
         }
 
-        p{
+        p {
             @include body();
             width: 50%;
         }
 
-        .button{
+        .button {
             display: flex;
             align-items: flex-start;
             justify-content: left;
             margin-top: 2%;
         }
 
-        h4{
+        h4 {
             @include headingFour();
             margin-top: 2%;
         }
@@ -100,15 +97,12 @@
             gap: 7px;
 
             :nth-child(1){
-                    width: auto;
+                width: auto;
             }
         }
     }
 
-    .reputationCon{
+    .reputationCon {
         margin-top: 2em;
     }
-
-
-
 }

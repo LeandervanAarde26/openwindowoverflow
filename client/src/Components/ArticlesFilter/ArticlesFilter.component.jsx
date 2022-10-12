@@ -1,7 +1,13 @@
+/* React */
 import React from 'react';
+
+/* Styling */
 import styles from './ArticlesFilter.module.scss';
+
+/* Components */
 import Icon from '../Icon/Icon';
 
+/* Icons/Images */
 import votes from '../../Assets/Icons/ic_like.svg'
 
 
