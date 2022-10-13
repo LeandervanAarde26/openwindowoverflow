@@ -1,6 +1,11 @@
+/* Styling */
 import styles from './Dropdown.module.scss';
-import test from '../../Assets/car.jpg';
+
+/* Components */
 import DropDownNotification from '../DropDownNotification/DropDownNotification.component';
+
+/* Icons/Images */
+import test from '../../Assets/car.jpg';
 
 const Dropdown = (props) => {
     return (

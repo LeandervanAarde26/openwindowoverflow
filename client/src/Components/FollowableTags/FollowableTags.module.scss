@@ -3,6 +3,7 @@
 .container{
     @include dropShadow();
     height: fit-content;
+    min-height: 220px;
     max-width: 350px;
     background-color: white;
     border: 1px solid $grey;

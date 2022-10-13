@@ -64,4 +64,6 @@ const question = mongoose.Schema({
             }
         }
     ]
-})
+});
+
+module.exports = mongoose.model("questions", question);

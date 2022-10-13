@@ -1,8 +1,15 @@
+/* React */
 import React from 'react';
-import styles from './Back.module.scss';
 import { useNavigate } from 'react-router';
-import ic_back from '../../Assets/Icons/ic_arrow.svg';
+
+/* Styling */
+import styles from './Back.module.scss';
+
+/* Components */
 import Icon from '../Icon/Icon';
+
+/* Icons/Images */
+import ic_back from '../../Assets/Icons/ic_arrow.svg';
 
 const Back = () => {
     const navigate = useNavigate()

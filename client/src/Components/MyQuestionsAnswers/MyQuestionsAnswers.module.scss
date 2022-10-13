@@ -1,66 +1,55 @@
 @import "../../StyleSource/variables.scss";
 
-.container{
+.container {
     @include dropShadow();
-        flex: 1;
-        height: fit-content;
-        // max-width: 500px;
-        background-color: $white;
-        margin-bottom: 2px;
-        border: 1px solid rgba($color: $black, $alpha: 0.1);
-        padding: 15px;
-        margin-bottom: 10px;
-        
+    flex: 1;
+    height: fit-content;
+    // max-width: 500px;
+    background-color: $white;
+    margin-bottom: 2px;
+    border: 1px solid rgba($color: $black, $alpha: 0.1);
+    padding: 15px;
+    margin-bottom: 10px;
+    
+    .tagsContainer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px !important;
+        justify-content: flex-start;
+        margin-bottom: 2vh;
+    }
 
+    h5 {
+        @include headingFour();
+        font-size: 3vh;
+        margin-bottom: 1.5vh;
+        margin-top: 1.5vh;
+        font-weight: 600;
+    }
 
-        .tagsContainer {
+    h3 {
+        @include headingFour();
+        font-size: 2.5vh;
+        font-weight: 400;
+        margin-top: -1vh;
+    }
+
+    .informationContainer {
+        display: flex;
+        justify-content: center;
+    
+        .information {
+            margin-left: 7%;
             display: flex;
-            flex-wrap: wrap;
-            gap: 5px !important;
-            justify-content: flex-start;
-            margin-bottom: 2vh;
-        }
-
-
-        h5{
-            @include headingFour();
-            font-size: 3vh;
-            margin-bottom: 1.5vh;
-            margin-top: 1.5vh;
-            font-weight: 600;
-
-        }
-        h3{
-            @include headingFour();
-            font-size: 2.5vh;
-            font-weight: 400;
-            margin-top: -1vh;
-        }
-
-
-        .informationContainer{
-            display: flex;
+            flex-flow: row wrap;
             justify-content: center;
-       
-
-            .information{
-                margin-left: 7%;
-                display: flex;
-                flex-flow: row wrap;
-                justify-content: center;
-        
-                break{
-                    flex-basis: 100%;
-                    width: 0px; 
-                    height: 0px; 
-                    overflow: hidden;
-                  }
-
-
+    
+            break {
+                flex-basis: 100%;
+                width: 0px; 
+                height: 0px; 
+                overflow: hidden;
             }
-
-            
-        }
-
-
+        }  
+    }
 }

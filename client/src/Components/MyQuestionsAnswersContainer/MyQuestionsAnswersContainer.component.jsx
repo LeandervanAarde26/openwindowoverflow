@@ -1,5 +1,10 @@
+/* React */
 import React from 'react';
+
+/* Styling */
 import styles from "./MyQuestionsAnswersContainer.module.scss"
+
+/* Components */
 import MyQuestionsAnswers from '../MyQuestionsAnswers/MyQuestionsAnswers.component';
 
 const MyQuestionsAnswersContainer = () => {

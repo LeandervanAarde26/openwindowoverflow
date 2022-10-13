@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const nodeMailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 
-
 // Login the user
 // http://localhost:5001/api/loginuser
 
@@ -14,7 +13,7 @@ router.post('/api/loginuser', async (req, res) => {
     const { email, password } = req.body
     const user = await userSchema.findOne({
         email: email,
-    }).select(['password', 'username'])
+    }).select(['password', 'username', 'activeAccount'])
 
     if (!user) {
         console.log("Please make sure all fieds are correct")
@@ -29,14 +28,26 @@ router.post('/api/loginuser', async (req, res) => {
     if (!correctPassword) {
         console.log("Please make sure all fieds are correct password")
         return res.status(404).json({ msg: 'User does not exist' });
-
     }
 
-    // if(!user.activeAccount){
-    //     return res.status(400).json({msg: "The user account is not verified!"})
+    if(!user.activeAccount){
+        return res.status(400).json({msg: "The user account is not verified!"})
+    }
+
+    // const getFunction = () =>{
+    //     let Mike = "Skelm"
+    //     let Bronwyn = "Bestie";
+    //    // BRONWYN PLEASE NOTICE THAT EVERYONE NOW KNOWS THAT WE ARE BESTIES!
+    //     let Reinhardt = "Sexy"
+    //     let Wiaan = "Shirtless"
+    
+    //     if(Wiaan === "Shirtless"){
+    //         return console.log("I saw Wiaan Shirtless")
+    //       }
+    
     // }
 
-    console.log(user)
+    // console.log(user.activeAccount)
     res.status(200).json(user)
 });
 
@@ -61,7 +72,6 @@ router.post('/api/registeruser', async (req, res) => {
         });
 
         console.log(newUser)
-
         newUser.save()
             .then(async user => {
                 res.status(200).json({ msg: `user has been added to the db: ${user}` })

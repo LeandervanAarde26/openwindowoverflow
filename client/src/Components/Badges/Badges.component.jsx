@@ -1,6 +1,11 @@
+/* React */
 import React from "react";
+import { useState } from 'react';
+
+/* Styling */
 import styles from './Badges.module.scss'
-import {useState} from 'react';
+
+/* Icons/Images */
 import test from '../../Assets/Badges/level1.svg';
 
 const Badges = ({image, title, description, ...otherProps}) => {

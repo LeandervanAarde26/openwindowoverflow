@@ -1,8 +1,15 @@
+/* React */
 import React from 'react';
+
+/* Styling */
 import styles from "./IndividualQuestion.module.scss";
+
+/* Components */
 import Icon from '../Icon/Icon';
-import ic_arrow from "../../Assets/Icons/ic_arrow.svg"
 import RightContainer from '../RightContainer/RightContainer.component';
+
+/* Icons/Images */
+import ic_arrow from "../../Assets/Icons/ic_arrow.svg"
 
 const IndividualQuestion = ({children}) => {
     return (

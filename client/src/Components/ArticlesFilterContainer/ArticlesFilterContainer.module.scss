@@ -1,17 +1,15 @@
 @import "../../StyleSource/variables.scss";
 
-    .container {
-        .top,
-        .bottom {
-            width: 100%;
-            padding: 20px;
-            gap: 2%;
-            margin-top: 1%;
+.container {
+    .top,
+    .bottom {
+        width: 100%;
+        padding: 20px;
+        gap: 2%;
+        margin-top: 1%;
 
-            h4{
-                @include headingFour();
-            }
-
+        h4{
+            @include headingFour();
         }
-
     }
+}

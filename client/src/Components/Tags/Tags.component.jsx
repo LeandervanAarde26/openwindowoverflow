@@ -1,4 +1,7 @@
+/* React */
 import React from 'react';
+
+/* Styling */
 import styles from "./Tags.module.scss"
 
 const Tags = ({title, id,  ...otherProps}) => {

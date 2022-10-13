@@ -1,11 +1,15 @@
+import styles from "./Preview.module.scss";
+
+/* Components */
 import Tags from '../Tags/Tags.component';
-import styles from "./Preview.module.scss"
 import Icon from '../Icon/Icon';
+
+/* Icons/Images */
 import ic_votes from '../../Assets/Icons/ic_clipboard.svg';
 import ic_answers from '../../Assets/Icons/ic_checkmark.svg';
 import ic_correct from '../../Assets/Icons/ic_correct.svg';
 import ic_star from '../../Assets/Icons/ic_star.svg';
-import test from '../../Assets/car.jpg'
+import test from '../../Assets/car.jpg';
 
 const Preview = (props, { votes, answers, resolved, children, }) => {
     const testerTags = ['html', 'scss', 'scss','scss','css', 'React', '1', '2', '3']

@@ -1,13 +1,15 @@
+/* React */
 import React from 'react';
+
+/* Styling */
 import styles from './Emailer.module.scss';
+
+/* Icons/Images */
 import image from "../../Assets/RegisterImage.png"
+
 const Emailer = () => {
     return (
         <>
-
-        <style>
-          
-        </style>
             <div style="flex: 1; padding-left: 2%; padding-right: 2%;">
                 <img src={image} style = "height: 100%;  width: 100%; object-fit: cover; object-position: center;" />
             </div>

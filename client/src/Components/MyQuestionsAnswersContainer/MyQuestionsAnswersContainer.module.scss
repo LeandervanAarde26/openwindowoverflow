@@ -5,27 +5,20 @@
     flex: 1;
 
     .container {
-        // display: flex;
-        // flex-direction: column;
-        // padding: 20px 0;
-        // flex: .43;
-        // align-items: flex-start;
-        // justify-content: center;
         display: flex;
         justify-content: center;
         gap: 10px;
         flex: 1;
+
         .left,
         .right {
             padding: 20px;
             flex: 1;
-            h4{
+            
+            h4 {
                 @include headingFour();
                 margin-bottom: 4vh;
             }
-
         }
-
     }
-
 }

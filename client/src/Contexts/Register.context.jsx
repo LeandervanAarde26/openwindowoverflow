@@ -12,8 +12,6 @@ const removeItem = (tags, tagToRemove) => {
     return (tags.filter(tag => tag !== tagToRemove));
 }
 
-
-
 export const RegisterContext = createContext({
     tags: [],
     addtoTags: () => { },
@@ -26,7 +24,6 @@ export const RegisterActionTypes = {
     SET_TAG_ITEM: "SET_TAG_ITEM",
     SET_ACTIVE_USER: "SET_ACTIVE_USER"
 }
-
 
 const tagReducer = (state, action) => {
     const { type, payload } = action;

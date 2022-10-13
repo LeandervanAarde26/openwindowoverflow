@@ -1,8 +1,12 @@
-import React, {useEffect} from "react";
-import Tags from "../Tags/Tags.component";
-import styles from './FollowedTags.module.scss'
+/* React */
+import React, {useEffect, useState} from "react";
 import axios from 'axios'
-import { useState } from "react";
+
+/* Styling */
+import styles from './FollowedTags.module.scss'
+
+/* Components */
+import Tags from "../Tags/Tags.component";
 
 
 const FollowedTags = () => {
@@ -10,7 +14,7 @@ const FollowedTags = () => {
     const [tags, setTags] = useState()
     const [busy, setBusy] = useState(true)
 
-    useEffect(() => {
+/*     useEffect(() => {
         axios.get(`http://localhost:5001/api/individualuser/${user}`)
         .then(res =>{
             console.log(res);
@@ -24,7 +28,7 @@ const FollowedTags = () => {
         .catch(err =>{
             console.log(err)
         })
-    }, [])
+    }, []) */
 
     console.log(tags)
 
@@ -33,7 +37,6 @@ const FollowedTags = () => {
         ? 
         null 
         : 
-        <>
         <div className={styles.main}>
             <div className={styles.title}>
                 Followed tags
@@ -42,8 +45,7 @@ const FollowedTags = () => {
                 {tags}
             </div>
         </div>
-        </>
-    )
-}
+    );
+};
 
 export default FollowedTags;

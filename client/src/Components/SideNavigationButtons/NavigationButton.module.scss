@@ -1,6 +1,6 @@
 @import "../../StyleSource/variables.scss";
 
-.buttonContainer{
+.buttonContainer {
     @include body();
     letter-spacing: 0.5px;
     padding: 0 35px ;
@@ -41,4 +41,3 @@
     border-right: 8px solid $orange;
     transition: 300ms ease-in-out all;
 }
-

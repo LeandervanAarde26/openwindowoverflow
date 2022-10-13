@@ -1,6 +1,8 @@
+/* React */
 import {useRef, useEffect} from 'react';
-import styles from './Icon.module.scss';
 
+/* Styling */
+import styles from './Icon.module.scss';
 
 const Icon = ( props, {...otherProps} ) => {
     const image = useRef(null);

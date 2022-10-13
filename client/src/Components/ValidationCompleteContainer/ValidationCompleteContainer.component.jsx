@@ -1,9 +1,13 @@
+/* React */
 import React from 'react';
-import styles from "./ValidationCompleteContainer.module.scss"
+
+/* Styling */
+import styles from "./ValidationCompleteContainer.module.scss";
+
+/* Components */
 import ValidationComplete from '../ValidationComplete/ValidationComplete.component';
 
 const ValidationCompleteContainer = () => {
-
     return (
         <div className={styles.outer}>
             <div className={styles.container}>

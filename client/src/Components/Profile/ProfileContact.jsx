@@ -1,8 +1,12 @@
+/* React */
 import React from 'react';
+
+/* Styling */
+import styles from './ProfileContact.module.scss';
+
+/* Components */
 import ProfileCard from './ProfileCard';
 import Button from '../Button/Button.component'
-
-import styles from './ProfileContact.module.scss';
 
 const ProfileContact = (props) => {
     return (

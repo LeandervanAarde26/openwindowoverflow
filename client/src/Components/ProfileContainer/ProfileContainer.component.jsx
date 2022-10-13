@@ -1,16 +1,24 @@
-import React from 'react';
+/* React */
+import React,  { useState } from 'react';
+
+/* STyling */
 import styles from "./ProfileContainer.module.scss";
+
+/* Components */
 import Button from '../Button/Button.component';
-import Github from "../../Assets/Github.png"
-import Car from "../../Assets/car.jpg"
 import Tags from '../Tags/Tags.component';
 import BadgeContainer from '../BadgeContainer/BadgeContainer.component';
-import Userbadges from "../Badges/userbadges.json"
 import Badges from '../Badges/Badges.component';
-import { useState } from 'react';
 import UserReputation from '../UserReputation/UserReputation.component';
 import MyQuestionsAnswers from '../MyQuestionsAnswers/MyQuestionsAnswers.component';
 import MyQuestionsAnswersContainer from '../MyQuestionsAnswersContainer/MyQuestionsAnswersContainer.component';
+
+/* Icons/Images */
+import Github from "../../Assets/Github.png";
+import Car from "../../Assets/car.jpg";
+
+/* JSON */
+import Userbadges from "../Badges/userbadges.json"
 
 
 const ProfileContainer = ({ image, username, year, questions, answers, badges,tags }) => {

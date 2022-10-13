@@ -16,6 +16,9 @@ import FollowableTags from "../../Components/FollowableTags/FollowableTags.compo
 import FollowedTags from "../../Components/FollowedTagsComponent/FollowedTags.component";
 import IndividualQuestion from "../../Components/IndividualQuestion/IndividualQuestion.component";
 import Input from "../../Components/Input/Input.component";
+import AnswerBox from '../../Components/AnswerBox/AnswerBox.component'
+import Emailer from "../../Components/Emailer/Emailer.component";
+import Preview from "../../Components/Preview/Preview.component";
 
 const Components = () => {
     return (
@@ -31,6 +34,9 @@ const Components = () => {
             {/* <RightContainer/> */}
             {/* <IndividualQuestion/> */}
             {/* <Input/> */}
+            <AnswerBox/>
+            {/* <Emailer/> */}
+            {/* <Preview/> */}
 
         </div>
     );

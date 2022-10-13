@@ -1,21 +1,19 @@
 @import "../../StyleSource/variables.scss";
 
-.container{
+.container {
     display: flex;
     flex: 1;
     height: fit-content;
 
-    
-
-    .headingCon{
+    .headingCon {
         width: 100%;
         padding-left: 1%;
 
-        h4{
+        h4 {
             @include headingFour();
         }
     
-        h1{
+        h1 {
             @include Title();
             color: $orange;
             margin-top: .5em;
@@ -24,4 +22,3 @@
         }
     }
 }
-

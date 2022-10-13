@@ -1,11 +1,22 @@
+/* React */
 import React from "react";
+
+/* Styling */
+import styles from "./ContactCard.module.scss";
+
+/* Components */
 import Button from "../Button/Button.component";
+
+/* Icons/Images */
 import image from "../../Assets/car.jpg";
 
 function ContactCard() {
   return (
     <>
-      <div style={{ float: "left" }}>
+      <div
+        style={{ float: "left", marginTop: "20px" }}
+        className={styles.container}
+      >
         <img
           src={image}
           style={{
@@ -15,8 +26,12 @@ function ContactCard() {
             marginLeft: 130,
           }}
         />
-        <p>Mike Maynard (Subject head)</p>
-        <p style={{ marginLeft: 85, fontWeight: 500 }}>mike@openwindow.co.za</p>
+        <p style={{ marginLeft: "80px", marginBottom: "20px" }}>
+          Mike Maynard (Subject head)
+        </p>
+        <p style={{ marginLeft: 105, fontWeight: 500 }}>
+          mike@openwindow.co.za
+        </p>
 
         <div
           style={{
@@ -24,7 +39,7 @@ function ContactCard() {
             width: "80px",
             marginLeft: "130px",
             marginBottom: "50px",
-            marginTop: "10px",
+            marginTop: "40px",
           }}
         >
           <Button buttonType={"black"} children={"Email"} />

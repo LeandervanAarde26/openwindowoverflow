@@ -1,4 +1,7 @@
+/* React */
 import React from 'react';
+
+/* Styling */
 import styles from "./Input.module.scss"
 /*  
 This input is meant for things such as the login form, if you are looking 

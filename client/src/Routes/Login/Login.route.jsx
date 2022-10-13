@@ -1,10 +1,17 @@
+/* React */
 import React, { useState, useEffect, useContext } from 'react';
-import styles from "./Login.module.scss"
-import Input from '../../Components/Input/Input.component';
 import { Outlet, useNavigate } from 'react-router';
-import Button from '../../Components/Button/Button.component';
-import { RegisterContext } from '../../Contexts/Register.context';
 import axios from 'axios';
+
+/* Styling */
+import styles from "./Login.module.scss"
+
+/* Context */
+import { RegisterContext } from '../../Contexts/Register.context';
+
+/* Components */
+import Input from '../../Components/Input/Input.component';
+import Button from '../../Components/Button/Button.component';
 
 const defaultValues = {
     email: '',
@@ -102,7 +109,8 @@ const Login = () => {
                 </form>
 
                 {
-                    clickable ?
+                    clickable 
+                    ?
                         <>
                             <p className={styles.reset}>Forgot password? <br /> <span>Click here to reset</span></p>
                             <Button
@@ -121,7 +129,7 @@ const Login = () => {
                                 onClick={Register}
                             />
                         </>
-                        :
+                    :
                         null
                 }
             </div>

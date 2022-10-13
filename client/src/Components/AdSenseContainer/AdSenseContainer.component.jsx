@@ -1,4 +1,7 @@
+/* React */
 import React, { useEffect } from 'react';
+
+/* Styling */
 import styles from "./AdSenseContainer.module.scss";
 
 const AdSenseContainer = () => {

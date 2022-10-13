@@ -1,10 +1,18 @@
+/* React */
 import React from 'react';
+import { useLocation } from 'react-router';
+
+/* Styling */
 import styles from "./RightContainer.module.scss"
+
+/* Components */
 import Button from '../Button/Button.component';
-import Discord from "../../Assets/Discord.png";
 import AdSenseContainer from '../AdSenseContainer/AdSenseContainer.component';
 import FollowedTags from '../FollowedTagsComponent/FollowedTags.component';
-import { useLocation } from 'react-router';
+
+/* Icons/Images */
+import Discord from "../../Assets/Discord.png";
+
 const RightContainer = () => {
     const location = useLocation();
 

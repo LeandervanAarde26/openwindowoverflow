@@ -1,10 +1,16 @@
+/* React */
 import React, {useContext} from 'react';
 import { useState } from 'react';
-import Button from '../Button/Button.component';
+
+/* Styling */
 import styles from "./FollowableTags.module.scss"
+
+/* Context */
 import { RegisterContext } from '../../Contexts/Register.context';
+
+/* Components */
+import Button from '../Button/Button.component';
 import Tags from '../Tags/Tags.component';
-// const defaultArr = []
 
 const FollowableTags = ({ tag, number, today, desc, }) => {
     const {addtoTags} = useContext(RegisterContext)
@@ -28,14 +34,6 @@ const FollowableTags = ({ tag, number, today, desc, }) => {
  
             <div className={styles.informationContainer}>
                 <p className={styles.desc}>{desc}</p>
-                <div className={styles.questions}>
-                    <p>{number}</p>
-                    <p><strong>Questions</strong></p>
-                </div>
-                <div className={styles.today}>
-                    <p>{today}</p>
-                    <p><strong>Questions asked today</strong></p>
-                </div>
             </div>
         </div>
     );

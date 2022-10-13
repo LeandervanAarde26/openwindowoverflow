@@ -1,6 +1,6 @@
 @import "../../StyleSource/variables.scss";
 
-.container{
+.container {
     @include body();
     @include dropShadow();
     background-color: $white;
@@ -34,7 +34,7 @@
         }
     }
 
-    .right{
+    .right {
         width: fit-content;
         display: flex;
         align-items: center;
@@ -51,18 +51,4 @@
             gap: 5px;
         }
     }
-
-        // .informationContainer{
-        //     display: flex;
-        //     justify-content:end;
-       
-
-        //     .information{
-        //         margin-top: -3vh;
-        //         justify-content:center;
-        //         margin-left: 10vh;
-    
-
-        //     }          
-        // }
-    }
+}
