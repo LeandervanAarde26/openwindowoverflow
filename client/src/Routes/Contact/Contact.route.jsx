@@ -5,6 +5,7 @@ import SideNavigation from "../../Components/sideNavigation/SideNavigation.compo
 import Button from "../../Components/Button/Button.component";
 import ContactCard from "../../Components/Contact/ContactCard";
 import AnswerBoxComponent from "../../Components/AnswerBox/AnswerBox.component";
+import FollowedArticlesComponent from "../../Components/FollowedArticles/FollowedArticles.component";
 
 export default function Contact() {
   return (
@@ -12,8 +13,8 @@ export default function Contact() {
       <div className={styles.container}>
         <SideNavigation />
         <div>
-          <h2>Contact</h2>
-          <h4>Staff</h4>
+          <h2 style={{ marginTop: "20px" }}>Contact</h2>
+          <h4 style={{ marginTop: "20px" }}>Staff</h4>
           {/* <AnswerBoxComponent /> */}
           <ContactCard />
           <ContactCard />
@@ -27,7 +28,7 @@ export default function Contact() {
           <ContactCard />
         </div>
       </div>
-      {/* <div><FlaggedComment /></div> */}
+      <FollowedArticlesComponent />
     </>
   );
 }
