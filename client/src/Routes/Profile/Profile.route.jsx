@@ -20,18 +20,21 @@ const Profile = () => {
     const [busy, setBusy] = useState(true)
 
     console.log(profile.userId)
-
     useEffect(() => {
-        axios.get(`http://localhost:5001/api/individualuser/${profile.userId}`)
-        .then(res =>{
-            console.log(res)
-            setUserInfo(res.data)
-            setBusy(false)
-
-        })
-        .catch(err =>{
-            console.log(err)
-        })
+            if(profile.userId === null || "null"){
+                console.log("null")
+            } else{
+                axios.get(`http://localhost:5001/api/individualuser/${profile.userId}`)
+                .then(res =>{
+                    console.log(res)
+                    setUserInfo(res.data)
+                    setBusy(false)
+        
+                })
+                .catch(err =>{
+                    console.log(err)
+                })
+            }
     }, [])
 
     return (
