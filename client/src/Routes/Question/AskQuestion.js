@@ -1,7 +1,7 @@
 /* React */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import  SyntaxHighlighter  from 'react-syntax-highlighter/dist/cjs/prism';
+import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/prism';
 
 /* Styling */
 import styles from './AskQuestion.module.scss';
@@ -13,18 +13,21 @@ import Tags from '../../Components/Tags/Tags.component';
 import Button from '../../Components/Button/Button.component';
 import CodePreview from '../../Components/CodePreview/CodePreview.component';
 import Input from "../../Components/Input/Input.component"
+import style from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark';
 
 const AskQuestion = () => {
     const [tags, setTags] = useState([]);
+    const [image, setImage] = useState(null)
+    const [fileList, setFileList] = useState();
     useEffect(() => {
         axios.get('http://localhost:5001/api/getalltags')
-        .then(res => {
-            setTags(res.data);
-            console.log(res);
-        })
-        .catch(err => {
-            console.log(err);
-        });
+            .then(res => {
+                setTags(res.data);
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }, []);
 
     const [shouldRerender, setShouldRerender] = useState(false);
@@ -99,17 +102,23 @@ const AskQuestion = () => {
         console.log(data)
 
         axios.post('http://localhost:5001/api/test', data)
-        .then(res => {
-            console.log(res);
-        })
-        .catch(err => {
-            console.log(err);
-        })
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
+
+    const getImages = async (e) => {
+        setImage(URL.createObjectURL(e.target.files[0]))
+    }
+
+    console.log(image)
 
     return (
         <div className={styles.container}>
-            <SideNavigation/>
+            <SideNavigation />
 
             <div className={styles.content}>
                 <div className={styles.top}>
@@ -122,24 +131,24 @@ const AskQuestion = () => {
                     label={'tester'}
                     placeholder={'Question Title'}/> */}
 
-                    <textarea 
+                    <textarea
                         placeholder='Enter your question here'
                         onChange={(e) => changeQuestion(e)}
                     />
 
-                    <textarea 
+                    <textarea
                         placeholder='Enter your code here'
                         onChange={(e) => changeCode(e)}
                     />
 
                     <div className={styles.tags}>
                         {
-                            tagsSelected.map((x, i) => 
+                            tagsSelected.map((x, i) =>
                                 <Tags
                                     key={i}
                                     title={x}
                                     onClick={(e) => removeSelectedTags(i)}
-                                />    
+                                />
                             )
                         }
                     </div>
@@ -151,27 +160,38 @@ const AskQuestion = () => {
                         />
 
                         {
-                            isSearching 
-                            ?                         
+                            isSearching
+                                ?
                                 <div className={styles.searchedTags}>
                                     {
                                         searchedTags.length > 0
-                                        ?   searchedTags.map(x => 
-                                                <h6 
+                                            ? searchedTags.map(x =>
+                                                <h6
                                                     key={x._id}
                                                     onClick={(e) => selectedTags(x.name)}
                                                 >
                                                     {x.name}
                                                 </h6>
                                             )
-                                        : <h6>No results has been found</h6>
+                                            : <h6>No results has been found</h6>
                                     }
                                 </div>
-                            :
+                                :
                                 null
                         }
                     </div>
+                    {/* <div id={styles.uploadbtnwrapper}>
+                        <button id={styles.btn}>Upload a file</button>
+                        <input type="file" name="myfile" />
+                    </div> */}
 
+                    <div id={styles.uploadbtnwrapper}>
+                        <Button
+                            buttonType={'primary'}
+                            children={'Upload file'}
+                        />
+                        <input type="file" name="myfile" onChange={getImages} />
+                    </div>
                 </div>
                 <div className={styles.preview}>
                     <h2>Preview...</h2>
@@ -179,11 +199,11 @@ const AskQuestion = () => {
 
                     <div className={styles.tags}>
                         {
-                            tagsSelected.map((x, i) => 
+                            tagsSelected.map((x, i) =>
                                 <Tags
                                     key={i}
                                     title={x}
-                                />    
+                                />
                             )
                         }
                     </div>
@@ -191,26 +211,30 @@ const AskQuestion = () => {
                     <div className={styles.question}>
                         <p>{question}</p>
                     </div>
-{/* 
+                    {/* 
                     <div className={styles.code}>
                         <SyntaxHighlighter language="javascript">
                             {code}
                         </SyntaxHighlighter>
                     </div> */}
 
-                    <CodePreview children={code}/>
-                    
+                    <CodePreview children={code} />
+
+                    <div className={styles.imageContainer}>
+                        <img src={image} />
+                    </div>
+
                 </div>
                 <div className={styles.bottom}>
-                        <Button
-                            buttonType="primary"
-                            children="Post Question"
-                            onClick={postQuestion}
-                        />
+                    <Button
+                        buttonType="primary"
+                        children="Post Question"
+                        onClick={postQuestion}
+                    />
                 </div>
             </div>
 
-            <RightContainer/>
+            <RightContainer />
         </div>
     );
 };
