@@ -13,8 +13,17 @@ import RightContainer from '../../Components/RightContainer/RightContainer.compo
 import SideNavigation from '../../Components/sideNavigation/SideNavigation.component';
 import tester from "../../Assets/code.png"
 import AnswerBoxComponent from '../../Components/AnswerBox/AnswerBox.component';
+
+// Default form values for the answer
+const defaultFormValues = {
+    answer: '',
+    answerCode: ''
+}
+
 const Question = () => {
     const [def, setDef] = useState()
+    const [formValues, setFormValues] = useState(defaultFormValues);
+    const {answer, answerCode} = formValues
     const numbers = [1, 2, 4, 5,6,2,2,2,2,2,2,2,2,2,2,2,2];
     const [loadMore, setLoadMore] = useState(3);
     const [endComments, setEndComments] = useState(false)
@@ -31,6 +40,20 @@ const Question = () => {
             Please be clearer with this this this`}
             key={i} />))
     }, [loadMore])
+
+    const handleChange = (e) =>{
+        const {name, value} = e.target;
+        setFormValues({ ...formValues, [name]: value });
+    }
+
+    const handleClick = (e) =>{
+        if(formValues.answer === '' || formValues.answerCode == ''){
+            console.log('please fill out answer')
+        } else{
+            console.log(formValues)
+            //Do axios.patch here and add the comment?
+        }
+    }
 
     const loadMoreComments = () => {
         if(loadMore >= numbers.length){
@@ -64,7 +87,7 @@ const Question = () => {
                 <CommentsContainer children={def} loadMore={loadMoreComments}  />
                 <AnswerBoxComponent/>
                 <AnswerBoxComponent/>
-                <PostAnswer/>
+                <PostAnswer onChange={handleChange} handleClick = {handleClick}/>
             </div>
 
             <RightContainer />
