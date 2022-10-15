@@ -10,7 +10,7 @@ import Icon from '../Icon/Icon';
 /* Icons/Images */
 import ic_flag from '../../Assets/Icons/ic_flag.svg';
 
-const Comment = () => {
+const Comment = ({comment, auth, date}) => {
     return (
         <div className={styles.container}>
             <div className={styles.left}>
@@ -19,12 +19,10 @@ const Comment = () => {
                 />
             </div>
             <div className={styles.right}>
-                <h5 className={styles.name}>Leander van Aarde</h5>
-                <p className={styles.time}>29 June 2021 @ 21:00</p>
+                <h5 className={styles.name}>{auth}</h5>
+                <p className={styles.time}>{date}</p>
                 <p className={styles.comment}>
-                    Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this.
-                    Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this
-                    Please be clearer with this this this
+                    {comment}
                 </p>
             </div>
         </div>

@@ -11,6 +11,8 @@ import RightContainer from '../../Components/RightContainer/RightContainer.compo
 import SideNavigation from '../../Components/sideNavigation/SideNavigation.component';
 import Tags from '../../Components/Tags/Tags.component';
 import Button from '../../Components/Button/Button.component';
+import CodePreview from '../../Components/CodePreview/CodePreview.component';
+import Input from "../../Components/Input/Input.component"
 
 const AskQuestion = () => {
     const [tags, setTags] = useState([]);
@@ -116,6 +118,10 @@ const AskQuestion = () => {
                         onChange={(e) => setTitle(e.target.value)}
                     />
 
+                    {/* <Input
+                    label={'tester'}
+                    placeholder={'Question Title'}/> */}
+
                     <textarea 
                         placeholder='Enter your question here'
                         onChange={(e) => changeQuestion(e)}
@@ -185,12 +191,14 @@ const AskQuestion = () => {
                     <div className={styles.question}>
                         <p>{question}</p>
                     </div>
-
+{/* 
                     <div className={styles.code}>
                         <SyntaxHighlighter language="javascript">
                             {code}
                         </SyntaxHighlighter>
-                    </div>
+                    </div> */}
+
+                    <CodePreview children={code}/>
                     
                 </div>
                 <div className={styles.bottom}>

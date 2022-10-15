@@ -9,18 +9,14 @@ import Button from '../Button/Button.component'
 // import Icon from '../Icon/Icon';
 // import bold from "../../Assets/Icons/bold.png";
 
-const PostAnswer = () => {
+const PostAnswer = ({title, ...otherProps}) => {
     return (
         <div className={styles.container}>
+      
+            <h5>{title}Your Answer</h5>
             <div className={styles.areaContainer}>
-                <h5>Your answer</h5>
-    
-                <div className={styles.icons}>
-                    {/* <Icon 
-                icon={bold}
-                /> */}
-                </div>
-                <textarea></textarea>
+                <textarea className={styles.textarea}  placeholder='enter answer'></textarea>
+                <textarea className={styles.codearea} placeholder='enter code here'></textarea>
             </div>
 
             <div className={styles.buttonContainer}>

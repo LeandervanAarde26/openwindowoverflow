@@ -2,34 +2,65 @@
 
 .container {
     display: flex;
-    padding: 20px 10;
+    padding: 20px 10px;
     gap: 30px;
     width: fit-content;
     height: fit-content;
     max-width: 1130px;
     flex: 1;
-
-    .voting {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    .inner{
         display: flex;
-        flex-direction: column;
-        gap: 5px;
-        align-items: center;
+        gap: 15px;
+
+        .voting {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+            height: fit-content;
+    
+            & :nth-child(3) {
+                transform: rotate(180deg);
+            }
+        }
+
+        .question {
+            .description {
+                @include body();
+                margin-top: 10px;
+            }
+    
+            .userInformation {
+                @include smallText();
+                color: #B1ACAC;
+            }
+        }
+    }
+
+    .code{
+        width: 91%;
+        margin-bottom: 20px;
+        height: fit-content;
+    }
+
+    .imageContainer{
+        display: flex;
+        width: 91%;
+        background-color: red;
         height: fit-content;
 
-        & :nth-child(3) {
-            transform: rotate(180deg);
-        }
-    }
-
-    .question {
-        .description {
-            @include body();
-            margin-top: 10px;
+        img{
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
-        .userInformation {
-            @include smallText();
-            color: #B1ACAC;
-        }
     }
+
+
+
 }
