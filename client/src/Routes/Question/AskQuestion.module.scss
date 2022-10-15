@@ -109,8 +109,9 @@
             .imageContainer{
                 display: flex;
                 width: 100%;
-                background-color: red;
+                // background-color: red;
                 height: fit-content;
+                // max-height: 300px;
         
                 img{
                     max-width: 100%;
