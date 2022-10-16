@@ -4,6 +4,7 @@ import Input from '../../Components/Input/Input.component';
 import { Outlet, useNavigate } from 'react-router';
 import Button from '../../Components/Button/Button.component';
 import Image from '../../Assets/RegisterImage.png';
+import Login from '../Login/Login.route';
 
 const defaultValues = {
     username: '',
@@ -129,14 +130,14 @@ const Register = () => {
                                 buttonSize={styles.buttonSize}
                                 onClick={test}
                             />
-                            <p className={styles.option}>Already a user on __ ?</p>
+                            <p className={styles.option}>Already a user on OpenOverlow? <span onClick={Login} className={styles.option2}> Sign In</span></p>
 
-                            <Button
+                            {/* <Button
                                 buttonType={'secondary'}
                                 children={'Sign in'}
                                 buttonSize={styles.secondary}
                                 onClick={SignIn}
-                            />
+                            /> */}
                         </>
                         :
                         null
