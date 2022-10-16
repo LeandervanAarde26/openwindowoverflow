@@ -7,7 +7,9 @@ import ArticlesFilterContainer from "../../Components/ArticlesFilterContainer/Ar
 import MyQuestionsAnswers from "../../Components/MyQuestionsAnswers/MyQuestionsAnswers.component";
 import SideNavigation from "../../Components/sideNavigation/SideNavigation.component";
 import RightContainer from "../../Components/RightContainer/RightContainer.component";
+import IntroductionHome from "../../Components/IntroductionHome/IntroductionHome.component"
 import ValidationComplete from "../../Components/ValidationComplete/ValidationComplete.component"
+
 import styles from "./Components.module.scss";
 import PostAnswer from "../../Components/PostAnswer/PostAnswer.component";
 
@@ -18,7 +20,8 @@ const Components = () => {
       <SideNavigation/>
 
       {/* <ValidationComplete/> */}
-        <PostAnswer/>
+        {/* <PostAnswer/> */}
+        <IntroductionHome/>
         {/* <ArticlesFilterContainer/> */}
         {/* <MyQuestionsAnswers/> */}
         {/* <ArticlesFilter/> */}
