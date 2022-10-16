@@ -1,7 +1,7 @@
 @import "../../StyleSource/variables.scss";
 
-.container {
-    width: 20vw;
+.container{
+    width: 10vw;
     min-width: fit-content;
     height: fit-content;
     padding: 20px;
@@ -15,7 +15,7 @@
 .buttonContainer {
     @include body();
     letter-spacing: 0.5px;
-    padding: 0 35px ;
+    padding: 0 25px ;
     line-height: 50px;
     font-weight: 600;
     border: none;

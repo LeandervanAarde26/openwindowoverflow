@@ -1,0 +1,38 @@
+@import "../../StyleSource/variables.scss";
+
+.container{
+    @include body();
+    background-color: $white;
+    width: fit-content;
+    height: fit-content;
+    min-height: 15vh;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    margin-bottom: 2vh;
+    margin-top: 8vh;
+
+    .inner {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        flex: 1;
+
+        h4{
+            @include headingFour();
+            font-size: 25px;
+            margin-bottom: 1vh;
+            font-weight: 600;
+        }
+
+        p{
+            @include body();
+            font-size: 13px;
+            font-weight: 400;
+            width: 80%;
+        }
+    }
+
+
+
+    }

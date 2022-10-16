@@ -64,6 +64,12 @@
             @include body();
             color: darken($color: $grey, $amount: 30%);
         }
+        .option2 {
+            margin-top: 3%;
+            @include body();
+            color: darken($color: $grey, $amount: 50%);
+            cursor: pointer;
+        }
 
         .reset {
             margin-top: 1%;
