@@ -8,7 +8,7 @@ const IntroductionHome = () => {
         <div className={styles.container}>
             <div className={styles.inner}>
                 <h4>Welcome NAME to Stack Openflow</h4>
-                <p>Thannk you for....</p>
+                <p>Let's get started on your coding Journey for today! Take a look at some of these questions!</p>
             </div>            
         </div>
     );

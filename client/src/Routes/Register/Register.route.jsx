@@ -191,14 +191,11 @@ const Register = () => {
                                 onClick={test}
                             />
 
-
-                            <p className={styles.option}>Already a user on __ ?</p>
-
-                            <Button
+                            {/* <Button
                                 buttonType={"secondary"}
                                 children={"Sign in"}
-                            />
-                            <p className={styles.option}>Already a user on OpenOverlow? <span onClick={SignIn} className={styles.option2}> Sign In</span></p>
+                            /> */}
+                            <p className={styles.option}>Already a user on OpenOverlow? <span onClick={SignIn} className={styles.option2}> <b>Sign In</b></span></p>
 
                             {/* <Button
                                 buttonType={'secondary'}

@@ -6,10 +6,12 @@ import styles from "./QuestionsContainer.module.scss";
 
 /* Components */
 import Preview from '../Preview/Preview.component';
+import IntroductionHome from '../IntroductionHome/IntroductionHome.component';
 
 const QuestionsContainer = () => {
     return (
         <div className={styles.outer}>
+   
             <h3>Questions</h3>
             <div className={styles.container}>
                 <Preview 

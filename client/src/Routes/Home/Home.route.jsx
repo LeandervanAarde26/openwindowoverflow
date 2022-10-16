@@ -11,6 +11,7 @@ import SideNavigation from '../../Components/sideNavigation/SideNavigation.compo
 import QuestionsContainer from '../../Components/QuestionsContainer/QuestionsContainer.component';
 import RightContainer from '../../Components/RightContainer/RightContainer.component';
 import ArticlesContainer from '../../Components/ArticlesContainer/ArticlesContainer.component';
+import IntroductionHome from '../../Components/IntroductionHome/IntroductionHome.component';
 
 const Home = () => {
     const [currentLocation, setCurrentLocation] = useState()
@@ -25,7 +26,10 @@ const Home = () => {
             {
                 pathName.pathname === '/Home'
                 ?
+                    <div>
+                    <IntroductionHome/>
                     <QuestionsContainer />
+                    </div>
                 :
                     pathName.pathname === '/Articles'
                 ?
