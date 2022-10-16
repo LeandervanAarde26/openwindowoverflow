@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /* React */
 import React, { useState, useEffect, useContext } from "react";
 import { Outlet, useNavigate } from "react-router";
@@ -23,15 +23,8 @@ import imageThree from "../../Assets/DefaultProfileImages/Default3.png";
 import imageFour from "../../Assets/DefaultProfileImages/Default4.png";
 import imageFive from "../../Assets/DefaultProfileImages/Default5.png";
 import Default from "../../Assets/DefaultProfileImages/DefaultImage.jpeg";
-=======
-import React, { useState } from 'react';
-import styles from "./Register.module.scss"
-import Input from '../../Components/Input/Input.component';
-import { Outlet, useNavigate } from 'react-router';
-import Button from '../../Components/Button/Button.component';
-import Image from '../../Assets/RegisterImage.png';
-import Login from '../Login/Login.route';
->>>>>>> anchen3
+
+
 
 const defaultValues = {
     username: "",
@@ -197,20 +190,20 @@ const Register = () => {
                                 buttonSize={styles.buttonSize}
                                 onClick={test}
                             />
-<<<<<<< HEAD
+
 
                             <p className={styles.option}>Already a user on __ ?</p>
 
                             <Button
                                 buttonType={"secondary"}
                                 children={"Sign in"}
-=======
-                            <p className={styles.option}>Already a user on OpenOverlow? <span onClick={Login} className={styles.option2}> Sign In</span></p>
+                            />
+                            <p className={styles.option}>Already a user on OpenOverlow? <span onClick={SignIn} className={styles.option2}> Sign In</span></p>
 
                             {/* <Button
                                 buttonType={'secondary'}
                                 children={'Sign in'}
->>>>>>> anchen3
+
                                 buttonSize={styles.secondary}
                                 onClick={SignIn}
                             /> */}
