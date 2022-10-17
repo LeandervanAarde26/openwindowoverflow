@@ -33,16 +33,8 @@ function ContactCard() {
           mike@openwindow.co.za
         </p>
 
-        <div
-          style={{
-            height: "20px",
-            width: "80px",
-            marginLeft: "130px",
-            marginBottom: "50px",
-            marginTop: "40px",
-          }}
-        >
-          <Button buttonType={"black"} children={"Email"} />
+        <div>
+          <a href="https://mail.google.com/mail/u/0/#inbox?compose=new" target="_blank"><Button buttonType={"black"} children={"Email"} /></a>
         </div>
       </div>
     </>
