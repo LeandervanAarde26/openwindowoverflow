@@ -56,14 +56,17 @@ const onChange = (e) => {
                 />
             </div>
 
-            <div className={styles.bottom}>
-                <h6>Did this answer your question? </h6>
+            {
+                props.answered &&                
+                <div className={styles.bottom}>
+                    <h6>Did this answer your question? </h6>
 
-                <Button 
-                    children={"Mark as resolved"} 
-                    buttonType={"primary"} 
-                />
-            </div>
+                    <Button 
+                        children={"Mark as resolved"} 
+                        buttonType={"primary"} 
+                    />
+                </div>
+            }
         </div>
     );
 };
