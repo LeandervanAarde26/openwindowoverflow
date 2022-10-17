@@ -9,11 +9,19 @@ router.post('/api/askquestion', async (req, res) => {
 
     const user = await User.findOne({
         _id: author,
-    }).select(['username']);
+    }).select('username');
+    console.log("🚀 ~ file: QuestionRoutes.js ~ line 13 ~ router.post ~ user", user)
 
     author = user;
 
-    const doc = new Question({title, author, question, code, tags});
+    const answeredUser = await User.findOne({
+        _id: author
+    }).select('username')
+    console.log("🚀 ~ file: QuestionRoutes.js ~ line 20 ~ router.post ~ answeredUser", answeredUser)
+
+    let answeredBy = answeredUser;
+
+    const doc = new Question({title, author, question, code, tags, answeredBy});
 
     const ret = await doc.save();
     res.json(ret);

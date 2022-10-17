@@ -23,9 +23,17 @@ const QuestionsContainer = () => {
 
             data = data.map((x) => {
                 return {...x, timePassed:
-                    Math.round((new Date(today).getTime() - new Date("1-11-2022").getTime() ) / (1000 * 3600 * 24)) 
+                    Math.round((new Date(today).getTime() - new Date(x.postedDate).getTime() ) / (1000 * 3600 * 24)) 
                 }
             });
+
+            data = data.map((x) => {
+                return {...x, askTime:
+                    Math.round((new Date(today).getTime() - new Date(x.postedDate).getTime() ) / (1000 * 3600 * 24)) 
+                }
+            });
+
+            console.log(data)
 
             setQuestions(data);
         })
@@ -55,6 +63,7 @@ const QuestionsContainer = () => {
                             user={i.author.username}
                             question={i.question}
                             timePassed={i.timePassed}
+                            askTime={i.askTime}
                         />
                     )
                 }
