@@ -4,7 +4,7 @@ import SideNavigation from "../../Components/sideNavigation/SideNavigation.compo
 // import Avatar from "@mui/material/Avatar";
 import Button from "../../Components/Button/Button.component";
 import ContactCard from "../../Components/Contact/ContactCard";
-import AnswerBoxComponent from "../../Components/AnswerBox/AnswerBox.component";
+// import AnswerBoxComponent from "../../Components/AnswerBox/AnswerBox.component";
 import RightContainer from "../../Components/RightContainer/RightContainer.component";
 import ArticlesContainer from "../../Components/ArticlesContainer/ArticlesContainer.component";
 import { useState } from "react";
@@ -32,11 +32,11 @@ export default function Contact() {
           </div>
           <h4>Creators</h4>
           <div className={styles.contacts}>
-          <ContactCard contactName={"Anchen Ayres"} contactEmail={"20313208@virtualwindow.co.za"} />
-          <ContactCard contactName={"Cameron Godwin"} contactEmail={"200109@virtualwindow.co.za"} />
-          <ContactCard contactName={"Leander van Aarde"} contactEmail={"200211@virtualwindow.co.za"} />
-          <ContactCard contactName={"Liam Wedge"} contactEmail={"2214443@virtualwindow.co.za"} />
-          <ContactCard contactName={"Vian Du Plessis"} contactEmail={"22132432@virtualwindow.co.za"} />
+            <ContactCard contactName={"Anchen Ayres"} contactEmail={"20313208@virtualwindow.co.za"} />
+            <ContactCard contactName={"Cameron Godwin"} contactEmail={"200109@virtualwindow.co.za"} />
+            <ContactCard contactName={"Leander van Aarde"} contactEmail={"200211@virtualwindow.co.za"} />
+            <ContactCard contactName={"Liam Wedge"} contactEmail={"2214443@virtualwindow.co.za"} />
+            <ContactCard contactName={"Vian Du Plessis"} contactEmail={"22132432@virtualwindow.co.za"} />
           </div>
         </div>
         <RightContainer />
