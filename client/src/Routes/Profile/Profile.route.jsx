@@ -72,7 +72,9 @@ const Profile = () => {
             <div className={styles.container}>
                 <SideNavigation />
                 <ProfileContainer
+                    github={userInfo.githubLink}
                     onClick={handleClick}
+                    userId = {profile.userId}
                     image={userImage}
                     user={userInfo.username}
                     year={userInfo.currentStudyYear}

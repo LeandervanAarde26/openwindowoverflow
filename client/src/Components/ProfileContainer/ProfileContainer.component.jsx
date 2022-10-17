@@ -20,7 +20,10 @@ import Car from "../../Assets/car.jpg";
 /* JSON */
 import Userbadges from "../Badges/userbadges.json";
 
-const ProfileContainer = ({ image, user, year, questions, answers, badges, tags, aboutUser, github, ...otherProps }) => {
+/* Axios */
+import axios from 'axios';
+
+const ProfileContainer = ({ image, user, year, questions, answers, badges, tags, aboutUser, github, userId, ...otherProps }) => {
     const [state, setState] = useState()
     const [editState, setEditState] = useState(false)
     const testerTags = ['html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3', 'html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3']
@@ -37,8 +40,8 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
     const [formValues, setFormValues] = useState({
         username: user,
         currentStudyYear: year,
-        githubLink: 'https://github/com/',
-        userDescription: '',
+        githubLink: github ,
+        userDescription: aboutUser
     })
 
     const { username, currentStudyYear, githubLink, userDescription } = formValues
@@ -56,17 +59,44 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
 
     const updateInformation = () => {
         console.log(formValues)
+
+        const payload = {
+            username: formValues.username,
+            currentStudyYear: formValues.currentStudyYear,
+            userDescription: formValues.userDescription,
+            githubLink: formValues.githubLink,
+            userImage: image
+        }
+
+        axios.patch(`http://localhost:5001/api/edituser/${userId}`, payload)
+            .then(res => {
+                console.log(res)
+                setEditState(prev => !prev)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
+
+    console.log(userId)
 
     return (
         <div className={styles.container}>
             <div className={styles.topContainer} >
-                <div className={styles.profilePhoto} {...otherProps}>
-                    <div className={styles.hoverProfile} >
-                        <p>Choose new profile photo</p>
-                    </div>
-                    <img src={image} />
-                </div>
+                {
+                    editState
+                        ?
+                        <div className={styles.profilePhoto} {...otherProps}>
+                            <div className={styles.hoverProfile} >
+                                <p>Choose new profile photo</p>
+                            </div>
+                            <img src={image} />
+                        </div>
+                        :
+                        <div className={styles.profilePhoto} >
+                            <img src={image} />
+                        </div>
+                }
                 <div className={styles.userIntro}>
                     {
                         editState ?
@@ -146,17 +176,21 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                 }
 
                 <div className={styles.button}>
-                    <Button
-                        buttonType={'github'} />
+                    <a href={github} target="_blank">
+                        <Button
+                            buttonType={'github'} />
+                    </a>
 
                     {
                         editState
                             ?
+
                             <Button buttonType={'primary'}
                                 children={"Update profile"}
                                 id={styles.larger}
                                 onClick={updateInformation}
                             />
+
                             :
                             null
                     }
