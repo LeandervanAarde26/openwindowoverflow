@@ -14,7 +14,7 @@ function ContactCard(props) {
         <p className={styles.address}>{props.contactEmail}</p>
 
         <div>
-          <Button buttonType={"black"} children={"Email"} />
+        <a href="https://mail.google.com/mail/u/0/#inbox?compose=new" target="_blank"><Button buttonType={"black"} children={"Email"} /></a>
         </div>
       </div>
     </>
