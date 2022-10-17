@@ -89,7 +89,17 @@ const Preview = (props) => {
                         alt="" 
                     />
                     <p className={styles.name}>
-                        <strong>{props.user}</strong>
+                        <strong>{props.user}</strong>&nbsp;asked question {
+                        props.askTime > 365 && props.askTime < (365 * 2)
+                        ? Math.round(props.askTime/365) + ' Year ago'
+                        : props.askTime == 0 || props.askTime == -0 && props.askTime != ''
+                        ? 'Today'
+                        : props.askTime == 1
+                        ? props.askTime + ' Day ago'
+                        : props.askTime > (365 * 2)
+                        ? Math.round(props.askTime/365) + ' Years ago'
+                        : props.askTime + ' Days ago'
+                    }
                     </p>
                 </div>
         
@@ -97,17 +107,22 @@ const Preview = (props) => {
                     {props.question}
                 </p>
                 <p className={styles.answeringUser}> 
-                    <strong>{props.user}</strong>&nbsp;answered question  {
-                        props.timePassed > 365 && props.timePassed < (365 * 2)
-                        ? Math.round(props.timePassed/365) + ' Year ago'
-                        : props.timePassed == 0
-                        ? 'Today'
-                        : props.timePassed == 1
-                        ? props.timePassed + ' Day ago'
-                        : props.timePassed > (365 * 2)
-                        ? Math.round(props.timePassed/365) + ' Years ago'
-                        : props.timePassed + ' Days ago'
-                    }
+                    {
+                        props.resolved &&
+                        <>
+                            <strong>{props.user}</strong>&nbsp;answered question  {
+                                props.timePassed > 365 && props.timePassed < (365 * 2)
+                                ? Math.round(props.timePassed/365) + ' Year ago'
+                                : props.timePassed == 0 || props.timePassed == -0
+                                ? 'Today'
+                                : props.timePassed == 1
+                                ? props.timePassed + ' Day ago'
+                                : props.timePassed > (365 * 2)
+                                ? Math.round(props.timePassed/365) + ' Years ago'
+                                : props.timePassed + ' Days ago'
+                            }
+                        </>
+                }
                 </p>
             </div>
 
