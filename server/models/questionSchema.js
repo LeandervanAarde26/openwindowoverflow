@@ -13,10 +13,10 @@ const question = mongoose.Schema({
         type: Boolean,
         default: false
     },
-    author:{type: mongoose.Schema.Types.ObjectId, ref: 'users'},
+    author:{type: Object},
     postedDate: {
         type: Date,
-        default: Date.now()/1000
+        default: Date.now()
     }, 
     question:{
         type: String,

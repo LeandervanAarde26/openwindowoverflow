@@ -101,7 +101,7 @@ const AskQuestion = () => {
 
         console.log(data)
 
-        axios.post('http://localhost:5001/api/test', data)
+        axios.post('http://localhost:5001/api/askquestion', data)
             .then(res => {
                 console.log(res);
             })

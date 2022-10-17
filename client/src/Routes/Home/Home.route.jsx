@@ -18,8 +18,6 @@ const Home = () => {
     const pathName = useLocation();
 
     return (
-
-        
         <div className={styles.container}>
             <SideNavigation />
             <div className={styles.middle}>

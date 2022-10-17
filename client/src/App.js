@@ -37,34 +37,34 @@ function App() {
                 <TransitionGroup style={{ display: "flex", flex: 1 }}>
                 <CSSTransition key={location.key} classNames="slide" timeout={600}>
                     <Routes location={location}>
-                    <Route path="/" index element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/uservalidation" element={<ValidateUser/>} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/profile/:username/:userId" element={<Profile />} />
-                    <Route path="/question" element={<Question />} />
-                    <Route path="/question/ask" element={<AskQuestion />} />
-                    <Route path="/choosetags" element={<FollowTags />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/admin" element={<Admin />} />
+                        <Route path="/" index element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/uservalidation" element={<ValidateUser/>} />
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/profile/:username/:userId" element={<Profile />} />
+                        <Route path="/question" element={<Question />} />
+                        <Route path="/question/ask" element={<AskQuestion />} />
+                        <Route path="/choosetags" element={<FollowTags />} />
+                        <Route path="/contact" element={<Contact />} />
+                        <Route path="/admin" element={<Admin />} />
                     {/* INSERT ROUTES HERE */}
                     </Routes>
                 </CSSTransition>
                 </TransitionGroup>
             ) : (
                 <Routes location={location}>
-                <Route path="/" index element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/auth" element={<ValidateUser/>} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/articles" element={<Home />} />
-                <Route path="/test" element={<Components />} />
-                <Route path="/profile/:userId" element={<Profile />} />
-                <Route path="/question" element={<Question />} />
-                <Route path="/question/ask" element={<AskQuestion />} />
-                <Route path="/choosetags" element={<FollowTags />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/admin" element={<Admin />} />
+                    <Route path="/" index element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/auth" element={<ValidateUser/>} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/articles" element={<Home />} />
+                    <Route path="/test" element={<Components />} />
+                    <Route path="/profile/:userId" element={<Profile />} />
+                    <Route path="/question" element={<Question />} />
+                    <Route path="/question/ask" element={<AskQuestion />} />
+                    <Route path="/choosetags" element={<FollowTags />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/admin" element={<Admin />} />
                 {/* INSERT ROUTES HERE */}
                 </Routes>
             )}

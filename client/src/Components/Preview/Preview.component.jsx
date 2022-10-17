@@ -11,29 +11,35 @@ import ic_correct from '../../Assets/Icons/ic_correct.svg';
 import ic_star from '../../Assets/Icons/ic_star.svg';
 import test from '../../Assets/car.jpg';
 
-const Preview = (props, { votes, answers, resolved, children, }) => {
-    const testerTags = ['html', 'scss', 'scss','scss','css', 'React', '1', '2', '3']
-    const visuals = testerTags.map((tag, index) => <Tags key={index} title={tag} />)
-    const user = "Leander van Aarde"
+const Preview = (props) => {
     const answeringUser = "Armand Pretorius"
-    const question = "This is my question description because I have no idea what Im doing and can someone please help me with all of this because I am so lost, please just tell me what I need to do and where I need to go this coding stuff is very difficult and I struggle, I am currently a first year with no experience in this and I am fresh out of hight school, so please dont do this. This entire question was structured so badly and im sorry"
+ 
+    const testClick = () => {
+        console.log('hey')
+    }
+
+    const testClick2 = () => {
+        console.log('sfhey')
+    }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container}
+            onClick={testClick2}
+        >
             <div className={styles.left}>
                 <div>
                     <Icon
                         icon={ic_votes}
                     />
 
-                    <h5>{votes} votes</h5>
+                    <h5>{props.votes} votes</h5>
                 </div>
                 <div>
                     <Icon
                         icon={ic_answers}
                     />
 
-                    <h5>{answers} answers</h5>
+                    <h5>{props.answers} answers</h5>
                 </div>
                 {
                     props.resolved
@@ -66,7 +72,15 @@ const Preview = (props, { votes, answers, resolved, children, }) => {
                 </div>
                 
                 <div className={styles.tagsContainer}>
-                    {visuals}
+                    {
+                        props.tags.map((i, index) => 
+                            <Tags 
+                                key={index} 
+                                title={i}
+                                onClick={testClick}
+                            />
+                        )
+                    }
                 </div>
 
                 <div className={styles.profileContainer}>
@@ -74,11 +88,27 @@ const Preview = (props, { votes, answers, resolved, children, }) => {
                         src={test}
                         alt="" 
                     />
-                    <p className={styles.name}><strong>{user}</strong>&nbsp;asked this 5 hours ago</p>
+                    <p className={styles.name}>
+                        <strong>{props.user}</strong>
+                    </p>
                 </div>
         
-                <p className={styles.description}>{question}</p>
-                <p className={styles.answeringUser}> <strong>{answeringUser}</strong>&nbsp;answered question 5 hours ago</p>
+                <p className={styles.description}>
+                    {props.question}
+                </p>
+                <p className={styles.answeringUser}> 
+                    <strong>{props.user}</strong>&nbsp;answered question  {
+                        props.timePassed > 365 && props.timePassed < (365 * 2)
+                        ? Math.round(props.timePassed/365) + ' Year ago'
+                        : props.timePassed == 0
+                        ? 'Today'
+                        : props.timePassed == 1
+                        ? props.timePassed + ' Day ago'
+                        : props.timePassed > (365 * 2)
+                        ? Math.round(props.timePassed/365) + ' Years ago'
+                        : props.timePassed + ' Days ago'
+                    }
+                </p>
             </div>
 
         </div>
