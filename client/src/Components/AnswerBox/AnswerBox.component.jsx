@@ -14,13 +14,11 @@ import Button from "../Button/Button.component";
 import ic_arrow from "../../Assets/Icons/ic_arrow.svg";
 
 const AnswerBoxComponent = (props) => {
-  const [code, setCode] = useState(`
-    const [code, setCode] = useState('');
-    const onChange = (e) => {
-        setCode(e.target.value);
-        //This is just a sample to show what it will look like
-    }
-    `);
+  const [code, setCode] = useState(`const [code, setCode] = useState('');
+const onChange = (e) => {
+    setCode(e.target.value);
+    //This is just a sample to show what it will look like
+}`);
 
   const onChange = (e) => {
     setCode(e.target.value);

@@ -15,7 +15,7 @@ import Button from '../../Components/Button/Button.component';
 const AskQuestion = () => {
     const [tags, setTags] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5001/api/getalltags')
+        axios.get('http://localhost:5001/api/askquestion')
         .then(res => {
             setTags(res.data);
             console.log(res);

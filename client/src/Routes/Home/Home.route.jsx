@@ -11,27 +11,28 @@ import SideNavigation from '../../Components/sideNavigation/SideNavigation.compo
 import QuestionsContainer from '../../Components/QuestionsContainer/QuestionsContainer.component';
 import RightContainer from '../../Components/RightContainer/RightContainer.component';
 import ArticlesContainer from '../../Components/ArticlesContainer/ArticlesContainer.component';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const Home = () => {
-    const [currentLocation, setCurrentLocation] = useState()
     const pathName = useLocation();
 
     return (
         <div className={styles.container}>
             <SideNavigation />
-            
-            {
-                pathName.pathname === '/Home'
-                ?
-                    <QuestionsContainer />
-                :
-                    pathName.pathname === '/Articles'
-                ?
-                    <ArticlesContainer />
-                :
-                    null
-            }
-
+            <div className={styles.middle}>
+                {
+                    pathName.pathname === '/home'
+                    ?
+                        <QuestionsContainer />
+                    :
+                        pathName.pathname === '/articles'
+                    ?
+                        <ArticlesContainer />
+                    :
+                        null
+                }
+            </div>
             <RightContainer/>
         </div>
     );

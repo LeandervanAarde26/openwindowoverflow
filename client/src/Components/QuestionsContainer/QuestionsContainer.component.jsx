@@ -8,6 +8,16 @@ import styles from "./QuestionsContainer.module.scss";
 import Preview from '../Preview/Preview.component';
 
 const QuestionsContainer = () => {
+    useEffect(() => {
+        axios.get('http://localhost:5001/api/route')
+        .then(res => {
+
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }, []);
+
     return (
         <div className={styles.outer}>
             <h3>Questions</h3>
