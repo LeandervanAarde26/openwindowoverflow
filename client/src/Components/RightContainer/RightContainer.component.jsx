@@ -9,9 +9,11 @@ import styles from "./RightContainer.module.scss"
 import Button from '../Button/Button.component';
 import AdSenseContainer from '../AdSenseContainer/AdSenseContainer.component';
 import FollowedTags from '../FollowedTagsComponent/FollowedTags.component';
+import TopRatedQuestion from '../TopRatedQuestion/TopRatedQuestion.component';
 
 /* Icons/Images */
 import Discord from "../../Assets/Discord.png";
+
 
 const RightContainer = () => {
     const location = useLocation();
@@ -27,10 +29,15 @@ const RightContainer = () => {
                     <FollowedTags />
             }
             {/* End followed Tags Component Here */}
-            <div className={styles.buttonContainer}>
-                <Button
-                    buttonType={'discord'}
-                />
+            <Button
+                buttonType={'discord'}
+            />
+            <div className={styles.topRatedQuestions}>
+                <h4>Top rated Questions...</h4>
+                <br/>
+                <TopRatedQuestion />
+                <TopRatedQuestion />
+                <TopRatedQuestion />
             </div>
 
             {/* <AdSenseContainer /> */}

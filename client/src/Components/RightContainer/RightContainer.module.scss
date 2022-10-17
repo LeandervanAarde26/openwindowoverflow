@@ -19,6 +19,25 @@
     }
 }
 
+
+    #discordButton {
+        margin-left: 2%;
+        margin-top: 2%;
+        width: 100%;
+
+        img {
+            margin-left: -30%;
+        }
+    }
+}
+
+.topRatedQuestions {
+    flex-direction: column;
+    font-weight: 200;
+    width: 100%;
+    height: 45vh;
+}
+
 .AdContainer {
     width: 100%;
     height: 10px;
@@ -27,6 +46,6 @@
 
 @media only screen and (max-width: 700px) {
     .container {
-       display: none;
+        display: none;
     }
 }
