@@ -1,5 +1,9 @@
 [
-   
+    {
+        "title": "Example Title",
+        "badgeImage": "ExampleImage.png",
+        "badgeDescription": "Example Description."
+    },
     {
         "title": "Murmurer",
         "badgeImage": "level1.png",
@@ -21,18 +25,84 @@
         "badgeDescription": "Post and answer at least 20 tickets."
     },
     {
-        "title": "Lightning Idea",
+        "title": "Chatterbox",
         "badgeImage": "level5.png",
-        "badgeDescription": "Respond to a ticket in no longer than 20 minutes of it's posted time."
+        "badgeDescription": "Post and answer at least 25 tickets."
     },
     {
-        "title": "Lightning Idea",
+        "title": "Loud Mouth",
         "badgeImage": "level6.png",
+        "badgeDescription": "Post and answer at least 35 tickets."
+    },
+    {
+        "title": "Screamer",
+        "badgeImage": "level7.png",
+        "badgeDescription": "Post and answer at least 40 tickets."
+    },
+    {
+        "title": "Know-it-all",
+        "badgeImage": "level8.png",
+        "badgeDescription": "Post and answer at least 50 tickets."
+    },
+    {
+        "title": "Response Guru",
+        "badgeImage": "level9.png",
+        "badgeDescription": "Post and answer at least 70 tickets."
+    },
+    {
+        "title": "Bug Finder",
+        "badgeImage": "badgebug.png",
+        "badgeDescription": "Solve at least 10 'bug related' tickets."
+    },
+    {
+        "title": "Security Defender",
+        "badgeImage": "badgefox.png",
+        "badgeDescription": "Solve any 'security' related ticket."
+    },
+    {
+        "title": "Computer Tamer",
+        "badgeImage": "badgehappypc.png",
+        "badgeDescription": "Solve any 'crash' related ticket."
+    },
+    {
+        "title": "Lightning Ideas",
+        "badgeImage": "badgeidea.png",
         "badgeDescription": "Respond to a ticket in no longer than 20 minutes of it's posted time."
     },
     {
-        "title": "Lightning Idea",
-        "badgeImage": "level7.png",
-        "badgeDescription": "Respond to a ticket in no longer than 20 minutes of it's posted time."
+        "title": "Project Manager",
+        "badgeImage": "badgemultiscreen.png",
+        "badgeDescription": "Suggest a solution that solves a 'group project' related ticket."
+    },
+    {
+        "title": "Networker",
+        "badgeImage": "badgenetwork.png",
+        "badgeDescription": "Solve at lest 5 tickets realted to any connection based problem."
+    },
+    {
+        "title": "Phone App Slinger",
+        "badgeImage": "badgephoneapp.png",
+        "badgeDescription": "Solve any 10 iOS, Android, Kotlin, XTML, Swift or any other phone app related tickets."
+    },
+    {
+        "title": "Book-Bot",
+        "badgeImage": "badgestudybot.png",
+        "badgeDescription": "Resolve at least 50 tickets."
+    },
+    {
+        "title": "Syntax Genius",
+        "badgeImage": "badgesyntax.png",
+        "badgeDescription": "Solve 20 syntax issues found in tickets."
+    },
+    {
+        "title": "Wireframer",
+        "badgeImage": "badgewireframe.png",
+        "badgeDescription": "Correct 25 CSS, SCSS or any other layout/sty;e related tickets."
+    },
+    {
+        "title": "Team Player",
+        "badgeImage": "badgeteamwork.png",
+        "badgeDescription": "Solve any 15 tickets from the same year as yourself."
     }
 ]
+

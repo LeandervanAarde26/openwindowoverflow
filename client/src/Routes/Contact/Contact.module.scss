@@ -17,6 +17,12 @@
         }
     }
 
+    .contacts{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
     &__rightContent {
         padding: 10px;
         min-width: fit-content;
@@ -24,4 +30,5 @@
         flex-direction: column;
         gap: 20px;
     }
+
 }
