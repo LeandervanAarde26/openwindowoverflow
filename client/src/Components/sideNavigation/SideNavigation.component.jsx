@@ -13,18 +13,20 @@ import NavigationButton from "../SideNavigationButtons/NavigationButton.componen
 const SideNavigation = () => {
     const [active, setActive] = useState(null);
     const categories = [
-        "Home",
+        "home",
         "1st year",
         "2nd year",
         "3rd year",
-        "Honors",
-        "Contact",
-        "Articles",
-        "Admin",
+        "honors",
+        "contact",
+        "articles",
+        "admin",
     ];
 
+    console.log(setActive)
+
     const navigationButton = categories.map((i) =>
-        i === "Contact" || i === "Articles" || i === "Home" || i === "Admin" 
+        i === "contact" || i === "articles" || i === "home" || i === "admin" 
         ? 
             (
                 <NavLink to={`/${i}`}>
