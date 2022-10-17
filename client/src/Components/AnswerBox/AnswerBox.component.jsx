@@ -57,7 +57,7 @@ const onChange = (e) => {
             </div>
 
             {
-                props.answered &&                
+                !props.answered &&                
                 <div className={styles.bottom}>
                     <h6>Did this answer your question? </h6>
 
