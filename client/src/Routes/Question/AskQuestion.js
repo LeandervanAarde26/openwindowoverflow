@@ -20,7 +20,7 @@ const AskQuestion = () => {
     const [image, setImage] = useState(null)
     const [fileList, setFileList] = useState();
     useEffect(() => {
-        axios.get('http://localhost:5001/api/askquestion')
+        axios.get('http://localhost:5001/api/getalltags')
         .then(res => {
             setTags(res.data);
             console.log(res);
