@@ -7,31 +7,46 @@ import styles from "./IndividualQuestion.module.scss";
 /* Components */
 import Icon from '../Icon/Icon';
 import RightContainer from '../RightContainer/RightContainer.component';
+import CodePreview from '../CodePreview/CodePreview.component';
 
 /* Icons/Images */
 import ic_arrow from "../../Assets/Icons/ic_arrow.svg"
+import tester from "../../Assets/code.png"
 
-const IndividualQuestion = ({children}) => {
+const IndividualQuestion = ({ votes, title, author, dt, description, cd, image, }) => {
+
     return (
-        <div className={styles.container}>
-            <div className={styles.voting}>
-                <Icon
-                    icon={ic_arrow}
-                />
-                <h5>12</h5>
-                <Icon
-                    icon={ic_arrow}
-                />
+        <>
+            <div className={styles.container}>
+                <div className={styles.inner}>
+                    <div className={styles.voting}>
+                        <Icon
+                            icon={ic_arrow}
+                        />
+                        <h5>{votes}</h5>
+                        <Icon
+                            icon={ic_arrow}
+                        />
+                    </div>
+                    <div className={styles.question}>
+                        <h3>{title}</h3>
+                        <p className={styles.userInformation}>{author}</p>
+                        <p className={styles.userInformation}>Asked {dt}</p>
+                        <p className={styles.description}>
+                            {description}
+                        </p>
+                    </div>
+                </div>
+                <div className={styles.code}>
+                    <CodePreview children={cd} />
+
+                </div>
+                <div className={styles.imageContainer}>
+                    <img src={image} />
+                </div>
             </div>
-            <div className={styles.question}>
-                <h3>How to use the JQuery something function correctly something something somethign</h3>
-                <p className={styles.userInformation}>Leander van Aarde</p>
-                <p className={styles.userInformation}>Asked 29 October 2022 at 12:19</p>
-                <p className={styles.description}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum blandit in odio elementum. Enim amet lorem tellus ultricies egestas etiam in. Dictumst accumsan nec sed ut felis diam gravida nam sed. Porta sociis augue rhoncus ante porta cursus nulla. Habitasse et scelerisque vitae vestibulum elit tortor. Imperdiet viverra mauris, facilisi sed leo congue sed. Gravida ut aliquet eget viverra sed sem quis pellentesque.
-                </p>
-            </div>
-        </div>
+
+        </>
     );
 };
 

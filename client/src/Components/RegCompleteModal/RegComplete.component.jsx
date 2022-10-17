@@ -12,7 +12,7 @@ import Button from "../Button/Button.component";
 import regImg from "../../Assets/remotework.png";
 
 const RegComplete = ({ name, email }) => {
-    const navigate = useNavigate();
+
     return (
         <div className={styles.modalContainer}>
             <div className={styles.modalBody}>

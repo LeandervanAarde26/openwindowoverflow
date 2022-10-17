@@ -9,24 +9,21 @@ import Button from '../Button/Button.component'
 // import Icon from '../Icon/Icon';
 // import bold from "../../Assets/Icons/bold.png";
 
-const PostAnswer = () => {
+const PostAnswer = ({code, answer, handleClick, ...otherProps}) => {
     return (
         <div className={styles.container}>
+      
+            <h5>Your Answer</h5>
             <div className={styles.areaContainer}>
-                <h5>Your answer</h5>
-    
-                <div className={styles.icons}>
-                    {/* <Icon 
-                icon={bold}
-                /> */}
-                </div>
-                <textarea></textarea>
+                <textarea className={styles.textarea}  placeholder='enter answer' name={'answer'} value={answer} {...otherProps}></textarea>
+                <textarea className={styles.codearea} placeholder='enter code here' name={'answerCode'} value={code} {...otherProps}></textarea>
             </div>
 
             <div className={styles.buttonContainer}>
                 <Button
                     buttonType={'primary'}
                     children={"Post answer"}
+                    onClick={handleClick}
                 />
             </div>
         </div>

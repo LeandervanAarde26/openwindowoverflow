@@ -112,22 +112,22 @@ const Login = () => {
                     clickable 
                     ?
                         <>
-                            <p className={styles.reset}>Forgot password? <br /> <span>Click here to reset</span></p>
                             <Button
                                 buttonType={'black'}
                                 children={"Sign In"}
                                 buttonSize={styles.buttonSize}
                                 onClick={signInUser}
                             />
+                            <p className={styles.reset}>Forgot password</p>
 
-                            <p className={styles.option}>Don't have an Account?</p>
+                            <p className={styles.option}>Don't have an Account?<span onClick={Register} className={styles.option2}> Sign Up</span></p>
 
-                            <Button
+                            {/* <Button
                                 buttonType={'secondary'}
                                 children={'Sign Up'}
                                 buttonSize={styles.secondary}
                                 onClick={Register}
-                            />
+                            /> */}
                         </>
                     :
                         null

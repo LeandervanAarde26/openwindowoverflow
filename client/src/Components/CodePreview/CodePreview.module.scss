@@ -1,0 +1,10 @@
+@import "../../StyleSource/variables.scss";
+
+.code {
+    border: 1px solid $orange;
+
+    pre {
+        width: 100%;
+        margin: 0 !important;
+    }
+}

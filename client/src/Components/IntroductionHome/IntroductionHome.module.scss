@@ -1,0 +1,37 @@
+@import "../../StyleSource/variables.scss";
+
+.container{
+    background-color: $white;
+    // width: fit-content;
+    height: fit-content;
+    // min-height: 15vh;
+    // background-color: red;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    margin-top: 1vh;
+    flex: 1;
+
+    .inner {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        flex: 1;
+
+        h4{
+            @include headingFour();
+            font-size: 25px;
+            margin-bottom: 10px;
+            font-weight: bolder;
+        }
+
+        p{
+            @include body();
+            font-size: 13px;
+            font-weight: 400;
+        }
+    }
+
+
+
+    }

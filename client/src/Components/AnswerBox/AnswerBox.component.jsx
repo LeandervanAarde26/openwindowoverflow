@@ -12,6 +12,7 @@ import Button from "../Button/Button.component";
 
 /* Icons/Images */
 import ic_arrow from "../../Assets/Icons/ic_arrow.svg";
+import CodePreview from "../CodePreview/CodePreview.component";
 
 const AnswerBoxComponent = (props) => {
   const [code, setCode] = useState(`const [code, setCode] = useState('');
@@ -46,7 +47,8 @@ const onChange = (e) => {
       </div>
 
       <div className={styles.code}>
-        <SyntaxHighlighter language="javascript">{code}</SyntaxHighlighter>
+          <CodePreview
+          children={code}/>
       </div>
 
       <div className={styles.bottom}>

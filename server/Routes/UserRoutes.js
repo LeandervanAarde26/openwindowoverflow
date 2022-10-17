@@ -34,18 +34,6 @@ router.post('/api/loginuser', async (req, res) => {
         return res.status(400).json({msg: "The user account is not verified!"})
     }
 
-    // const getFunction = () =>{
-    //     let Mike = "Skelm"
-    //     let Bronwyn = "Bestie";
-    //    // BRONWYN PLEASE NOTICE THAT EVERYONE NOW KNOWS THAT WE ARE BESTIES!
-    //     let Reinhardt = "Sexy"
-    //     let Wiaan = "Shirtless"
-    
-    //     if(Wiaan === "Shirtless"){
-    //         return console.log("I saw Wiaan Shirtless")
-    //       }
-    
-    // }
 
     // console.log(user.activeAccount)
     res.status(200).json(user)

@@ -3,4 +3,11 @@
 .container {
     display: flex;
     flex: 1;
+
+    .center{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }

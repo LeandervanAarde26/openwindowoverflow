@@ -1,3 +1,4 @@
+
 /* React */
 import React, { useState, useEffect, useContext } from "react";
 import { Outlet, useNavigate } from "react-router";
@@ -22,6 +23,8 @@ import imageThree from "../../Assets/DefaultProfileImages/Default3.png";
 import imageFour from "../../Assets/DefaultProfileImages/Default4.png";
 import imageFive from "../../Assets/DefaultProfileImages/Default5.png";
 import Default from "../../Assets/DefaultProfileImages/DefaultImage.jpeg";
+
+
 
 const defaultValues = {
     username: "",
@@ -188,14 +191,19 @@ const Register = () => {
                                 onClick={test}
                             />
 
-                            <p className={styles.option}>Already a user on __ ?</p>
-
-                            <Button
+                            {/* <Button
                                 buttonType={"secondary"}
                                 children={"Sign in"}
+                            /> */}
+                            <p className={styles.option}>Already a user on OpenOverlow? <span onClick={SignIn} className={styles.option2}> <b>Sign In</b></span></p>
+
+                            {/* <Button
+                                buttonType={'secondary'}
+                                children={'Sign in'}
+
                                 buttonSize={styles.secondary}
                                 onClick={SignIn}
-                            />
+                            /> */}
                         </>
                     : 
                         null

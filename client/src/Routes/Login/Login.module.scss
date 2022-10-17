@@ -30,15 +30,16 @@
         }
 
         .reset{
-            margin-top: 1%;
+            margin-top: 2%;
             margin-bottom: 3%;
             @include body();
             color: darken($color: $grey, $amount: 50%);
+            cursor: pointer;
             
-            span{
-                color: blue;
-                cursor: pointer;
-            }
+            // span{
+            //     color: blue;
+            //     cursor: pointer;
+            // }
         }
 
         #err {
@@ -53,9 +54,14 @@
 
         .option {
             margin-top: 3%;
-            margin-bottom: 3%;
             @include body();
             color: darken($color: $grey, $amount: 30%);
+        }
+        .option2 {
+            margin-top: 3%;
+            @include body();
+            color: darken($color: $grey, $amount: 50%);
+            cursor: pointer;
         }
 
         .heading {

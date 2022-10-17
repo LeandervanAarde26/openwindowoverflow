@@ -8,7 +8,7 @@ import styles from "./CommentsContainer.module.scss";
 import Comment from '../Comment/Comment.component';
 import Button from '../Button/Button.component';
 
-const CommentsContainer = ({children, loadMore,}) => {
+const CommentsContainer = ({ children, loadMore, commentEnd }) => {
     return (
         <div className={styles.outer}>
             <h4>Comments</h4>
@@ -16,11 +16,21 @@ const CommentsContainer = ({children, loadMore,}) => {
                 {children}
 
                 <div className={styles.buttonContainer}>
-                    <Button
-                        buttonType={"outline"}
-                        children={"View more comments"} 
-                        onClick={loadMore}
-                    />
+                    {
+                        commentEnd
+                            ?
+                            <Button
+                            buttonType={"primary"}
+                            children={"View more comments"}
+                            onClick={loadMore}
+                        />
+                            :
+                            <Button
+                                buttonType={"outline"}
+                                children={"View more comments"}
+                                onClick={loadMore}
+                            />
+                    }
                 </div>
             </div>
         </div>
