@@ -4,8 +4,8 @@ import Button from '../Button/Button.component';
 import Discord from "../../Assets/Discord.png";
 import AdSenseContainer from '../AdSenseContainer/AdSenseContainer.component';
 import FollowedTags from '../FollowedTagsComponent/FollowedTags.component';
-import TopRatedQuestion from '../TopRatedQuestion/TopRatedQuestion.component';
 import { useLocation } from 'react-router';
+import TopRatedQuestion from '../TopRatedQuestion/TopRatedQuestion.component';
 const RightContainer = () => {
     const location = useLocation();
 
