@@ -17,11 +17,13 @@ const SideNavigation = () => {
         "1st year",
         "2nd year",
         "3rd year",
-        "Honors",
+        "honors",
         "contact",
         "articles",
         "admin",
     ];
+
+    console.log(setActive)
 
     const navigationButton = categories.map((i) =>
         i === "contact" || i === "articles" || i === "home" || i === "admin" 
