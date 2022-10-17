@@ -1,5 +1,5 @@
 /* React */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 /* STyling */
 import styles from "./ProfileContainer.module.scss";
@@ -17,6 +17,9 @@ import Input from "../Input/Input.component"
 import Github from "../../Assets/Github.png";
 import Car from "../../Assets/car.jpg";
 
+/* Context */
+import { RegisterContext } from '../../Contexts/Register.context';
+
 /* JSON */
 import Userbadges from "../Badges/userbadges.json";
 
@@ -24,6 +27,7 @@ import Userbadges from "../Badges/userbadges.json";
 import axios from 'axios';
 
 const ProfileContainer = ({ image, user, year, questions, answers, badges, tags, aboutUser, github, userId, ...otherProps }) => {
+    const { currentUser , setCurrentUser } = useContext(RegisterContext);
     const [state, setState] = useState()
     const [editState, setEditState] = useState(false)
     const testerTags = ['html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3', 'html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3']
@@ -72,6 +76,7 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
             .then(res => {
                 console.log(res)
                 setEditState(prev => !prev)
+                setCurrentUser(userId)
             })
             .catch(err => {
                 console.log(err)

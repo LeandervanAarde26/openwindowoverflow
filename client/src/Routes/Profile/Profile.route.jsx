@@ -1,5 +1,5 @@
 /* React */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
 
@@ -21,6 +21,10 @@ import imageFour from "../../Assets/DefaultProfileImages/Default4.png";
 import imageFive from "../../Assets/DefaultProfileImages/Default5.png";
 import EditProfileImage from '../../Components/EditProfileImage/EditProfileImage.component';
 
+/* Context */
+import { RegisterContext } from '../../Contexts/Register.context';
+
+
 // http://localhost:5001/api/individualuser/:
 const Profile = () => {
     const profile = useParams()
@@ -28,6 +32,7 @@ const Profile = () => {
     const [userImage, setUserImage] = useState()
     const [busy, setBusy] = useState(true);
     const [openModal, setOpenModal] = useState(false);
+    const { currentUser , setCurrentUser } = useContext(RegisterContext);
     const defaultImageArray = [
         imageOne,
         imageTwo,
@@ -52,12 +57,11 @@ const Profile = () => {
                 setUserInfo(res.data)
                 setUserImage(res.data.userImage)
                 setBusy(false)
-    
             })
             .catch(err => {
                 console.log(err)
             })
-    }, []);
+    }, [currentUser]);
 
     const cancelUpdate = () =>{
         setOpenModal(prev => !prev)
