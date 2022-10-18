@@ -11,8 +11,6 @@ const TopRatedQuestion = () => {
             {/* Majority of content is be inserted dynamically and adjusted, the following
             is dummy place holder, to display in the same positions p tag content
             must be replaced */}
-
-
             <div className={styles.votes}>
 
                 <div className={styles.choice}>

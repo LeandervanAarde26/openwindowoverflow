@@ -7,11 +7,16 @@ const router = express();
 router.post('/api/askquestion', async (req, res) => {
     let {title, author, question, code, tags} = req.body;
 
+    // Find the details of the user that asked the question
     const user = await User.findOne({
         _id: author,
     }).select('username');
     console.log("🚀 ~ file: QuestionRoutes.js ~ line 13 ~ router.post ~ user", user)
 
+    // Author set to object of {
+    // _id: "user_id"
+    // username: "username"
+    //}
     author = user;
 
     const answeredUser = await User.findOne({
@@ -32,6 +37,13 @@ router.get('/api/questions', async (req, res) => {
     res.json(questions);
 });
 
-// router.get('.')
+router.get('/api/question/:id', async (req, res) => {
+    let id = req.params.id;
+
+    const question = await Question.findOne({
+        _id: id
+    })
+    console.log(question)
+})
 
 module.exports = router; 

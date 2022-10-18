@@ -1,5 +1,6 @@
 /* React */
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 
 /* Styling */
 import styles from "./Question.module.scss";
@@ -13,6 +14,7 @@ import RightContainer from '../../Components/RightContainer/RightContainer.compo
 import SideNavigation from '../../Components/sideNavigation/SideNavigation.component';
 import tester from "../../Assets/code.png"
 import AnswerBoxComponent from '../../Components/AnswerBox/AnswerBox.component';
+import axios from 'axios';
 
 // Default form values for the answer
 const defaultFormValues = {
@@ -21,6 +23,23 @@ const defaultFormValues = {
 }
 
 const Question = () => {
+    const questionId = useParams();
+
+    useEffect(() => {
+        let val = sessionStorage.getItem("currentUser")
+        console.log("🚀 ~ file: Question.component.jsx ~ line 30 ~ useEffect ~ val", val)
+        axios.get('http://localhost:5001/api/question/' + questionId.questionId)
+        .then(res => {
+            console.log(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }, []);
+
+    console.log("🚀 ~ file: Question.component.jsx ~ line 26 ~ Question ~ questionId", questionId)    
+
+
     const [def, setDef] = useState()
     const [formValues, setFormValues] = useState(defaultFormValues);
     const {answer, answerCode} = formValues
@@ -84,14 +103,28 @@ const Question = () => {
                     cd={code}
                     image={tester}
                 />
-                <CommentsContainer children={def} loadMore={loadMoreComments}  />
-                <AnswerBoxComponent/>
-                <AnswerBoxComponent/>
-                <PostAnswer onChange={handleChange} handleClick = {handleClick}/>
+
+                <div className={styles.comments}>
+                    <CommentsContainer 
+                        children={def} 
+                        loadMore={loadMoreComments}  
+                    />
+                </div>
+
+                <div className={styles.answers}>
+                    <AnswerBoxComponent/>
+                    <AnswerBoxComponent/>
+                </div>
+
+                <div className={styles.postAnswer}>
+                    <PostAnswer 
+                        onChange={handleChange} 
+                        handleClick={handleClick}
+                    />
+                </div>
             </div>
 
             <RightContainer />
-
         </div>
     );
 };

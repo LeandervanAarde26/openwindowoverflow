@@ -42,11 +42,12 @@ function App() {
                         <Route path="/uservalidation" element={<ValidateUser/>} />
                         <Route path="/home" element={<Home />} />
                         <Route path="/profile/:username/:userId" element={<Profile />} />
-                        <Route path="/question" element={<Question />} />
+                        <Route path="/question/:questionId" element={<Question />} />
                         <Route path="/question/ask" element={<AskQuestion />} />
                         <Route path="/choosetags" element={<FollowTags />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/admin" element={<Admin />} />
+                        <Route path="/articles" element={<Home />} />
                     {/* INSERT ROUTES HERE */}
                     </Routes>
                 </CSSTransition>
@@ -60,7 +61,7 @@ function App() {
                     <Route path="/articles" element={<Home />} />
                     <Route path="/test" element={<Components />} />
                     <Route path="/profile/:userId" element={<Profile />} />
-                    <Route path="/question" element={<Question />} />
+                    <Route path="/question/:questionId" element={<Question />} />
                     <Route path="/question/ask" element={<AskQuestion />} />
                     <Route path="/choosetags" element={<FollowTags />} />
                     <Route path="/contact" element={<Contact />} />
