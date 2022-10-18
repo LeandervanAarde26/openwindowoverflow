@@ -1,9 +1,5 @@
 import React, { useContext } from "react";
 import styles from "./ValidateUser.module.scss";
-
-/* Components */
-import Button from "../../Components/Button/Button.component";
-
 /* Icons/Images */
 import theImage from "../../Assets/LoginImage.png";
 import brokenBrowser from "../../Assets/brokenbrowser.png";
