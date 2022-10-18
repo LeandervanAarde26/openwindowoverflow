@@ -27,12 +27,12 @@ import Userbadges from "../Badges/userbadges.json";
 import axios from 'axios';
 
 const ProfileContainer = ({ image, user, year, questions, answers, badges, tags, aboutUser, github, userId, ...otherProps }) => {
-    const { currentUser , setCurrentUser } = useContext(RegisterContext);
-    const [state, setState] = useState()
+    // Context used for Rerender
+    const { setCurrentUser } = useContext(RegisterContext);
     const [editState, setEditState] = useState(false)
-    const testerTags = ['html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3', 'html', 'scss', 'scss', 'scss', 'css', 'React', '1', '2', '3']
-    const visuals = testerTags.map((tag, index) => <Tags key={index} title={tag} />)
+    // Replace this const with the actual Axios Call
     const listBadges = Userbadges
+    // Badges 
     const tester = listBadges.map((i, index) => (
         index === 0
             ?
@@ -40,18 +40,17 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
             :
             <Badges key={index} title={i.title} badgeImage={i.badgeImage} badgeDescription={i.badgeDescription} />
     ))
-
+    // These are the "default form values for the users, So that they can see what the values were before"
     const [formValues, setFormValues] = useState({
         username: user,
         currentStudyYear: year,
         githubLink: github ,
         userDescription: aboutUser
     })
-
+    // These are the default form values for a user that is logged in.
     const { username, currentStudyYear, githubLink, userDescription } = formValues
 
-    console.log(listBadges)
-
+// This will set the state for the UI to update accordingly between being able to update your profile
     const editInformation = () => {
         setEditState(prev => !prev)
     }
@@ -62,8 +61,6 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
     }
 
     const updateInformation = () => {
-        console.log(formValues)
-
         const payload = {
             username: formValues.username,
             currentStudyYear: formValues.currentStudyYear,
@@ -82,8 +79,6 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                 console.log(err)
             })
     }
-
-    console.log(userId)
 
     return (
         <div className={styles.container}>
@@ -189,13 +184,11 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                     {
                         editState
                             ?
-
                             <Button buttonType={'primary'}
                                 children={"Update profile"}
                                 id={styles.larger}
                                 onClick={updateInformation}
                             />
-
                             :
                             null
                     }
@@ -205,14 +198,12 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                         id={styles.larger}
                         onClick={editInformation}
                     />
-
                 </div>
 
                 <h4>Following Tags</h4>
                 <div className={styles.tagsContainer}>
                     {tags}
                 </div>
-
                 <div className={styles.title}>
                     <h3>Badges</h3>
                 </div>
@@ -221,7 +212,6 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
             <BadgeContainer
                 children={tester}
             />
-
             <div className={styles.reputationCon}>
                 <UserReputation />
             </div>

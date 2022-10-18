@@ -41,6 +41,7 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/uservalidation" element={<ValidateUser/>} />
                         <Route path="/home" element={<Home />} />
+                        <Route path="/articles" element={<Home />} />
                         <Route path="/profile/:username/:userId" element={<Profile />} />
                         <Route path="/question/:questionId" element={<Question />} />
                         <Route path="/question/ask" element={<AskQuestion />} />
