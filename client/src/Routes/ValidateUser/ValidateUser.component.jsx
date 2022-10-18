@@ -12,6 +12,13 @@ import styles from "./ValidateUser.module.scss";
 import theImage from "../../Assets/LoginImage.png";
 import brokenBrowser from "../../Assets/brokenbrowser.png";
 // import { RegisterContext } from '../../Contexts/Register.context';
+import Button from "../../Components/Button/Button.component";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
+import axios from "axios";
+import { useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import { useParams } from "react-router";
 
 const ValidateUser = () => {
   // const { currentUser } = useContext(RegisterContext)
@@ -33,7 +40,7 @@ const ValidateUser = () => {
             <h3>
               Welcome new user!
               <br />
-              Your account has succesfully verified! Let's login and get
+              Your account has successfully verified! Let's login and get
               started!
             </h3>
           );
@@ -66,7 +73,6 @@ const ValidateUser = () => {
         setLogin(false);
       });
   }, []);
-
   return (
     <div className={styles.container}>
       <div className={styles.left}>

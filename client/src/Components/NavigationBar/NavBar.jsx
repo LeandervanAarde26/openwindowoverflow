@@ -23,7 +23,6 @@ const NavBar = () => {
   const user = sessionStorage.getItem("currentUser");
 
   const navigate = useNavigate();
-
   const goToProfile = () => {
     // navigate("/Profile")
     navigate(`/profile/${user}`);
@@ -41,22 +40,11 @@ const NavBar = () => {
           <div className={styles.containerOuter__login}>
             <Button buttonType={"black"} children={"Sign out"} />
 
-                    <Icon
-                        className={styles['containerOuter__login--trophy']}
-                        icon={inbox}
-                    />
-                </div>
-                <div className={styles.containerOuter__profile}>
-                    <ProfileCard
-                        // profileImage={logo}
-                        function ={goToProfile}
-                    />
-                </div>
-            </div>
-            <div className={styles.container__search}>
-                <SearchBar
-                    label={"Search"}
-                    placeholder={"Search..."}
+            <div className={styles["containerOuter__login--dropdown"]}>
+              <NavLink to="/">
+                <Icon
+                  className={styles["containerOuter__login--trophy"]}
+                  icon={trophy}
                 />
               </NavLink>
               <div className={styles.dropContent}>
