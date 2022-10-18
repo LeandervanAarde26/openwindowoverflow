@@ -30,25 +30,16 @@ const ProfileContainer = ({ image }) => {
 
     return (
         <div className={styles.container}>
+                        <BadgeContainer
+                    children={tester}
+                />
+            
             <div className={styles.topContainer}>
+                
                 <div className={styles.profilePhoto}>
                     <img src={Car} />
                 </div>
-                <div className={styles.userIntro}>
-                    <h3>Some Person</h3>
-                    <p className={styles.year}>2nd Year Development Student</p>
-                    <div className={styles.accContainer}>
-                        <p className={styles.accomplishments}>12 Questions</p>
-                        <p className={styles.accomplishments}>15 Answers</p>
-                        <p className={styles.accomplishments}>4 Badges</p>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.description}>
-                <h4>About some Person</h4>
-                <p>Hi! I am a second year Development student who really enjoys this this and this, I dont enjoy this this and this. Feel free to add me here here and here, Hi! I am a second year Development student who really enjoys this this and this, I dont enjoy this this and this. Feel free to add me here here and here</p>
-                <div className={styles.button}>
-                    <Button
+                <Button
                         buttonType={'github'}
                         children={
                             <>
@@ -57,6 +48,33 @@ const ProfileContainer = ({ image }) => {
                                 <p>View Github</p>
                             </>
                         } />
+
+                <div className={styles.userIntro}>
+                    <h3>Some Person</h3>
+                    <p className={styles.year}>2nd Year Development Student</p>
+                    <div className={styles.accContainer}>
+                        <p className={styles.accomplishments}>12 Questions</p>
+                        <p className={styles.accomplishments}>15 Answers</p>
+                        <p className={styles.accomplishments}>4 Badges</p>
+                    </div>
+
+                    <p className={styles.reputation}>Overall Reputation <b>55%</b></p>
+                </div>
+
+            </div>
+            <div className={styles.description}>
+                <h4>About some Person</h4>
+                <p>Hi! I am a second year Development student who really enjoys this this and this, I dont enjoy this this and this. Feel free to add me here here and here, Hi! I am a second year Development student who really enjoys this this and this, I dont enjoy this this and this. Feel free to add me here here and here</p>
+                <div className={styles.button}>
+                    {/* <Button
+                        buttonType={'github'}
+                        children={
+                            <>
+                                <img src={Github}
+                                    style={{ height: 50 }} />
+                                <p>View Github</p>
+                            </>
+                        } /> */}
                 </div>
 
                 <h4>Following Tags</h4>
@@ -69,12 +87,12 @@ const ProfileContainer = ({ image }) => {
                 </div>
             </div>
 
-            <BadgeContainer
+            {/* <BadgeContainer
                     children={tester}
-                />
+                /> */}
 
             <div className={styles.reputationCon}>
-            <UserReputation/>
+            {/* <UserReputation/> */}
             </div>
             <MyQuestionsAnswersContainer/>
         </div>

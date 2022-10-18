@@ -4,13 +4,17 @@
 .container{
     flex: 1;
     overflow: scroll;
+    background-color: rgb(239, 206, 206);
 
     .topContainer{
         min-height: 19vh;
+
         display: flex;
         justify-content: flex-start;
         gap: 15px;
-        margin-top: 1%;
+        margin-top: -12.9%;
+        background-color: rgb(171, 82, 82);
+        width: 48%;
         
         .profilePhoto{
             height: 100%;
@@ -31,8 +35,10 @@
         }
 
         .userIntro{
-            background-color: white;
-            padding-top: 3%;
+            padding-top: 8%;
+            justify-content: left;
+            margin-left: -19.5vh;
+
             
             h3{
                 @include headingFour();
@@ -59,6 +65,9 @@
                margin-top: 3%;
                
             }
+            .reputation{
+                margin-top: 3%;
+             }
         }
 
     }
@@ -66,11 +75,15 @@
     .title {
         @include headingFive();
         margin-top: 2vh;
+        background-color: green;
     }
 
     .description{
         margin-left: 1%;
         margin-top: 1%;
+        width: 48%;
+        background-color: rgb(215, 222, 118);
+
 
         h4{
             @include headingFour();
@@ -86,7 +99,6 @@
             display: flex;
             align-items: flex-start;
             justify-content: left;
-            margin-top: 2%;
         }
 
         h4{
@@ -98,15 +110,28 @@
             display: flex;
             flex-wrap: wrap;
             gap: 7px;
+            background-color: aquamarine;
+            width: 100%;
+            // display: grid;
+            // flex-direction: column;
+            // grid-template-columns: repeat(5, 1fr);
+            // overflow: scroll;
+            // scroll-behavior: smooth;
+            // -ms-overflow-style: none;  
+            // scrollbar-width: 90%; 
+        
 
             :nth-child(1){
                     width: auto;
+                    background-color: rgb(126, 154, 145);
+
             }
         }
     }
 
     .reputationCon{
         margin-top: 2em;
+        background-color: rgb(199, 98, 182);
     }
 
 
