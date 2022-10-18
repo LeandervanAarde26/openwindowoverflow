@@ -9,11 +9,13 @@ import styles from "./RightContainer.module.scss"
 import Button from '../Button/Button.component';
 import AdSenseContainer from '../AdSenseContainer/AdSenseContainer.component';
 import FollowedTags from '../FollowedTagsComponent/FollowedTags.component';
+import TopRatedQuestion from '../TopRatedQuestion/TopRatedQuestion.component';
 
 /* Icons/Images */
 import Discord from "../../Assets/Discord.png";
 
-const RightContainer = () => {
+
+const RightContainer = ({simliliar, topRated}) => {
     const location = useLocation();
 
     return (
@@ -27,14 +29,33 @@ const RightContainer = () => {
                     <FollowedTags />
             }
             {/* End followed Tags Component Here */}
-            <div className={styles.buttonContainer}>
-                <Button
-                    buttonType={'discord'}
-                />
-            </div>
+            <Button
+                buttonType={'discord'}
+            />
 
+            {
+                location.pathname === "/Question"
+                    ?
+                    <div className={styles.topRatedQuestions}>
+                        <h4>Similiar Questions</h4>
+                        {simliliar}
+                        <TopRatedQuestion />
+                        <TopRatedQuestion />
+                        <TopRatedQuestion />
+                    </div>
+                    :
+                    location.pathname === "/home"
+                        ?
+                        <div className={styles.topRatedQuestions}>
+                            <h4>Top Rated Questions</h4>
+                            <TopRatedQuestion />
+                            <TopRatedQuestion />
+                            <TopRatedQuestion />
+                        </div>
+                        :
+                        null
+            }
             {/* <AdSenseContainer /> */}
-
         </div>
     );
 };

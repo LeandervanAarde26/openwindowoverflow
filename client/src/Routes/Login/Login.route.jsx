@@ -71,7 +71,7 @@ const Login = () => {
 
         axios.post('http://localhost:5001/api/loginuser', payload)
         .then(res =>{
-            navigate("/Home")
+            navigate("/home")
             setCurrentUser({userId: res.data._id, username: res.data.username})
             sessionStorage.setItem("currentUser", res.data._id)
         })

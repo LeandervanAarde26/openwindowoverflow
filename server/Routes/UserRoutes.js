@@ -56,7 +56,9 @@ router.post('/api/registeruser', async (req, res) => {
             password: password,
             userImage: userImage,
             currentStudyYear: currentStudyYear,
-            followedTags: followedTags
+            userDescription: '',
+            followedTags: followedTags,
+            // githubLink: ''
         });
 
         console.log(newUser)
@@ -149,8 +151,31 @@ router.get('/api/individualuser/:id', async (req, res) => {
         res.status(404).json({ msg: 'No user was found with the requested credentials' })
     }
 
-    console.log(user)
+    // console.log(user)
     return res.status(200).json(user)
+})
+
+// http://localhost:5001/api/edituser/:
+router.patch('/api/edituser/:id', async (req, res) =>{
+    const {username, currentStudyYear, userDescription, githubLink, userImage} = req.body
+    const editUser = await userSchema.updateOne(
+        {_id: req.params.id},
+        {
+            $set: {
+                username: username,
+                currentStudyYear: currentStudyYear,
+                userDescription: userDescription,
+                githubLink: githubLink,
+                userImage: userImage
+            },
+        }
+    );
+
+   if (! editUser){
+    res.status(400).json({msg: "Something went wrong in the update, please try again", user: NaN})
+   }
+
+   res.status(200).json({msg: "User has been update", user: editUser})
 })
 
 module.exports = router; 

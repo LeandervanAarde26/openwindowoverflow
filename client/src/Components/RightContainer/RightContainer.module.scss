@@ -4,19 +4,41 @@
     // width: 24.5vw;
     min-width: fit-content;
     max-height: 90vh;
-    max-width: 350px !important;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 40px;
     position: sticky;
     top: 0;
+    align-items: center;
     // background-color: red;
     // background-color: red;
     .buttonContainer {
         display: flex;
         justify-content: center;
     }
+}
+
+
+    #discordButton {
+        margin-left: 2%;
+        margin-top: 2%;
+        width: 100%;
+
+        img {
+            margin-left: -30%;
+        }
+    }
+
+
+.topRatedQuestions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    gap: 15px;
+
+
 }
 
 .AdContainer {
@@ -27,6 +49,6 @@
 
 @media only screen and (max-width: 700px) {
     .container {
-       display: none;
+        display: none;
     }
 }

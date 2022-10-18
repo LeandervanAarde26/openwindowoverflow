@@ -44,7 +44,11 @@ const users = mongoose.Schema({
         default: 0
     },
 
-    userDescription: String,
+    userDescription: {
+        type: String,
+        default: ''
+    },
+
     githubLink: {
         type: String,
         validate: {

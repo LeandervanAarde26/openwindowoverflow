@@ -1,7 +1,7 @@
 /* React */
 import React from "react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 /* Styling */
 import styles from "./SideNavigation.module.scss";
@@ -11,23 +11,27 @@ import Back from "../BackButton/Back.component";
 import NavigationButton from "../SideNavigationButtons/NavigationButton.component";
 
 const SideNavigation = () => {
-    const [active, setActive] = useState(null);
+    const location = useLocation();
+    const [active, setActive] = useState(location.pathname.substring(1));
     const categories = [
-        "Home",
+        "home",
         "1st year",
         "2nd year",
         "3rd year",
-        "Honors",
-        "Contact",
-        "Articles",
-        "Admin",
+        "honors",
+        "contact",
+        "articles",
+        "admin",
     ];
 
-    const navigationButton = categories.map((i) =>
-        i === "Contact" || i === "Articles" || i === "Home" || i === "Admin" 
+    const navigationButton = categories.map((i ) =>
+        i === "contact" || i === "articles" || i === "home" || i === "admin" 
         ? 
             (
-                <NavLink to={`/${i}`}>
+                <NavLink 
+                    to={`/${i}`}
+                    key={i}
+                >
                     <NavigationButton
                         key={i}
                         children={i}

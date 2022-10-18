@@ -41,11 +41,22 @@ const NavBar = () => {
           <div className={styles.containerOuter__login}>
             <Button buttonType={"black"} children={"Sign out"} />
 
-            <div className={styles["containerOuter__login--dropdown"]}>
-              <NavLink to="/">
-                <Icon
-                  className={styles["containerOuter__login--trophy"]}
-                  icon={trophy}
+                    <Icon
+                        className={styles['containerOuter__login--trophy']}
+                        icon={inbox}
+                    />
+                </div>
+                <div className={styles.containerOuter__profile}>
+                    <ProfileCard
+                        // profileImage={logo}
+                        function ={goToProfile}
+                    />
+                </div>
+            </div>
+            <div className={styles.container__search}>
+                <SearchBar
+                    label={"Search"}
+                    placeholder={"Search..."}
                 />
               </NavLink>
               <div className={styles.dropContent}>
