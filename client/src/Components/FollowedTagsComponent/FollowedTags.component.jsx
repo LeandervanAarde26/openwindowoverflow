@@ -14,7 +14,7 @@ const FollowedTags = () => {
     const [tags, setTags] = useState()
     const [busy, setBusy] = useState(true)
 
-/*     useEffect(() => {
+   useEffect(() => {
         axios.get(`http://localhost:5001/api/individualuser/${user}`)
         .then(res =>{
             console.log(res);
@@ -28,7 +28,7 @@ const FollowedTags = () => {
         .catch(err =>{
             console.log(err)
         })
-    }, []) */
+    }, []) 
 
     console.log(tags)
 

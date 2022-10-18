@@ -11,9 +11,8 @@ import ic_correct from '../../Assets/Icons/ic_correct.svg';
 import ic_star from '../../Assets/Icons/ic_star.svg';
 import test from '../../Assets/car.jpg';
 
-const Preview = (props) => {
-    const answeringUser = "Armand Pretorius"
- 
+const Preview = ({ tags, timePassed, user, resolved, answers, votes, goodQuestion, askTime, question }) => {
+
     const testClick = () => {
         console.log('hey')
     }
@@ -23,26 +22,24 @@ const Preview = (props) => {
     }
 
     return (
-        <div className={styles.container}
-            onClick={testClick2}
-        >
+        <div className={styles.container} onClick={testClick2}>
             <div className={styles.left}>
                 <div>
                     <Icon
                         icon={ic_votes}
                     />
 
-                    <h5>{props.votes} votes</h5>
+                    <h5>{votes} votes</h5>
                 </div>
                 <div>
                     <Icon
                         icon={ic_answers}
                     />
 
-                    <h5>{props.answers} answers</h5>
+                    <h5>{answers} answers</h5>
                 </div>
                 {
-                    props.resolved
+                    resolved
                     &&
                     <div>
                         <Icon
@@ -59,23 +56,22 @@ const Preview = (props) => {
                     <h4>This is the Question Title</h4>
 
                     {
-                        props.goodQuestion
+                        goodQuestion
                         &&
                         <div className={styles.heading__sub}>
                             <Icon
                                 icon={ic_star}
                             />
-
                             <p>Good question</p>
                         </div>
                     }
                 </div>
-                
+
                 <div className={styles.tagsContainer}>
                     {
-                        props.tags.map((i, index) => 
-                            <Tags 
-                                key={index} 
+                        tags.map((i, index) =>
+                            <Tags
+                                key={index}
                                 title={i}
                                 onClick={testClick}
                             />
@@ -84,45 +80,45 @@ const Preview = (props) => {
                 </div>
 
                 <div className={styles.profileContainer}>
-                    <img 
+                    <img
                         src={test}
-                        alt="" 
+                        alt=""
                     />
                     <p className={styles.name}>
-                        <strong>{props.user}</strong>&nbsp;asked question {
-                        props.askTime > 365 && props.askTime < (365 * 2)
-                        ? Math.round(props.askTime/365) + ' Year ago'
-                        : props.askTime == 0 || props.askTime == -0 && props.askTime != ''
-                        ? 'Today'
-                        : props.askTime == 1
-                        ? props.askTime + ' Day ago'
-                        : props.askTime > (365 * 2)
-                        ? Math.round(props.askTime/365) + ' Years ago'
-                        : props.askTime + ' Days ago'
-                    }
+                        <strong>{user}</strong>&nbsp;asked question {
+                            askTime > 365 && askTime < (365 * 2)
+                                ? Math.round(askTime / 365) + ' Year ago'
+                                : askTime == 0 || askTime == -0 && askTime != ''
+                                    ? 'Today'
+                                    : askTime == 1
+                                        ? askTime + ' Day ago'
+                                        : askTime > (365 * 2)
+                                            ? Math.round(askTime / 365) + ' Years ago'
+                                            : askTime + ' Days ago'
+                        }
                     </p>
                 </div>
-        
+
                 <p className={styles.description}>
-                    {props.question}
+                    {question}
                 </p>
-                <p className={styles.answeringUser}> 
+                <p className={styles.answeringUser}>
                     {
-                        props.resolved &&
+                        resolved &&
                         <>
-                            <strong>{props.user}</strong>&nbsp;answered question  {
-                                props.timePassed > 365 && props.timePassed < (365 * 2)
-                                ? Math.round(props.timePassed/365) + ' Year ago'
-                                : props.timePassed == 0 || props.timePassed == -0
-                                ? 'Today'
-                                : props.timePassed == 1
-                                ? props.timePassed + ' Day ago'
-                                : props.timePassed > (365 * 2)
-                                ? Math.round(props.timePassed/365) + ' Years ago'
-                                : props.timePassed + ' Days ago'
+                            <strong>{user}</strong>&nbsp;answered question  {
+                                timePassed > 365 && timePassed < (365 * 2)
+                                    ? Math.round(timePassed / 365) + ' Year ago'
+                                    : timePassed == 0 || timePassed == -0
+                                        ? 'Today'
+                                        : timePassed == 1
+                                            ? timePassed + ' Day ago'
+                                            : timePassed > (365 * 2)
+                                                ? Math.round(timePassed / 365) + ' Years ago'
+                                                : timePassed + ' Days ago'
                             }
                         </>
-                }
+                    }
                 </p>
             </div>
 

@@ -15,7 +15,7 @@ import TopRatedQuestion from '../TopRatedQuestion/TopRatedQuestion.component';
 import Discord from "../../Assets/Discord.png";
 
 
-const RightContainer = () => {
+const RightContainer = ({simliliar, topRated}) => {
     const location = useLocation();
 
     return (
@@ -32,16 +32,30 @@ const RightContainer = () => {
             <Button
                 buttonType={'discord'}
             />
-            <div className={styles.topRatedQuestions}>
-                <h4>Top rated Questions...</h4>
-                <br/>
-                <TopRatedQuestion />
-                <TopRatedQuestion />
-                <TopRatedQuestion />
-            </div>
 
+            {
+                location.pathname === "/Question"
+                    ?
+                    <div className={styles.topRatedQuestions}>
+                        <h4>Similiar Questions</h4>
+                        {simliliar}
+                        <TopRatedQuestion />
+                        <TopRatedQuestion />
+                        <TopRatedQuestion />
+                    </div>
+                    :
+                    location.pathname === "/home"
+                        ?
+                        <div className={styles.topRatedQuestions}>
+                            <h4>Top Rated Questions</h4>
+                            <TopRatedQuestion />
+                            <TopRatedQuestion />
+                            <TopRatedQuestion />
+                        </div>
+                        :
+                        null
+            }
             {/* <AdSenseContainer /> */}
-
         </div>
     );
 };

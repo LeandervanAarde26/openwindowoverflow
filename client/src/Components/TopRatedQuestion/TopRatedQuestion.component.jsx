@@ -1,48 +1,46 @@
 import React from 'react';
 import styles from "./TopRatedQuestion.module.scss"
 
-const TopRatedQuestion = () => {
+/* Icons */
+import ic_votes from '../../Assets/Icons/ic_clipboard.svg';
+import ic_answers from '../../Assets/Icons/ic_checkmark.svg';
+import ic_correct from '../../Assets/Icons/ic_correct.svg';
+import ic_star from '../../Assets/Icons/ic_star.svg';
+import ic_checkmark from '../../Assets/Icons/ic_checkmark.svg'
+
+/* Components */
+import Icon from '../Icon/Icon';
+
+const TopRatedQuestion = ({heading}) => {
 
     let timeAsked = "5 hours ago";
 
-    return (<>
+    return (
+
         <div className={styles.container}>
-
-            {/* Majority of content is be inserted dynamically and adjusted, the following
-            is dummy place holder, to display in the same positions p tag content
-            must be replaced */}
             <div className={styles.votes}>
-
-                <div className={styles.choice}>
-                    {/* INSERT JSX INTO P TAG BELOW FOR DYNAMIC VOTING TO DISPLAY */}
+                <div>
+                    <Icon icon={ic_votes} />
                     <p className={styles.counter}>20</p>
                 </div>
 
-                <div className={styles.checkbox}>
-                    {/* INSERT JSX INTO P TAG BELOW FOR DYNAMIC VOTING TO DISPLAY */}
-                    <p className={styles.counter}>2</p>
+                <div>
+                    <Icon icon={ic_answers} />
+                    <p className={styles.counter}>20</p>
                 </div>
             </div>
-
-
+            
             <div className={styles.content}>
-                <div className={styles.questionText}>
-                    {/* INSERT JSX INTO P TAG BELOW FOR DYNAMIC QUESTIONS TO DISPLAY, WILL LATER WORK ON TRUNCATING AND ELLIPSIS FOR LONGER QUESTIONS TO FIT */}
-                    <p> Hi there! this will be the question, but it will be inserted by dynamic js code which means this markup is only for test purposes that will be tested lioke a test</p>
-                </div>
-                <div className={styles.questionUser}>
-
-                    <div className={styles.userIcon}></div>
-                    {/* INSERT JSX INTO P TAG BELOW FOR DYNAMIC USERNAME & TIME ASKED TO DISPLAY */}
-                    <p className={styles.userName}>User</p><p className={styles.asked}>Asked Question {timeAsked}</p>
-                </div>
+                    <p className={styles.questionText}> Hi there! this will be the question</p>
+                    <p className={styles.userName}><b>User</b> <span className={styles.asked}>Asked Question 5 hours ago</span></p>
+               
                 <div className={styles.questionRating}>
-                    <div className={styles.star}></div>
+                    <Icon icon={ic_star} />
                     <p className={styles.goodQuestion}>Good Question</p>
                 </div>
             </div>
         </div>
-    </>)
+    );
 }
 
 export default TopRatedQuestion;

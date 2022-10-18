@@ -4,13 +4,13 @@
     // width: 24.5vw;
     min-width: fit-content;
     max-height: 90vh;
-    max-width: 350px !important;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 40px;
     position: sticky;
     top: 0;
+    align-items: center;
     // background-color: red;
     // background-color: red;
     .buttonContainer {
@@ -32,10 +32,13 @@
 
 
 .topRatedQuestions {
+    display: flex;
     flex-direction: column;
-    font-weight: 200;
     width: 100%;
-    height: 45vh;
+    height: fit-content;
+    gap: 15px;
+
+
 }
 
 .AdContainer {

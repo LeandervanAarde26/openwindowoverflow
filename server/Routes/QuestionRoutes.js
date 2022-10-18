@@ -2,6 +2,7 @@ const express = require('express');
 const Question = require("../models/questionSchema");
 const User = require("../models/userSchema");
 const tags = require('../models/tagsSchema');
+const questionSchema = require('../models/questionSchema');
 const router = express();
 
 router.post('/api/askquestion', async (req, res) => {
@@ -37,6 +38,7 @@ router.get('/api/questions', async (req, res) => {
     res.json(questions);
 });
 
+
 router.get('/api/question/:id', async (req, res) => {
     let id = req.params.id;
 
@@ -45,5 +47,6 @@ router.get('/api/question/:id', async (req, res) => {
     })
     console.log(question)
 })
+
 
 module.exports = router; 

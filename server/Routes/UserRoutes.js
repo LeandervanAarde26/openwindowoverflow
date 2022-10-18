@@ -151,7 +151,7 @@ router.get('/api/individualuser/:id', async (req, res) => {
         res.status(404).json({ msg: 'No user was found with the requested credentials' })
     }
 
-    console.log(user)
+    // console.log(user)
     return res.status(200).json(user)
 })
 
