@@ -38,7 +38,6 @@ router.get('/api/questions', async (req, res) => {
     res.json(questions);
 });
 
-
 router.get('/api/question/:id', async (req, res) => {
     let id = req.params.id;
 
@@ -46,7 +45,18 @@ router.get('/api/question/:id', async (req, res) => {
         _id: id
     })
     console.log(question)
+
+    res.status(200).json(question)
 })
 
+
+// router.get('/api/getQuestions/:tag',async (req,res) =>{
+//     let tag = req.params.tag
+//     const tags = await questionSchema.find({ tags: tag})
+    
+//     res.json(tags)
+// })
+
+// router.get('.')
 
 module.exports = router; 

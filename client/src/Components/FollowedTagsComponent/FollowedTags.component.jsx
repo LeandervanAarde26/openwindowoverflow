@@ -17,10 +17,10 @@ const FollowedTags = () => {
    useEffect(() => {
         axios.get(`http://localhost:5001/api/individualuser/${user}`)
         .then(res =>{
-            console.log(res);
+            // console.log(res);
             let data = res.data
 
-            console.log(data)
+            // console.log(data)
             setTags(res.data.followedTags.map((tag, index) => (<Tags key={index} title={tag}/>)))
             setBusy(false)
             
@@ -30,7 +30,7 @@ const FollowedTags = () => {
         })
     }, []) 
 
-    console.log(tags)
+    // console.log(tags)
 
     return(
         busy

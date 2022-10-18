@@ -11,18 +11,18 @@ import ic_correct from '../../Assets/Icons/ic_correct.svg';
 import ic_star from '../../Assets/Icons/ic_star.svg';
 import test from '../../Assets/car.jpg';
 
-const Preview = ({ tags, timePassed, user, resolved, answers, votes, goodQuestion, askTime, question }) => {
+const Preview = ({ tags, timePassed, user, resolved, answers, votes, goodQuestion, askTime, question, id, nav }) => {
 
     const testClick = () => {
         console.log('hey')
     }
 
-    const testClick2 = () => {
+    const testClick2 = (e) => {
         console.log('sfhey')
     }
 
     return (
-        <div className={styles.container} onClick={testClick2}>
+        <div className={styles.container}  onClick={nav} >
             <div className={styles.left}>
                 <div>
                     <Icon

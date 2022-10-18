@@ -27,22 +27,6 @@ let Arr = [];
 
 const Question = () => {
     const questionId = useParams();
-
-    useEffect(() => {
-        let val = sessionStorage.getItem("currentUser")
-        console.log("🚀 ~ file: Question.component.jsx ~ line 30 ~ useEffect ~ val", val)
-        axios.get('http://localhost:5001/api/question/' + questionId.questionId)
-        .then(res => {
-            console.log(res.data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }, []);
-
-    console.log("🚀 ~ file: Question.component.jsx ~ line 26 ~ Question ~ questionId", questionId)    
-
-
     const [def, setDef] = useState()
     const [formValues, setFormValues] = useState(defaultFormValues);
     const { answer, answerCode } = formValues
@@ -50,10 +34,32 @@ const Question = () => {
     const [loadMore, setLoadMore] = useState(3);
     const [endComments, setEndComments] = useState(false)
     const [dat, setDat] = useState()
+    const [busy, setBusy] = useState(true)
+    const [tags, setTags] = useState()
     const code = `useEffect(() => { 
         setDef(numbers.slice(0, loadMore).map(i => <Comment key={i} />))
     }, [])`
     const testTags = ['React', "Circuit Python"];
+
+
+    useEffect(() => {
+        console.log("START")
+        let val = sessionStorage.getItem("currentUser")
+        console.log("🚀 ~ file: Question.component.jsx ~ line 30 ~ useEffect ~ val", val)
+        axios.get('http://localhost:5001/api/question/' + questionId.questionId)
+            .then(res => {
+                console.log(res.data)
+                setDat(res.data)
+                setBusy(false)
+                setTags(res.data.tags)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+    }, []);
+
+    console.log("🚀 ~ file: Question.component.jsx ~ line 26 ~ Question ~ questionId", questionId)
 
     useEffect(() => {
         setDef(numbers.slice(0, loadMore).map(i => <Comment
@@ -64,23 +70,6 @@ const Question = () => {
             Please be clearer with this this this`}
             key={i} />));
 
-
-            testTags.map((i) =>
-            axios.get(`http://localhost:5001/api/getQuestions/${i}`)
-            .then(res =>{
-                    // console.log(res.data)
-                    // Arr.push(...Arr, res.data)
-                    let data = res.data
-
-                    res.data.map(test => {
-                        Arr.push(test)
-                    })
-            })
-            .catch(err =>{
-                console.log(err)
-            })
-            )
- 
     }, [loadMore])
 
     console.log(Arr)
@@ -119,22 +108,28 @@ const Question = () => {
     return (
         <div className={styles.container}>
             <SideNavigation />
-            <div className={styles.center}>
-                <IndividualQuestion
-                    votes={12}
-                    title={'How to use Useffect to create component in Reactjs'}
-                    author={'Leander van Aarde'}
-                    dt={'29 November 2026'}
-                    description={'I am trying to do this this and this and so this wont work because of the useEffect not doing this and it will just continue running and running and this is a description that nobody else will understand lolol but this is coool and all but is it really needed? I am totally happy with doing it all, I want it all, I want it all and I want it now - who sang this song again?'}
-                    cd={code}
-                    image={tester}
-                />
+            {
+                busy
+                    ?
+                    null
+                    :
+                    <div className={styles.center}>
+                        <IndividualQuestion
+                            votes={dat.rating}
+                            title={dat.title}
+                            author={dat.author.username}
+                            dt={'29 November 2026'}
+                            description={dat.question}
+                            cd={dat.code}
+                            image={tester}
+                        />
 
-                <CommentsContainer children={def} loadMore={loadMoreComments} />
-                <AnswerBoxComponent />
-                <AnswerBoxComponent />
-                <PostAnswer onChange={handleChange} handleClick={handleClick} />
-            </div>
+                        <CommentsContainer children={def} loadMore={loadMoreComments} />
+                        <AnswerBoxComponent />
+                        <AnswerBoxComponent />
+                        <PostAnswer onChange={handleChange} handleClick={handleClick} />
+                    </div>
+            }
 
             <RightContainer />
         </div>

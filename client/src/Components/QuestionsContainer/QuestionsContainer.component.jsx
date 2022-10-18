@@ -1,7 +1,7 @@
 /* React */
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router';
 /* Styling */
 import styles from "./QuestionsContainer.module.scss";
 
@@ -11,6 +11,7 @@ import IntroductionHome from '../IntroductionHome/IntroductionHome.component';
 
 const QuestionsContainer = () => {
     const [questions, setQuestions] = useState([]);
+    const navigate = useNavigate()
     useEffect(() => {
         axios.get('http://localhost:5001/api/questions')
         .then(res => {
@@ -42,6 +43,13 @@ const QuestionsContainer = () => {
         })
     }, []);
 
+    const individualQuestion = (e) =>{
+        let id = e.target.key
+        console.log(e.target.id)
+    }
+    
+    
+
     return (
         <div className={styles.outer}>
    
@@ -64,6 +72,7 @@ const QuestionsContainer = () => {
                             question={i.question}
                             timePassed={i.timePassed}
                             askTime={i.askTime}
+                            nav= {() => navigate(`/Question/${i._id}`)}
                         />
                     )
                 }

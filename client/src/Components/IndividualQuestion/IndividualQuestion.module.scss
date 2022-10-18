@@ -10,10 +10,10 @@
     flex: 1;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center;    
     .inner{
         display: flex;
+        width: 100%;
         gap: 15px;
 
         .voting {
@@ -32,6 +32,7 @@
             .description {
                 @include body();
                 margin-top: 10px;
+                width: 100%
             }
     
             .userInformation {
@@ -50,7 +51,6 @@
     .imageContainer{
         display: flex;
         width: 91%;
-        background-color: red;
         height: fit-content;
 
         img{
