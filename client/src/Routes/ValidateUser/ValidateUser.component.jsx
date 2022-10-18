@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { useParams } from "react-router";
-
+import Button from "../../Components/Button/Button.component";
 /* Styling */
 import styles from "./ValidateUser.module.scss";
 
