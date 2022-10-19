@@ -11,7 +11,7 @@ import Input from "../../Components/Input/Input.component"
 
 const CommentsContainer = ({ children, loadMore, commentEnd, commentable, comval, activeComment, post,  ...otherProps }) => {
     return (
-        <div className={styles.outer}>
+<div className={styles.outer}>
             <h4>Comments</h4>
             <div className={styles.container}>
                 {children}

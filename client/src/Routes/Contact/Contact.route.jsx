@@ -22,9 +22,10 @@ export default function Contact() {
     <>
       <div className={styles.container}>
         <SideNavigation />
-        <div>
+        <div className={styles.centerContent}>
           <h2>Contact</h2>
-          <h4>Staff</h4>
+          <br/>
+          <h4>Staff:</h4>
           {/* <AnswerBoxComponent /> */}
           <div className={styles.contacts}>
             <ContactCard
@@ -48,7 +49,8 @@ export default function Contact() {
               contactEmail={"carlo@openwindow.co.za"}
             />
           </div>
-          <h4>Creators</h4>
+          <br/>
+          <h4>Creators:</h4>
           <div className={styles.contacts}>
             <ContactCard
               contactName={"Anchen Ayres"}
