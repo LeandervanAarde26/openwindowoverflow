@@ -24,31 +24,21 @@ const defaultFormValues = {
 const userComment = {
     comments: ''
 }
-// Array
-
-let Arr = [];
 
 const Question = () => {
     const questionId = useParams();
     const [def, setDef] = useState()
     const [formValues, setFormValues] = useState(defaultFormValues);
     const { answer, answerCode } = formValues
-    const numbers = [1, 2, 4, 5, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
     const [loadMore, setLoadMore] = useState(3);
     const [dat, setDat] = useState()
     const [busy, setBusy] = useState(true)
     const [tags, setTags] = useState()
     // Comments
     const [commentVal, setCommentVal] = useState(userComment)
-    const {comments} = commentVal
+    const { comments } = commentVal
     const [comment, setComment] = useState()
     const [endComments, setEndComments] = useState(false)
-
-    const code = `useEffect(() => { 
-        setDef(numbers.slice(0, loadMore).map(i => <Comment key={i} />))
-    }, [])`
-    const testTags = ['React', "Circuit Python"];
-
 
     useEffect(() => {
         console.log("START")
@@ -60,6 +50,18 @@ const Question = () => {
                 setDat(res.data)
                 setBusy(false)
                 setTags(res.data.tags)
+                console.log(res.data.comments)
+
+                const comments = res.data.comments.map(i => (
+                    <Comment
+                        auth={i.user.username}
+                        date={`29 June 2021 @ 21:00`
+                        }
+                        comment={i.comment}
+                        key={i} />
+                ));
+
+                setDef(comments)
             })
             .catch(err => {
                 console.log(err)
@@ -69,51 +71,39 @@ const Question = () => {
 
     console.log("🚀 ~ file: Question.component.jsx ~ line 26 ~ Question ~ questionId", questionId)
 
-    useEffect(() => {
-        setDef(numbers.slice(0, loadMore).map(i => <Comment
-            auth={'Leander van Aarde'}
-            date={`29 June 2021 @ 21:00`}
-            comment={`Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this.
-            Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this
-            Please be clearer with this this this`}
-            key={i} />));
 
-    }, [loadMore])
-
-    console.log(Arr)
-
-
+// Change for answers
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
     }
 
-    const handleCommentChange = (e) =>{
-        const {name, value} = e.target
-        setCommentVal({...commentVal, [name]: value})
+    const handleCommentChange = (e) => {
+        const { name, value } = e.target
+        setCommentVal({ ...commentVal, [name]: value })
 
     }
 
     // Cancel 
-    const leaveComment = () =>{
+    const leaveComment = () => {
         setComment(prev => !prev)
     }
 
     // Add comment 
-    const postComment = () =>{
+    const postComment = () => {
         console.log(commentVal)
         let val = sessionStorage.getItem("currentUser")
         let payload = {
-            user: val, 
+            user: val,
             comment: commentVal.comments
         }
         axios.patch(`http://localhost:5001/api/addComment/${questionId.questionId}`, payload)
-        .then(res =>{
-            console.log(res)
-        })
-        .catch(err =>{
-            console.log(err)
-        })
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     const handleClick = (e) => {
@@ -121,14 +111,14 @@ const Question = () => {
             console.log('please fill out answer')
         } else {
             console.log(formValues)
-            
+
         }
     }
 
-    
+
 
     const loadMoreComments = () => {
-        if (loadMore >= numbers.length) {
+        if (loadMore >= def.length.length) {
             // setLoadMore(loadMore)
             setLoadMore(3)
             setEndComments(true)
@@ -162,22 +152,22 @@ const Question = () => {
                             image={tester}
                         />
 
-                        <CommentsContainer 
-                        children={def} 
-                        loadMore={loadMoreComments} 
-                        // label={"answer"}
-                        activeComment = {comment}
-                        value={comments}
-                        type="text"
-                        name="comments"
-                        onChange={handleCommentChange}
-                        placeholder="Enter your comment here..."
-                        commentable={leaveComment}
-                        post ={postComment}
-                     
+                        <CommentsContainer
+                            children={def}
+                            loadMore={loadMoreComments}
+                            // label={"answer"}
+                            activeComment={comment}
+                            value={comments}
+                            type="text"
+                            name="comments"
+                            onChange={handleCommentChange}
+                            placeholder="Enter your comment here..."
+                            commentable={leaveComment}
+                            post={postComment}
+
                         />
-                        <AnswerBoxComponent 
-                        
+                        <AnswerBoxComponent
+
                         />
                         <AnswerBoxComponent />
                         <PostAnswer onChange={handleChange} handleClick={handleClick} />
