@@ -3,6 +3,7 @@ const Question = require("../models/questionSchema");
 const User = require("../models/userSchema");
 const tags = require('../models/tagsSchema');
 const questionSchema = require('../models/questionSchema');
+const answerSchema = require('../models/answerSchema');
 const router = express();
 
 router.post('/api/askquestion', async (req, res) => {
@@ -12,18 +13,12 @@ router.post('/api/askquestion', async (req, res) => {
     const user = await User.findOne({
         _id: author,
     }).select('username');
-    console.log("🚀 ~ file: QuestionRoutes.js ~ line 13 ~ router.post ~ user", user)
 
-    // Author set to object of {
-    // _id: "user_id"
-    // username: "username"
-    //}
-    author = user;
+    author = user
 
     const answeredUser = await User.findOne({
         _id: author
     }).select('username')
-    console.log("🚀 ~ file: QuestionRoutes.js ~ line 20 ~ router.post ~ answeredUser", answeredUser)
 
     let answeredBy = answeredUser;
 
@@ -34,7 +29,8 @@ router.post('/api/askquestion', async (req, res) => {
 });
 
 router.get('/api/questions', async (req, res) => {
-    const questions = await Question.find();
+    const questions = await Question.find().sort({postedDate: -1});
+
     res.json(questions);
 });
 
@@ -47,7 +43,31 @@ router.get('/api/question/:id', async (req, res) => {
     console.log(question)
 
     res.status(200).json(question)
-})
+});
+
+router.patch('/api/question/answer/:userId/:questionId', async (req, res) => {
+    let user = req.params.userId;
+    let question = req.params.questionId;
+    const {answer, code} = req.body;
+
+    const selectedUser = await User.findOne({
+        _id: user,
+    }).select('username');
+    console.log("🚀 ~ file: QuestionRoutes.js ~ line 56 ~ router.patch ~ selectedUser", selectedUser)
+
+    const Question = await questionSchema.findById(question)
+    console.log("🚀 ~ file: QuestionRoutes.js ~ line 60 ~ router.patch ~ Question", Question)
+
+    Question.answers.push({
+        "user": selectedUser,
+        "answer": answer,
+        "questionId": question,
+        "code": code
+    })
+
+    Question.save();
+    res.send(true)
+});
 
 
 // router.get('/api/getQuestions/:tag',async (req,res) =>{

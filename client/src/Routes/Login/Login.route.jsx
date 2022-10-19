@@ -61,8 +61,6 @@ const Login = () => {
         setFormValues({ ...formValues, [name]: value });
     }
 
-    console.log(formValues)
-
     const signInUser = (e) =>{
         let payload ={
             email: formValues['email'].trim(),

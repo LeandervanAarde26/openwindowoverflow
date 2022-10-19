@@ -8,6 +8,7 @@ import styles from "./FollowTags.module.scss";
 
 /* Context */
 import { RegisterContext } from "../../Contexts/Register.context";
+import { ValidUserContext } from "../../Contexts/Register.context";
 
 /* Components */
 import SideNavigation from "../../Components/sideNavigation/SideNavigation.component";
@@ -19,14 +20,19 @@ import RegComplete from "../../Components/RegCompleteModal/RegComplete.component
 
 
 const FollowTags = () => {
-    const navigate = useNavigate()
-    const [tag, setTags] = useState()
+    const navigate = useNavigate();
+    const {validUser, setValidUser} = useContext(ValidUserContext);
+    const [tag, setTags] = useState();
     const { removeFromTags, tags, currentUser, setCurrentUser } = useContext(RegisterContext);
     const [openModal, setOpenModal] = useState(false);
-    const [viewTags, setViewTags] = useState()
+    const [viewTags, setViewTags] = useState();
 
     useEffect(() => {
         setTags(tags.map((i) => <Tags title={i} id={'remove'} onClick={(e) => removeFromTags(e.target.innerHTML)} />))
+        
+        if(validUser)
+            return
+        
         axios.get('http://localhost:5001/api/getalltags')
         .then(res =>{
             setViewTags(res.data.map((i, index) => (<FollowableTags key={i._id} tag={<Tags title={i.name} />} desc={i.Description} />)))

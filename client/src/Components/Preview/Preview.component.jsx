@@ -11,7 +11,7 @@ import ic_correct from '../../Assets/Icons/ic_correct.svg';
 import ic_star from '../../Assets/Icons/ic_star.svg';
 import test from '../../Assets/car.jpg';
 
-const Preview = ({ tags, timePassed, user, resolved, answers, votes, goodQuestion, askTime, question, id, nav }) => {
+const Preview = ({ title, tags, timePassed, user, resolved, answers, votes, goodQuestion, askTime, question, id, nav }) => {
 
     const testClick = () => {
         console.log('hey')
@@ -22,7 +22,10 @@ const Preview = ({ tags, timePassed, user, resolved, answers, votes, goodQuestio
     }
 
     return (
-        <div className={styles.container}  onClick={nav} >
+        <div 
+            className={styles.container}  
+            onClick={nav} 
+        >
             <div className={styles.left}>
                 <div>
                     <Icon
@@ -53,7 +56,7 @@ const Preview = ({ tags, timePassed, user, resolved, answers, votes, goodQuestio
 
             <div className={styles.right}>
                 <div className={styles.heading}>
-                    <h4>This is the Question Title</h4>
+                    <h4>{title}</h4>
 
                     {
                         goodQuestion
@@ -121,7 +124,6 @@ const Preview = ({ tags, timePassed, user, resolved, answers, votes, goodQuestio
                     }
                 </p>
             </div>
-
         </div>
     );
 };

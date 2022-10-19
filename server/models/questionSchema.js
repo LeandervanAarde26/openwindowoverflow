@@ -15,7 +15,7 @@ const question = mongoose.Schema({
     },
     author:{type: Object},
     answeredBy: {
-        author: String,
+        author: {type: String},
         date: {type: Date, default: Date.now()}
     },
     postedDate: {
@@ -32,25 +32,19 @@ const question = mongoose.Schema({
     comments: [
         {
             user: {type: mongoose.Schema.Types.ObjectId, ref: 'users'},
-            commentDate: {
-                type: Date,
-            }, 
+            commentDate: {type: Date,}, 
             flagged: {
                 type: Boolean,
                 default: false
             },
-            flaggedDate:{
-                type: Date
-            },
+            flaggedDate:{type: Date},
             comment: String,
         }
     ], 
-
     tags:[String], 
-
     answers:[
         {
-            user: {type: mongoose.Schema.Types.ObjectId, ref: 'users'},
+            user: {type: Object},
             rating: {
                 type: Number,
                 default: 0
@@ -58,14 +52,17 @@ const question = mongoose.Schema({
             resolved: {
                 type: Boolean,
                 default: false,
-                answer:{
-                    type: String, 
-                    required: true
-                }, 
-                code: String,
-                images: String, 
-                links: String
-            }
+            },
+            answer: {
+                type: String, 
+                required: true
+            },
+            questionId: {
+                type: String,
+                required: true
+            },
+            code: String,
+            images: String
         }
     ]
 });

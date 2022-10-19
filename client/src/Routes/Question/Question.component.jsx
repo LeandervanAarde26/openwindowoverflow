@@ -12,124 +12,172 @@ import IndividualQuestion from '../../Components/IndividualQuestion/IndividualQu
 import PostAnswer from '../../Components/PostAnswer/PostAnswer.component';
 import RightContainer from '../../Components/RightContainer/RightContainer.component';
 import SideNavigation from '../../Components/sideNavigation/SideNavigation.component';
-import tester from "../../Assets/code.png"
 import AnswerBoxComponent from '../../Components/AnswerBox/AnswerBox.component';
 import axios from 'axios';
+
+/* Icons/Images */
+import tester from "../../Assets/code.png"
 
 // Default form values for the answer
 const defaultFormValues = {
     answer: '',
-    answerCode: ''
+    code: ''
 }
-// Array
-
-let Arr = [];
 
 const Question = () => {
     const questionId = useParams();
+
+    const [questionData, setQuestionData] = useState(
+        {
+            title: '',
+            rating: '',
+            resolved: '',
+            author: {
+                _id: '',
+                username: 'test'
+            },
+            answeredBy: {
+                author: '',
+                date: ''
+            },
+            postedDate: '',
+            question: '',
+            code: '',
+            answers: []
+        }
+    );
+
+    const [userId, setUserId] = useState('');
+    useEffect(() => {
+        let user = sessionStorage.getItem('currentUser')
+        setUserId(user)
+
+        axios.get('http://localhost:5001/api/question/' + questionId.questionId)
+        .then(res => {
+            console.log(res.data)
+            setQuestionData(res.data);
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }, []);
+    
+    const [rerender, setRerender] = useState(false);
+    useEffect(() => {
+        axios.get('http://localhost:5001/api/question/' + questionId.questionId)
+        .then(res => {
+            console.log(res.data)
+            setQuestionData(res.data);
+        })
+        .catch(err => {
+            console.log(err)
+        })
+        setRerender(false);
+        console.log('hey')
+    }, [rerender]);
+
+    const [comments, setComments] = useState([]);
+
     const [def, setDef] = useState()
     const [formValues, setFormValues] = useState(defaultFormValues);
-    const { answer, answerCode } = formValues
-    const numbers = [1, 2, 4, 5, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+    const {answer, code} = formValues
+    const numbers = [1, 2, 4, 5,6,2,2,2,2,2,2,2,2,2,2,2,2];
     const [loadMore, setLoadMore] = useState(3);
     const [endComments, setEndComments] = useState(false)
-    const [dat, setDat] = useState()
-    const [busy, setBusy] = useState(true)
-    const [tags, setTags] = useState()
-    const code = `useEffect(() => { 
-        setDef(numbers.slice(0, loadMore).map(i => <Comment key={i} />))
-    }, [])`
-    const testTags = ['React', "Circuit Python"];
-
 
     useEffect(() => {
-        console.log("START")
-        let val = sessionStorage.getItem("currentUser")
-        console.log("🚀 ~ file: Question.component.jsx ~ line 30 ~ useEffect ~ val", val)
-        axios.get('http://localhost:5001/api/question/' + questionId.questionId)
+        setDef(numbers.slice(0, loadMore).map(i => <Comment 
+            auth={'Leander van Aarde'}
+            date={`29 June 2021 @ 21:00`}
+            comment = {`Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this.
+            Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this
+            Please be clearer with this this this`}
+            key={i} />))
+    }, [loadMore])
+
+    const handleChange = (e) =>{
+        const {name, value} = e.target;
+        setFormValues({ ...formValues, [name]: value });
+        console.log(formValues)
+    }
+
+    const handleClick = (e) =>{
+        if(formValues.answer === '' || formValues.code == ''){
+            console.log('please fill out answer')
+        } else{
+            axios.patch(`http://localhost:5001/api/question/answer/${userId}/${questionId.questionId}`, formValues)
             .then(res => {
-                console.log(res.data)
-                setDat(res.data)
-                setBusy(false)
-                setTags(res.data.tags)
+                if(res.data) {
+                    setRerender(true)
+                }
             })
             .catch(err => {
                 console.log(err)
             })
-
-    }, []);
-
-    console.log("🚀 ~ file: Question.component.jsx ~ line 26 ~ Question ~ questionId", questionId)
-
-    useEffect(() => {
-        setDef(numbers.slice(0, loadMore).map(i => <Comment
-            auth={'Leander van Aarde'}
-            date={`29 June 2021 @ 21:00`}
-            comment={`Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this.
-            Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this
-            Please be clearer with this this this`}
-            key={i} />));
-
-    }, [loadMore])
-
-    console.log(Arr)
-
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormValues({ ...formValues, [name]: value });
-    }
-
-    const handleClick = (e) => {
-        if (formValues.answer === '' || formValues.answerCode == '') {
-            console.log('please fill out answer')
-        } else {
-            console.log(formValues)
-            //Do axios.patch here and add the comment?
+            console.log('hey')
         }
     }
 
     const loadMoreComments = () => {
-        if (loadMore >= numbers.length) {
+        if(loadMore >= numbers.length){
             // setLoadMore(loadMore)
             setLoadMore(3)
             setEndComments(true)
-
-        } else {
+            
+        } else{
             setLoadMore(loadMore + 3)
             window.scroll({
                 bottom: document.body.offsetHeight,
-                left: 0,
+                left: 0, 
                 behavior: 'smooth',
-            });
+              });
         }
     }
 
     return (
         <div className={styles.container}>
             <SideNavigation />
-            {
-                busy
-                    ?
-                    null
-                    :
-                    <div className={styles.center}>
-                        <IndividualQuestion
-                            votes={dat.rating}
-                            title={dat.title}
-                            author={dat.author.username}
-                            dt={'29 November 2026'}
-                            description={dat.question}
-                            cd={dat.code}
-                            image={tester}
-                        />
+            <div className={styles.center}>
+                <IndividualQuestion
+                    votes={questionData.rating}
+                    title={questionData.title}
+                    author={questionData.author.username}
+                    date={new Date(questionData.postedDate).toString().slice(0, 16)}
+                    description={questionData.question}
+                    code={questionData.code}
+                    image={tester}
+                />
 
-                        <CommentsContainer children={def} loadMore={loadMoreComments} />
-                        <AnswerBoxComponent />
-                        <AnswerBoxComponent />
-                        <PostAnswer onChange={handleChange} handleClick={handleClick} />
-                    </div>
-            }
+                <div className={styles.comments}>
+                    <CommentsContainer 
+                        children={def} 
+                        loadMore={loadMoreComments}  
+                    />
+                </div>
+
+                <div className={styles.answers}>
+                    {
+                        questionData.answers.length > 0
+                        ?
+                            questionData.answers.map((x, index) =>
+                                <AnswerBoxComponent
+                                    answer={x.answer}
+                                    code={x.code}
+                                    votes={x.rating}
+                                />
+                            )
+                        :
+                            null
+                    }
+                </div>
+
+                <div className={styles.postAnswer}>
+                    <PostAnswer 
+                        onChange={handleChange} 
+                        handleClick={handleClick}
+                    />
+                </div>
+            </div>
 
             <RightContainer />
         </div>

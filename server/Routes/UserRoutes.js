@@ -4,6 +4,7 @@ const router = express();
 const bcrypt = require('bcrypt');
 const nodeMailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
+const { isValidObjectId } = require('mongoose');
 
 // Login the user
 // http://localhost:5001/api/loginuser
@@ -177,5 +178,26 @@ router.patch('/api/edituser/:id', async (req, res) =>{
 
    res.status(200).json({msg: "User has been update", user: editUser})
 })
+
+router.get('/api/auth/:id', async (req, res) => {
+    let id = req.params.id;
+    let isValidId = isValidObjectId(id);
+
+    if (isValidId) {
+        const user = await userSchema.findById(req.params.id);
+        
+        if (!user) {
+            res
+            .send(false)
+        } else {
+            res
+            .status(200)
+            .send(true)
+        }
+    } else {
+        res
+        .send(false)
+    }
+});
 
 module.exports = router; 

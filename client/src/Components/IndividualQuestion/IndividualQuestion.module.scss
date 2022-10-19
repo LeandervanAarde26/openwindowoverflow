@@ -1,16 +1,25 @@
 @import "../../StyleSource/variables.scss";
 
 .container {
+    width: 90%;
     display: flex;
     padding: 20px 10px;
     gap: 30px;
-    width: fit-content;
     height: fit-content;
-    max-width: 1130px;
     flex: 1;
     flex-direction: column;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
+
+    pre {
+        overflow-x: auto;
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+    }
+        
     .inner{
         display: flex;
         width: 100%;
@@ -43,14 +52,16 @@
     }
 
     .code{
-        width: 91%;
+        width: 100%;
         margin-bottom: 20px;
         height: fit-content;
     }
 
     .imageContainer{
         display: flex;
-        width: 91%;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
         height: fit-content;
 
         img{
@@ -58,9 +69,5 @@
             max-height: 100%;
             object-fit: contain;
         }
-
     }
-
-
-
 }

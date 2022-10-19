@@ -13,7 +13,7 @@ import CodePreview from '../CodePreview/CodePreview.component';
 import ic_arrow from "../../Assets/Icons/ic_arrow.svg"
 import tester from "../../Assets/code.png"
 
-const IndividualQuestion = ({ votes, title, author, dt, description, cd, image, }) => {
+const IndividualQuestion = ({ votes, title, author, date, description, code, image, }) => {
 
     return (
         <>
@@ -31,14 +31,16 @@ const IndividualQuestion = ({ votes, title, author, dt, description, cd, image, 
                     <div className={styles.question}>
                         <h3>{title}</h3>
                         <p className={styles.userInformation}>{author}</p>
-                        <p className={styles.userInformation}>Asked {dt}</p>
+                        <p className={styles.userInformation}>Asked {date}</p>
                         <p className={styles.description}>
-                            {description}
+                            <pre>
+                                {description}
+                            </pre>
                         </p>
                     </div>
                 </div>
                 <div className={styles.code}>
-                    <CodePreview children={cd} />
+                    <CodePreview children={code} />
 
                 </div>
                 <div className={styles.imageContainer}>

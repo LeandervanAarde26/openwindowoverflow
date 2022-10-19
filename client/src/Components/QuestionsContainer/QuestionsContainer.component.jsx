@@ -11,7 +11,8 @@ import IntroductionHome from '../IntroductionHome/IntroductionHome.component';
 
 const QuestionsContainer = () => {
     const [questions, setQuestions] = useState([]);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
     useEffect(() => {
         axios.get('http://localhost:5001/api/questions')
         .then(res => {
@@ -34,8 +35,6 @@ const QuestionsContainer = () => {
                 }
             });
 
-            console.log(data)
-
             setQuestions(data);
         })
         .catch(err => {
@@ -48,8 +47,6 @@ const QuestionsContainer = () => {
         console.log(e.target.id)
     }
     
-    
-
     return (
         <div className={styles.outer}>
    
@@ -59,6 +56,7 @@ const QuestionsContainer = () => {
                     questions.map((i, index) => 
                         <Preview
                             key={i._id}
+                            title={i.title}
                             votes={i.rating}
                             tags={i.tags}
                             answers={i.answers.length}
@@ -72,7 +70,7 @@ const QuestionsContainer = () => {
                             question={i.question}
                             timePassed={i.timePassed}
                             askTime={i.askTime}
-                            nav= {() => navigate(`/Question/${i._id}`)}
+                            nav= {() => navigate(`/question/${i._id}`)}
                         />
                     )
                 }

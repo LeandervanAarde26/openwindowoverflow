@@ -48,7 +48,6 @@ const users = mongoose.Schema({
         type: String,
         default: ''
     },
-
     githubLink: {
         type: String,
         validate: {

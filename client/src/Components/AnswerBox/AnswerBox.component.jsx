@@ -37,22 +37,21 @@ const onChange = (e) => {
                     <Icon 
                         icon={ic_arrow} 
                     />
-                    <h5>12</h5>
+                    <h5>
+                        {props.votes}
+                    </h5>
                     <Icon 
                         icon={ic_arrow} 
                     />
                     </div>
                     <div className={styles.answer}>
-                        m ipsum dolor sit amet consectetur adipisicing elit. Iste velit
-                        dolores quas, totam sed iure deleniti cupiditate ipsa voluptatibus
-                        eius assumenda itaque, corrupti hic liberoasf asf asf as fioas
-                        faikshfi aoksnf iasfg sapiente consectetur obcaecati mini
+                        {props.answer}
                     </div>
             </div>
 
             <div className={styles.code}>
                 <CodePreview
-                    children={code}
+                    children={props.code}
                 />
             </div>
 

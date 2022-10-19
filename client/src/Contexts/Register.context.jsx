@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect, useReducer } from "react";
 
+export const ValidUserContext = createContext(false);
+
 const addTag = (tags, tagToAdd) => {
     const exists = tags.find(i => i === tagToAdd);
     if (exists) return tags;

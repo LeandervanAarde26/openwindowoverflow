@@ -32,7 +32,7 @@ const NavBar = () => {
             <div className={styles.containerOuter}>
                 <div className={styles.containerOuter__logo}>
                     <img
-                        // src={logo} 
+                        src={logo} 
                         alt="" 
                     />
                 </div>

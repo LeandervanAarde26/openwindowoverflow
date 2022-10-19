@@ -16,7 +16,7 @@ const PostAnswer = ({code, answer, handleClick, ...otherProps}) => {
             <h5>Your Answer</h5>
             <div className={styles.areaContainer}>
                 <textarea className={styles.textarea}  placeholder='enter answer' name={'answer'} value={answer} {...otherProps}></textarea>
-                <textarea className={styles.codearea} placeholder='enter code here' name={'answerCode'} value={code} {...otherProps}></textarea>
+                <textarea className={styles.codearea} placeholder='enter code here' name={'code'} value={code} {...otherProps}></textarea>
             </div>
 
             <div className={styles.buttonContainer}>
