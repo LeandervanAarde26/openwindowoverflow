@@ -31,8 +31,13 @@ const question = mongoose.Schema({
     links: String,
     comments: [
         {
-            user: {type: mongoose.Schema.Types.ObjectId, ref: 'users'},
-            commentDate: {type: Date,}, 
+            user: {
+                type: Object,
+            },
+            commentDate: {
+                type: Date,
+                default: Date.now()
+            }, 
             flagged: {
                 type: Boolean,
                 default: false

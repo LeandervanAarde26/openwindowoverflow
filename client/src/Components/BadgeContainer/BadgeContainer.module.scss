@@ -2,7 +2,7 @@
 
 .main {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     flex-direction: column;
     padding-left: 2%;
     overflow: scroll;
@@ -10,4 +10,7 @@
     scroll-behavior: smooth;
     -ms-overflow-style: none;  
     scrollbar-width: none; 
+    max-height: 45vh;
+    max-width: 100%;
+    overflow-x: hidden !important;
 }

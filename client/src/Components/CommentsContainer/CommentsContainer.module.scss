@@ -10,12 +10,37 @@
         flex: 1;
         align-items:center;
         justify-content: center;
-
+        
         .buttonContainer{
             display: flex;
             justify-content: center;
-
+            gap: 15px;
             margin-top: 20px;
+        }
+
+        .commentContainer{
+            width: 100%;
+            display: flex;
+            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+
+            textarea{
+                background-color: transparent;
+                border: 2px solid $orange;
+                width: 100%;
+                min-height: 100px;
+                outline: none;
+                padding: 10px;
+            }
+
+            .button{
+               width: 100%;
+               display: flex;
+               justify-content: flex-end;
+            }
         }
     }
 }

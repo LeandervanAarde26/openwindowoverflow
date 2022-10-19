@@ -1,0 +1,19 @@
+@import "../../StyleSource/variables.scss";
+
+
+.outer {
+    width: 45%;
+    flex-direction: column;
+    margin-bottom: 20px;
+    h4 {
+        margin-bottom: 20px;
+    }
+}
+.likes {
+    margin-right: -70px;
+
+    p {
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+}

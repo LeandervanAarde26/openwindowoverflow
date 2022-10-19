@@ -23,6 +23,9 @@ const defaultFormValues = {
     answer: '',
     code: ''
 }
+const userComment = {
+    comments: ''
+}
 
 const Question = () => {
     const questionId = useParams();
@@ -76,13 +79,17 @@ const Question = () => {
         console.log('hey')
     }, [rerender]);
 
-    const [comments, setComments] = useState([]);
-
     const [def, setDef] = useState()
     const [formValues, setFormValues] = useState(defaultFormValues);
     const {answer, code} = formValues
-    const numbers = [1, 2, 4, 5,6,2,2,2,2,2,2,2,2,2,2,2,2];
     const [loadMore, setLoadMore] = useState(3);
+    const [dat, setDat] = useState()
+    const [busy, setBusy] = useState(true)
+    const [tags, setTags] = useState()
+    // Comments
+    const [commentVal, setCommentVal] = useState(userComment)
+    const {comments} = commentVal
+    const [comment, setComment] = useState()
     const [endComments, setEndComments] = useState(false)
 
     useEffect(() => {
@@ -95,16 +102,10 @@ const Question = () => {
             key={i} />))
     }, [loadMore])
 
-    const handleChange = (e) =>{
-        const {name, value} = e.target;
-        setFormValues({ ...formValues, [name]: value });
-        console.log(formValues)
-    }
-
     const handleClick = (e) =>{
         if(formValues.answer === '' || formValues.code == ''){
             console.log('please fill out answer')
-        } else{
+        } else {
             axios.patch(`http://localhost:5001/api/question/answer/${userId}/${questionId.questionId}`, formValues)
             .then(res => {
                 if(res.data) {
@@ -114,8 +115,56 @@ const Question = () => {
             .catch(err => {
                 console.log(err)
             })
-            console.log('hey')
         }
+    }
+
+    console.log("🚀 ~ file: Question.component.jsx ~ line 26 ~ Question ~ questionId", questionId)
+
+    useEffect(() => {
+        setDef(numbers.slice(0, loadMore).map(i => <Comment
+            auth={'Leander van Aarde'}
+            date={`29 June 2021 @ 21:00`}
+            comment={`Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this.
+            Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this
+            Please be clearer with this this this`}
+            key={i} />));
+
+    }, [loadMore])
+
+    console.log(Arr)
+
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+    }
+
+    const handleCommentChange = (e) =>{
+        const {name, value} = e.target
+        setCommentVal({...commentVal, [name]: value})
+
+    }
+
+    // Cancel 
+    const leaveComment = () =>{
+        setComment(prev => !prev)
+    }
+
+    // Add comment 
+    const postComment = () =>{
+        console.log(commentVal)
+        let val = sessionStorage.getItem("currentUser")
+        let payload = {
+            user: val, 
+            comment: commentVal.comments
+        }
+        axios.patch(`http://localhost:5001/api/addComment/${questionId.questionId}`, payload)
+        .then(res =>{
+            console.log(res)
+        })
+        .catch(err =>{
+            console.log(err)
+        })
     }
 
     const loadMoreComments = () => {
@@ -151,7 +200,16 @@ const Question = () => {
                 <div className={styles.comments}>
                     <CommentsContainer 
                         children={def} 
-                        loadMore={loadMoreComments}  
+                        loadMore={loadMoreComments} 
+                        // label={"answer"}
+                        activeComment = {comment}
+                        value={comments}
+                        type="text"
+                        name="comments"
+                        onChange={handleCommentChange}
+                        placeholder="Enter your comment here..."
+                        commentable={leaveComment}
+                        post ={postComment}
                     />
                 </div>
 
@@ -178,7 +236,6 @@ const Question = () => {
                     />
                 </div>
             </div>
-
             <RightContainer />
         </div>
     );

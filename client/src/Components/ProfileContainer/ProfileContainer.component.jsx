@@ -44,13 +44,13 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
     const [formValues, setFormValues] = useState({
         username: user,
         currentStudyYear: year,
-        githubLink: github ,
+        githubLink: github,
         userDescription: aboutUser
     })
     // These are the default form values for a user that is logged in.
     const { username, currentStudyYear, githubLink, userDescription } = formValues
 
-// This will set the state for the UI to update accordingly between being able to update your profile
+    // This will set the state for the UI to update accordingly between being able to update your profile
     const editInformation = () => {
         setEditState(prev => !prev)
     }
@@ -81,142 +81,144 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
     }
 
     return (
-        <div className={styles.container}>
-            <div className={styles.topContainer} >
-                {
-                    editState
-                        ?
-                        <div className={styles.profilePhoto} {...otherProps}>
-                            <div className={styles.hoverProfile} >
-                                <p>Choose new profile photo</p>
-                            </div>
-                            <img src={image} />
-                        </div>
-                        :
-                        <div className={styles.profilePhoto} >
-                            <img src={image} />
-                        </div>
-                }
-                <div className={styles.userIntro}>
-                    {
-                        editState ?
-                            <Input
-                                // id={error ? styles.err : ""}
-                                label={"Enter new username"}
-                                value={username}
-                                type="text"
-                                name="username"
-                                required={true}
-                                onChange={handleChange}
-                            />
-                            :
-                            <h3>{username}</h3>
-                    }
-                    {
-                        editState ?
-                            <Input
-                                // id={error ? styles.err : ""}
-                                label={"What year are you in?"}
-                                value={currentStudyYear}
-                                type="number"
-                                max={4}
-                                name="currentStudyYear"
-                                required={true}
-                                onChange={handleChange}
-                            />
-                            :
-                            <p className={styles.year}>{year === 1 ? `${year}st` : year === 2 ? `${year}nd` : year === 3 ? `${year}rd` : ''} Year Development Student</p>
-                    }
+        <>
+            <div className={styles.container}>
+                <div className={styles.left}>
+                    <div className={styles.profileInfo}>
+                        {
+                            editState
+                                ?
+                                <div className={styles.profilePhoto} {...otherProps}>
+                                    <div className={styles.hoverProfile} >
+                                        <p>Choose new profile photo</p>
+                                    </div>
+                                    <img src={image} />
+                                </div>
+                                :
+                                <div className={styles.profilePhoto} >
+                                    <img src={image} />
+                                </div>
+                        }
+                        <div className={styles.information}>
+                            {
+                                editState ?
+                                    <Input
+                                        // id={error ? styles.err : ""}
+                                        label={"Enter new username"}
+                                        value={username}
+                                        type="text"
+                                        name="username"
+                                        required={true}
+                                        onChange={handleChange}
+                                    />
+                                    :
+                                    <h3 className={styles.username}>{username}</h3>
+                            }
 
-                    <div className={styles.accContainer}>
-                        <p className={styles.accomplishments}>{questions} Questions</p>
-                        <p className={styles.accomplishments}>{answers} Answers</p>
-                        <p className={styles.accomplishments}>{badges} Badges</p>
+                            {
+                                editState ?
+                                    <Input
+                                        // id={error ? styles.err : ""}
+                                        label={"What year are you in?"}
+                                        value={currentStudyYear}
+                                        type="number"
+                                        max={4}
+                                        name="currentStudyYear"
+                                        required={true}
+                                        onChange={handleChange}
+                                    />
+                                    :
+                                    <p className={styles.year}>{year === 1 ? `${year}st` : year === 2 ? `${year}nd` : year === 3 ? `${year}rd` : ''} Year Development Student</p>
+                            }
+
+                            <div className={styles.accContainer}>
+                                <p className={styles.accomplishments}>{questions} Questions</p>
+                                <p className={styles.accomplishments}>{answers} Answers</p>
+                            </div>
+                            <p className={styles.reputation}>Overall reputation: <span className={styles.rep}>55%</span></p>
+
+                            {
+                                editState
+                                    ?
+                                    <div className={styles.githubLink}>
+                                        <Input
+                                            // id={error ? styles.err : ""}
+                                            label={"Enter Github Link"}
+                                            value={githubLink}
+                                            type="text"
+                                            name="githubLink"
+                                            required={true}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+                                    :
+                                    null
+                            }
+                            <div className={styles.button}>
+                                <a href={github} target="_blank">
+                                    <Button
+                                        buttonType={'github'} />
+                                </a>
+
+                                {
+                                    editState
+                                        ?
+                                        <Button buttonType={'primary'}
+                                            children={"Update profile"}
+                                            id={styles.larger}
+                                            onClick={updateInformation}
+                                        />
+                                        :
+                                        null
+                                }
+
+                                <Button buttonType={'outline'}
+                                    children={editState ? "Cancel" : "EditProfile"}
+                                    id={styles.larger}
+                                    onClick={editInformation}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.bottom}>
+                        {
+                            editState
+                                ?
+                                <>
+                                    <h5>Tell us more about you, {user}</h5>
+                                    <br />
+                                    <textarea
+                                        className={styles.area}
+                                        value={userDescription}
+                                        type="text"
+                                        name="userDescription"
+                                        onChange={handleChange}
+                                    >
+                                    </textarea>
+                                </>
+                                :
+                                <>
+                                    <h4>About {user}</h4>
+                                    <p>{aboutUser}</p>
+                                </>
+                        }
+
+                        <h4>Following Tags</h4>
+                        <div className={styles.tagsContainer}>
+                            {tags}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className={styles.description}>
-                {
-                    editState
-                        ?
-                        <>
-                            <h5>Tell us more about you, {user}</h5>
-                            <br />
-                            <textarea
-                                value={userDescription}
-                                type="text"
-                                name="userDescription"
-                                onChange={handleChange}
-                            >
-                            </textarea>
-                        </>
-                        :
-                        <>
-                            <h4>About {user}</h4>
-                            <p>{aboutUser}</p>
-                        </>
-                }
-
-                {
-                    editState
-                        ?
-                        <div className={styles.githubLink}>
-                            <Input
-                                // id={error ? styles.err : ""}
-                                label={"Enter Github Link"}
-                                value={githubLink}
-                                type="text"
-                                name="githubLink"
-                                required={true}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        :
-                        null
-                }
-
-                <div className={styles.button}>
-                    <a href={github} target="_blank">
-                        <Button
-                            buttonType={'github'} />
-                    </a>
-
-                    {
-                        editState
-                            ?
-                            <Button buttonType={'primary'}
-                                children={"Update profile"}
-                                id={styles.larger}
-                                onClick={updateInformation}
-                            />
-                            :
-                            null
-                    }
-
-                    <Button buttonType={'outline'}
-                        children={editState ? "Cancel" : "EditProfile"}
-                        id={styles.larger}
-                        onClick={editInformation}
+                <div className={styles.right}>
+                    <h4>Earned badges</h4>
+                    <BadgeContainer
+                        children={tester}
                     />
                 </div>
 
-                <h4>Following Tags</h4>
-                <div className={styles.tagsContainer}>
-                    {tags}
-                </div>
-                <div className={styles.title}>
-                    <h3>Badges</h3>
-                </div>
             </div>
 
-            <BadgeContainer
-                children={tester}
-            />
-            <div className={styles.reputationCon}>
-                <UserReputation />
-            </div>
-            <MyQuestionsAnswersContainer />
-        </div>
+        </>
     );
 };
 

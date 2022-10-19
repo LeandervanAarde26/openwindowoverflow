@@ -23,6 +23,7 @@ import EditProfileImage from '../../Components/EditProfileImage/EditProfileImage
 
 /* Context */
 import { RegisterContext } from '../../Contexts/Register.context';
+import MyQuestionsAnswersContainer from '../../Components/MyQuestionsAnswersContainer/MyQuestionsAnswersContainer.component';
 
 
 // http://localhost:5001/api/individualuser/:
@@ -94,7 +95,11 @@ const Profile = () => {
                     selected={update}
                     changeImage={handleClick}
                 />}
+
+        
             </div>
+
+            
     );
 };
 
