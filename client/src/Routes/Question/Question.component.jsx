@@ -21,6 +21,9 @@ const defaultFormValues = {
     answer: '',
     answerCode: ''
 }
+const userComment = {
+    comments: ''
+}
 // Array
 
 let Arr = [];
@@ -32,10 +35,15 @@ const Question = () => {
     const { answer, answerCode } = formValues
     const numbers = [1, 2, 4, 5, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
     const [loadMore, setLoadMore] = useState(3);
-    const [endComments, setEndComments] = useState(false)
     const [dat, setDat] = useState()
     const [busy, setBusy] = useState(true)
     const [tags, setTags] = useState()
+    // Comments
+    const [commentVal, setCommentVal] = useState(userComment)
+    const {comments} = commentVal
+    const [comment, setComment] = useState()
+    const [endComments, setEndComments] = useState(false)
+
     const code = `useEffect(() => { 
         setDef(numbers.slice(0, loadMore).map(i => <Comment key={i} />))
     }, [])`
@@ -80,14 +88,44 @@ const Question = () => {
         setFormValues({ ...formValues, [name]: value });
     }
 
+    const handleCommentChange = (e) =>{
+        const {name, value} = e.target
+        setCommentVal({...commentVal, [name]: value})
+
+    }
+
+    // Cancel 
+    const leaveComment = () =>{
+        setComment(prev => !prev)
+    }
+
+    // Add comment 
+    const postComment = () =>{
+        console.log(commentVal)
+        let val = sessionStorage.getItem("currentUser")
+        let payload = {
+            user: val, 
+            comment: commentVal.comments
+        }
+        axios.patch(`http://localhost:5001/api/addComment/${questionId.questionId}`, payload)
+        .then(res =>{
+            console.log(res)
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+    }
+
     const handleClick = (e) => {
         if (formValues.answer === '' || formValues.answerCode == '') {
             console.log('please fill out answer')
         } else {
             console.log(formValues)
-            //Do axios.patch here and add the comment?
+            
         }
     }
+
+    
 
     const loadMoreComments = () => {
         if (loadMore >= numbers.length) {
@@ -124,13 +162,27 @@ const Question = () => {
                             image={tester}
                         />
 
-                        <CommentsContainer children={def} loadMore={loadMoreComments} />
-                        <AnswerBoxComponent />
+                        <CommentsContainer 
+                        children={def} 
+                        loadMore={loadMoreComments} 
+                        // label={"answer"}
+                        activeComment = {comment}
+                        value={comments}
+                        type="text"
+                        name="comments"
+                        onChange={handleCommentChange}
+                        placeholder="Enter your comment here..."
+                        commentable={leaveComment}
+                        post ={postComment}
+                     
+                        />
+                        <AnswerBoxComponent 
+                        
+                        />
                         <AnswerBoxComponent />
                         <PostAnswer onChange={handleChange} handleClick={handleClick} />
                     </div>
             }
-
             <RightContainer />
         </div>
     );

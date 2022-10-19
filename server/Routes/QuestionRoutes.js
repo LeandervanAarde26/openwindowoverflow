@@ -3,6 +3,7 @@ const Question = require("../models/questionSchema");
 const User = require("../models/userSchema");
 const tags = require('../models/tagsSchema');
 const questionSchema = require('../models/questionSchema');
+const userSchema = require('../models/userSchema');
 const router = express();
 
 router.post('/api/askquestion', async (req, res) => {
@@ -48,6 +49,42 @@ router.get('/api/question/:id', async (req, res) => {
 
     res.status(200).json(question)
 })
+
+router.patch('/api/answerquestion/:id', async (res, req) =>{
+    let id = req.params.question
+    
+    const question = await Question.findOne({
+      _id: id  
+    })
+
+    res.status(200).json(question)
+})
+
+// http://localhost:5001/api/addComment/
+router.patch('/api/addComment/:id', async (req,res) =>{
+    let {comment, user} = req.body
+
+    const addComment = await Question.findById(req.params.id)
+    const auth = await User.findOne({
+        _id: user,
+    }).select('username');
+
+    console.log("🚀 ~ file: QuestionRoutes.js ~ line 13 ~ router.post ~ user", auth)
+
+    addComment.comments.push(
+        {
+                user: auth,
+                comment: comment
+        } 
+    )
+
+    if(!addComment){
+        res.status(400).json({msg: "Comment could not be pushed"})
+    }
+    addComment.save()
+    res.status(200).json({msg: addComment})
+    console.log(auth)
+});
 
 
 // router.get('/api/getQuestions/:tag',async (req,res) =>{

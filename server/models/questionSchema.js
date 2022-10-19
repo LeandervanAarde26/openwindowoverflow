@@ -31,9 +31,12 @@ const question = mongoose.Schema({
     links: String,
     comments: [
         {
-            user: {type: mongoose.Schema.Types.ObjectId, ref: 'users'},
+            user: {
+                type: Object,
+            },
             commentDate: {
                 type: Date,
+                default: Date.now()
             }, 
             flagged: {
                 type: Boolean,
@@ -58,6 +61,7 @@ const question = mongoose.Schema({
             resolved: {
                 type: Boolean,
                 default: false,
+            },
                 answer:{
                     type: String, 
                     required: true
@@ -65,7 +69,6 @@ const question = mongoose.Schema({
                 code: String,
                 images: String, 
                 links: String
-            }
         }
     ]
 });
