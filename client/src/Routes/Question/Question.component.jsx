@@ -28,6 +28,19 @@ const userComment = {
 }
 
 const Question = () => {
+
+    const [def, setDef] = useState()
+    const [formValues, setFormValues] = useState(defaultFormValues);
+    const { answer, answerCode } = formValues
+    const [loadMore, setLoadMore] = useState(3);
+    const [dat, setDat] = useState()
+    const [busy, setBusy] = useState(true)
+    const [tags, setTags] = useState()
+    // Comments
+    const [commentVal, setCommentVal] = useState(userComment)
+    const { comments } = commentVal
+    const [comment, setComment] = useState()
+    const [endComments, setEndComments] = useState(false)
     const questionId = useParams();
 
     const [questionData, setQuestionData] = useState(
@@ -59,6 +72,16 @@ const Question = () => {
         .then(res => {
             console.log(res.data)
             setQuestionData(res.data);
+            const comments = res.data.comments.map(i => (
+                <Comment
+                    auth={i.user.username}
+                    date={`29 June 2021 @ 21:00`
+                    }
+                    comment={i.comment}
+                    key={i} />
+            ));
+
+            setDef(comments)
         })
         .catch(err => {
             console.log(err)
@@ -79,28 +102,6 @@ const Question = () => {
         console.log('hey')
     }, [rerender]);
 
-    const [def, setDef] = useState()
-    const [formValues, setFormValues] = useState(defaultFormValues);
-    const { answer, answerCode } = formValues
-    const [loadMore, setLoadMore] = useState(3);
-    const [dat, setDat] = useState()
-    const [busy, setBusy] = useState(true)
-    const [tags, setTags] = useState()
-    // Comments
-    const [commentVal, setCommentVal] = useState(userComment)
-    const { comments } = commentVal
-    const [comment, setComment] = useState()
-    const [endComments, setEndComments] = useState(false)
-
-    useEffect(() => {
-        setDef(numbers.slice(0, loadMore).map(i => <Comment 
-            auth={'Leander van Aarde'}
-            date={`29 June 2021 @ 21:00`}
-            comment = {`Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this.
-            Please be clearer with this this this and this because this is difficult to understand and I don't quite understand what you're trying to achieve with this this this and also with this. So how are you going to do this
-            Please be clearer with this this this`}
-            key={i} />))
-    }, [loadMore])
 
     const handleClick = (e) =>{
         if(formValues.answer === '' || formValues.code == ''){
@@ -114,16 +115,6 @@ const Question = () => {
                 setTags(res.data.tags)
                 console.log(res.data.comments)
 
-                const comments = res.data.comments.map(i => (
-                    <Comment
-                        auth={i.user.username}
-                        date={`29 June 2021 @ 21:00`
-                        }
-                        comment={i.comment}
-                        key={i} />
-                ));
-
-                setDef(comments)
             })
             .catch(err => {
                 console.log(err)
@@ -169,7 +160,7 @@ const Question = () => {
     }
 
     const loadMoreComments = () => {
-        if(loadMore >= numbers.length){
+        if(loadMore >= def.length){
             // setLoadMore(loadMore)
             setLoadMore(3)
             setEndComments(true)
