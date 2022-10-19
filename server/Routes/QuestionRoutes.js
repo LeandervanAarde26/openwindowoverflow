@@ -99,10 +99,10 @@ router.patch('/api/addComment/:id', async (req,res) =>{
     )
 
     if(!addComment){
-        res.status(400).json({msg: "Comment could not be pushed"})
+        res.status(400).json({msg: "Comment could not be pushed", state: false})
     }
     addComment.save()
-    res.status(200).json({msg: addComment})
+    res.status(200).json({msg: addComment, state: true})
     console.log(auth)
 });
 

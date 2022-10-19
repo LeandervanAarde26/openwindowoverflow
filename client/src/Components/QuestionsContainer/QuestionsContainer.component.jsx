@@ -61,6 +61,7 @@ const QuestionsContainer = () => {
         {questions.map((i, index) => (
           <Preview
             key={i._id}
+            title={i.title}
             votes={i.rating}
             tags={i.tags}
             answers={i.answers.length}

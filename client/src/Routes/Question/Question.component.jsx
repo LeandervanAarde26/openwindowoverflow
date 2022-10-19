@@ -59,7 +59,8 @@ const Question = () => {
             postedDate: '',
             question: '',
             code: '',
-            answers: []
+            answers: [],
+            comments:[]
         }
     );
 
@@ -72,16 +73,7 @@ const Question = () => {
         .then(res => {
             console.log(res.data)
             setQuestionData(res.data);
-            const comments = res.data.comments.map(i => (
-                <Comment
-                    auth={i.user.username}
-                    date={`29 June 2021 @ 21:00`
-                    }
-                    comment={i.comment}
-                    key={i} />
-            ));
-
-            setDef(comments)
+            setDef(res.data.comments)
         })
         .catch(err => {
             console.log(err)
@@ -153,6 +145,12 @@ const Question = () => {
         axios.patch(`http://localhost:5001/api/addComment/${questionId.questionId}`, payload)
             .then(res => {
                 console.log(res)
+
+                if(res.data.state){
+                    setRerender(true)
+                    setComment(prev => !prev)
+                    setCommentVal(userComment)
+                }
             })
             .catch(err => {
                 console.log(err)
@@ -191,7 +189,14 @@ const Question = () => {
 
                 <div className={styles.comments}>
                     <CommentsContainer 
-                        children={def} 
+                        children={questionData.comments.map(i => (
+                            <Comment
+                                auth={i.user.username}
+                                date={`29 June 2021 @ 21:00`
+                                }
+                                comment={i.comment}
+                                key={i} />
+                        ))} 
                         loadMore={loadMoreComments} 
                         // label={"answer"}
                         activeComment = {comment}
