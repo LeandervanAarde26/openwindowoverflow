@@ -45,7 +45,7 @@ const Question = () => {
 
     const [questionData, setQuestionData] = useState(
         {
-            title: '',
+            title: 'sfasf',
             rating: '',
             resolved: '',
             author: {
@@ -110,10 +110,12 @@ const Question = () => {
             axios.patch(`http://localhost:5001/api/question/answer/${userId}/${questionId.questionId}`, formValues)
             .then(res => {
                 console.log(res.data)
+                if(res.data) {
+                    setRerender(true)
+                }
                 setDat(res.data)
                 setBusy(false)
                 setTags(res.data.tags)
-                console.log(res.data.comments)
 
             })
             .catch(err => {
@@ -121,9 +123,6 @@ const Question = () => {
             })
         }
     }
-
-    console.log("🚀 ~ file: Question.component.jsx ~ line 26 ~ Question ~ questionId", questionId)
-
 
 // Change for answers
     const handleChange = (e) => {
@@ -134,7 +133,6 @@ const Question = () => {
     const handleCommentChange = (e) => {
         const { name, value } = e.target
         setCommentVal({ ...commentVal, [name]: value })
-
     }
 
     // Cancel 

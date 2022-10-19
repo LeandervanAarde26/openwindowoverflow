@@ -60,6 +60,7 @@ const QuestionsContainer = () => {
       <div className={styles.container}>
         {questions.map((i, index) => (
           <Preview
+            title={i.title}
             key={i._id}
             votes={i.rating}
             tags={i.tags}
