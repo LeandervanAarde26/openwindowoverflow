@@ -1,10 +1,9 @@
 /* React */
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { useParams } from "react-router";
-import Button from "../../Components/Button/Button.component";
 /* Styling */
 import styles from "./ValidateUser.module.scss";
 
@@ -14,11 +13,6 @@ import brokenBrowser from "../../Assets/brokenbrowser.png";
 // import { RegisterContext } from '../../Contexts/Register.context';
 import Button from "../../Components/Button/Button.component";
 import { useNavigate } from "react-router";
-import { useEffect } from "react";
-import axios from "axios";
-import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
-import { useParams } from "react-router";
 
 const ValidateUser = () => {
   // const { currentUser } = useContext(RegisterContext)

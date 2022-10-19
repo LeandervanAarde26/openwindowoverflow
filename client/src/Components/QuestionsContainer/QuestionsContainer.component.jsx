@@ -4,7 +4,6 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 /* Styling */
 import styles from "./QuestionsContainer.module.scss";
-import axios from "axios";
 /* Components */
 import Preview from "../Preview/Preview.component";
 import IntroductionHome from "../IntroductionHome/IntroductionHome.component";
