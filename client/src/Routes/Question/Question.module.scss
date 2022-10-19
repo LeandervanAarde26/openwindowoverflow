@@ -14,6 +14,13 @@
         gap: 30px;
     }
 
+    .comments{
+        width: 90%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
     .answers {
         width: 90%;
         display: flex;
