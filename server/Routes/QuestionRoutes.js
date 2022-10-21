@@ -8,7 +8,7 @@ const userSchema = require('../models/userSchema');
 const router = express();
 
 router.post('/api/askquestion', async (req, res) => {
-    let {title, author, question, code, tags} = req.body;
+    let {title, author, question, code, tags, Images} = req.body;
 
     // Find the details of the user that asked the question
     const user = await User.findOne({
@@ -23,7 +23,7 @@ router.post('/api/askquestion', async (req, res) => {
 
     let answeredBy = answeredUser;
 
-    const doc = new Question({title, author, question, code, tags, answeredBy});
+    const doc = new Question({title, author, question, code, tags, Images, answeredBy});
 
     const ret = await doc.save();
     res.json(ret);

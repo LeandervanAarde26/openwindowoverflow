@@ -27,7 +27,7 @@ const question = mongoose.Schema({
         required: true
     }, 
     code: String, 
-    Images: [String],
+    Images: String,
     links: String,
     comments: [
         {

@@ -31,6 +31,7 @@ const Question = () => {
 
     const [def, setDef] = useState()
     const [formValues, setFormValues] = useState(defaultFormValues);
+    const [questionImage, setQuestionImage] = useState(tester)
     const { answer, answerCode } = formValues
     const [loadMore, setLoadMore] = useState(3);
     const [dat, setDat] = useState()
@@ -64,24 +65,12 @@ const Question = () => {
         }
     );
 
-    const [userId, setUserId] = useState('');
+    const [userId, setUserId] = useState('');   
+    const [rerender, setRerender] = useState(false);
     useEffect(() => {
         let user = sessionStorage.getItem('currentUser')
         setUserId(user)
 
-        axios.get('http://localhost:5001/api/question/' + questionId.questionId)
-        .then(res => {
-            console.log(res.data)
-            setQuestionData(res.data);
-            setDef(res.data.comments)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }, []);
-    
-    const [rerender, setRerender] = useState(false);
-    useEffect(() => {
         axios.get('http://localhost:5001/api/question/' + questionId.questionId)
         .then(res => {
             console.log(res.data)
@@ -173,7 +162,7 @@ const Question = () => {
 
     return (
         <div className={styles.container}>
-            <SideNavigation />
+        <SideNavigation />
             <div className={styles.center}>
                 <IndividualQuestion
                     votes={questionData.rating}
@@ -182,7 +171,7 @@ const Question = () => {
                     date={new Date(questionData.postedDate).toString().slice(0, 16)}
                     description={questionData.question}
                     code={questionData.code}
-                    image={tester}
+                    image={questionData.Images}
                 />
 
                 <div className={styles.comments}>

@@ -19,12 +19,11 @@ export default function Contact() {
   const [currentLocation, setCurrentLocation] = useState();
   const pathName = useLocation();
   return (
-    <>
       <div className={styles.container}>
         <SideNavigation />
         <div className={styles.centerContent}>
           <h2>Contact</h2>
-          <br/>
+          <br />
           <h4>Staff:</h4>
           {/* <AnswerBoxComponent /> */}
           <div className={styles.contacts}>
@@ -49,7 +48,7 @@ export default function Contact() {
               contactEmail={"carlo@openwindow.co.za"}
             />
           </div>
-          <br/>
+          <br />
           <h4>Creators:</h4>
           <div className={styles.contacts}>
             <ContactCard
@@ -76,8 +75,5 @@ export default function Contact() {
         </div>
         <RightContainer />
       </div>
-      {/* <RightContainer /> */}
-      {/* <div><FlaggedComment /></div> */}
-    </>
   );
 }

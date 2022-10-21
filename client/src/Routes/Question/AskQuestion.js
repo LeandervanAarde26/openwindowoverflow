@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/prism';
+import AWS from "aws-sdk"
 
 /* Styling */
 import styles from './AskQuestion.module.scss';
@@ -15,9 +16,22 @@ import CodePreview from '../../Components/CodePreview/CodePreview.component';
 import Input from "../../Components/Input/Input.component"
 import style from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark';
 
+
+const region = "af-south-1";
+const bucketName = 'openoverflow'
+AWS.config.update({
+    accessKeyId: "AKIAWDMDUWDEHUXLLQOB",
+    secretAccessKey: "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"
+});
+const bucket = new AWS.S3({
+    params: {Bucket: bucketName},
+    region: region
+})
+
 const AskQuestion = () => {
     const [tags, setTags] = useState([]);
-    const [image, setImage] = useState(null)
+    const [image, setImage] = useState(null);
+    const [databaseImage, setDataBaseImage] = useState(null)
     const [fileList, setFileList] = useState();
     useEffect(() => {
         axios.get('http://localhost:5001/api/getalltags')
@@ -37,10 +51,6 @@ const AskQuestion = () => {
     }, [shouldRerender]);
 
     const [title, setTitle] = useState("This will be your title");
-    const changeTitle = () => {
-
-    }
-
     const [question, setQuestion] = useState("This will be your question");
     const changeQuestion = (e) => {
         let question = e.target.value;
@@ -90,13 +100,34 @@ const AskQuestion = () => {
         setShouldRerender(true);
     }
 
-    const postQuestion = () => {
+    const getImages = async (e) => {
+        setImage(URL.createObjectURL(e.target.files[0]))
+        let img = e.target.files[0]
+        setDataBaseImage(img)
+        // console.log(img.name)
+    }
+
+
+    const postQuestion = async (e) => {
+
+        const newImage = `https://openoverflow.s3.af-south-1.amazonaws.com/${databaseImage.name.replace(/\s/g, '')}`
+        const temp = databaseImage.name.replace(/\s/g, '')
+    
+        const params = {
+            ACL: "public-read",
+            Body: databaseImage,
+            Bucket: bucketName,
+            Key: temp
+        }
+        bucket.putObject(params).send(err => console.log(err))
+
         let data = {
             title: title,
             author: '6343f87e901857c1e810cd7b',
             question: question,
             code: code,
-            tags: tagsSelected
+            tags: tagsSelected,
+            Images: newImage
         }
 
         console.log(data)
@@ -110,9 +141,7 @@ const AskQuestion = () => {
             })
     }
 
-    const getImages = async (e) => {
-        setImage(URL.createObjectURL(e.target.files[0]))
-    }
+
 
     console.log(image)
 
