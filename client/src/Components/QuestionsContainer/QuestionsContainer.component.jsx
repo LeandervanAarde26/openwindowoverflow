@@ -7,37 +7,41 @@ import styles from "./QuestionsContainer.module.scss";
 /* Components */
 import Preview from "../Preview/Preview.component";
 import IntroductionHome from "../IntroductionHome/IntroductionHome.component";
+import Button from "../Button/Button.component"
 
 const QuestionsContainer = () => {
-    const [questions, setQuestions] = useState([]);
-    const navigate = useNavigate();
+  const [questions, setQuestions] = useState([]);
+  const navigate = useNavigate();
+  const ask = (e) =>{
+    navigate('/question/ask')
+  }
 
-    useEffect(() => {
-        axios.get('http://localhost:5001/api/questions')
-        .then(res => {
-            let data = res.data;
-            let today = new Date();
-            let dd = String(today.getDate()).padStart(2, '0');
-            let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-            let yyyy = today.getFullYear();
-            today = mm + '/' + dd + '/' + yyyy;
+  useEffect(() => {
+    axios.get('http://localhost:5001/api/questions')
+      .then(res => {
+        let data = res.data;
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = today.getFullYear();
+        today = mm + '/' + dd + '/' + yyyy;
 
         data = data.map((x) => {
-            return {
-                ...x,
-                timePassed: Math.round(
-                    (new Date(today).getTime() - new Date(x.postedDate).getTime()) / (1000 * 3600 * 24)
-                ),
+          return {
+            ...x,
+            timePassed: Math.round(
+              (new Date(today).getTime() - new Date(x.postedDate).getTime()) / (1000 * 3600 * 24)
+            ),
           };
         });
 
         data = data.map((x) => {
-            return {
-                ...x,
-                askTime: Math.round(
-                    (new Date(today).getTime() - new Date(x.postedDate).getTime()) / (1000 * 3600 * 24)
-                ),
-            };
+          return {
+            ...x,
+            askTime: Math.round(
+              (new Date(today).getTime() - new Date(x.postedDate).getTime()) / (1000 * 3600 * 24)
+            ),
+          };
         });
 
         console.log(data);
@@ -56,7 +60,15 @@ const QuestionsContainer = () => {
 
   return (
     <div className={styles.outer}>
-      <h3>Questions</h3>
+      <div className={styles.top}>
+        <h3>Questions</h3>
+        <Button
+          buttonType={'primary'}
+          children={'ask question'}
+          onClick={ask}
+          
+        />
+      </div>
       <div className={styles.container}>
         {questions.map((i, index) => (
           <Preview

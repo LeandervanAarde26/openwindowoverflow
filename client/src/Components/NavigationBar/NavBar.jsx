@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useContext, useState, useEffect } from "react";
 import { RegisterContext } from "../../Contexts/Register.context";
-
 /* Styling */
 import styles from "./NavBar.module.scss";
 
@@ -45,19 +44,29 @@ const NavBar = () => {
             });
     }, []);
 
+    const goToQuestion = (e) =>{
+        let id = e.target.id ;
+        setResults(false)
+        navigate(`/Question/${id}`)
+      }
+    
+
     const handleSearch = (newSearchQuery) => {
         if (newSearchQuery != "") {
             setResults(true)
             setSearchQuer(newSearchQuery)
 
             const FilteredItems = searchable.filter(item => item.title.toLowerCase().includes(newSearchQuery.toLowerCase()))
-                .map((searched => (<SearchItem key={searched._id} title={searched.title} description={searched.question} />)))
+                .map((searched => (<SearchItem key={searched._id} id={searched._id} title={searched.title} description={searched.question}  nav={goToQuestion} />)))
 
             setSearched(FilteredItems)
         } else {
             setResults(false)
         }
     }
+
+
+  
 
 
 

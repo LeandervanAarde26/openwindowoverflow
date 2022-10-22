@@ -81,7 +81,7 @@ const Question = () => {
         })
         setRerender(false);
         console.log('hey')
-    }, [rerender]);
+    }, [rerender, questionId.questionId]);
 
 
     const handleClick = (e) =>{
