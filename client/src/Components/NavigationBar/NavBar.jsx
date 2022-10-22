@@ -1,7 +1,7 @@
 /* React */
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { RegisterContext } from "../../Contexts/Register.context";
 
 /* Styling */
@@ -18,29 +18,63 @@ import Dropdown from "../Dropdown/Dropdown";
 import trophy from "../../Assets/Icons/ic_trophy.svg";
 import inbox from "../../Assets/Icons/ic_inbox.svg";
 import logo from "../../Assets/Logo/finalLogo.svg";
+import axios from 'axios'
+import SearchItem from "../SearchItem/SearchItem.component";
 
 const NavBar = () => {
     const user = sessionStorage.getItem("currentUser");
-
+    const [searchable, setSearchable] = useState()
+    const [results, setResults] = useState(false)
+    const [searchQuer, setSearchQuer] = useState()
+    const [searched, setSearched] = useState()
     const navigate = useNavigate();
     const goToProfile = () => {
         // navigate("/Profile")
         navigate(`/profile/${user}`)
     }
 
+    useEffect(() => {
+        axios.get('http://localhost:5001/api/questions')
+            .then(res => {
+                let data = res.data
+                setSearchable(data)
+                console.log(data)
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    const handleSearch = (newSearchQuery) => {
+        if (newSearchQuery != "") {
+            setResults(true)
+            setSearchQuer(newSearchQuery)
+
+            const FilteredItems = searchable.filter(item => item.title.toLowerCase().includes(newSearchQuery.toLowerCase()))
+                .map((searched => (<SearchItem key={searched._id} title={searched.title} description={searched.question} />)))
+
+            setSearched(FilteredItems)
+        } else {
+            setResults(false)
+        }
+    }
+
+
+
     return (
         <div className={styles.container}>
             <div className={styles.containerOuter}>
                 <div className={styles.containerOuter__logo}>
                     <img
-                        src={logo} 
-                        alt="" 
+                        src={logo}
+                        alt=""
                     />
                 </div>
                 <div className={styles.containerOuter__search}>
                     <SearchBar
                         label={"Search"}
                         placeholder={"Search..."}
+                        handleSearch={handleSearch}
                     />
                 </div>
                 <div className={styles.containerOuter__login}>
@@ -71,8 +105,15 @@ const NavBar = () => {
                 </div>
             </div>
             <div className={styles.container__search}>
-                <SearchBar label={"Search"} placeholder={"Search..."} />
+                <SearchBar label={"Search"} placeholder={"Search..."} handleSearch={handleSearch} />
             </div>
+
+            {
+                results &&
+                <div className={styles.containerOuter__searchResCon}>
+                    {searched}
+                </div>
+            }
         </div>
     );
 };

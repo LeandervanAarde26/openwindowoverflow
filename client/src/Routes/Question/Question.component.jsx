@@ -160,6 +160,8 @@ const Question = () => {
         }
     }
 
+    console.log(questionData)
+
     return (
         <div className={styles.container}>
         <SideNavigation />
@@ -178,6 +180,7 @@ const Question = () => {
                     <CommentsContainer 
                         children={questionData.comments.map(i => (
                             <Comment
+                                id={i._id}
                                 auth={i.user.username}
                                 date={`29 June 2021 @ 21:00`
                                 }

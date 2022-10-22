@@ -5,10 +5,13 @@ const tags = require('../models/tagsSchema');
 const questionSchema = require('../models/questionSchema');
 const answerSchema = require('../models/answerSchema');
 const userSchema = require('../models/userSchema');
+const { updateOne } = require('../models/questionSchema');
 const router = express();
+var mongoose = require('mongoose');
+
 
 router.post('/api/askquestion', async (req, res) => {
-    let {title, author, question, code, tags, Images} = req.body;
+    let { title, author, question, code, tags, Images } = req.body;
 
     // Find the details of the user that asked the question
     const user = await User.findOne({
@@ -23,14 +26,14 @@ router.post('/api/askquestion', async (req, res) => {
 
     let answeredBy = answeredUser;
 
-    const doc = new Question({title, author, question, code, tags, Images, answeredBy});
+    const doc = new Question({ title, author, question, code, tags, Images, answeredBy });
 
     const ret = await doc.save();
     res.json(ret);
 });
 
 router.get('/api/questions', async (req, res) => {
-    const questions = await Question.find().sort({postedDate: -1});
+    const questions = await Question.find().sort({ postedDate: -1 });
 
     res.json(questions);
 });
@@ -49,7 +52,7 @@ router.get('/api/question/:id', async (req, res) => {
 router.patch('/api/question/answer/:userId/:questionId', async (req, res) => {
     let user = req.params.userId;
     let question = req.params.questionId;
-    const {answer, code} = req.body;
+    const { answer, code } = req.body;
 
     const selectedUser = await User.findOne({
         _id: user,
@@ -70,19 +73,19 @@ router.patch('/api/question/answer/:userId/:questionId', async (req, res) => {
     res.send(true)
 });
 
-router.patch('/api/answerquestion/:id', async (res, req) =>{
+router.patch('/api/answerquestion/:id', async (res, req) => {
     let id = req.params.question
-    
+
     const question = await Question.findOne({
-      _id: id  
+        _id: id
     })
 
     res.status(200).json(question)
 })
 
 // http://localhost:5001/api/addComment/
-router.patch('/api/addComment/:id', async (req,res) =>{
-    let {comment, user} = req.body
+router.patch('/api/addComment/:id', async (req, res) => {
+    let { comment, user } = req.body
 
     const addComment = await Question.findById(req.params.id)
     const auth = await User.findOne({
@@ -93,27 +96,45 @@ router.patch('/api/addComment/:id', async (req,res) =>{
 
     addComment.comments.push(
         {
-                user: auth,
-                comment: comment
-        } 
+            user: auth,
+            comment: comment
+        }
     )
 
-    if(!addComment){
-        res.status(400).json({msg: "Comment could not be pushed", state: false})
+    if (!addComment) {
+        res.status(400).json({ msg: "Comment could not be pushed", state: false })
     }
     addComment.save()
-    res.status(200).json({msg: addComment, state: true})
-    console.log(auth)
+    res.status(200).json({ msg: addComment, state: true })
 });
 
 
-// router.get('/api/getQuestions/:tag',async (req,res) =>{
-//     let tag = req.params.tag
-//     const tags = await questionSchema.find({ tags: tag})
-    
-//     res.json(tags)
-// })
+router.patch('/api/flagcomment/:id', async (req, res) => {
+    // console.log(req.params.id)
+    // const id = req.params.id
 
-// router.get('.')
+    // const findandFuckingUpdate = Question.updateOne(
+    //     {
+    //         comments: [
+    //             {
+    //                 _id: id
+    //             }
+    //         ]
+    //     },
+    //     {
+    //         $set: {
+    //             comments: [
+    //                 {
+    //                     flagged: req.body.flagged
+    //                 }
+    //             ]
+    //         }
+    //     }
+    // )
+
+
+
+
+})
 
 module.exports = router; 

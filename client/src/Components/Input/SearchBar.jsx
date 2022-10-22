@@ -7,7 +7,12 @@ import Icon from '../Icon/Icon';
 /* Icons/Images */
 import search from "../../Assets/Icons/ic_search.svg"
 
-const SearchBar = ({placeholder, onChange, onClick, label}) => {
+const SearchBar = ({placeholder, onClick, label, handleSearch}) => {
+
+    const onChange = (e) => {
+        handleSearch(e.target.value)
+    }
+
     return (
         <div className={styles.container}>
             <input

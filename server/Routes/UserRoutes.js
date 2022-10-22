@@ -62,7 +62,6 @@ router.post('/api/registeruser', async (req, res) => {
             // githubLink: ''
         });
 
-        console.log(newUser)
         newUser.save()
             .then(async user => {
                 res.status(200).json({ msg: `user has been added to the db: ${user}` })

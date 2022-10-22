@@ -72,6 +72,7 @@ const Login = () => {
             navigate("/home")
             setCurrentUser({userId: res.data._id, username: res.data.username})
             sessionStorage.setItem("currentUser", res.data._id)
+            sessionStorage.setItem("userName", res.data.username)
         })
         .catch(err =>{
             console.log(err)

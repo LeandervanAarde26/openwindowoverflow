@@ -32,7 +32,7 @@ const AskQuestion = () => {
     const [tags, setTags] = useState([]);
     const [image, setImage] = useState(null);
     const [databaseImage, setDataBaseImage] = useState(null)
-    const [fileList, setFileList] = useState();
+
     useEffect(() => {
         axios.get('http://localhost:5001/api/getalltags')
         .then(res => {
