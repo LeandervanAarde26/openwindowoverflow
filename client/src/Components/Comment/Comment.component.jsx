@@ -1,5 +1,5 @@
 /* React */
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
 /* Styling */
 import styles from "./Comment.module.scss";
@@ -10,25 +10,38 @@ import Icon from '../Icon/Icon';
 /* Icons/Images */
 import ic_flag from '../../Assets/Icons/ic_flag.svg';
 
-const Comment = ({comment, auth, date , authId, id}) => {
+const Comment = ({comment, auth, date , authId, id, func, flagged, questionId}) => {
     const user = sessionStorage.getItem("userName")
-    const testerFunction = (e) =>{
-        let commentId = e.target.parentNode.parentNode.id
-        let payload = {
-            flagged: true
-        }
-        axios.patch('http://localhost:5001/api/flagcomment/' + commentId, payload)
-        .then(res =>{
-            console.log(res)
 
-        })
-        .catch(err => console.log(err))
-    }
+    const [flaggedVal, setFlaggedVal] = useState(flagged)
+
+
+    const testerFunction = async (e) => {
+        let commId = id;
+        setFlaggedVal(prevState => !prevState);
+        console.log(id)
+        let payload = {
+            flagged: flaggedVal,
+            commentId: commId,
+        };
+
+        try {
+            await axios.patch(`http://localhost:5001/api/flagcomment/${questionId}`, payload)
+            .then(res =>{
+                console.log(res)
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+   
+    
     return (
-        <div className={styles.container} id={id}>
-            <div className={styles.left}>
+        <div className={styles.container}>
+            <div className={styles.left} id={id}>
                 <Icon
-                    id={id}
+                    className={flaggedVal ? styles.norm : styles.flagged}
                     icon={ic_flag}
                     onClick={testerFunction}
                 />

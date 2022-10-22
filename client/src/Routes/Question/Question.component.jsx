@@ -160,7 +160,6 @@ const Question = () => {
         }
     }
 
-    console.log(questionData)
 
     return (
         <div className={styles.container}>
@@ -182,10 +181,11 @@ const Question = () => {
                             <Comment
                                 id={i._id}
                                 auth={i.user.username}
-                                date={`29 June 2021 @ 21:00`
-                                }
+                                date={`29 June 2021 @ 21:00`}
                                 comment={i.comment}
-                                key={i} />
+                                key={i} 
+                                questionId={questionId.questionId}
+                                flagged={i.flagged}/>
                         ))} 
                         loadMore={loadMoreComments} 
                         // label={"answer"}

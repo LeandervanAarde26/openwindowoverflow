@@ -17,16 +17,45 @@
         align-items: center;
         padding-right: 10px;
 
-        svg{
-            transition: ease-in-out 0.3s all;
+        .norm{
+            svg{
 
-            &:hover{
-                transform: scale(1.2);
+                transition: ease-in-out 0.3s all;
                 *[fill] {
                     fill: $orange;
                 }
+                &:hover{
+                    transform: scale(1.2);
+                    *[fill] {
+                        fill: $orange;
+                    }
+                }
+            }
+
+            & .flagged{
+                *[fill] {
+                    fill: $black;
+                }
+                svg{
+    
+                    transition: ease-in-out 0.3s all;
+                    *[fill]{
+                        fill: $black
+                    }
+        
+                    &:hover{
+                        transform: scale(1.2);
+                        *[fill] {
+                            fill: $orange;
+                        }
+                    }
+                } 
             }
         }
+
+
+
+  
     }
 
     .right {

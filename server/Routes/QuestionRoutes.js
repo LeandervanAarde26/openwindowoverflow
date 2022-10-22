@@ -110,31 +110,33 @@ router.patch('/api/addComment/:id', async (req, res) => {
 
 
 router.patch('/api/flagcomment/:id', async (req, res) => {
-    // console.log(req.params.id)
-    // const id = req.params.id
+    let questionId = req.params.id
+    let {commentId, flagged} = req.body
+    console.log(questionId)
 
-    // const findandFuckingUpdate = Question.updateOne(
-    //     {
-    //         comments: [
-    //             {
-    //                 _id: id
-    //             }
-    //         ]
-    //     },
-    //     {
-    //         $set: {
-    //             comments: [
-    //                 {
-    //                     flagged: req.body.flagged
-    //                 }
-    //             ]
-    //         }
-    //     }
-    // )
+    if(!questionId){
+        return res.status(400).json({msg: 'No Question found with id'})
+    }
 
+    const question = await Question.findById(questionId);
+    if(!question) {
+        return res.status(400).json({msg: `No question with ${id} was found.`});
+    }
 
+    const comment = await Question.updateOne({
+        _id: questionId,
+        "comments._id": commentId
+    },{
+        $set:{
+            'comments.$.flagged': flagged
+        }
+    })
 
+   if(!comment){
+    return res.status(400).json({msg: 'Comment was not updated'})
+   }
 
-})
+   return res.status(204).json({msg: `Comment ${commentId} was successfully updated.`})
+});
 
 module.exports = router; 

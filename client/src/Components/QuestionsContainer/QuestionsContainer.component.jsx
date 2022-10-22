@@ -83,6 +83,7 @@ const QuestionsContainer = () => {
             question={i.question}
             timePassed={i.timePassed}
             askTime={i.askTime}
+            
             nav={() => navigate(`/Question/${i._id}`)}
           />
         ))}
