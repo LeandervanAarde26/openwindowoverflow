@@ -10,52 +10,54 @@
     gap: 5px;
     border-bottom: 1px solid $black;
     padding: 5px 0;
-  
+
     .left {
         width: fit-content;
         display: flex;
         align-items: center;
         padding-right: 10px;
 
-        .norm{
-            svg{
+        .norm {
+            svg {
 
                 transition: ease-in-out 0.3s all;
+
                 *[fill] {
                     fill: $orange;
                 }
-                &:hover{
+
+                &:hover {
                     transform: scale(1.2);
+
                     *[fill] {
                         fill: $orange;
                     }
                 }
             }
 
-            & .flagged{
+            & .flagged {
                 *[fill] {
                     fill: $black;
                 }
-                svg{
-    
+
+                svg {
+
                     transition: ease-in-out 0.3s all;
-                    *[fill]{
+
+                    *[fill] {
                         fill: $black
                     }
-        
-                    &:hover{
+
+                    &:hover {
                         transform: scale(1.2);
+
                         *[fill] {
                             fill: $orange;
                         }
                     }
-                } 
+                }
             }
         }
-
-
-
-  
     }
 
     .right {
