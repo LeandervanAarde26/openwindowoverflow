@@ -29,7 +29,7 @@ AWS.config.update({
     secretAccessKey: "65uy4r4Xpiu8qvS10kb2YI96eET1NQsecIuTQbEb"
 });
 const bucket = new AWS.S3({
-    params: {Bucket: bucketName},
+    params: { Bucket: bucketName },
     region: region
 })
 
@@ -44,13 +44,13 @@ const AskQuestion = () => {
 
         console.log(databaseImage)
         axios.get('http://localhost:5001/api/getalltags')
-        .then(res => {
-            setTags(res.data);
-            console.log(res);
-        })
-        .catch(err => {
-            console.log(err);
-        });
+            .then(res => {
+                setTags(res.data);
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }, []);
 
     const [shouldRerender, setShouldRerender] = useState(false);
@@ -118,7 +118,7 @@ const AskQuestion = () => {
 
     const postQuestion = async (e) => {
 
-        if(databaseImage == null){
+        if (databaseImage == null) {
             let data = {
                 title: title,
                 author: user,
@@ -134,10 +134,10 @@ const AskQuestion = () => {
                     console.log(err);
                 })
 
-        } else{
+        } else {
             const newImage = `https://openoverflow.s3.af-south-1.amazonaws.com/${databaseImage.name.replace(/\s/g, '')}`
             const temp = databaseImage.name.replace(/\s/g, '')
-        
+
             const params = {
                 ACL: "public-read",
                 Body: databaseImage,
@@ -145,7 +145,7 @@ const AskQuestion = () => {
                 Key: temp
             }
             bucket.putObject(params).send(err => console.log(err))
-    
+
             let data = {
                 title: title,
                 author: user,
@@ -154,18 +154,18 @@ const AskQuestion = () => {
                 tags: tagsSelected,
                 Images: newImage
             }
-    
+
             console.log(data)
-    
+
             axios.post('http://localhost:5001/api/askquestion', data)
                 .then(res => {
                     console.log(res);
                 })
                 .catch(err => {
                     console.log(err);
-                }) 
+                })
         }
-     
+
     }
 
     return (
@@ -174,6 +174,7 @@ const AskQuestion = () => {
 
             <div className={styles.content}>
                 <div className={styles.top}>
+                    <h3>Title to your question</h3>
                     <input
                         placeholder="Question Title"
                         onChange={(e) => setTitle(e.target.value)}
@@ -183,17 +184,21 @@ const AskQuestion = () => {
                     label={'tester'}
                     placeholder={'Question Title'}/> */}
 
-                    <textarea
+                    <h5>Explain your question:</h5>
+                    <textarea className={styles.questionText}
                         placeholder='Enter your question here'
                         onChange={(e) => changeQuestion(e)}
                     />
 
+                    <h5>Provide code example:</h5>
                     <textarea
                         placeholder='Enter your code here'
                         onChange={(e) => changeCode(e)}
                     />
 
+                    <h5>Select tags that associate with your question:</h5>
                     <div className={styles.tags}>
+                        <p> *start searching the language and select the tag from list</p>
                         {
                             tagsSelected.map((x, i) =>
                                 <Tags
@@ -237,6 +242,8 @@ const AskQuestion = () => {
                         <input type="file" name="myfile" />
                     </div> */}
 
+                    <br/>
+                    <h5>*OPTIONAL* Upload screenshot to aid question</h5>
                     <div id={styles.uploadbtnwrapper}>
                         <Button
                             buttonType={'primary'}
@@ -245,8 +252,11 @@ const AskQuestion = () => {
                         <input type="file" name="myfile" onChange={getImages} />
                     </div>
                 </div>
+                <br/>
                 <div className={styles.preview}>
                     <h2>Preview...</h2>
+                    <p>This is what your question will look like:</p>
+                    <br/>
                     <h3>{title}</h3>
 
                     <div className={styles.tags}>
