@@ -7,6 +7,10 @@ import AWS from "aws-sdk"
 /* Styling */
 import styles from './AskQuestion.module.scss';
 
+/* Default image */
+
+import defaultImage from "../../Assets/def ASk.png"
+
 /* Components */
 import RightContainer from '../../Components/RightContainer/RightContainer.component';
 import SideNavigation from '../../Components/sideNavigation/SideNavigation.component';
@@ -34,8 +38,11 @@ const AskQuestion = () => {
     const [tags, setTags] = useState([]);
     const [image, setImage] = useState(null);
     const [databaseImage, setDataBaseImage] = useState(null)
+    const user = sessionStorage.getItem('currentUser');
 
     useEffect(() => {
+
+        console.log(databaseImage)
         axios.get('http://localhost:5001/api/getalltags')
         .then(res => {
             setTags(res.data);
@@ -110,35 +117,55 @@ const AskQuestion = () => {
     }
 
     const postQuestion = async (e) => {
-        const newImage = `https://openoverflow.s3.af-south-1.amazonaws.com/${databaseImage.name.replace(/\s/g, '')}`
-        const temp = databaseImage.name.replace(/\s/g, '')
+
+        if(databaseImage == null){
+            let data = {
+                title: title,
+                author: user,
+                question: question,
+                code: code,
+                tags: tagsSelected,
+            }
+            axios.post('http://localhost:5001/api/askquestion', data)
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+
+        } else{
+            const newImage = `https://openoverflow.s3.af-south-1.amazonaws.com/${databaseImage.name.replace(/\s/g, '')}`
+            const temp = databaseImage.name.replace(/\s/g, '')
+        
+            const params = {
+                ACL: "public-read",
+                Body: databaseImage,
+                Bucket: bucketName,
+                Key: temp
+            }
+            bucket.putObject(params).send(err => console.log(err))
     
-        const params = {
-            ACL: "public-read",
-            Body: databaseImage,
-            Bucket: bucketName,
-            Key: temp
+            let data = {
+                title: title,
+                author: user,
+                question: question,
+                code: code,
+                tags: tagsSelected,
+                Images: newImage
+            }
+    
+            console.log(data)
+    
+            axios.post('http://localhost:5001/api/askquestion', data)
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(err => {
+                    console.log(err);
+                }) 
         }
-        bucket.putObject(params).send(err => console.log(err))
-
-        let data = {
-            title: title,
-            author: '6343f87e901857c1e810cd7b',
-            question: question,
-            code: code,
-            tags: tagsSelected,
-            Images: newImage
-        }
-
-        console.log(data)
-
-        axios.post('http://localhost:5001/api/askquestion', data)
-            .then(res => {
-                navigate(`/question/${res.data}`)
-            })
-            .catch(err => {
-                console.log(err);
-            })
+     
     }
 
     return (

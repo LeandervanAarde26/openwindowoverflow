@@ -109,7 +109,6 @@ router.patch('/api/addComment/:id', async (req, res) => {
     res.status(200).json({ msg: addComment, state: true })
 });
 
-
 router.patch('/api/flagcomment/:id', async (req, res) => {
     let questionId = req.params.id
     let {commentId, flagged} = req.body
