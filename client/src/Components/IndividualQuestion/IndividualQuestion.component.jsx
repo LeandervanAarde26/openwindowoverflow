@@ -31,11 +31,9 @@ const IndividualQuestion = ({ votes, title, author, date, description, code, ima
                     <h3>{title}</h3>
                     <p className={styles.userInformation}>{author}</p>
                     <p className={styles.userInformation}>Asked {date}</p>
-                    <p className={styles.description}>
-                        <pre>
-                            {description}
-                        </pre>
-                    </p>
+                    <pre className={styles.description}>
+                        {description}
+                    </pre>
                 </div>
             </div>
             <div className={styles.code}>

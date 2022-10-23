@@ -15,6 +15,7 @@ import Button from '../../Components/Button/Button.component';
 import CodePreview from '../../Components/CodePreview/CodePreview.component';
 import Input from "../../Components/Input/Input.component"
 import style from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark';
+import { useNavigate } from 'react-router';
 
 
 const region = "af-south-1";
@@ -29,6 +30,7 @@ const bucket = new AWS.S3({
 })
 
 const AskQuestion = () => {
+    const navigate = useNavigate();
     const [tags, setTags] = useState([]);
     const [image, setImage] = useState(null);
     const [databaseImage, setDataBaseImage] = useState(null)
@@ -107,9 +109,7 @@ const AskQuestion = () => {
         // console.log(img.name)
     }
 
-
     const postQuestion = async (e) => {
-
         const newImage = `https://openoverflow.s3.af-south-1.amazonaws.com/${databaseImage.name.replace(/\s/g, '')}`
         const temp = databaseImage.name.replace(/\s/g, '')
     
@@ -134,16 +134,12 @@ const AskQuestion = () => {
 
         axios.post('http://localhost:5001/api/askquestion', data)
             .then(res => {
-                console.log(res);
+                navigate(`/question/${res.data}`)
             })
             .catch(err => {
                 console.log(err);
             })
     }
-
-
-
-    console.log(image)
 
     return (
         <div className={styles.container}>

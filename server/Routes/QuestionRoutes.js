@@ -28,8 +28,9 @@ router.post('/api/askquestion', async (req, res) => {
 
     const doc = new Question({ title, author, question, code, tags, Images, answeredBy });
 
-    const ret = await doc.save();
-    res.json(ret);
+    await doc.save();
+    console.log(doc._id)
+    res.send(doc._id);
 });
 
 router.get('/api/questions', async (req, res) => {
