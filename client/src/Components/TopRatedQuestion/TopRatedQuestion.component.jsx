@@ -20,12 +20,12 @@ const TopRatedQuestion = ({heading}) => {
         <div className={styles.container}>
             <div className={styles.votes}>
                 <div>
-                    <Icon icon={ic_votes} />
+                    <Icon className={styles.noHover} icon={ic_votes} />
                     <p className={styles.counter}>20</p>
                 </div>
 
                 <div>
-                    <Icon icon={ic_answers} />
+                    <Icon className={styles.noHover}  icon={ic_answers} />
                     <p className={styles.counter}>20</p>
                 </div>
             </div>
@@ -35,7 +35,7 @@ const TopRatedQuestion = ({heading}) => {
                     <p className={styles.userName}><b>User</b> <span className={styles.asked}>Asked Question 5 hours ago</span></p>
                
                 <div className={styles.questionRating}>
-                    <Icon icon={ic_star} />
+                    <Icon className={styles.noHover}  icon={ic_star} />
                     <p className={styles.goodQuestion}>Good Question</p>
                 </div>
             </div>
