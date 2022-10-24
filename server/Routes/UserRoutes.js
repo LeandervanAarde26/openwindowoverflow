@@ -86,7 +86,7 @@ router.post('/api/registeruser', async (req, res) => {
                     secure: true,
                     auth: {
                         user: "welcome@openoverflow.co.za",
-                        pass: "Fjr5carZG2EvwbM"
+                        pass: "F)!lO4f3%6qp"
                     }
                 });
 
