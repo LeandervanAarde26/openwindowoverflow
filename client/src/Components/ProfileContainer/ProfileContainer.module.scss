@@ -2,6 +2,7 @@
 
 .container{
     flex: 1;
+<<<<<<< HEAD
     display: flex;
     height: fit-content;
     padding-left: 2vw;
@@ -9,10 +10,19 @@
     padding-right: 1vw;
 
     .left{
+=======
+    overflow: scroll;
+    background-color: rgb(239, 206, 206);
+
+    .topContainer{
+        min-height: 19vh;
+
+>>>>>>> anchen3
         display: flex;
         flex-direction: column;
         flex: 1;
         gap: 15px;
+<<<<<<< HEAD
         padding-top: 10px;
         .username{
             margin-bottom: 10px;
@@ -20,6 +30,35 @@
         .profileInfo{
             display: flex;
             gap: 25px;
+=======
+        margin-top: -12.9%;
+        background-color: rgb(171, 82, 82);
+        width: 48%;
+        
+        .profilePhoto{
+            height: 100%;
+            max-height: 20vh;
+            min-height: 19vh;
+            aspect-ratio: 1/1;
+            background-color: orange;
+            border-radius: 55%;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+
+            img{
+                width: 100%; /* or any custom size */
+                height: 100%; 
+                object-fit: cover;
+            }
+        }
+
+        .userIntro{
+            padding-top: 8%;
+            justify-content: left;
+            margin-left: -19.5vh;
+
+>>>>>>> anchen3
             
 
             .profilePhoto {
@@ -83,11 +122,33 @@
                     
                 }
             }
+<<<<<<< HEAD
 
             .button{
                 display: flex;
                 gap: 25px;
                 margin-top: 10px;
+=======
+            .reputation{
+                margin-top: 3%;
+             }
+        }
+
+    }
+        
+    .title {
+        @include headingFive();
+        margin-top: 2vh;
+        background-color: green;
+    }
+
+    .description{
+        margin-left: 1%;
+        margin-top: 1%;
+        width: 48%;
+        background-color: rgb(215, 222, 118);
+
+>>>>>>> anchen3
 
                 #larger{
                     height: 55px;
@@ -95,7 +156,14 @@
             }
 
 
+<<<<<<< HEAD
  
+=======
+        .button{
+            display: flex;
+            align-items: flex-start;
+            justify-content: left;
+>>>>>>> anchen3
         }
 
         .bottom{
@@ -108,20 +176,47 @@
 
         .tagsContainer{
             display: flex;
+<<<<<<< HEAD
             width: 100%;
             gap: 10px;
             height: fit-content;
             max-height: 35px;
             margin-top: 15px;
+=======
+            flex-wrap: wrap;
+            gap: 7px;
+            background-color: aquamarine;
+            width: 100%;
+            // display: grid;
+            // flex-direction: column;
+            // grid-template-columns: repeat(5, 1fr);
+            // overflow: scroll;
+            // scroll-behavior: smooth;
+            // -ms-overflow-style: none;  
+            // scrollbar-width: 90%; 
+        
+
+            :nth-child(1){
+                    width: auto;
+                    background-color: rgb(126, 154, 145);
+
+            }
+>>>>>>> anchen3
         }
 
     }
 
+<<<<<<< HEAD
     textarea{
         border: 2px solid $orange;
         display: flex;
         width: 100%;
         min-height: 120px;
+=======
+    .reputationCon{
+        margin-top: 2em;
+        background-color: rgb(199, 98, 182);
+>>>>>>> anchen3
     }
 
     .right{
