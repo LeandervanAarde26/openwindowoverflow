@@ -80,7 +80,6 @@ const Question = () => {
             console.log(err)
         })
         setRerender(false);
-        console.log('hey')
     }, [rerender, questionId.questionId]);
 
 
@@ -97,7 +96,6 @@ const Question = () => {
                 setDat(res.data)
                 setBusy(false)
                 setTags(res.data.tags)
-
             })
             .catch(err => {
                 console.log(err)
@@ -177,13 +175,13 @@ const Question = () => {
 
                 <div className={styles.comments}>
                     <CommentsContainer 
-                        children={questionData.comments.map(i => (
+                        children={questionData.comments.map((i, index) => (
                             <Comment
                                 id={i._id}
                                 auth={i.user.username}
                                 date={`29 June 2021 @ 21:00`}
                                 comment={i.comment}
-                                key={i} 
+                                key={index} 
                                 questionId={questionId.questionId}
                                 flagged={i.flagged}/>
                         ))} 
