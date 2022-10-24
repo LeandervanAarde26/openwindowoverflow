@@ -126,13 +126,15 @@ const AskQuestion = () => {
                 code: code,
                 tags: tagsSelected,
             }
+
             axios.post('http://localhost:5001/api/askquestion', data)
-                .then(res => {
-                    console.log(res);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+            .then(res => {
+                console.log(res.data);
+                navigate(`/question/${res.data}`)
+            })
+            .catch(err => {
+                console.log(err);
+            });
 
         } else {
             const newImage = `https://openoverflow.s3.af-south-1.amazonaws.com/${databaseImage.name.replace(/\s/g, '')}`
@@ -155,17 +157,16 @@ const AskQuestion = () => {
                 Images: newImage
             }
 
-            console.log(data)
-
             axios.post('http://localhost:5001/api/askquestion', data)
-                .then(res => {
-                    console.log(res);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+            .then(res => {
+                console.log(res);
+                console.log('gsgf')
+                navigate(`/question/${res.data}`)
+            })
+            .catch(err => {
+                console.log(err);
+            })
         }
-
     }
 
     return (

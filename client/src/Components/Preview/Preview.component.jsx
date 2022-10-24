@@ -11,7 +11,7 @@ import ic_correct from '../../Assets/Icons/ic_correct.svg';
 import ic_star from '../../Assets/Icons/ic_star.svg';
 import test from '../../Assets/car.jpg';
 
-const Preview = ({ title, tags, timePassed, user, resolved, answers, votes, goodQuestion, askTime, question, id, nav }) => {
+const Preview = ({ title, date, tags, timePassed, user, resolved, answers, votes, goodQuestion, askTime, question, id, nav }) => {
 
     const testClick = () => {
         console.log('hey')
@@ -89,15 +89,7 @@ const Preview = ({ title, tags, timePassed, user, resolved, answers, votes, good
                     />
                     <p className={styles.name}>
                         <strong>{user}</strong>&nbsp;asked question {
-                            askTime > 365 && askTime < (365 * 2)
-                                ? Math.round(askTime / 365) + ' Year ago'
-                                : askTime == 0 || askTime == -0 && askTime != ''
-                                    ? 'Today'
-                                    : askTime == 1
-                                        ? askTime + ' Day ago'
-                                        : askTime > (365 * 2)
-                                            ? Math.round(askTime / 365) + ' Years ago'
-                                            : askTime + ' Days ago'
+                            date
                         }
                     </p>
                 </div>

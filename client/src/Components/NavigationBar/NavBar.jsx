@@ -65,6 +65,11 @@ const NavBar = () => {
         }
     }
 
+    const logout = () => {
+        sessionStorage.removeItem("currentUser");
+        navigate('/');
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.containerOuter}>
@@ -83,6 +88,7 @@ const NavBar = () => {
                 </div>
                 <div className={styles.containerOuter__login}>
                     <Button
+                        onClick={logout}
                         buttonType={'black'}
                         children={"Sign out"}
                     />

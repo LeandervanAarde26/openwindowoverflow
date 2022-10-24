@@ -29,15 +29,6 @@ const QuestionsContainer = () => {
         data = data.map((x) => {
           return {
             ...x,
-            timePassed: Math.round(
-              (new Date(today).getTime() - new Date(x.postedDate).getTime()) / (1000 * 3600 * 24)
-            ),
-          };
-        });
-
-        data = data.map((x) => {
-          return {
-            ...x,
             askTime: Math.round(
               (new Date(today).getTime() - new Date(x.postedDate).getTime()) / (1000 * 3600 * 24)
             ),
@@ -81,6 +72,7 @@ const QuestionsContainer = () => {
             goodQuestion={i.rating >= 15 ? true : false}
             user={i.author.username}
             question={i.question}
+            date={new Date(i.postedDate).toString().slice(0, 16)}
             timePassed={i.timePassed}
             askTime={i.askTime}
             

@@ -29,7 +29,6 @@ router.post('/api/askquestion', async (req, res) => {
     const doc = new Question({ title, author, question, code, tags, Images, answeredBy });
 
     await doc.save();
-    console.log(doc._id)
     res.send(doc._id);
 });
 

@@ -28,7 +28,7 @@ const FollowTags = () => {
     const [viewTags, setViewTags] = useState();
 
     useEffect(() => {
-        setTags(tags.map((i) => <Tags title={i} id={'remove'} onClick={(e) => removeFromTags(e.target.innerHTML)} />))
+        setTags(tags.map((i, index) => <Tags key={index} title={i} id={'remove'} onClick={(e) => removeFromTags(e.target.innerHTML)} />))
         
         if(validUser)
             return
