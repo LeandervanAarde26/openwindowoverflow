@@ -15,10 +15,12 @@ const Badges = ({image, title, description, ...otherProps}) => {
             {...otherProps}
         >
             <div className={styles.container__image}>
-                <img src={test}/>
+                <img src={
+                    require(`../../Assets/Badges/${image}`)
+                }/>
             </div>
             <div className={styles.container__badgeTitle}>
-                <h4>{title}</h4>
+                <h5>{title}</h5>
                 <p className={styles.badgeDescription}>{description}</p>
             </div>
         </div>

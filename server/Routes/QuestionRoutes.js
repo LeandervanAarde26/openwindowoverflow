@@ -108,6 +108,26 @@ router.patch('/api/addComment/:id', async (req, res) => {
     res.status(200).json({ msg: addComment, state: true })
 });
 
+router.patch('/api/votes/:type', async (req, res) => {
+    let { userId, questionId, upVotes, downVotes } = req.body
+    let type = req.params.type;
+
+    const editQuestion = await Question.findById(questionId);
+    if(type == 'up') {
+        editQuestion.rating++;
+        editQuestion.votes.up = upVotes;
+        editQuestion.votes.down = downVotes;
+        editQuestion.save();
+        res.send(true);
+    } else if(type == 'down') {
+        editQuestion.rating--;
+        editQuestion.votes.up = upVotes;
+        editQuestion.votes.down = downVotes;
+        editQuestion.save();
+        res.send(true);
+    }
+});
+
 router.patch('/api/flagcomment/:id', async (req, res) => {
     let questionId = req.params.id
     let {commentId, flagged} = req.body

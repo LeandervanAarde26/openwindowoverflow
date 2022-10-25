@@ -1,9 +1,9 @@
 @import "../../StyleSource/variables.scss";
 
 .button {
-    width: fit-content;
+    min-width: fit-content;
     @include body();
-    height: fit-content;
+    min-height: fit-content;
     letter-spacing: 0.5px;
     padding: 10px 20px;
     text-transform: lowercase;

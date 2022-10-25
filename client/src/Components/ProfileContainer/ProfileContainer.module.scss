@@ -1,87 +1,43 @@
 @import "../../StyleSource/variables.scss";
 
-.container{
+.container {
     flex: 1;
-<<<<<<< HEAD
     display: flex;
     height: fit-content;
-    padding-left: 2vw;
-    padding-top: 2vh;
-    padding-right: 1vw;
+    padding: 20px;
 
-    .left{
-=======
-    overflow: scroll;
-    background-color: rgb(239, 206, 206);
-
-    .topContainer{
-        min-height: 19vh;
-
->>>>>>> anchen3
+    .left {
         display: flex;
         flex-direction: column;
         flex: 1;
         gap: 15px;
-<<<<<<< HEAD
-        padding-top: 10px;
-        .username{
+
+        .username {
             margin-bottom: 10px;
         }
-        .profileInfo{
+
+        .profileInfo {
             display: flex;
             gap: 25px;
-=======
-        margin-top: -12.9%;
-        background-color: rgb(171, 82, 82);
-        width: 48%;
-        
-        .profilePhoto{
-            height: 100%;
-            max-height: 20vh;
-            min-height: 19vh;
-            aspect-ratio: 1/1;
-            background-color: orange;
-            border-radius: 55%;
-            background-size: cover;
-            background-position: center;
-            overflow: hidden;
-
-            img{
-                width: 100%; /* or any custom size */
-                height: 100%; 
-                object-fit: cover;
-            }
-        }
-
-        .userIntro{
-            padding-top: 8%;
-            justify-content: left;
-            margin-left: -19.5vh;
-
->>>>>>> anchen3
             
-
             .profilePhoto {
                 height: 100%;
-                max-height: 20vh;
-                min-height: 19vh;
+                min-height: 150px;
+                max-height: 150px;
                 aspect-ratio: 1/1;
                 background-color: orange;
-                border-radius: 55%;
-                background-size: cover;
-                background-position: center;
+                border-radius: 50%;
                 overflow: hidden;
    
                 img {
                     width: 100%;
-                    /* or any custom size */
                     height: 100%;
                     object-fit: cover;
                 }
+
                 .hoverProfile {
                     width: 100%;
                     height: 100%;
-                    // display: flex;
                     justify-content: center;
                     align-items: center;
                     background-color: rgba(0, 0, 0, 0.5);
@@ -103,10 +59,9 @@
                         cursor: pointer;
                     }
                 }
-
-
             }
-            .accContainer{
+
+            .accContainer {
                 display: flex;
                 justify-content: space-between;
                 margin-top: 5px
@@ -114,132 +69,69 @@
 
             .reputation{
                 @include body();
-                margin-top: 7px;
+                margin-top: 5px;
                 margin-bottom: 15px;
+
                 .rep{
                     color: $orange;
                     font-weight: bold;
-                    
                 }
             }
-<<<<<<< HEAD
 
-            .button{
+            .button {
                 display: flex;
                 gap: 25px;
                 margin-top: 10px;
-=======
-            .reputation{
-                margin-top: 3%;
-             }
-        }
-
-    }
-        
-    .title {
-        @include headingFive();
-        margin-top: 2vh;
-        background-color: green;
-    }
-
-    .description{
-        margin-left: 1%;
-        margin-top: 1%;
-        width: 48%;
-        background-color: rgb(215, 222, 118);
-
->>>>>>> anchen3
-
-                #larger{
-                    height: 55px;
-                }
             }
-
-
-<<<<<<< HEAD
- 
-=======
-        .button{
-            display: flex;
-            align-items: flex-start;
-            justify-content: left;
->>>>>>> anchen3
         }
 
-        .bottom{
+        .bottom {
             flex: 1;
             display: flex;   
             flex-direction: column;
-            gap: 15px;
-                     
+            gap: 15px;     
         }
 
-        .tagsContainer{
+        .tagsContainer {
             display: flex;
-<<<<<<< HEAD
             width: 100%;
             gap: 10px;
             height: fit-content;
-            max-height: 35px;
-            margin-top: 15px;
-=======
-            flex-wrap: wrap;
-            gap: 7px;
-            background-color: aquamarine;
-            width: 100%;
-            // display: grid;
-            // flex-direction: column;
-            // grid-template-columns: repeat(5, 1fr);
-            // overflow: scroll;
-            // scroll-behavior: smooth;
-            // -ms-overflow-style: none;  
-            // scrollbar-width: 90%; 
-        
-
-            :nth-child(1){
-                    width: auto;
-                    background-color: rgb(126, 154, 145);
-
-            }
->>>>>>> anchen3
         }
 
     }
 
-<<<<<<< HEAD
-    textarea{
+    textarea {
         border: 2px solid $orange;
         display: flex;
         width: 100%;
         min-height: 120px;
-=======
-    .reputationCon{
-        margin-top: 2em;
-        background-color: rgb(199, 98, 182);
->>>>>>> anchen3
+        resize: vertical;
     }
 
-    .right{
+    .right {
         display: flex;
         flex-direction: column;
-        flex: 1;
         gap: 10px;
-        padding-top: 10px;
-        max-width: 510px;
-        padding-right: 20px;
+        min-width: fit-content;
+        width: fit-content;
+        max-height: 450px;
+        overflow: scroll;
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge add Firefox */
+        & {
+            -ms-overflow-style: none;
+            scrollbar-width: none; /* Firefox */
+        }
 
         h4{
-            width: 100%;
             @include headingFour();
             font-weight: 400;
         }
-    
     }
-
-}
-
-.secondary{
-    display: flex;
-    flex: 1;
-    background-color: red;
 }

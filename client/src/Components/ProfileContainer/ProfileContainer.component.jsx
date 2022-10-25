@@ -36,9 +36,9 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
     const tester = listBadges.map((i, index) => (
         index === 0
             ?
-            <Badges key={index} title={i.title} badgeImage={i.badgeImage} badgeDescription={i.badgeDescription} id={styles.left} />
+            <Badges key={index} title={i.title} image={i.badgeImage} description={i.badgeDescription} id={styles.left} />
             :
-            <Badges key={index} title={i.title} badgeImage={i.badgeImage} badgeDescription={i.badgeDescription} />
+            <Badges key={index} title={i.title} image={i.badgeImage} description={i.badgeDescription} />
     ))
     // These are the "default form values for the users, So that they can see what the values were before"
     const [formValues, setFormValues] = useState({
@@ -193,6 +193,7 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                                         type="text"
                                         name="userDescription"
                                         onChange={handleChange}
+                                        placeholder="No Description Yet!"
                                     >
                                     </textarea>
                                 </>

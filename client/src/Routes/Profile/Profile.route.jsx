@@ -55,9 +55,10 @@ const Profile = () => {
     useEffect(() => {
         axios.get(`http://localhost:5001/api/individualuser/${profile.userId}`)
             .then(res => {
-                setUserInfo(res.data)
-                setUserImage(res.data.userImage)
-                setBusy(false)
+                setUserInfo(res.data);
+                setUserImage(res.data.userImage);
+                setBusy(false);
+                console.log(res.data)
             })
             .catch(err => {
                 console.log(err)
@@ -87,7 +88,7 @@ const Profile = () => {
                     answers={userInfo.userAnswers.length}
                     badges={userInfo.earnedBadges.length}
                     tags={userInfo.followedTags.map((tag, index) => (<Tags key={index} title={tag} />))}
-                    aboutUser = {userInfo.userDescription ? userInfo.userDescription: "No Description yet! "}
+                    aboutUser = {userInfo.userDescription ? userInfo.userDescription : ""}
                 />
                 {openModal && <EditProfileImage
                     closeModal={cancelUpdate}

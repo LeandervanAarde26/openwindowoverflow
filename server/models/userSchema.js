@@ -29,8 +29,10 @@ const users = mongoose.Schema({
         trim: true,
         select: false
     },
-    userImage: String,
-
+    userImage: {
+      type: String,
+      default: "http://localhost:3000/static/media/Default1.7155106274af60c59f18.png"  
+    },
     userRole: {
         type: String,
         default: "student"
@@ -66,7 +68,6 @@ const users = mongoose.Schema({
     ],
     likedArticles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'articles' }],
     postedArticles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'articles' }],
-
     userReputation: {
         type: Number,   
         default: 0,

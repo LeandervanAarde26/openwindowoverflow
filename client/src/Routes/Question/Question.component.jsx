@@ -67,13 +67,17 @@ const Question = () => {
 
     const [userId, setUserId] = useState('');   
     const [rerender, setRerender] = useState(false);
+    const [upVotes, setUpVotes] = useState([]);
+    const [downVotes, setDownVotes] = useState([]);
     useEffect(() => {
         let user = sessionStorage.getItem('currentUser')
         setUserId(user)
 
         axios.get('http://localhost:5001/api/question/' + questionId.questionId)
         .then(res => {
-            console.log(res.data)
+            console.log(res.data);
+            setUpVotes(res.data.votes.up);
+            setDownVotes(res.data.votes.down);
             setQuestionData(res.data);
         })
         .catch(err => {
@@ -158,6 +162,127 @@ const Question = () => {
         }
     }
 
+    const castVote = (e) => {
+        let voteType = e;
+        let upvotes = upVotes;
+        console.log("🚀 ~ file: Question.component.jsx ~ line 168 ~ castVote ~ upvotes", upvotes)
+        let downvotes = downVotes;
+
+        if(e == 'up' && !upVotes.includes(userId)) {
+            if(downVotes.includes(userId)) {
+                console.log("had a downvote")
+                let newdownvotes = downvotes.filter((x) => x !== userId);
+                
+                let data = {
+                    questionId: questionId.questionId,
+                    userId: userId,
+                    upVotes: upvotes,
+                    downVotes: newdownvotes
+                }
+
+                axios.patch('http://localhost:5001/api/votes/up', data)
+                .then(res => {
+                    console.log(res);
+                    if(res.data){
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+
+            } else {
+                console.log("Had no downvotes")
+                upvotes.push(userId);
+                console.log(upvotes)
+
+                let data = {
+                    questionId: questionId.questionId,
+                    userId: userId,
+                    upVotes: upvotes,
+                    downVotes: downvotes
+                }
+
+                axios.patch('http://localhost:5001/api/votes/up', data)
+                .then(res => {
+                    console.log(res)
+                    if(res.data){
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            }
+        } else if(e == 'down' && !downVotes.includes(userId)) {
+            if(upVotes.includes(userId)) {
+                console.log("had a upvote")
+                let newupvotes = upvotes.filter((x) => x !== userId);
+            
+                let data = {
+                    questionId: questionId.questionId,
+                    userId: userId,
+                    upVotes: newupvotes,
+                    downVotes: downvotes
+                }
+
+                axios.patch('http://localhost:5001/api/votes/down', data)
+                .then(res => {
+                    console.log(res);
+                    if(res.data){
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            } else {
+                downvotes.push(userId);
+
+                let data = {
+                    questionId: questionId.questionId,
+                    userId: userId,
+                    upVotes: upvotes,
+                    downVotes: downvotes
+                }
+
+                axios.patch('http://localhost:5001/api/votes/down', data)
+                .then(res => {
+                    console.log(res);
+                    if(res.data){
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            }
+        }
+
+/*         if (!upVotes.includes(userId) && voteType == 'up') {
+            axios.patch('http://localhost:5001/api/votes/up', data)
+            .then(res => {
+                console.log(res)
+                if(res.data){
+                    setRerender(true);
+                }
+            })
+            .catch(err => {
+    
+            })
+        } else if (!downVotes.includes(userId) && voteType == "down") {
+            axios.patch('http://localhost:5001/api/votes/down', data)
+            .then(res => {
+                console.log(res)
+                if(res.data){
+                    setRerender(true);
+                }
+            })
+            .catch(err => {
+    
+            })
+        } */
+    }
 
     return (
         <div className={styles.container}>
@@ -171,6 +296,8 @@ const Question = () => {
                     description={questionData.question}
                     code={questionData.code}
                     image={questionData.Images}
+                    upVoteClick={(e) => castVote("up")}
+                    downVoteClick={(e) => castVote("down")}
                 />
 
                 <div className={styles.comments}>

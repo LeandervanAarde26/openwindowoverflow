@@ -13,7 +13,7 @@ import CodePreview from '../CodePreview/CodePreview.component';
 import ic_arrow from "../../Assets/Icons/ic_arrow.svg"
 import tester from "../../Assets/code.png"
 
-const IndividualQuestion = ({ votes, title, author, date, description, code, image, }) => {
+const IndividualQuestion = ({ votes, title, author, date, description, code, image, upVoteClick, downVoteClick }) => {
 
     return (
         <div className={styles.container}>
@@ -21,10 +21,12 @@ const IndividualQuestion = ({ votes, title, author, date, description, code, ima
                 <div className={styles.voting}>
                     <Icon
                         icon={ic_arrow}
+                        onClick={upVoteClick}
                     />
                     <h5>{votes}</h5>
                     <Icon
                         icon={ic_arrow}
+                        onClick={downVoteClick}
                     />
                 </div>
                 <div className={styles.question}>
