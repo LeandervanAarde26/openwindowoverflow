@@ -4,72 +4,75 @@
     display: flex;
     align-items: center;
     flex: 1;
-    gap: 20px;
-
+    background-color: rgb(47, 47, 47);
 
     .left {
-        height: 100%;
-        flex-basis: 60%;
-        background-image: url("../../Assets/LoginImage.png");
-        background-size: cover;
+    display: flex;
+    align-items: center;
+    width: 200px;
+    height: 100vh;
+    background-color: rgb(26, 26, 26);
     }
-
-    .right {
-        flex: 1;
+    .inner {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        padding: 25px;
-        width: fit-content;
-        height: fit-content;
+        margin-left: 10%;
+        margin-top: 150px;
+        width: 1000px;
+        height: 100vh;
+        background-color: #F0F0F0;
+        border-radius: 5%;
 
-        form {
-            width: 50%;
-
-            
+        .logo {
+            background-color: rgb(255, 255, 255);
+            width: 250px;
+            height: 80px;
+            margin-top: -70%;
+            margin-left: 40%;
         }
 
-        .reset{
-            margin-top: 2%;
-            margin-bottom: 3%;
-            @include body();
-            color: darken($color: $grey, $amount: 50%);
-            cursor: pointer;
-            
-            // span{
-            //     color: blue;
-            //     cursor: pointer;
-            // }
+        .text1 {
+            margin-top: -40%;
+            margin-left: -230px;
+            font-size: 30px;
         }
 
-        #err {
-            color: $danger  !important;
+        .text2 {
+            margin-top: -20%;
+            margin-left: -350px;
+            font-size: 20px;
         }
 
-        #buttonSize,
-        #secondary {
-            min-width: fit-content;
-            width: 50%;
-        }
+        .insidetext {
+            background-color: rgb(255, 255, 255);
+            width: 500px;
+            height: 300px;
+            margin-top: 40%;
+            margin-left: -52%;
+            border-radius: 5%;
 
-        .option {
-            margin-top: 3%;
-            @include body();
-            color: darken($color: $grey, $amount: 30%);
-        }
-        .option2 {
-            margin-top: 3%;
-            @include body();
-            color: darken($color: $grey, $amount: 50%);
-            cursor: pointer;
-        }
+            .text3 {
+                font-size: 20px;
+                padding-top: 20%;
+                padding-left: 10%;
+                width: 55vh;
+            }
 
-        .heading {
-            margin-bottom: 7%;
-            font-weight: 400;
-            @include headingTwo();
+            #secondary {
+                min-width: 70%;
+                
+            }
+
         }
+        
     }
+    
+
+       
+
+        
+       
+  
 }
 
 @media only screen and (max-width: 1200px) {

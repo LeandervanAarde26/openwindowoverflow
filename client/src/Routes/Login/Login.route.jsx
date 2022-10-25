@@ -80,61 +80,25 @@ const Login = () => {
     }
 
     return (
+        <>
         <div className={styles.outer}>
-            {/* left div, where image is going to be  */}
             <div className={styles.left}></div>
-            {/* Right div aka login form */}
-            <div className={styles.right}>
-                <h2 className={styles.heading}>Login</h2>
-                <form>
-                    <Input
-                        id={error ? styles.err : ""}
-                        label={error ? "Invalid email, please try again" : "Email"}
-                        value={email}
-                        type="email"
-                        name="email"
-                        required={true}
-                        onChange={handleChange}
-                    />
+                <div className={styles.inner}>
+                   <div className={styles.logo}></div>
+                   <div className={styles.text1}>Welcome Person!</div>
+                   <div className={styles.text2}>We are excited for having you in the <b>OpenOverFlow</b> Community!</div>
+                        <div className={styles.insidetext}>
+                            <div className={styles.text3}>Before your account can be activates we need to verify you. Please click the button below to begin the process.
+                                <Button
+                                buttonType={"secondary"}
+                                children={"Sign in"}
+                                />
 
-                    <Input
-                        label={"Password"}
-                        value={password}
-                        type="password"
-                        name="password"
-                        required={true}
-                        onChange={handleChange}
-                    />
-                </form>
-
-                {
-                    clickable 
-                    ?
-                        <>
-                            <Button
-                                buttonType={'black'}
-                                children={"Sign In"}
-                                buttonSize={styles.buttonSize}
-                                onClick={signInUser}
-                            />
-                            <p className={styles.reset}>Forgot password</p>
-
-                            <p className={styles.option}>Don't have an Account?<span onClick={Register} className={styles.option2}> Sign Up</span></p>
-
-                            {/* <Button
-                                buttonType={'secondary'}
-                                children={'Sign Up'}
-                                buttonSize={styles.secondary}
-                                onClick={Register}
-                            /> */}
-                        </>
-                    :
-                        null
-                }
-            </div>
-
-            <Outlet />
+                            </div>
+                        </div>
+                </div>
         </div>
+        </>
     );
 };
 
