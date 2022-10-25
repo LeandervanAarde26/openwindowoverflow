@@ -15,7 +15,6 @@ const Comment = ({comment, auth, date , authId, id, func, flagged, questionId}) 
 
     const [flaggedVal, setFlaggedVal] = useState(flagged)
 
-
     const testerFunction = async (e) => {
         let commId = id;
         setFlaggedVal(prevState => !prevState);
@@ -34,8 +33,6 @@ const Comment = ({comment, auth, date , authId, id, func, flagged, questionId}) 
             console.log(error);
         }
     };
-
-   
     
     return (
         <div className={styles.container}>

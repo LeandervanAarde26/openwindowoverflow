@@ -69,13 +69,23 @@ const Question = () => {
     const [rerender, setRerender] = useState(false);
     const [upVotes, setUpVotes] = useState([]);
     const [downVotes, setDownVotes] = useState([]);
+    const [didDownVote, setDidDownVote] = useState(false);
+    const [didUpVote, setDidUpVote] = useState(false);
     useEffect(() => {
         let user = sessionStorage.getItem('currentUser')
         setUserId(user)
 
         axios.get('http://localhost:5001/api/question/' + questionId.questionId)
         .then(res => {
-            console.log(res.data);
+            if(res.data.votes.up.includes(user)) {
+                setDidUpVote(true);
+            } else if(res.data.votes.down.includes(user)) {
+                setDidDownVote(true);
+            } else {
+                setDidDownVote(false);
+                setDidUpVote(false);
+            }
+
             setUpVotes(res.data.votes.up);
             setDownVotes(res.data.votes.down);
             setQuestionData(res.data);
@@ -163,9 +173,7 @@ const Question = () => {
     }
 
     const castVote = (e) => {
-        let voteType = e;
         let upvotes = upVotes;
-        console.log("🚀 ~ file: Question.component.jsx ~ line 168 ~ castVote ~ upvotes", upvotes)
         let downvotes = downVotes;
 
         if(e == 'up' && !upVotes.includes(userId)) {
@@ -258,30 +266,6 @@ const Question = () => {
                 })
             }
         }
-
-/*         if (!upVotes.includes(userId) && voteType == 'up') {
-            axios.patch('http://localhost:5001/api/votes/up', data)
-            .then(res => {
-                console.log(res)
-                if(res.data){
-                    setRerender(true);
-                }
-            })
-            .catch(err => {
-    
-            })
-        } else if (!downVotes.includes(userId) && voteType == "down") {
-            axios.patch('http://localhost:5001/api/votes/down', data)
-            .then(res => {
-                console.log(res)
-                if(res.data){
-                    setRerender(true);
-                }
-            })
-            .catch(err => {
-    
-            })
-        } */
     }
 
     return (
@@ -296,6 +280,8 @@ const Question = () => {
                     description={questionData.question}
                     code={questionData.code}
                     image={questionData.Images}
+                    upVoted={didUpVote}
+                    downVoted={didDownVote}
                     upVoteClick={(e) => castVote("up")}
                     downVoteClick={(e) => castVote("down")}
                 />
@@ -306,11 +292,12 @@ const Question = () => {
                             <Comment
                                 id={i._id}
                                 auth={i.user.username}
-                                date={`29 June 2021 @ 21:00`}
+                                date={new Date(i.commentDate).toString().slice(0, 16)}
                                 comment={i.comment}
                                 key={index} 
                                 questionId={questionId.questionId}
-                                flagged={i.flagged}/>
+                                flagged={i.flagged}
+                            />
                         ))} 
                         loadMore={loadMoreComments} 
                         // label={"answer"}
