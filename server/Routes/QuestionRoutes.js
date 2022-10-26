@@ -167,7 +167,6 @@ router.get('/api/gettoprated', async (req, res) =>{
     }
 
     return res.status(200).json(topRated)
-
-})
+});
 
 module.exports = router; 

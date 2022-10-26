@@ -83,11 +83,13 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
     }
 
     const [userQuestions, setUserQuestions] = useState([]);
+    const [userAnswers, setUserAnswers] = useState([]);
     useEffect(() => {
         axios.get(`http://localhost:5001/api/getUserQuestionsandAnswers/${userId}`)
         .then(res => {
-            console.log(res.data)
-            setUserQuestions(res.data);
+            console.log(res)
+            setUserQuestions(res.data.questions);
+            setUserAnswers(res.data.answers);
         })
         .catch(err => {
 
@@ -252,13 +254,16 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                 <div className={styles.answers}>
                     <h4>Answers</h4>
                     <div className={styles.content}>
-                        <MyQuestionsAnswers/>
-                        <MyQuestionsAnswers/>
-                        <MyQuestionsAnswers/>
-                        <MyQuestionsAnswers/>
-                        <MyQuestionsAnswers/>
-                        <MyQuestionsAnswers/>
-                        <MyQuestionsAnswers/>
+                    {
+                        userAnswers.map((x, index) => 
+                            <MyQuestionsAnswers
+                                title={x.title}
+                                votes={x.rating}
+                                answers={x.answers.length}
+                                resolved={x.resolved}
+                            />
+                        )
+                    }
                     </div>
                 </div>
             </div>

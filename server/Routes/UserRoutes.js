@@ -309,11 +309,16 @@ router.get('/api/getUserQuestionsandAnswers/:id', async (req, res) => {
     const question = await questionSchema.find(
         {"author._id": {$eq: ObjectId(id)}}
         );
-    console.log("🚀 ~ file: UserRoutes.js ~ line 314 ~ router.get ~ question", question)
+
+    const test = await questionSchema.find(
+        {"answers.user._id": {$eq: ObjectId(id)}}
+    )
+
+    console.log(test)
 
     res
     .status(200)
-    .json(question)
+    .json({questions: question, answers: test})
 });
 
 module.exports = router; 
