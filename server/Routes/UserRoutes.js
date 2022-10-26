@@ -71,10 +71,7 @@ router.post('/api/registeruser', async (req, res) => {
                 });
 
                 let userLink = 'http://localhost:3000/Auth?id=' + findUser._id
-/*                 let mailContent = `<h1>Welcome ${user.username} to openOverflow, we are excited to have you here! This is totally not a Skelm/ </h1>
-                             <p>Before you can login, we are going to have to verify you...</p>
-                             <a href=${userLink}>Click to Verify</a>`; */
-
+                
                 let mailContent = `<div 
                 style="
                     text-align: center;
