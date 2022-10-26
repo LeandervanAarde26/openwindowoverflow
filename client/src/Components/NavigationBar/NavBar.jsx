@@ -31,7 +31,9 @@ const NavBar = () => {
     
     const [user, setUser] = useState();
     useEffect(() => {
+        let userId = sessionStorage.getItem("currentUser")
         setUser(sessionStorage.getItem("currentUser"));
+        console.log(user)
         
         if(user == null || user == '') {
         } else {
@@ -45,7 +47,7 @@ const NavBar = () => {
                 console.log(err);
             });
 
-            axios.get(`http://localhost:5001/api/individualuser/${user}`)
+            axios.get(`http://localhost:5001/api/individualuser/${userId}`)
             .then(res => {
                 setUserImage(res.data.userImage);
                 setBusy(false);
