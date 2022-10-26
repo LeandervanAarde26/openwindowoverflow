@@ -39,10 +39,11 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
 
         .questionText {
             max-width: 16vw;
-            height: 40%;
+            height: fit-content;
             @include body();    
             font-weight: bold;   
             overflow: hidden;

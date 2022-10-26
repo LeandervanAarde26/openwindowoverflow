@@ -1,7 +1,6 @@
 /* React */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
-
 /* Styling */
 import styles from "./RightContainer.module.scss"
 
@@ -13,50 +12,82 @@ import TopRatedQuestion from '../TopRatedQuestion/TopRatedQuestion.component';
 
 /* Icons/Images */
 import Discord from "../../Assets/Discord.png";
+/* Axios */
+import axios from 'axios'
 
 
-const RightContainer = ({simliliar, topRated}) => {
+const RightContainer = ({ simliliar, topRated }) => {
     const location = useLocation();
+    const [topR, setTopR] = useState();
+    const [similiar, setSimiliar] = useState();
+    const [busy, setBusy] = useState(true)
+
+    useEffect(() => {
+
+        axios.get('http://localhost:5001/api/gettoprated')
+            .then(res => {
+                let data = res.data
+                console.log(data)
+                setTopR(data)
+                setBusy(false)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
+
 
     return (
-        <div className={styles.container}>
-            {/* Insert followed Tags Component Here */}
-            {
-                location.pathname === "/Choosetags"
-                    ?
-                    null
-                    :
-                    <FollowedTags />
-            }
-            {/* End followed Tags Component Here */}
-            <Button
-                buttonType={'discord'}
-            />
+        busy
+            ?
+            null
+            :
+            <div className={styles.container}>
+                {/* Insert followed Tags Component Here */}
+                {
+                    location.pathname === "/Choosetags"
+                        ?
+                        null
+                        :
+                        <FollowedTags />
+                }
+                {/* End followed Tags Component Here */}
+                <Button
+                    buttonType={'discord'}
+                />
 
-            {
-                location.pathname === "/Question"
-                    ?
-                    <div className={styles.topRatedQuestions}>
-                        <h4>Similiar Questions</h4>
-                        {simliliar}
-                        <TopRatedQuestion />
-                        <TopRatedQuestion />
-                        <TopRatedQuestion />
-                    </div>
-                    :
-                    location.pathname === "/home"
+                {
+                    location.pathname === "/Question"
                         ?
                         <div className={styles.topRatedQuestions}>
-                            <h4>Top Rated Questions</h4>
+                            <h4>Similiar Questions</h4>
+                            {simliliar}
                             <TopRatedQuestion />
                             <TopRatedQuestion />
                             <TopRatedQuestion />
                         </div>
                         :
-                        null
-            }
-            {/* <AdSenseContainer /> */}
-        </div>
+                        location.pathname === "/home"
+                            ?
+                            <div className={styles.topRatedQuestions}>
+                                <h4>Top Rated Questions</h4>
+                                {
+                                    topR.map(i => (
+                                        <TopRatedQuestion
+                                            heading={i.title}
+                                            votes={i.rating}
+                                            answers={i.answers.length}
+                                            username={i.author.username}
+                                            date={new Date(i.postedDate).toString().slice(0, 16)}
+                                        />)
+                                    )
+                                }
+                            </div>
+                            :
+                            null
+                }
+                {/* <AdSenseContainer /> */}
+            </div>
     );
 };
 

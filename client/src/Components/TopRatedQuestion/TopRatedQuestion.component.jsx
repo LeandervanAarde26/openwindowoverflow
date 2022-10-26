@@ -11,7 +11,7 @@ import ic_checkmark from '../../Assets/Icons/ic_checkmark.svg'
 /* Components */
 import Icon from '../Icon/Icon';
 
-const TopRatedQuestion = ({heading}) => {
+const TopRatedQuestion = ({ heading, votes, answers, username, goodQuestion, date }) => {
 
     let timeAsked = "5 hours ago";
 
@@ -21,23 +21,26 @@ const TopRatedQuestion = ({heading}) => {
             <div className={styles.votes}>
                 <div>
                     <Icon className={styles.noHover} icon={ic_votes} />
-                    <p className={styles.counter}>20</p>
+                    <p className={styles.counter}>{votes}</p>
                 </div>
 
                 <div>
-                    <Icon className={styles.noHover}  icon={ic_answers} />
-                    <p className={styles.counter}>20</p>
+                    <Icon className={styles.noHover} icon={ic_answers} />
+                    <p className={styles.counter}>{answers}</p>
                 </div>
             </div>
-            
+
             <div className={styles.content}>
-                    <p className={styles.questionText}> Hi there! this will be the question</p>
-                    <p className={styles.userName}><b>User</b> <span className={styles.asked}>Asked Question 5 hours ago</span></p>
-               
-                <div className={styles.questionRating}>
-                    <Icon className={styles.noHover}  icon={ic_star} />
-                    <p className={styles.goodQuestion}>Good Question</p>
-                </div>
+                <p className={styles.questionText}> <b>{heading}</b></p>
+                <p className={styles.userName}><b>{username}</b> <span className={styles.asked}> asked {date}</span></p>
+
+                {
+                    goodQuestion &&
+                    <div className={styles.questionRating}>
+                        <Icon className={styles.noHover} icon={ic_star} />
+                        <p className={styles.goodQuestion}>Good Question</p>
+                    </div>
+                }
             </div>
         </div>
     );
