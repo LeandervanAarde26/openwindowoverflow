@@ -13,12 +13,12 @@ import ic_votes from '../../Assets/Icons/ic_clipboard.svg';
 import ic_answers from '../../Assets/Icons/ic_checkmark.svg';
 import ic_correct from '../../Assets/Icons/ic_correct.svg';
 
-const MyQuestionsAnswers = () => {
+const MyQuestionsAnswers = (props) => {
     const tags = ["Html", "css", "scss", "React"]
     
     return (
         <div className={styles.container}>
-            <h5>This is the title of the Question</h5>
+            <h5>{props.title}</h5>
             <div className={styles.tagsContainer}>
                 {tags.map((tag, index) => (<Tags key={index} title={tag}/>))}
             </div>
@@ -28,30 +28,39 @@ const MyQuestionsAnswers = () => {
                     <Icon
                         icon={ic_votes}
                     />
-                    <break></break>
-                    <h5>90</h5>
-                    <break></break>
-                    <h3>Votes</h3>
+                    <h5>{props.votes}</h5>
+                    <h6>Votes</h6>
                 </div>
-                <div className={styles.information}>
-                    <Icon
-                        icon={ic_answers}
-                    />
-                    <break></break>
-                    <h5>90</h5>
-                    <break></break>
-                    <h3>Answers</h3>
-                </div>
-                <div className={styles.information}>
-                    <Icon
-                        icon={ic_correct}
+                {
+                    props.answers != 0 
+                    ?
+                        <div className={styles.information}>
+                            <Icon
+                                icon={ic_answers}
+                            />
+                            <h5>{props.answers}</h5>
+                            <h6>
+                                {
+                                    props.answers > 1 ?
+                                    "Answers"
+                                    : "Answer"
+                                }
+                            </h6>
+                        </div>
+                    : 
+                        ''    
+                }
+                {
+                    props.resolved &&
 
-                    />
-                    <break></break>
-                    <h5>90</h5>
-                    <break></break>
-                    <h3>Resolved</h3>
-                </div>
+                    <div className={styles.information}>
+                        <Icon
+                            icon={ic_correct}
+
+                        />
+                        <h6>Resolved</h6>
+                    </div>
+                }
             </div>
         </div>
     );

@@ -27,6 +27,7 @@ import Userbadges from "../Badges/userbadges.json";
 import axios from 'axios';
 import QuestionsContainer from '../QuestionsContainer/QuestionsContainer.component';
 import ArticlesContainer from '../ArticlesContainer/ArticlesContainer.component';
+import { useEffect } from 'react';
 
 const ProfileContainer = ({ image, user, year, questions, answers, badges, tags, aboutUser, github, userId, ...otherProps }) => {
     // Context used for Rerender
@@ -73,17 +74,28 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
 
         axios.patch(`http://localhost:5001/api/edituser/${userId}`, payload)
             .then(res => {
-                console.log(res)
-                setEditState(prev => !prev)
-                setCurrentUser(userId)
+                setEditState(prev => !prev);
+                setCurrentUser(userId);
             })
             .catch(err => {
-                console.log(err)
+                console.log(err);
             })
     }
 
+    const [userQuestions, setUserQuestions] = useState([]);
+    useEffect(() => {
+        axios.get(`http://localhost:5001/api/getUserQuestionsandAnswers/${userId}`)
+        .then(res => {
+            console.log(res.data)
+            setUserQuestions(res.data);
+        })
+        .catch(err => {
+
+        })
+    }, []);
+
     return (
-        <>
+        <div className={styles.outer}>
             <div className={styles.container}>
                 <div className={styles.left}>
                     <div className={styles.profileInfo}>
@@ -212,16 +224,6 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                         </div>
 
                     </div>
-                    <div className={styles.profilePostsContainer}>
-                        <div className={styles.left}>
-                            <h4>Questions</h4>
-                            <QuestionsContainer />
-                        </div>
-                        <div className={styles.right}>
-                            <h4>Articles</h4>
-                            {/* <ArticlesContainer /> */}
-                        </div>
-                    </div>
                 </div>
                 <div className={styles.right}>
                     <h4>Earned badges</h4>
@@ -230,8 +232,37 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                     />
                 </div>
             </div>
+            <div className={styles.bottomContainer}>
+                <div className={styles.questions}>
+                    <h4>Questions</h4>
 
-        </>
+                    <div className={styles.content}>
+                        {
+                            userQuestions.map((x, index) => 
+                                <MyQuestionsAnswers
+                                    title={x.title}
+                                    votes={x.rating}
+                                    answers={x.answers.length}
+                                    resolved={x.resolved}
+                                />
+                            )
+                        }
+                    </div>
+                </div>
+                <div className={styles.answers}>
+                    <h4>Answers</h4>
+                    <div className={styles.content}>
+                        <MyQuestionsAnswers/>
+                        <MyQuestionsAnswers/>
+                        <MyQuestionsAnswers/>
+                        <MyQuestionsAnswers/>
+                        <MyQuestionsAnswers/>
+                        <MyQuestionsAnswers/>
+                        <MyQuestionsAnswers/>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 
