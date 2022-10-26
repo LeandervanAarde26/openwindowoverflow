@@ -71,9 +71,113 @@ router.post('/api/registeruser', async (req, res) => {
                 });
 
                 let userLink = 'http://localhost:3000/Auth?id=' + findUser._id
-                let mailContent = `<h1>Welcome ${user.username} to openOverflow, we are excited to have you here! This is totally not a Skelm/ </h1>
+/*                 let mailContent = `<h1>Welcome ${user.username} to openOverflow, we are excited to have you here! This is totally not a Skelm/ </h1>
                              <p>Before you can login, we are going to have to verify you...</p>
-                             <a href=${userLink}>Click to Verify</a>`;
+                             <a href=${userLink}>Click to Verify</a>`; */
+
+                let mailContent = `<div 
+                style="
+                    text-align: center;
+                    width: 100%;
+                    max-width: 50%;
+                    background-color: #FFFFFF;
+                    margin: auto;
+                    border-radius: 50px;
+                    padding: 50px 10px;
+                    color: black;
+                "
+            >
+                <div 
+                    style="
+                        margin: auto;
+                        gap: 30px;
+                        background-color: #F0F0F0;
+                        width: 100%;
+                        padding: 40px 20px;
+                        color: black;
+                    "
+                >
+        
+                    <div
+                        style="
+                            textAlign: center;
+                            gap: 30px;
+                            margin-bottom: 40px;
+                            color: black;
+                        "
+                    >
+                        <img
+                            src='https://openoverflow.s3.af-south-1.amazonaws.com/Vector.png'
+                            style="
+                                height: 50px;
+                                color: black;
+                            "
+                        />
+        
+                        <h1
+                            style="
+                                width: 100%;
+                                font-weight: 400;
+                                color: black;
+                            "
+                        >
+                            Welcome <b>${user.username}</b>
+                        </h1>
+        
+                        <p
+                            style="
+                                fontSize: 18px;
+                                color: black;
+                            "
+                        >
+                            We are excited to have you part of the OpenOverflow community!
+                        </p>
+                    </div>
+                    <div 
+                        className={styles.bottom}
+                        style="
+                            margin: auto;
+                            text-align: center;
+                            width: 50%;
+                            padding: 20px;
+                            background-color: #FFFFFF;
+                            border-radius: 50px;
+                            gap: 20px;
+                            color: black;
+                        "
+                    >
+                        <img 
+                            src='https://openoverflow.s3.af-south-1.amazonaws.com/email_Image.png'
+                            style="
+                                height: 100px;
+                                margin-bottom: 20px;
+                                color: black;
+                            "
+                        />
+        
+                        <p
+                            style="
+                                text-align: center;
+                                margin-bottom: 20px;
+                                color: black;
+                            "
+                        >
+                            Before your account can be activated we need to verify you. Please click the button below to begin this process
+                        </p>
+        
+                        <button
+                            style="
+                                padding: 10px 5px;
+                                background-color: black;
+                            "}}"
+                        >
+                            <a href=${userLink}
+                                style="color: white;"
+                            >Get Started</a>
+                        </button>
+                    </div>
+                </div>
+            </div>`
 
                 const transporter = nodeMailer.createTransport({
                     host: "mail.openoverflow.co.za",
