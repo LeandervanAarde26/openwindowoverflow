@@ -1,6 +1,7 @@
 /* React */
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router';
 /* Styling */
 import styles from "./RightContainer.module.scss"
 
@@ -21,6 +22,7 @@ const RightContainer = ({ simliliar, topRated }) => {
     const [topR, setTopR] = useState();
     const [similiar, setSimiliar] = useState();
     const [busy, setBusy] = useState(true)
+
 
     useEffect(() => {
 
@@ -49,7 +51,7 @@ const RightContainer = ({ simliliar, topRated }) => {
                         ?
                         null
                         :
-                        <FollowedTags />
+                        <FollowedTags/>
                 }
                 {/* End followed Tags Component Here */}
                 <Button
@@ -74,6 +76,8 @@ const RightContainer = ({ simliliar, topRated }) => {
                                 {
                                     topR.map(i => (
                                         <TopRatedQuestion
+                                            nav={i._id}
+                                            key={i._id}
                                             heading={i.title}
                                             votes={i.rating}
                                             answers={i.answers.length}

@@ -21,7 +21,7 @@ import RegComplete from "../../Components/RegCompleteModal/RegComplete.component
 
 const FollowTags = () => {
     const navigate = useNavigate();
-    const {validUser, setValidUser} = useContext(ValidUserContext);
+    const { validUser, setValidUser } = useContext(ValidUserContext);
     const [tag, setTags] = useState();
     const { removeFromTags, tags, currentUser, setCurrentUser } = useContext(RegisterContext);
     const [openModal, setOpenModal] = useState(false);
@@ -29,17 +29,16 @@ const FollowTags = () => {
 
     useEffect(() => {
         setTags(tags.map((i, index) => <Tags key={index} title={i} id={'remove'} onClick={(e) => removeFromTags(e.target.innerHTML)} />))
-        
-        if(validUser)
+        if (validUser)
             return
-        
+
         axios.get('http://localhost:5001/api/getalltags')
-        .then(res =>{
-            setViewTags(res.data.map((i, index) => (<FollowableTags key={i._id} tag={<Tags title={i.name} />} desc={i.Description} />)))
-        })
-        .catch(err =>{
-            console.log(err)
-        })
+            .then(res => {
+                setViewTags(res.data.map((i, index) => (<FollowableTags key={i._id} tag={<Tags title={i.name} />} desc={i.Description} />)))
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [tags]);
 
     const handleClick = (e) => {
@@ -48,14 +47,14 @@ const FollowTags = () => {
         console.log(payload)
 
         axios.post('http://localhost:5001/api/registeruser', payload)
-        .then(res =>{
-            console.log(payload)
-            console.log(res)
-            setOpenModal(prev => !prev )
-        })
-        .catch(err =>{
-            console.log(err)
-        })
+            .then(res => {
+                console.log(payload)
+                console.log(res)
+                setOpenModal(prev => !prev)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     return (
@@ -81,7 +80,7 @@ const FollowTags = () => {
                 </div>
             </div>
             <RightContainer />
-            {openModal && <RegComplete name={currentUser.currentUser.username} email={currentUser.currentUser.email}/>}
+            {openModal && <RegComplete name={currentUser.currentUser.username} email={currentUser.currentUser.email} />}
         </div>
     );
 }
