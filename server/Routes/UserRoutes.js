@@ -314,8 +314,6 @@ router.get('/api/getUserQuestionsandAnswers/:id', async (req, res) => {
         {"answers.user._id": {$eq: ObjectId(id)}}
     )
 
-    console.log(test)
-
     res
     .status(200)
     .json({questions: question, answers: test})

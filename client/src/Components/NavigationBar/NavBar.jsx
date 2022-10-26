@@ -21,7 +21,6 @@ import axios from 'axios'
 import SearchItem from "../SearchItem/SearchItem.component";
 
 const NavBar = () => {
-    const user = sessionStorage.getItem("currentUser");
     const [searchable, setSearchable] = useState()
     const [results, setResults] = useState(false)
     const [searchQuer, setSearchQuer] = useState()
@@ -29,13 +28,14 @@ const NavBar = () => {
     const [userImage, setUserImage] = useState()
     const [busy, setBusy] = useState(true);
     const navigate = useNavigate();
-    const goToProfile = () => {
-        // navigate("/Profile")
-        navigate(`/profile/${user}`)
-    }
-
+    
+    const [user, setUser] = useState();
     useEffect(() => {
-        axios.get('http://localhost:5001/api/questions')
+        setUser(sessionStorage.getItem("currentUser"));
+        
+        if(user == null || user == '') {
+        } else {
+            axios.get('http://localhost:5001/api/questions')
             .then(res => {
                 let data = res.data
                 setSearchable(data)
@@ -44,17 +44,24 @@ const NavBar = () => {
             .catch((err) => {
                 console.log(err);
             });
-    }, []);
 
-    axios.get(`http://localhost:5001/api/individualuser/${user}`)
-    .then(res => {
-        setUserImage(res.data.userImage);
-        setBusy(false);
-        console.log(res.data)
-    })
-    .catch(err => {
-        console.log(err)
-    })
+            axios.get(`http://localhost:5001/api/individualuser/${user}`)
+            .then(res => {
+                setUserImage(res.data.userImage);
+                setBusy(false);
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        }
+    }, []);
+    
+    const goToProfile = () => {
+        // navigate("/Profile")
+        navigate(`/profile/${user}`)
+    }
 
     const goToQuestion = (e) =>{
         let id = e.target.id ;
