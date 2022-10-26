@@ -25,7 +25,9 @@ const NavBar = () => {
     const [searchable, setSearchable] = useState()
     const [results, setResults] = useState(false)
     const [searchQuer, setSearchQuer] = useState()
-    const [searched, setSearched] = useState()
+    const [searched, setSearched] = useState();
+    const [userImage, setUserImage] = useState()
+    const [busy, setBusy] = useState(true);
     const navigate = useNavigate();
     const goToProfile = () => {
         // navigate("/Profile")
@@ -43,6 +45,16 @@ const NavBar = () => {
                 console.log(err);
             });
     }, []);
+
+    axios.get(`http://localhost:5001/api/individualuser/${user}`)
+    .then(res => {
+        setUserImage(res.data.userImage);
+        setBusy(false);
+        console.log(res.data)
+    })
+    .catch(err => {
+        console.log(err)
+    })
 
     const goToQuestion = (e) =>{
         let id = e.target.id ;
@@ -111,7 +123,7 @@ const NavBar = () => {
                     />
                 </div>
                 <div className={styles.containerOuter__profile}>
-                    <ProfileCard profileImage={logo} function={goToProfile} />
+                    <ProfileCard profileImage={userImage} function={goToProfile} />
                 </div>
             </div>
             <div className={styles.container__search}>
