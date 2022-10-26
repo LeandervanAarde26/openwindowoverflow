@@ -25,6 +25,8 @@ import Userbadges from "../Badges/userbadges.json";
 
 /* Axios */
 import axios from 'axios';
+import QuestionsContainer from '../QuestionsContainer/QuestionsContainer.component';
+import ArticlesContainer from '../ArticlesContainer/ArticlesContainer.component';
 
 const ProfileContainer = ({ image, user, year, questions, answers, badges, tags, aboutUser, github, userId, ...otherProps }) => {
     // Context used for Rerender
@@ -208,6 +210,17 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                         <div className={styles.tagsContainer}>
                             {tags}
                         </div>
+
+                    </div>
+                    <div className={styles.profilePostsContainer}>
+                        <div className={styles.left}>
+                            <h4>Questions</h4>
+                            <QuestionsContainer />
+                        </div>
+                        <div className={styles.right}>
+                            <h4>Articles</h4>
+                            {/* <ArticlesContainer /> */}
+                        </div>
                     </div>
                 </div>
                 <div className={styles.right}>
@@ -216,7 +229,6 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                         children={tester}
                     />
                 </div>
-
             </div>
 
         </>
