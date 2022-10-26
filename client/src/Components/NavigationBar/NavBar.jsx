@@ -21,6 +21,7 @@ import axios from 'axios'
 import SearchItem from "../SearchItem/SearchItem.component";
 
 const NavBar = () => {
+    const user = sessionStorage.getItem("currentUser");
     const [searchable, setSearchable] = useState()
     const [results, setResults] = useState(false)
     const [searchQuer, setSearchQuer] = useState()
@@ -29,12 +30,8 @@ const NavBar = () => {
     const [busy, setBusy] = useState(true);
     const navigate = useNavigate();
     
-    const [user, setUser] = useState();
+    // const [user, setUser] = useState();
     useEffect(() => {
-        let userId = sessionStorage.getItem("currentUser")
-        setUser(sessionStorage.getItem("currentUser"));
-        console.log(user)
-        
         if(user == null || user == '') {
         } else {
             axios.get('http://localhost:5001/api/questions')
@@ -47,7 +44,7 @@ const NavBar = () => {
                 console.log(err);
             });
 
-            axios.get(`http://localhost:5001/api/individualuser/${userId}`)
+            axios.get(`http://localhost:5001/api/individualuser/${user}`)
             .then(res => {
                 setUserImage(res.data.userImage);
                 setBusy(false);
@@ -88,6 +85,7 @@ const NavBar = () => {
 
     const logout = () => {
         sessionStorage.removeItem("currentUser");
+        sessionStorage.removeItem("userName");
         navigate('/');
     }
 
@@ -132,7 +130,7 @@ const NavBar = () => {
                     />
                 </div>
                 <div className={styles.containerOuter__profile}>
-                    <ProfileCard profileImage={userImage} function={goToProfile} />
+                    <ProfileCard profileImage={logo} function={goToProfile} />
                 </div>
             </div>
             <div className={styles.container__search}>

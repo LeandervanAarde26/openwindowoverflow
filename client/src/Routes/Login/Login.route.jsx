@@ -71,6 +71,7 @@ const Login = () => {
         .then(res =>{
             navigate("/home")
             setCurrentUser({userId: res.data._id, username: res.data.username})
+            console.log(res.data._id);
             sessionStorage.setItem("currentUser", res.data._id)
             sessionStorage.setItem("userName", res.data.username)
         })
