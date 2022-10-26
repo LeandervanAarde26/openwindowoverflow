@@ -1,9 +1,9 @@
 @import "../../StyleSource/variables.scss";
 
 .container {
-    @include dropShadow();   
+    @include dropShadow();
     padding: 5px;
-    height: fit-content;
+    height: fit-content 100px;
     max-width: 150px;
     min-width: 150px;
     width: fit-content;
@@ -14,7 +14,7 @@
     align-items: center;
     margin-bottom: 15px;
 
-    &__image{
+    &__image {
         width: 60px;
         height: 60px;
 
@@ -31,10 +31,21 @@
         flex-direction: column;
         gap: 10px;
         align-items: center;
+        position: relative;
+        width: 100%;
 
         p {
             font-weight: 400;
-            @include body()
+            position: absolute;
+            bottom: -50px;
+            padding: 5px;
+            left: -6px;
+            @include body();
+            width: calc(100% + 12px);
+            background-color: white;
+            border: 1px solid rgba($color: $black, $alpha: 0.1);
+            border-top: none;
+            border-radius: 0px 0px 5px 5px;
         }
     }
 }

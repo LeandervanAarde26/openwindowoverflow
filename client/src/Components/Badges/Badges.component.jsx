@@ -9,8 +9,13 @@ import styles from './Badges.module.scss'
 import test from '../../Assets/Badges/level1.svg';
 
 const Badges = ({image, title, description, ...otherProps}) => {
+    const [showDescription, setShowDescription] = useState(false);
+    const hoverDesc = () => setShowDescription(true)
+    const hideDesc = () => setShowDescription(false)
+
+
     return (
-        <div 
+        <div onMouseEnter={hoverDesc} onMouseLeave={hideDesc}
             className={styles.container} 
             {...otherProps}
         >
@@ -21,7 +26,7 @@ const Badges = ({image, title, description, ...otherProps}) => {
             </div>
             <div className={styles.container__badgeTitle}>
                 <h5>{title}</h5>
-                <p className={styles.badgeDescription}>{description}</p>
+                { showDescription ? <p className={styles.badgeDescription}>{description}</p> : null}
             </div>
         </div>
     );
