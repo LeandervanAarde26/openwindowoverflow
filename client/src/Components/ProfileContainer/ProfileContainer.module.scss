@@ -1,162 +1,174 @@
 @import "../../StyleSource/variables.scss";
 
-.container {
+.outer {
     flex: 1;
-    display: flex;
-    height: fit-content;
     padding: 20px;
 
-    .left {
-        display: flex;
-        flex-direction: column;
+    .container {
         flex: 1;
-        gap: 15px;
-
-        .username {
-            margin-bottom: 10px;
-        }
-
-        .profileInfo {
+        display: flex;
+        height: fit-content;
+        margin-bottom: 50px;
+    
+        .left {
             display: flex;
-            gap: 25px;
-
-            .profilePhoto {
-                height: 100%;
-                min-height: 150px;
-                max-height: 150px;
-                aspect-ratio: 1/1;
-                background-color: orange;
-                border-radius: 50%;
-                overflow: hidden;
-
-                img {
-                    width: 100%;
+            flex-direction: column;
+            flex: 1;
+            gap: 15px;
+    
+            .username {
+                margin-bottom: 10px;
+            }
+    
+            .profileInfo {
+                display: flex;
+                gap: 25px;
+    
+                .profilePhoto {
                     height: 100%;
-                    object-fit: cover;
-                }
-
-                .hoverProfile {
-                    width: 100%;
-                    height: 100%;
-                    justify-content: center;
-                    align-items: center;
-                    background-color: rgba(0, 0, 0, 0.5);
-                    position: relative;
-                    z-index: 99;
-                    display: none;
-
-                    p {
+                    min-height: 150px;
+                    max-height: 150px;
+                    aspect-ratio: 1/1;
+                    background-color: orange;
+                    border-radius: 50%;
+                    overflow: hidden;
+    
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+    
+                    .hoverProfile {
+                        width: 100%;
+                        height: 100%;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: rgba(0, 0, 0, 0.5);
                         position: relative;
-                        color: $white;
-                        @include smallText();
+                        z-index: 99;
+                        display: none;
+    
+                        p {
+                            position: relative;
+                            color: $white;
+                            @include smallText();
+                            font-weight: bold;
+                        }
+                    }
+    
+                    &:hover {
+                        .hoverProfile {
+                            display: flex;
+                            cursor: pointer;
+                        }
+                    }
+                }
+    
+                .accContainer {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 5px
+                }
+    
+                .reputation {
+                    @include body();
+                    margin-top: 5px;
+                    margin-bottom: 15px;
+    
+                    .rep {
+                        color: $orange;
                         font-weight: bold;
                     }
                 }
-
-                &:hover {
-                    .hoverProfile {
-                        display: flex;
-                        cursor: pointer;
-                    }
+    
+                .button {
+                    display: flex;
+                    gap: 25px;
+                    margin-top: 10px;
                 }
             }
-
-            .accContainer {
+    
+            .bottom {
+                flex: 1;
                 display: flex;
-                justify-content: space-between;
-                margin-top: 5px
+                flex-direction: column;
+                gap: 15px;
             }
-
-            .reputation {
-                @include body();
-                margin-top: 5px;
-                margin-bottom: 15px;
-
-                .rep {
-                    color: $orange;
-                    font-weight: bold;
-                }
-            }
-
-            .button {
+    
+            .tagsContainer {
                 display: flex;
-                gap: 25px;
-                margin-top: 10px;
-            }
+                width: 100%;
+                gap: 10px;
+                height: fit-content;
+            }    
         }
-
-        .bottom {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .tagsContainer {
+    
+        textarea {
+            border: 2px solid $orange;
             display: flex;
             width: 100%;
-            gap: 10px;
-            height: fit-content;
+            min-height: 120px;
+            resize: vertical;
         }
-
-        .profilePostsContainer {
+    
+        .right {
             display: flex;
-            height: 40vh;
-            flex-direction: row;
-            width: 60vw;
-
-            h4{
-                margin-left: 2vw;
-                margin-bottom: 2vh;
+            flex-direction: column;
+            gap: 10px;
+            min-width: fit-content;
+            width: fit-content;
+            max-height: 350px;
+            overflow: scroll;
+    
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            &::-webkit-scrollbar {
+                display: none;
             }
-
-            .left {
-                width: 50%;
-                display: flex;
-                flex-direction: column;
+    
+            /* Hide scrollbar for IE, Edge add Firefox */
+            & {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+                /* Firefox */
             }
-
-            .right {
-                width: 50%;
-                display: flex;
-                flex-direction: column;
+    
+            h4 {
+                @include headingFour();
+                font-weight: 400;
             }
         }
-
     }
 
-    textarea {
-        border: 2px solid $orange;
+    .bottomContainer {
         display: flex;
-        width: 100%;
-        min-height: 120px;
-        resize: vertical;
-    }
+        gap: 40px;
 
-    .right {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        min-width: fit-content;
-        width: fit-content;
-        max-height: 450px;
-        overflow: scroll;
+        .questions {
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
 
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        &::-webkit-scrollbar {
-            display: none;
+            .content {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
         }
+        
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
 
-        /* Hide scrollbar for IE, Edge add Firefox */
-        & {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            /* Firefox */
-        }
-
-        h4 {
-            @include headingFour();
-            font-weight: 400;
+            .content {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     }
 }

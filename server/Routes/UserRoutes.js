@@ -1,10 +1,12 @@
 const express = require('express');
 const userSchema = require('../models/userSchema');
+const questionSchema = require('../models/questionSchema');
 const router = express();
 const bcrypt = require('bcrypt');
 const nodeMailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 const { isValidObjectId } = require('mongoose');
+const { ObjectId } = require('mongodb');
 
 // Login the user
 // http://localhost:5001/api/loginuser
@@ -298,6 +300,20 @@ router.get('/api/auth/:id', async (req, res) => {
         res
         .send(false)
     }
+});
+
+router.get('/api/getUserQuestionsandAnswers/:id', async (req, res) => {
+    let id = req.params.id;
+    console.log(id);
+
+    const question = await questionSchema.find(
+        {"author._id": {$eq: ObjectId(id)}}
+        );
+    console.log("🚀 ~ file: UserRoutes.js ~ line 314 ~ router.get ~ question", question)
+
+    res
+    .status(200)
+    .json(question)
 });
 
 module.exports = router; 
