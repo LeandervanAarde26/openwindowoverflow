@@ -33,30 +33,30 @@ function App() {
     const navigate = useNavigate();
     const [validUser, setValidUser] = useState(false);
 
-    // useEffect(() => {
-    //     let val = sessionStorage.getItem("currentUser");
+    useEffect(() => {
+        let val = sessionStorage.getItem("currentUser");
         
-    //     if (val == null || val == '') {
-    //         if(location.pathname != '/register') {
-    //             navigate('/')
-    //         }
-    //     } else {
-    //         axios.get('http://localhost:5001/api/auth/' + val)
-    //         .then(res => {
-    //             if (!res.data) {
-    //                 if(location.pathname != '/register' || location.pathname != '/Auth') {
-    //                     navigate('/')
-    //                 }
-    //                 setValidUser(false);
-    //             } else {
-    //                 setValidUser(true);
-    //             }
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         })
-    //     }
-    // }, []);
+        if (val == null || val == '') {
+            if(location.pathname != '/register') {
+                navigate('/')
+            }
+        } else {
+            axios.get('http://localhost:5001/api/auth/' + val)
+            .then(res => {
+                if (!res.data) {
+                    if(location.pathname != '/register' || location.pathname != '/Auth') {
+                        navigate('/')
+                    }
+                    setValidUser(false);
+                } else {
+                    setValidUser(true);
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+    }, []);
 
     return (
         <ValidUserContext.Provider value={{validUser, setValidUser}}>

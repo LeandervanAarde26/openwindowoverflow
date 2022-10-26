@@ -7,17 +7,18 @@ import ic_answers from '../../Assets/Icons/ic_checkmark.svg';
 import ic_correct from '../../Assets/Icons/ic_correct.svg';
 import ic_star from '../../Assets/Icons/ic_star.svg';
 import ic_checkmark from '../../Assets/Icons/ic_checkmark.svg'
+import { useNavigate } from 'react-router';
 
 /* Components */
 import Icon from '../Icon/Icon';
 
-const TopRatedQuestion = ({ heading, votes, answers, username, goodQuestion, date }) => {
+const TopRatedQuestion = ({ heading, votes, answers, username, goodQuestion, date, nav }) => {
 
     let timeAsked = "5 hours ago";
-
+    const navigate = useNavigate();
     return (
 
-        <div className={styles.container}>
+        <div className={styles.container} onClick={() => navigate(`/Question/${nav}`)}>
             <div className={styles.votes}>
                 <div>
                     <Icon className={styles.noHover} icon={ic_votes} />
