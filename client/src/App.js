@@ -33,30 +33,30 @@ function App() {
     const navigate = useNavigate();
     const [validUser, setValidUser] = useState(false);
 
-    useEffect(() => {
-        let val = sessionStorage.getItem("currentUser");
+    // useEffect(() => {
+    //     let val = sessionStorage.getItem("currentUser");
         
-        if (val == null || val == '') {
-            if(location.pathname != '/register') {
-                navigate('/')
-            }
-        } else {
-            axios.get('http://localhost:5001/api/auth/' + val)
-            .then(res => {
-                if (!res.data) {
-                    if(location.pathname != '/register') {
-                        navigate('/')
-                    }
-                    setValidUser(false);
-                } else {
-                    setValidUser(true);
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        }
-    }, []);
+    //     if (val == null || val == '') {
+    //         if(location.pathname != '/register') {
+    //             navigate('/')
+    //         }
+    //     } else {
+    //         axios.get('http://localhost:5001/api/auth/' + val)
+    //         .then(res => {
+    //             if (!res.data) {
+    //                 if(location.pathname != '/register' || location.pathname != '/Auth') {
+    //                     navigate('/')
+    //                 }
+    //                 setValidUser(false);
+    //             } else {
+    //                 setValidUser(true);
+    //             }
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+    //     }
+    // }, []);
 
     return (
         <ValidUserContext.Provider value={{validUser, setValidUser}}>
@@ -71,7 +71,7 @@ function App() {
                         <Routes location={location}>
                             <Route path="/" index element={<Login />} />
                             <Route path="/register" element={<Register />} />
-                            <Route path="/uservalidation" element={<ValidateUser/>} />
+                            <Route path="/Auth" element={<ValidateUser/>} />
                             <Route path="/home" element={<Home />} />
                             <Route path="/articles" element={<Home />} />
                             <Route path="/profile/:username/:userId" element={<Profile />} />
@@ -89,7 +89,7 @@ function App() {
                     <Routes location={location}>
                         <Route path="/" index element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/auth" element={<ValidateUser/>} />
+                        <Route path="/Auth" element={<ValidateUser/>} />
                         <Route path="/home" element={<Home />} />
                         <Route path="/articles" element={<Home />} />
                         <Route path="/test" element={<Components />} />
