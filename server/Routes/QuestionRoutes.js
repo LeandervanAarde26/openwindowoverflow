@@ -16,7 +16,7 @@ router.post('/api/askquestion', async (req, res) => {
     // Find the details of the user that asked the question
     const user = await User.findOne({
         _id: author,
-    }).select('username');
+    }).select(['username', 'userImage']);
 
     author = user
 
@@ -42,7 +42,7 @@ router.get('/api/question/:id', async (req, res) => {
     let id = req.params.id;
 
     const question = await Question.findOne({
-        _id: id
+        _id: id,
     })
     console.log(question)
 
@@ -157,5 +157,17 @@ router.patch('/api/flagcomment/:id', async (req, res) => {
 
    return res.status(204).json({msg: `Comment ${commentId} was successfully updated.`})
 });
+
+
+router.get('/api/gettoprated', async (req, res) =>{
+    const topRated = await Question.find().sort({rating: -1}).limit(3)
+
+    if(!topRated){
+        return res.status(400).json({msg: 'Data not found'})
+    }
+
+    return res.status(200).json(topRated)
+
+})
 
 module.exports = router; 

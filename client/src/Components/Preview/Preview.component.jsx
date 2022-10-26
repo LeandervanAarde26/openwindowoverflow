@@ -9,9 +9,8 @@ import ic_votes from '../../Assets/Icons/ic_clipboard.svg';
 import ic_answers from '../../Assets/Icons/ic_checkmark.svg';
 import ic_correct from '../../Assets/Icons/ic_correct.svg';
 import ic_star from '../../Assets/Icons/ic_star.svg';
-import test from '../../Assets/car.jpg';
 
-const Preview = ({ title, date, tags, timePassed, user, resolved, answers, votes, goodQuestion, askTime, question, id, nav }) => {
+const Preview = ({ title, date, tags, timePassed, user, resolved, answers, votes, goodQuestion, askTime, question, id, nav, userImage }) => {
 
     const testClick = () => {
         console.log('hey')
@@ -84,7 +83,7 @@ const Preview = ({ title, date, tags, timePassed, user, resolved, answers, votes
 
                 <div className={styles.profileContainer}>
                     <img
-                        src={test}
+                        src={userImage}
                         alt=""
                     />
                     <p className={styles.name}>

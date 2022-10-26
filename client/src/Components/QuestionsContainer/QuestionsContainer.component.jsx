@@ -75,6 +75,7 @@ const QuestionsContainer = () => {
             date={new Date(i.postedDate).toString().slice(0, 16)}
             timePassed={i.timePassed}
             askTime={i.askTime}
+            userImage= {i.author.userImage}
             
             nav={() => navigate(`/Question/${i._id}`)}
           />

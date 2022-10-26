@@ -96,8 +96,6 @@ const Profile = () => {
                     selected={update}
                     changeImage={handleClick}
                 />}
-
-        
             </div>
 
             
