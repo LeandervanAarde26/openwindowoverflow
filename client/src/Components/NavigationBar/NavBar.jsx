@@ -34,7 +34,6 @@ const NavBar = () => {
         setUser(sessionStorage.getItem("currentUser"));
         
         if(user == null || user == '') {
-            
         } else {
             axios.get('http://localhost:5001/api/questions')
             .then(res => {
