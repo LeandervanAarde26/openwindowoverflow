@@ -52,7 +52,7 @@ router.get('/api/question/:id', async (req, res) => {
 router.patch('/api/question/answer/:userId/:questionId', async (req, res) => {
     let user = req.params.userId;
     let question = req.params.questionId;
-    const { answer, code } = req.body;
+    const { answer, code, Images } = req.body;
 
     const selectedUser = await User.findOne({
         _id: user,
@@ -66,7 +66,8 @@ router.patch('/api/question/answer/:userId/:questionId', async (req, res) => {
         "user": selectedUser,
         "answer": answer,
         "questionId": question,
-        "code": code
+        "code": code,
+        "images": Images
     })
 
     Question.save();
@@ -107,6 +108,7 @@ router.patch('/api/addComment/:id', async (req, res) => {
     addComment.save()
     res.status(200).json({ msg: addComment, state: true })
 });
+
 
 router.patch('/api/votes/:type', async (req, res) => {
     let { userId, questionId, upVotes, downVotes } = req.body

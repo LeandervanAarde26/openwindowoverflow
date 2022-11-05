@@ -14,7 +14,6 @@ import Icon from '../Icon/Icon';
 
 const TopRatedQuestion = ({ heading, votes, answers, username, goodQuestion, date, nav }) => {
 
-    let timeAsked = "5 hours ago";
     const navigate = useNavigate();
     return (
 

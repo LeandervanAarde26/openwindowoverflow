@@ -14,20 +14,38 @@ import RightContainer from '../../Components/RightContainer/RightContainer.compo
 import SideNavigation from '../../Components/sideNavigation/SideNavigation.component';
 import AnswerBoxComponent from '../../Components/AnswerBox/AnswerBox.component';
 import axios from 'axios';
-
+import image from "../../Assets/DefaultProfileImages/Default5.png"
 /* Icons/Images */
 import tester from "../../Assets/code.png"
+import AWS from "aws-sdk"
 
 // Default form values for the answer
 const defaultFormValues = {
     answer: '',
-    code: ''
+    code: '',
+    image: ''
 }
 const userComment = {
     comments: ''
 }
 
+const region = "af-south-1";
+const bucketName = 'openoverflow'
+AWS.config.update({
+    accessKeyId: "AKIAWDMDUWDEHUXLLQOB",
+    secretAccessKey: "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"
+});
+const bucket = new AWS.S3({
+    params: { Bucket: bucketName },
+    region: region
+})
+
+
+
+
 const Question = () => {
+    const [image, setImage] = useState(null);
+    const [databaseImage, setDataBaseImage] = useState(null)
     const [def, setDef] = useState()
     const [formValues, setFormValues] = useState(defaultFormValues);
     const [loadMore, setLoadMore] = useState(3);
@@ -62,6 +80,13 @@ const Question = () => {
             comments: []
         }
     );
+
+    const getImages = async (e) => {
+        setImage(URL.createObjectURL(e.target.files[0]))
+        let img = e.target.files[0]
+        setDataBaseImage(img)
+        // console.log(img.name)
+    }
 
     const [userId, setUserId] = useState('');
     const [rerender, setRerender] = useState(false);
@@ -110,23 +135,58 @@ const Question = () => {
 
 
     const handleClick = (e) => {
-        if (formValues.answer === '' || formValues.code == '') {
-            console.log('please fill out answer')
-        } else {
-            axios.patch(`http://localhost:5001/api/question/answer/${userId}/${questionId.questionId}`, formValues)
-                .then(res => {
-                    console.log(res.data)
-                    if (res.data) {
-                        setRerender(true)
-                    }
-                    setDat(res.data)
-                    setBusy(false)
-                    setTags(res.data.tags)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+
+        if(databaseImage == null){
+            if (formValues.answer === '' || formValues.code == '') {
+                console.log('please fill out answer')
+            } else {
+                axios.patch(`http://localhost:5001/api/question/answer/${userId}/${questionId.questionId}`, formValues)
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data) {
+                            setRerender(true)
+                        }
+                        setDat(res.data)
+                        setBusy(false)
+                        setTags(res.data.tags)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            }
+        } else{
+            const newImage = `https://openoverflow.s3.af-south-1.amazonaws.com/${databaseImage.name.replace(/\s/g, '')}`
+            const temp = databaseImage.name.replace(/\s/g, '')
+
+            const params = {
+                ACL: "public-read",
+                Body: databaseImage,
+                Bucket: bucketName,
+                Key: temp
+            }
+            bucket.putObject(params).send(err => console.log(err))
+
+            let data = {
+                answer: formValues.answer,
+                code:formValues.code,
+                Images: newImage
+            }
+
+            axios.patch(`http://localhost:5001/api/question/answer/${userId}/${questionId.questionId}`, data)
+            .then(res => {
+                console.log(res.data)
+                if (res.data) {
+                    setRerender(true)
+                }
+                setDat(res.data)
+                setBusy(false)
+                setTags(res.data.tags)
+            })
+            .catch(err => {
+                console.log(err)
+            })
         }
+ 
     }
 
     // Change for answers
@@ -277,6 +337,8 @@ const Question = () => {
         }
     }
 
+    console.log(questionData)
+
     return (
         <div className={styles.container}>
             <SideNavigation />
@@ -330,6 +392,7 @@ const Question = () => {
                                     answer={x.answer}
                                     code={x.code}
                                     votes={x.rating}
+                                    answerImage={x.images}
                                 />
                             )
                             :
@@ -341,6 +404,8 @@ const Question = () => {
                     <PostAnswer
                         onChange={handleChange}
                         handleClick={handleClick}
+                        getImg = {getImages}
+                        image={image}
                     />
                 </div>
             </div>

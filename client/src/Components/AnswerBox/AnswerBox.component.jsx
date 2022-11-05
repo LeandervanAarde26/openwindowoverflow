@@ -56,6 +56,16 @@ const onChange = (e) => {
             </div>
 
             {
+                props.answerImage === "" || !props.answerImage
+                ?
+                null
+                :
+                <div className={styles.imageCon}>
+                <img src={props.answerImage}/>
+            </div>
+            }
+
+            {
                 !props.answered &&                
                 <div className={styles.bottom}>
                     <h6>Did this answer your question? </h6>
