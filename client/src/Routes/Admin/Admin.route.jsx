@@ -4,25 +4,13 @@ import SideNavigation from "../../Components/sideNavigation/SideNavigation.compo
 
 const AdminRoute = () => {
   return (
-    <>
-      <div className={styles.container}>
-        <SideNavigation />
-        <div>
-          <h2 style={{ marginLeft: 2, marginTop: 30, marginBottom: 10 }}>
-            Flagged comments
-          </h2>
-          {/* <FlaggedComment />
-          <FlaggedComment /> */}
-        </div>
-        <div>
-          <h2 style={{ marginTop: 590, marginLeft: -400 }}>
-            Oldest unanswered questions
-          </h2>
-        </div>
+    <div className={styles.container}>
+      <SideNavigation />
+      <div className={styles.middle}>
 
-        {/* <AskQuestionComponent /> */}
+
       </div>
-    </>
+    </div>
   );
 };
 
