@@ -38,7 +38,6 @@ const NavBar = () => {
             .then(res => {
                 let data = res.data
                 setSearchable(data)
-                console.log(data)
             })
             .catch((err) => {
                 console.log(err);
@@ -48,14 +47,13 @@ const NavBar = () => {
             .then(res => {
                 setUserImage(res.data.userImage);
                 setBusy(false);
-                console.log(res.data)
             })
             .catch(err => {
                 console.log(err)
             })
 
         }
-    }, []);
+    }, [searchQuer]);
     
     const goToProfile = () => {
         // navigate("/Profile")

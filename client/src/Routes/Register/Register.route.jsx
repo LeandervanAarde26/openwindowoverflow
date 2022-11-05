@@ -44,6 +44,7 @@ const Register = () => {
     const [clickable, setClickable] = useState(true);
     const [profileImage, setProfileImage] = useState(Default);
     const { setCurrentUser } = useContext(RegisterContext);
+    const [regErr, setRegErr] = useState(false)
 
     const defaultImageArray = [
         imageOne,
@@ -66,12 +67,12 @@ const Register = () => {
         <ProfileCard key={image} profileImage={image} function={changeImage} />
     ));
 
-  const handleChange = (e) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
         const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         let correctEmail =
-        value.includes("@openwindow.co.za") ||
-        value.includes("@virtualwindow.co.za");
+            value.includes("@openwindow.co.za") ||
+            value.includes("@virtualwindow.co.za");
         const emailCheck = emailRegex.test(value);
 
         setFormValues({ ...formValues, [name]: value });
@@ -88,7 +89,7 @@ const Register = () => {
             setError(false);
             setClickable(true);
         }
-  };
+    };
 
     const SignIn = () => {
         navigate("/");
@@ -96,29 +97,35 @@ const Register = () => {
 
     const test = (e) => {
         // navigate(("/Choosetags"))
-
         if (formValues.password != formValues.confirmPassword) {
             setpasswordError(true);
-            console.log("hey");
         } else {
+            const isEmpty = Object.values(formValues).every(x => x === null || x === '' || x === 0);
             setpasswordError(false);
-            let payload = {
-                username: formValues["username"].trim(),
-                email: formValues["email"].trim(),
-                password: formValues["password"].trim(),
-                userImage: formValues["image"],
-                currentStudyYear: +formValues["year"].trim(),
-            };
 
-            setCurrentUser(payload);
-            navigate("/Choosetags");
+            if (isEmpty) {
+                setRegErr(true)
+            } else {
+                setRegErr(false)
+                let payload = {
+                    username: formValues["username"].trim(),
+                    email: formValues["email"].trim(),
+                    password: formValues["password"].trim(),
+                    userImage: formValues["image"],
+                    currentStudyYear: +formValues["year"].trim(),
+                };
+
+                setCurrentUser(payload);
+                navigate("/Choosetags");
+            }
+            console.log(isEmpty)
         }
     };
 
     return (
         <div className={styles.outer}>
             <div className={styles.left}>
-                <h2 className={styles.heading}>Sign Up</h2>
+                <h2 className={ regErr? styles.mainErr : styles.heading}>{regErr ? "Please fill out all fields" : "Sign Up"}</h2>
                 <div className={styles.previewContainer}>
                     <img src={profileImage} />
                 </div>
@@ -168,9 +175,9 @@ const Register = () => {
                     <Input
                         id={passErrr ? styles.err : ""}
                         label={
-                        passErrr
-                            ? "Passwords do not match, try again"
-                            : "Confirm password"
+                            passErrr
+                                ? "Passwords do not match, try again"
+                                : "Confirm password"
                         }
                         value={confirmPassword}
                         type="password"
@@ -181,8 +188,8 @@ const Register = () => {
                 </form>
 
                 {
-                    clickable 
-                    ? 
+                    clickable
+                        ?
                         <>
                             <Button
                                 buttonType={"black"}
@@ -190,22 +197,10 @@ const Register = () => {
                                 buttonSize={styles.buttonSize}
                                 onClick={test}
                             />
-
-                            {/* <Button
-                                buttonType={"secondary"}
-                                children={"Sign in"}
-                            /> */}
                             <p className={styles.option}>Already a user on OpenOverlow? <span onClick={SignIn} className={styles.option2}> <b>Sign In</b></span></p>
 
-                            {/* <Button
-                                buttonType={'secondary'}
-                                children={'Sign in'}
-
-                                buttonSize={styles.secondary}
-                                onClick={SignIn}
-                            /> */}
                         </>
-                    : 
+                        :
                         null
                 }
             </div>

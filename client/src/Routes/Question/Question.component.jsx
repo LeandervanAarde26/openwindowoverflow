@@ -28,11 +28,8 @@ const userComment = {
 }
 
 const Question = () => {
-
     const [def, setDef] = useState()
     const [formValues, setFormValues] = useState(defaultFormValues);
-    const [questionImage, setQuestionImage] = useState(tester)
-    const { answer, answerCode } = formValues
     const [loadMore, setLoadMore] = useState(3);
     const [dat, setDat] = useState()
     const [busy, setBusy] = useState(true)
@@ -43,6 +40,7 @@ const Question = () => {
     const [comment, setComment] = useState()
     const [endComments, setEndComments] = useState(false)
     const questionId = useParams();
+    const [sim, setSimiliar] = useState()
 
     const [questionData, setQuestionData] = useState(
         {
@@ -61,11 +59,11 @@ const Question = () => {
             question: '',
             code: '',
             answers: [],
-            comments:[]
+            comments: []
         }
     );
 
-    const [userId, setUserId] = useState('');   
+    const [userId, setUserId] = useState('');
     const [rerender, setRerender] = useState(false);
     const [upVotes, setUpVotes] = useState([]);
     const [downVotes, setDownVotes] = useState([]);
@@ -76,48 +74,62 @@ const Question = () => {
         setUserId(user)
 
         axios.get('http://localhost:5001/api/question/' + questionId.questionId)
-        .then(res => {
-            if(res.data.votes.up.includes(user)) {
-                setDidUpVote(true);
-            } else if(res.data.votes.down.includes(user)) {
-                setDidDownVote(true);
-            } else {
-                setDidDownVote(false);
-                setDidUpVote(false);
-            }
+            .then(res => {
+                if (res.data.votes.up.includes(user)) {
+                    setDidUpVote(true);
+                } else if (res.data.votes.down.includes(user)) {
+                    setDidDownVote(true);
+                } else {
+                    setDidDownVote(false);
+                    setDidUpVote(false);
+                }
+                setUpVotes(res.data.votes.up);
+                setDownVotes(res.data.votes.down);
+                setQuestionData(res.data);
 
-            setUpVotes(res.data.votes.up);
-            setDownVotes(res.data.votes.down);
-            setQuestionData(res.data);
-        })
-        .catch(err => {
-            console.log(err)
-        })
+                let tags = res.data.tags
+                // console.log(tags[0])
+                axios.get(`http://localhost:5001/api/getsimiliar/${tags[0]}/${questionId.questionId}`)
+                    .then(res => {
+                        console.log(res)
+                        setSimiliar(res.data)
+                        setBusy(false)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+
+            })
+
+            .catch(err => {
+                console.log(err)
+            })
         setRerender(false);
     }, [rerender, questionId.questionId]);
 
 
-    const handleClick = (e) =>{
-        if(formValues.answer === '' || formValues.code == ''){
+
+    const handleClick = (e) => {
+        if (formValues.answer === '' || formValues.code == '') {
             console.log('please fill out answer')
         } else {
             axios.patch(`http://localhost:5001/api/question/answer/${userId}/${questionId.questionId}`, formValues)
-            .then(res => {
-                console.log(res.data)
-                if(res.data) {
-                    setRerender(true)
-                }
-                setDat(res.data)
-                setBusy(false)
-                setTags(res.data.tags)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+                .then(res => {
+                    console.log(res.data)
+                    if (res.data) {
+                        setRerender(true)
+                    }
+                    setDat(res.data)
+                    setBusy(false)
+                    setTags(res.data.tags)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
         }
     }
 
-// Change for answers
+    // Change for answers
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
@@ -135,7 +147,6 @@ const Question = () => {
 
     // Add comment 
     const postComment = () => {
-        console.log(commentVal)
         let val = sessionStorage.getItem("currentUser")
         let payload = {
             user: val,
@@ -143,9 +154,7 @@ const Question = () => {
         }
         axios.patch(`http://localhost:5001/api/addComment/${questionId.questionId}`, payload)
             .then(res => {
-                console.log(res)
-
-                if(res.data.state){
+                if (res.data.state) {
                     setRerender(true)
                     setComment(prev => !prev)
                     setCommentVal(userComment)
@@ -157,18 +166,18 @@ const Question = () => {
     }
 
     const loadMoreComments = () => {
-        if(loadMore >= def.length){
+        if (loadMore >= def.length) {
             // setLoadMore(loadMore)
             setLoadMore(3)
             setEndComments(true)
-            
-        } else{
+
+        } else {
             setLoadMore(loadMore + 3)
             window.scroll({
                 bottom: document.body.offsetHeight,
-                left: 0, 
+                left: 0,
                 behavior: 'smooth',
-              });
+            });
         }
     }
 
@@ -176,11 +185,11 @@ const Question = () => {
         let upvotes = upVotes;
         let downvotes = downVotes;
 
-        if(e == 'up' && !upVotes.includes(userId)) {
-            if(downVotes.includes(userId)) {
+        if (e == 'up' && !upVotes.includes(userId)) {
+            if (downVotes.includes(userId)) {
                 console.log("had a downvote")
                 let newdownvotes = downvotes.filter((x) => x !== userId);
-                
+
                 let data = {
                     questionId: questionId.questionId,
                     userId: userId,
@@ -189,15 +198,15 @@ const Question = () => {
                 }
 
                 axios.patch('http://localhost:5001/api/votes/up', data)
-                .then(res => {
-                    console.log(res);
-                    if(res.data){
-                        setRerender(true);
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                    .then(res => {
+                        console.log(res);
+                        if (res.data) {
+                            setRerender(true);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
 
             } else {
                 console.log("Had no downvotes")
@@ -212,21 +221,21 @@ const Question = () => {
                 }
 
                 axios.patch('http://localhost:5001/api/votes/up', data)
-                .then(res => {
-                    console.log(res)
-                    if(res.data){
-                        setRerender(true);
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                    .then(res => {
+                        console.log(res)
+                        if (res.data) {
+                            setRerender(true);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             }
-        } else if(e == 'down' && !downVotes.includes(userId)) {
-            if(upVotes.includes(userId)) {
-                console.log("had a upvote")
+        } else if (e == 'down' && !downVotes.includes(userId)) {
+            if (upVotes.includes(userId)) {
+                // console.log("had a upvote")
                 let newupvotes = upvotes.filter((x) => x !== userId);
-            
+
                 let data = {
                     questionId: questionId.questionId,
                     userId: userId,
@@ -235,15 +244,15 @@ const Question = () => {
                 }
 
                 axios.patch('http://localhost:5001/api/votes/down', data)
-                .then(res => {
-                    console.log(res);
-                    if(res.data){
-                        setRerender(true);
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                    .then(res => {
+                        // console.log(res);
+                        if (res.data) {
+                            setRerender(true);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             } else {
                 downvotes.push(userId);
 
@@ -255,22 +264,22 @@ const Question = () => {
                 }
 
                 axios.patch('http://localhost:5001/api/votes/down', data)
-                .then(res => {
-                    console.log(res);
-                    if(res.data){
-                        setRerender(true);
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                    .then(res => {
+                        console.log(res);
+                        if (res.data) {
+                            setRerender(true);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             }
         }
     }
 
     return (
         <div className={styles.container}>
-        <SideNavigation />
+            <SideNavigation />
             <div className={styles.center}>
                 <IndividualQuestion
                     votes={questionData.rating}
@@ -287,35 +296,35 @@ const Question = () => {
                 />
 
                 <div className={styles.comments}>
-                    <CommentsContainer 
+                    <CommentsContainer
                         children={questionData.comments.map((i, index) => (
                             <Comment
                                 id={i._id}
                                 auth={i.user.username}
                                 date={new Date(i.commentDate).toString().slice(0, 16)}
                                 comment={i.comment}
-                                key={index} 
+                                key={index}
                                 questionId={questionId.questionId}
                                 flagged={i.flagged}
                             />
-                        ))} 
-                        loadMore={loadMoreComments} 
+                        ))}
+                        loadMore={loadMoreComments}
                         // label={"answer"}
-                        activeComment = {comment}
+                        activeComment={comment}
                         value={comments}
                         type="text"
                         name="comments"
                         onChange={handleCommentChange}
                         placeholder="Enter your comment here..."
                         commentable={leaveComment}
-                        post ={postComment}
+                        post={postComment}
                     />
                 </div>
 
                 <div className={styles.answers}>
                     {
                         questionData.answers.length > 0
-                        ?
+                            ?
                             questionData.answers.map((x, index) =>
                                 <AnswerBoxComponent
                                     answer={x.answer}
@@ -323,19 +332,28 @@ const Question = () => {
                                     votes={x.rating}
                                 />
                             )
-                        :
+                            :
                             null
                     }
                 </div>
 
                 <div className={styles.postAnswer}>
-                    <PostAnswer 
-                        onChange={handleChange} 
+                    <PostAnswer
+                        onChange={handleChange}
                         handleClick={handleClick}
                     />
                 </div>
             </div>
-            <RightContainer />
+            {
+                busy 
+                ?
+                null
+                :
+                <RightContainer
+                simliliar={sim}
+                questionid = {questionId.questionId}
+            />
+            }
         </div>
     );
 };

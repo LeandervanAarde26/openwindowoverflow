@@ -99,8 +99,12 @@
             .tagsContainer {
                 display: flex;
                 width: 100%;
+                max-width: 800px;
                 gap: 10px;
                 height: fit-content;
+                display: flex;
+                flex-wrap: wrap;
+                
             }    
         }
     

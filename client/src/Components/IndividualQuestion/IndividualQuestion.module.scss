@@ -1,15 +1,16 @@
 @import "../../StyleSource/variables.scss";
 
 .container {
-    width: 90%;
+    width: 85%;
     display: flex;
-    padding: 20px 10px;
+    padding: 20px 0px;
     gap: 30px;
     height: fit-content;
     flex: 1;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 900px;
 
     pre {
         overflow-x: auto;
@@ -59,6 +60,9 @@
                 margin-top: 10px;
                 width: 100%
             }
+      
+
+
     
             .userInformation {
                 @include smallText();

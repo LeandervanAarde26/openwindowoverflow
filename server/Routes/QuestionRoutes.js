@@ -29,12 +29,12 @@ router.post('/api/askquestion', async (req, res) => {
     const doc = new Question({ title, author, question, code, tags, Images, answeredBy });
 
     await doc.save();
+
     res.send(doc._id);
 });
 
 router.get('/api/questions', async (req, res) => {
     const questions = await Question.find().sort({ postedDate: -1 });
-
     res.json(questions);
 });
 
@@ -168,5 +168,20 @@ router.get('/api/gettoprated', async (req, res) =>{
 
     return res.status(200).json(topRated)
 });
+
+//Finding similiar questions
+
+router.get('/api/getsimiliar/:tag/:id', async(req, res) =>{
+    const tag = req.params.tag
+    const curr = req.params.id
+    console.log(tag)
+    const similiar = await Question.find( { tags: { $all: [ tag ] } } ).limit(3)
+
+    if(!similiar){
+       return  res.status(404).json({msg: "No similiar Tags"})
+    }
+
+    return res.status(200).json(similiar)
+})
 
 module.exports = router; 

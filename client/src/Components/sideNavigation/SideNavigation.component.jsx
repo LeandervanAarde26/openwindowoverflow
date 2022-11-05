@@ -15,10 +15,6 @@ const SideNavigation = () => {
     const [active, setActive] = useState(location.pathname.substring(1));
     const categories = [
         "home",
-        "1st year",
-        "2nd year",
-        "3rd year",
-        "honors",
         "contact",
         "articles",
         "admin",

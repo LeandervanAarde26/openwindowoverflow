@@ -89,6 +89,13 @@
             font-weight: 400;
             @include headingTwo();
         }
+
+        .mainErr {
+            margin-bottom: 7%;
+            font-weight: 400;
+            @include headingFour();
+            color: $danger;
+        }
     }
 }
 

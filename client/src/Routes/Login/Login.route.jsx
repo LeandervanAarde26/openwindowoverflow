@@ -23,6 +23,7 @@ const Login = () => {
     const { email, password } = formValues;
     const navigate = useNavigate()
     const [error, setError] = useState(false)
+    const [authErr, setAuthErr] = useState(false)
     const [passwordError, setpasswordError] = useState(false)
     const [clickable, setClickable] = useState(true);
     const {setCurrentUser, currentUser} = useContext(RegisterContext)
@@ -77,6 +78,7 @@ const Login = () => {
         })
         .catch(err =>{
             console.log(err)
+            setAuthErr(true)
         })
     }
 
@@ -86,7 +88,7 @@ const Login = () => {
             <div className={styles.left}></div>
             {/* Right div aka login form */}
             <div className={styles.right}>
-                <h2 className={styles.heading}>Login</h2>
+                <h2 className={authErr ? styles.mainErr : styles.heading}>{authErr ? "Ensure all fields are correct" : "Login"}</h2>
                 <form>
                     <Input
                         id={error ? styles.err : ""}

@@ -26,16 +26,16 @@
         form {
             width: 50%;
 
-            
+
         }
 
-        .reset{
+        .reset {
             margin-top: 2%;
             margin-bottom: 3%;
             @include body();
             color: darken($color: $grey, $amount: 50%);
             cursor: pointer;
-            
+
             // span{
             //     color: blue;
             //     cursor: pointer;
@@ -43,7 +43,7 @@
         }
 
         #err {
-            color: $danger  !important;
+            color: $danger !important;
         }
 
         #buttonSize,
@@ -57,6 +57,7 @@
             @include body();
             color: darken($color: $grey, $amount: 30%);
         }
+
         .option2 {
             margin-top: 3%;
             @include body();
@@ -68,6 +69,13 @@
             margin-bottom: 7%;
             font-weight: 400;
             @include headingTwo();
+        }
+
+        .mainErr {
+            margin-bottom: 7%;
+            font-weight: 400;
+            @include headingFour();
+            color: $danger;
         }
     }
 }

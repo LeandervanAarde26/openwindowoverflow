@@ -33,6 +33,7 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
     // Context used for Rerender
     const { setCurrentUser } = useContext(RegisterContext);
     const [editState, setEditState] = useState(false)
+    const [score, setScore] = useState()
     // Replace this const with the actual Axios Call
     const listBadges = Userbadges
     // Badges 
@@ -87,14 +88,31 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
     useEffect(() => {
         axios.get(`http://localhost:5001/api/getUserQuestionsandAnswers/${userId}`)
         .then(res => {
-            console.log(res)
+            // console.log(res)
             setUserQuestions(res.data.questions);
             setUserAnswers(res.data.answers);
+            console.log(res.data.answers)
+
+            let questions = res.data.questions.map(i => i.rating)
+            let sumQuestions = questions.reduce((prev,curr,index)=>{return prev+curr },0) 
+
+            let answers = res.data.answers.map(i => i.answers.map(b => b.rating))
+            let sumAnswers = answers.reduce((prev,curr,index)=>{return prev+curr },0) 
+
+            let length = answers.length + questions.length
+            let total = sumAnswers + sumQuestions
+
+            let percentage = (total / length) * 100
+
+            setScore(percentage)
+           
         })
         .catch(err => {
 
         })
     }, []);
+
+    console.log(score)
 
     return (
         <div className={styles.outer}>
@@ -148,10 +166,10 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                             }
 
                             <div className={styles.accContainer}>
-                                <p className={styles.accomplishments}>{questions} Questions</p>
-                                <p className={styles.accomplishments}>{answers} Answers</p>
+                                <p className={styles.accomplishments}>{userQuestions.length} {userQuestions.length < 2 ? "Question" : "Questions"}</p>
+                                <p className={styles.accomplishments}>{userAnswers.length} {userAnswers.length < 2 ? "Answer" : "Answers"}</p>
                             </div>
-                            <p className={styles.reputation}>Overall reputation: <span className={styles.rep}>55%</span></p>
+                            <p className={styles.reputation}>Overall reputation: <span className={styles.rep}>{isNaN(score) ? "0" : score}%</span></p>
 
                             {
                                 editState

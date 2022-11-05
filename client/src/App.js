@@ -35,71 +35,71 @@ function App() {
 
     useEffect(() => {
         let val = sessionStorage.getItem("currentUser");
-        
+
         if (val == null || val == '') {
-            if(location.pathname != '/register') {
+            if (location.pathname != '/register') {
                 navigate('/')
             }
         } else {
             axios.get('http://localhost:5001/api/auth/' + val)
-            .then(res => {
-                if (!res.data) {
-                    if(location.pathname != '/register' || location.pathname != '/Auth') {
-                        navigate('/')
+                .then(res => {
+                    if (!res.data) {
+                        if (location.pathname != '/register' || location.pathname != '/Auth') {
+                            navigate('/')
+                        }
+                        setValidUser(false);
+                    } else {
+                        setValidUser(true);
                     }
-                    setValidUser(false);
-                } else {
-                    setValidUser(true);
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            })
+                })
+                .catch(err => {
+                    console.log(err)
+                })
         }
     }, []);
 
     return (
-        <ValidUserContext.Provider value={{validUser, setValidUser}}>
+        <ValidUserContext.Provider value={{ validUser, setValidUser }}>
             <div className="App">
                 <NavBar />
                 {location.pathname === "/" ||
-                location.pathname === "/Register" ||
-                location.pathname === "/UserValidation" ||
-                location.pathname === "/Choosetags" ? (
+                    location.pathname === "/Register" ||
+                    location.pathname === "/UserValidation" ||
+                    location.pathname === "/Choosetags" ? (
                     <TransitionGroup style={{ display: "flex", flex: 1 }}>
-                    <CSSTransition key={location.key} classNames="slide" timeout={600}>
-                        <Routes location={location}>
-                            <Route path="/" index element={<Login />} />
-                            <Route path="/register" element={<Register />} />
-                            <Route path="/Auth" element={<ValidateUser/>} />
-                            <Route path="/home" element={<Home />} />
-                            <Route path="/articles" element={<Home />} />
-                            <Route path="/profile/:username/:userId" element={<Profile />} />
-                            <Route path="/question/:questionId" element={<Question />} />
-                            <Route path="/question/ask" element={<AskQuestion />} />
-                            <Route path="/choosetags" element={<FollowTags />} />
-                            <Route path="/contact" element={<Contact />} />
-                            <Route path="/admin" element={<Admin />} />
-                            <Route path="/articles" element={<Home />} />
-                        {/* INSERT ROUTES HERE */}
-                        </Routes>
-                    </CSSTransition>
+                        <CSSTransition key={location.key} classNames="slide" timeout={600}>
+                            <Routes location={location}>
+                                <Route path="/" index element={<Login />} />
+                                <Route path="/register" element={<Register />} />
+                                <Route path="/Auth" element={<ValidateUser />} />
+                                <Route path="/home" element={<Home />} />
+                                <Route path="/articles" element={<Home />} />
+                                <Route path="/profile/:username/:userId" element={<Profile />} />
+                                <Route path="/Question/:questionId" element={<Question />} />
+                                <Route path="/question/ask" element={<AskQuestion />} />
+                                <Route path="/choosetags" element={<FollowTags />} />
+                                <Route path="/contact" element={<Contact />} />
+                                <Route path="/admin" element={<Admin />} />
+                                <Route path="/articles" element={<Home />} />
+                                {/* INSERT ROUTES HERE */}
+                            </Routes>
+                        </CSSTransition>
                     </TransitionGroup>
                 ) : (
                     <Routes location={location}>
                         <Route path="/" index element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/Auth" element={<ValidateUser/>} />
+                        <Route path="/Auth" element={<ValidateUser />} />
                         <Route path="/home" element={<Home />} />
                         <Route path="/articles" element={<Home />} />
                         <Route path="/test" element={<Components />} />
                         <Route path="/profile/:userId" element={<Profile />} />
-                        <Route path="/question/:questionId" element={<Question />} />
+                        <Route path="/Question/:questionId" element={<Question />} />
                         <Route path="/question/ask" element={<AskQuestion />} />
                         <Route path="/choosetags" element={<FollowTags />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/admin" element={<Admin />} />
-                    {/* INSERT ROUTES HERE */}
+                        {/* INSERT ROUTES HERE */}
                     </Routes>
                 )}
                 <Footer />

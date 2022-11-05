@@ -17,7 +17,7 @@ import Discord from "../../Assets/Discord.png";
 import axios from 'axios'
 
 
-const RightContainer = ({ simliliar, topRated }) => {
+const RightContainer = ({ simliliar, topRated, questionid }) => {
     const location = useLocation();
     const [topR, setTopR] = useState();
     const [similiar, setSimiliar] = useState();
@@ -51,22 +51,33 @@ const RightContainer = ({ simliliar, topRated }) => {
                         ?
                         null
                         :
-                        <FollowedTags/>
+                        <FollowedTags />
                 }
                 {/* End followed Tags Component Here */}
-                <Button
-                    buttonType={'discord'}
-                />
+                <a href="https://discord.gg/cdbTTdJb" target={"_blank"}>
+                    <Button
+                        buttonType={'discord'}
+                    />
+                </a>
+
 
                 {
-                    location.pathname === "/Question"
+                    location.pathname == `/Question/${questionid}`
                         ?
                         <div className={styles.topRatedQuestions}>
                             <h4>Similiar Questions</h4>
-                            {simliliar}
-                            <TopRatedQuestion />
-                            <TopRatedQuestion />
-                            <TopRatedQuestion />
+                            {simliliar.map(i => (
+                                <TopRatedQuestion
+                                    nav={i._id}
+                                    key={i._id}
+                                    heading={i.title}
+                                    votes={i.rating}
+                                    answers={i.answers.length}
+                                    username={i.author.username}
+                                    date={new Date(i.postedDate).toString().slice(0, 16)}
+                                />
+                            ))}
+
                         </div>
                         :
                         location.pathname === "/home"
