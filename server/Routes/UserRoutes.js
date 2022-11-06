@@ -70,7 +70,7 @@ router.post('/api/registeruser', async (req, res) => {
                     email: email
                 });
 
-                let userLink = 'http://localhost:3000/Auth?id=' + findUser._id
+                let userLink = 'http://localhost:3000/auth?id=' + findUser._id
 
                 let mailContent = `<div 
                 style="
@@ -464,6 +464,42 @@ router.post('/api/resetpassword', async (req, res) => {
 });
 
 
+router.patch('/api/passreset/:id', async(req, res) =>{
+    const {password} = req.body
+
+ 
+
+    const editUser = await userSchema.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+            $set: {
+                password: password
+            },
+        }
+    );
+
+    bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(password, salt, function (err, hash) {
+            editUser.password = hash;
+            editUser.save();
+        });
+      });
+    
+    if (!editUser) {
+        res.status(400).json({ msg: "Something went wrong in the update, please try again", user: NaN })
+    }
+    // await editUser.save()
+    res.status(200).json({ msg: "User has been updated", user: editUser })
+
+  
+    // await user.save()
+    // .then(async user => {
+    //     res.status(200).json({ msg: "User has been updated", user: user })
+    // })
+    // .catch(err =>{
+    //     res.status(400).json({ msg: `The user was not updated, there was an eror:`, err: err });
+    // }) 
+})
 
 
 //Add an admin

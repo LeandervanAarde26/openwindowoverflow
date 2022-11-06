@@ -41,9 +41,10 @@ function App() {
     let val = sessionStorage.getItem("currentUser");
 
     if (val == null || val == "") {
-      if (location.pathname != "/register" || location.pathname != "/Auth" || location.pathname != "/updatepassword") {
-        navigate("/");
+      if (location.pathname == "/register" || location.pathname == "/Auth" || location.pathname == "/updatepassword") {
         console.log("Fuckoff2")
+      } else {
+        navigate('/')
       }
     } else {
       axios
@@ -52,7 +53,7 @@ function App() {
           if (!res.data) {
             if (
               location.pathname != "/register" ||
-              location.pathname != "/Auth" ||
+              location.pathname != "/auth" ||
               location.pathname != "/updatepassword"
             ) {
               navigate("/");
