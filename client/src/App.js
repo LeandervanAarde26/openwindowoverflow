@@ -26,7 +26,7 @@ import Profile from "./Routes/Profile/Profile.route";
 import FollowTags from "./Routes/FollowTags/FollowTags.route";
 import Contact from "./Routes/Contact/Contact.route";
 import Admin from "./Routes/Admin/Admin.route";
-import PostedArticles from "./Routes/PostedArticles/PostedArticles.route";
+// import PostedArticles from "./Routes/PostedArticles/PostedArticles.route";
 
 function App() {
   //Get Location of User
@@ -88,7 +88,8 @@ function App() {
                 <Route path="/choosetags" element={<FollowTags />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/admin" element={<Admin />} />
-                <Route path="/articles" element={<Home />} />
+              
+              
                 {/* INSERT ROUTES HERE */}
               </Routes>
             </CSSTransition>
@@ -107,6 +108,7 @@ function App() {
             <Route path="/choosetags" element={<FollowTags />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<Admin />} />
+
             {/* INSERT ROUTES HERE */}
           </Routes>
         )}
