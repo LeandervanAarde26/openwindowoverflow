@@ -6,6 +6,7 @@ import FlaggedComment from '../../Components/FlaggedComment/FlaggedComment.compo
 import Preview from "../../Components/Preview/Preview.component";
 import axios from 'axios'
 import { RerenderContext } from "../../Contexts/Rerenders.context";
+import AddAdmin from "../../Components/AddAdmin/AddAdmin.component";
 
 
 const AdminRoute = () => {
@@ -48,7 +49,7 @@ const AdminRoute = () => {
                 askedUser={i.author.username}
                 commentUser={i.comments.map(b => b.flagged ? b.user.username : null)}
                 commId={i.comments.map(c => c.flagged ? c._id : null)}
-               
+
               />
             ))}
           </div>
@@ -57,13 +58,15 @@ const AdminRoute = () => {
           <div className={styles.flaggedContainer}>
             {/* Place preview components */}
           </div>
+          <div className={styles.innerCon}>
+         
+            <div className={styles.addAdmin}>
+              <AddAdmin />
+            </div>
 
-          <div className={styles.addAdmin}>
-            {/* Place preview components */}
-          </div>
-
-          <div className={styles.addTag}>
-            {/* Place preview components */}
+            <div className={styles.addTag}>
+              {/* Place preview components */}
+            </div>
           </div>
 
           <div className={styles.tagOverview}>

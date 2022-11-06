@@ -1,2 +1,11 @@
 @import "../../StyleSource/variables.scss";
 
+.container{
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 20px;
+    background-color: red;
+    height: fit-content;
+    flex-direction: column;
+}

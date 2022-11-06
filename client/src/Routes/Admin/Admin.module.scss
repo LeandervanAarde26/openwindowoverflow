@@ -14,7 +14,7 @@
         @include headingThree();
     }
 
-    .flaggedContainer, .addAdmin, .addTag, .tagOverview{
+    .flaggedContainer, .tagOverview{
         padding-top: 15px;
         padding-bottom: 15px;
         flex: 1;
@@ -22,6 +22,21 @@
         gap: 10px;
         justify-content: center;
         flex-wrap: wrap;
+    }
+
+    .innerCon{
+        display: flex;
+ 
+        justify-content: space-evenly;
+
+        .addAdmin, .addTag{
+            padding-top: 15px;
+            padding-bottom: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
     }
 
    }
