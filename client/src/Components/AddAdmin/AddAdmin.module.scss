@@ -2,10 +2,48 @@
 
 .container{
     display: flex;
-    align-items: center;
+    align-items: flex;
     flex: 1;
     gap: 20px;
-    background-color: red;
     height: fit-content;
     flex-direction: column;
+    max-width: 390px;
+    width: 390px;
+
+    input{
+        width: 50%;
+    }
+
+    .imgContainer{
+        width: 30%;
+        aspect-ratio: 1/1;
+        background-color: $white;
+        border-radius: 55%;
+        overflow: hidden;
+
+        img{
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            overflow: hidden; 
+        }
+    }
+
+    #uploadbtnwrapper {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        padding: 0 0 10px 0;
+
+        input[type=file] {
+            font-size: 10px;
+            position: absolute;
+            left: 0;
+            border: none;    
+            left: 0;
+            opacity: 0;                    
+          }
+
+      }
 }

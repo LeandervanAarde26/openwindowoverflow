@@ -209,6 +209,9 @@ router.post('/api/registeruser', async (req, res) => {
     }
 });
 
+
+
+
 //Validate the new user
 // http://localhost:5001/api/validateUser
 
@@ -316,6 +319,180 @@ router.get('/api/getUserQuestionsandAnswers/:id', async (req, res) => {
     res
     .status(200)
     .json({questions: question, answers: test})
+});
+
+
+
+
+
+
+
+
+
+//Add an admin
+
+router.post('/api/addAmin', async (req, res) => {
+    const { username, email, password, userImage } = req.body
+    const findUser = await userSchema.findOne({
+        email: email
+    });
+
+    if (!findUser) {
+        const newUser = new userSchema({
+            username: username,
+            email: email,
+            password: password,
+            userImage: userImage,
+            userRole: "Admin",
+            currentStudyYear: 0,
+            userDescription: '',
+    
+        });
+
+        newUser.save()
+            .then(async user => {
+                res.status(200).json({ msg: `user has been added to the db: ${user}` })
+
+                const findUser = await userSchema.findOne({
+                    email: email
+                });
+
+                let userLink = 'http://localhost:3000/Auth?id=' + findUser._id
+                
+                let mailContent = `<div 
+                style="
+                    text-align: center;
+                    width: 100%;
+                    max-width: 50%;
+                    background-color: #FFFFFF;
+                    margin: auto;
+                    border-radius: 50px;
+                    padding: 50px 10px;
+                    color: black;
+                "
+            >
+                <div 
+                    style="
+                        margin: auto;
+                        gap: 30px;
+                        background-color: #F0F0F0;
+                        width: 100%;
+                        padding: 40px 20px;
+                        color: black;
+                    "
+                >
+        
+                    <div
+                        style="
+                            textAlign: center;
+                            gap: 30px;
+                            margin-bottom: 40px;
+                            color: black;
+                        "
+                    >
+                        <img
+                            src='https://openoverflow.s3.af-south-1.amazonaws.com/Vector.png'
+                            style="
+                                height: 50px;
+                                color: black;
+                            "
+                        />
+        
+                        <h1
+                            style="
+                                width: 100%;
+                                font-weight: 400;
+                                color: black;
+                            "
+                        >
+                            Welcome <b>${user.username}</b>
+                        </h1>
+        
+                        <p
+                            style="
+                                fontSize: 18px;
+                                color: black;
+                            "
+                        >
+                            We are excited to have you part of the OpenOverflow community!
+                        </p>
+                    </div>
+                    <div 
+                        className={styles.bottom}
+                        style="
+                            margin: auto;
+                            text-align: center;
+                            width: 50%;
+                            padding: 20px;
+                            background-color: #FFFFFF;
+                            border-radius: 50px;
+                            gap: 20px;
+                            color: black;
+                        "
+                    >
+                        <img 
+                            src='https://openoverflow.s3.af-south-1.amazonaws.com/email_Image.png'
+                            style="
+                                height: 100px;
+                                margin-bottom: 20px;
+                                color: black;
+                            "
+                        />
+        
+                        <p
+                            style="
+                                text-align: center;
+                                margin-bottom: 20px;
+                                color: black;
+                            "
+                        >
+                            Before your account can be activated we need to verify you. Please click the button below to begin this process
+                        </p>
+        
+                        <button
+                            style="
+                                padding: 10px 5px;
+                                background-color: black;
+                            "}}"
+                        >
+                            <a href=${userLink}
+                                style="color: white;"
+                            >Get Started</a>
+                        </button>
+                    </div>
+                </div>
+            </div>`
+
+                const transporter = nodeMailer.createTransport({
+                    host: "mail.openoverflow.co.za",
+                    port: 465,
+                    secure: true,
+                    auth: {
+                        user: "welcome@openoverflow.co.za",
+                        pass: "F)!lO4f3%6qp"
+                    }
+                });
+
+                const mailInformation = {
+                    from: '"OpenOverflow welcome" <welcome@openoverflow.com>',
+                    to: email,
+                    subject: "Welcome! Let's verify!",
+                    html: mailContent
+                }
+
+                transporter.sendMail(mailInformation, (error, info) => {
+                    if (error) {
+                        return console.log(error)
+                    }
+                    console.log(`message sent to ${username}`, info.messageId)
+                })
+            })
+            .catch(err => {
+                res.status(400).json({ msg: `The user was not added, there was an eror:`, err: err });
+            })
+    } else {
+        res.status(400).json({ msg: `This user already exists` });
+    }
 });
 
 module.exports = router; 
