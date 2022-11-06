@@ -1,4 +1,5 @@
 const article = require("../models/articleSchema");
+const User = require("../models/userSchema");
 const express = require("express");
 const router = express();
 
@@ -11,13 +12,18 @@ router.get("/api/getarticles", (req, res) => {
 });
 
 // posting articles
-router.post("/api/addarticles", async (req, res) => {
+router.post("/api/addarticles/:id", async (req, res) => {
+  const userID = req.params.id
+  const {description, title, link} = req.body
+
+  const find = await User.findOne({_id: userID}).select(['username', '_id'])
+
   const newArticle = new article({
-    author: req.body.author,
-    description: req.body.description,
-    link: req.body.link,
-    title: req.body.title,
-    likes: req.body.likes,
+    author: find,
+    description: description,
+    link: link,
+    title: title,
+    likes: 0,
   });
 
   newArticle
@@ -27,12 +33,12 @@ router.post("/api/addarticles", async (req, res) => {
 });
 
 // find article by id
-router.get("/api/article/:id", (req, res) => {
-  article
-    .findById(req.params.id)
-    .then((article) => res.json(article))
-    .catch((err) => res.status(400).json(`Error: ${err}`));
-});
+// router.get("/api/article/:id", (req, res) => {
+//   article
+//     .findById(req.params.id)
+//     .then((article) => res.json(article))
+//     .catch((err) => res.status(400).json(`Error: ${err}`));
+// });
 
 // find and update
 router.patch("/api/updatearticle/:id", (req, res) => {
@@ -42,13 +48,17 @@ router.patch("/api/updatearticle/:id", (req, res) => {
       (article.link = req.body.link),
       (article.title = req.body.title),
       (article.likes = req.body.likes);
-  });
+  })
+  
+  
 
   article
     .save()
     .then(() => res.json("Article has been updated!"))
     .catch((err) => res.status(400).json(`Error: ${err}`));
-});
+})
+
+
 
 // find and delete
 router.delete("/api/deletearticle/:id", (req, res) => {

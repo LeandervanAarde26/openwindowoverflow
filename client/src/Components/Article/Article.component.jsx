@@ -8,7 +8,7 @@ const Article = ({ heading, auth, link, desc }) => {
         <div className={styles.container}>
             <div className={styles.left}>
                 <h4>{heading}</h4>
-                <p className={styles.auth}>Posted by{auth}</p>
+                <p className={styles.auth}>Posted by {auth}</p>
                 <p className={styles.link}>{link}</p>
                 <p className={styles.desc}>{desc}</p>
                 <div className={styles.button}>

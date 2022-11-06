@@ -1,0 +1,61 @@
+@import "../../StyleSource/variables.scss";
+
+.container {
+    display: flex;
+    flex: 1;
+    gap: 15px;
+
+    .content {
+        flex: 1;
+        padding: 20px;
+
+
+
+        .top {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .inpContainer {
+            display: flex;
+            flex: 1;
+            gap: 15px;
+            flex-direction: column;
+            margin-top: 15px;
+
+            .input {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid $orange;
+                @include body();
+
+                &:focus {
+                    outline: none;
+                    border: 1px solid $orange;
+                }
+            }
+
+            textarea {
+                width: 100%;
+                min-height: 200px;
+                padding: 12px;
+                border: 1px solid $orange;
+                @include body();
+
+                &:focus {
+                    outline: none;
+                    border: 1px solid $orange;
+                }
+            }
+        }
+
+        .button{
+            display: flex;
+            margin-top: 10px;
+            justify-content: flex-end;
+        }
+    }
+
+
+}

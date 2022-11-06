@@ -37,7 +37,6 @@ router.post('/api/loginuser', async (req, res) => {
         return res.status(400).json({msg: "The user account is not verified!"})
     }
 
-
     // console.log(user.activeAccount)
     res.status(200).json(user)
 });
