@@ -223,6 +223,37 @@ router.patch('/api/flagComment', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
+=======
+// router.patch('/api/flagcomment/:id', async (req, res) => {
+//     let questionId = req.params.id
+//     let {commentId, flagged} = req.body
+
+//     if(!questionId){
+//         return res.status(400).json({msg: 'No Question found with id'})
+//     }
+
+//     const question = await Question.findById(questionId);
+//     if(!question) {
+//         return res.status(400).json({msg: `No question with ${id} was found.`});
+//     }
+  
+//     const comment = await Question.updateOne({
+//         _id: questionId,
+//         "comments._id": commentId
+//     },{
+//         $set:{
+//             'comments.$.flagged': true
+//         }
+//     })
+
+//    if(!comment){
+//     return res.status(400).json({msg: 'Comment was not updated'})
+//    }
+
+//    return res.status(204).json({msg: `Comment ${commentId} was successfully updated.`})
+// });
+>>>>>>> 5937357e77e150acc6bc271ea8894ca2a32e4d41
 
 // Get flagged comments 
 router.get('/api/getflagged', async (req, res) =>{
