@@ -73,9 +73,13 @@ function App() {
   return (
     <ValidUserContext.Provider value={{ validUser, setValidUser }}>
       <div className="App">
-        <NavBar />
+        {
+            location.pathname == 'register' || location.pathname == '/' 
+            ? ''
+            : <NavBar />
+        }
         {location.pathname === "/" ||
-          location.pathname === "/Register" ||
+          location.pathname === "/register" ||
           location.pathname === "/UserValidation" ||
           location.pathname === "/Choosetags" ? (
           <TransitionGroup style={{ display: "flex", flex: 1 }}>

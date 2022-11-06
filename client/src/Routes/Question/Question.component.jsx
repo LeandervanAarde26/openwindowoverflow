@@ -96,6 +96,11 @@ const Question = () => {
         setUserId(user)
         console.log("this did also actually rerender")
 
+        axios.get('http://localhost:5001/api/test')
+        .then(res => {
+            console.log(res)
+        })
+
         axios.get('http://localhost:5001/api/question/' + questionId.questionId)
         .then(res => {
             if (res.data.votes.up.includes(user)) {
@@ -441,7 +446,6 @@ const Question = () => {
         } else {
             let flagsArr = flags;
             flagsArr.push(userId);
-            console.log("🚀 ~ file: Question.component.jsx ~ line 434 ~ flagComment ~ newFlags", flagsArr)
 
             let data = {
                 questionId: questionId.questionId,

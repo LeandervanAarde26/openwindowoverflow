@@ -8,52 +8,44 @@ import axios from "axios";
 import { RerenderContext } from "../../Contexts/Rerenders.context";
 import AddAdmin from "../../Components/AddAdmin/AddAdmin.component";
 import AddTag from "../../Components/AddTag/AddTag.component";
+import { useNavigate } from "react-router";
 
 const AdminRoute = () => {
-  const [flagged, setFlagged] = useState();
-  const [busy, setBusy] = useState(true);
-  const { update, setUpdate } = useContext(RerenderContext);
+    const navigate = useNavigate();
+    const [flagged, setFlagged] = useState();
+    const [busy, setBusy] = useState(true);
+    const { update, setUpdate } = useContext(RerenderContext);
 
+    useEffect(() => {
+        axios.get("http://localhost:5001/api/getflagged")
+        .then((res) => {
+            console.log(res.data);
+            setFlagged(res.data);
+            setBusy(false);
+            console.log(res.data[0].comments[0].flags)
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 
-  const data = [
-    {
-      id: 1,
-      languages: ["HTML", "JavaScript"],
-    },
-    {
-      id: 2,
-      languages: ["JavaScript"],
-    },
-    {
-      id: 3,
-      languages: ["JavaScript", "Python"],
-    },
-    {
-      id: 4,
-      languages: ["JavaScript"],
+    }, [update]);
+
+    const deleteComment = (commentId, questionId) => {
+        console.log(commentId)
+        console.log(questionId)
+        axios.patch(`http://localhost:5001/api/deleteComment/${commentId}/${questionId}`)
+        .then(res =>{
+            console.log(res)
+            setUpdate(prev => !prev)
+        })
+        .catch(err =>{
+            console.log(err)
+        }) 
     }
-  ];
 
-  const filters =  ['Python', 'HTML']
-
-  const filterByLanguage = ( list, filters ) => {
-    return list.filter( x => filters.some( filter => x.languages.includes(filter) ))
-  }
-
-  console.log( filterByLanguage(data, filters ) )
-
-
-  useEffect(() => {
-    axios.get("http://localhost:5001/api/getflagged")
-    .then((res) => {
-        console.log(res.data);
-        setFlagged(res.data);
-        setBusy(false);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-  }, [update]);
+    const goToQuestion = (e) => { 
+        navigate(`/Question/${e}`) 
+    }
 
   return busy ? null : (
     <div className={styles.container}>
@@ -61,20 +53,24 @@ const AdminRoute = () => {
       <div className={styles.middle}>
         <h3>Flagged Comments</h3>
         <div className={styles.flaggedContainer}>
-          {flagged.map((i) => (
-            <FlaggedComment
-              key={i._id}
-              commentTitle={i.comments.map((c) =>
-                c.flagged ? c.comment : null
-              )}
-              questionId={i._id}
-              askedUser={i.author.username}
-              commentUser={i.comments.map((b) =>
-                b.flagged ? b.user.username : null
-              )}
-              commId={i.comments.map((c) => (c.flagged ? c._id : null))}
-            />
-          ))}
+            {flagged.map((i) => 
+                i.comments.map((x) => 
+                x.flagged ? 
+                <FlaggedComment
+                    key={x._id}
+                    commentTitle={x.comment}
+                    questionId={i._id}
+                    commentId={x._id}
+                    askedUser={i.author.username}
+                    commentUser={x.user.username}
+                    commId={x._id}
+                    flags={x.flags.length}
+                    onClick={(commentId, questionId) => deleteComment(x._id, i._id)}
+                    goToQuestion={(e) => goToQuestion(i._id)}
+                />
+                : ''
+                ))  
+            }
         </div>
 
         <h3 className={styles.breakHeading}>Oldest unanswered Questions</h3>

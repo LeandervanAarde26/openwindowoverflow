@@ -29,7 +29,7 @@ const Login = () => {
     const {setCurrentUser, currentUser} = useContext(RegisterContext)
 
     const Register = () => {
-        navigate("/Register")
+        navigate("/register")
     }
 
     const forget = () =>{

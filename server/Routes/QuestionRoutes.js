@@ -8,6 +8,7 @@ const userSchema = require('../models/userSchema');
 const { updateOne } = require('../models/questionSchema');
 const router = express();
 var mongoose = require('mongoose');
+const { ObjectId } = require('mongodb');
 
 
 router.post('/api/askquestion', async (req, res) => {
@@ -268,18 +269,18 @@ router.get('/api/getflagged', async (req, res) =>{
 })
 
 //Delete flagged comment 
-router.patch('/api/deletecomment/:id/:questionId' , async (req, res) =>{
+router.patch('/api/deleteComment/:id/:questionId' , async (req, res) =>{
     let commentId = req.params.id
-    let QId = req.params.questionId
+    let questionId = req.params.questionId
     
-    const question = await Question.findOne( { _id : QId})
+    const question = await Question.findOne( { _id : questionId})
 
     if(!question){
         res.status(400).json("comment not found")
     }
 
     const comment = await Question.updateOne({
-        _id: QId,
+        _id: questionId,
         "comments._id": commentId
     },{
         $pull:{'comments':{_id: commentId}}
@@ -290,8 +291,7 @@ router.patch('/api/deletecomment/:id/:questionId' , async (req, res) =>{
        }
     
     return res.status(204).json({msg: `Comment ${commentId} was successfully updated.`})
-
-})
+});
 
 
 router.get('/api/gettoprated', async (req, res) =>{
@@ -316,5 +316,14 @@ router.get('/api/getsimiliar/:tag/:id', async(req, res) =>{
 
     return res.status(200).json(similiar)
 });
+
+router.get('/api/test', async (req, res) => {
+    const comments = await Question.find({
+        _id: ObjectId('636789819f8183027f24fcf6'),
+        "comments._id": ObjectId('6367fe5929cac5e529c9e2f9')
+    })
+    res.send(comments)
+    console.log(comments)
+})
 
 module.exports = router; 
