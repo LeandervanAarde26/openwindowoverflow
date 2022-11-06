@@ -1,21 +1,50 @@
-// @import "../../StyleSource/variables.scss";
+@import "../../StyleSource/variables.scss";
 
-// .container {
-//     display: flex;
-//     flex: 1;
-    
-// }
-// h4 {
-//     font-family:'Quicksand', sans-serif;
-//     margin-top: 50px;
-//     margin-left: 40px;
-//     font-size: x-large;
-// }
+.container {
+   display: flex;
+   flex: 1;
 
-// h2 {
-//     margin-top: 20px;
-//     margin-left: 40px;
-//     font-size: xx-large;
-//     font-family:'Quicksand', sans-serif;
+   .middle {
+    flex: 1;
+    padding-top: 15px;
+    padding-left: 20px;
 
-// }
+
+    h3{
+        @include headingThree();
+    }
+
+    .flaggedContainer, .tagOverview{
+        padding-top: 15px;
+        padding-bottom: 15px;
+        flex: 1;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .noFlags{
+            @include smallText();
+            color: grey;
+            margin-top: 5vh;
+            margin-bottom: 5vh;
+        }
+    }
+
+    .innerCon{
+        display: flex;
+ 
+        justify-content: space-evenly;
+
+        .addAdmin, .addTag{
+            padding-top: 15px;
+            padding-bottom: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    }
+
+   }
+}

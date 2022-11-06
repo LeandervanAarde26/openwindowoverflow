@@ -264,7 +264,11 @@ router.patch('/api/answerVote/:type', async (req, res) => {
 router.patch('/api/flagcomment/:id', async (req, res) => {
     let questionId = req.params.id
     let {commentId, flagged} = req.body
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 12596730598986863c367d9d4ff037d1aaa77990
     if(!questionId){
         return res.status(400).json({msg: 'No Question found with id'})
     }
@@ -273,13 +277,13 @@ router.patch('/api/flagcomment/:id', async (req, res) => {
     if(!question) {
         return res.status(400).json({msg: `No question with ${id} was found.`});
     }
-
+  
     const comment = await Question.updateOne({
         _id: questionId,
         "comments._id": commentId
     },{
         $set:{
-            'comments.$.flagged': flagged
+            'comments.$.flagged': true
         }
     })
 
@@ -290,6 +294,43 @@ router.patch('/api/flagcomment/:id', async (req, res) => {
    return res.status(204).json({msg: `Comment ${commentId} was successfully updated.`})
 });
 
+// Get flagged comments 
+router.get('/api/getflagged', async (req, res) =>{
+    const questions =await Question.find( { 'comments.flagged' : { $all:  true  } } )
+    if(!questions){
+        return res.status(404).json({msg: "No Questions were found"})
+    }
+
+    return res.status(200).json(questions)
+})
+
+//Delete flagged comment 
+
+router.patch('/api/deletecomment/:id/:questionId' , async (req, res) =>{
+    let commentId = req.params.id
+    let QId = req.params.questionId
+    
+    const question = await Question.findOne( { _id : QId})
+
+    if(!question){
+        res.status(400).json("comment not found")
+    }
+
+    const comment = await Question.updateOne({
+        _id: QId,
+        "comments._id": commentId
+    },{
+        $pull:{'comments':{_id: commentId}}
+    })
+
+    if(!comment){
+        return res.status(400).json({msg: 'Comment was not updated'})
+       }
+    
+    return res.status(204).json({msg: `Comment ${commentId} was successfully updated.`})
+
+})
+
 
 router.get('/api/gettoprated', async (req, res) =>{
     const topRated = await Question.find().sort({rating: -1}).limit(3)
@@ -297,7 +338,6 @@ router.get('/api/gettoprated', async (req, res) =>{
     if(!topRated){
         return res.status(400).json({msg: 'Data not found'})
     }
-
     return res.status(200).json(topRated)
 });
 

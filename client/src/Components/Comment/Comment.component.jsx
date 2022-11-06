@@ -14,6 +14,7 @@ const Comment = ({comment, auth, date , authId, id, func, flagged, questionId}) 
     const user = sessionStorage.getItem("userName")
 
     const [flaggedVal, setFlaggedVal] = useState(flagged)
+    console.log(flaggedVal)
 
     const testerFunction = async (e) => {
         let commId = id;

@@ -3,7 +3,16 @@
 .outer {
     display: flex;
     flex-direction: column;
+    padding: 20px 0;
     gap: 20px;
+    flex: 1;
+
+
+    .top{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
 
     .container {
         flex: 1;

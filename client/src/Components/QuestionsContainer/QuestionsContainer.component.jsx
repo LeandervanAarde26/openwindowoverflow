@@ -44,10 +44,6 @@ const QuestionsContainer = () => {
       });
   }, []);
 
-  const individualQuestion = (e) => {
-    let id = e.target.key;
-    console.log(e.target.id);
-  };
 
   return (
     <div className={styles.outer}>
