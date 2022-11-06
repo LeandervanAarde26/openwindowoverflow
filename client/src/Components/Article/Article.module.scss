@@ -52,6 +52,14 @@
         width: 10%;
         gap: 10px;
 
+        .liked {
+            svg {
+                *[fill] {
+                    fill: $orange;
+                }
+            }
+        }
+
         p{
             @include smallText();
         }
