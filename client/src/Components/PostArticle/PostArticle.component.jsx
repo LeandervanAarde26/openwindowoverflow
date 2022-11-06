@@ -4,6 +4,7 @@ import Button from "../Button/Button.component";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { IoMdThumbsUp } from "react-icons/io";
 
 export default function PostArticle({ articles }) {
   return (
@@ -32,10 +33,18 @@ export default function PostArticle({ articles }) {
       <div className={styles.postedArticles}>
         <h4>Browse through our featured articles below</h4>
         {articles?.map((article) => (
-          <div>
-            <h4 style={{ opacity: "0.6" }}>{article.title}</h4>
-            <h6>{article.description}</h6>
-            <a href={article.link}>{article.link}</a>
+          <div className={styles.articleCon}>
+            <h3>{article.title}</h3>
+            <p>{article.description}</p>
+
+            <div id={styles.likes}>
+              <IoMdThumbsUp id={styles.thumb} />
+              <h5>{article.likes}</h5>
+              <br />
+            </div>
+
+            <h6>Author: {article.author}</h6>
+            <a href={article.link}>Continue reading!</a>
           </div>
         ))}
       </div>

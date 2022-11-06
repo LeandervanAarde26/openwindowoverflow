@@ -35,7 +35,7 @@ router.get("/api/article/:id", (req, res) => {
 });
 
 // find and update
-router.put("/api/updatearticle/:id", (req, res) => {
+router.patch("/api/updatearticle/:id", (req, res) => {
   article.findById(req.params.id).then((article) => {
     (article.title = req.body.title),
       (article.description = req.body.description),

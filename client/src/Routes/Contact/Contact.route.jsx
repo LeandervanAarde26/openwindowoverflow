@@ -14,66 +14,89 @@ import ArticlesContainer from "../../Components/ArticlesContainer/ArticlesContai
 import { useState } from "react";
 import { useLocation } from "react-router";
 import QuestionsContainer from "../../Components/QuestionsContainer/QuestionsContainer.component";
+// admin images
+import mike from "../../Assets/AdminImages/mikeProfile.png";
+import armand from "../../Assets/AdminImages/armandProfile.jpg";
+import tsungai from "../../Assets/AdminImages/tsungai.jpg";
+import leo from "../../Assets/AdminImages/leo.jpg";
+import carlo from "../../Assets/AdminImages/carlo.jpg";
+
+// creator images
+import leander from "../../Assets/AdminImages/leander.jpg";
+import cameron from "../../Assets/AdminImages/cameron.jpg";
+import anchen from "../../Assets/AdminImages/anchen.jpg";
+import vian from "../../Assets/AdminImages/vian.jpg";
+import liam from "../../Assets/AdminImages/liam.png";
 
 export default function Contact() {
   const [currentLocation, setCurrentLocation] = useState();
   const pathName = useLocation();
   return (
-      <div className={styles.container}>
-        <SideNavigation />
-        <div className={styles.centerContent}>
-          <h2>Contact</h2>
-          <br />
-          <h4>Staff:</h4>
-          {/* <AnswerBoxComponent /> */}
-          <div className={styles.contacts}>
-            <ContactCard
-              contactName={"Mike Maynard (Subject head)"}
-              contactEmail={"mike@openwindow.co.za"}
-            />
-            <ContactCard
-              contactName={"Armand Pretorius"}
-              contactEmail={"armand@openwindow.co.za"}
-            />
-            <ContactCard
-              contactName={"Tsungai Katsuro"}
-              contactEmail={"tsungai@openwindow.co.za"}
-            />
-            <ContactCard
-              contactName={"Leo Kuyper 2nd year/Creative Computing"}
-              contactEmail={"leo@openwindow.co.za"}
-            />
-            <ContactCard
-              contactName={"Carlo Kuyper 1st year/Creative Computing"}
-              contactEmail={"carlo@openwindow.co.za"}
-            />
-          </div>
-          <br />
-          <h4>Creators:</h4>
-          <div className={styles.contacts}>
-            <ContactCard
-              contactName={"Anchen Ayres"}
-              contactEmail={"20313208@virtualwindow.co.za"}
-            />
-            <ContactCard
-              contactName={"Cameron Godwin"}
-              contactEmail={"200109@virtualwindow.co.za"}
-            />
-            <ContactCard
-              contactName={"Leander van Aarde"}
-              contactEmail={"200211@virtualwindow.co.za"}
-            />
-            <ContactCard
-              contactName={"Liam Wedge"}
-              contactEmail={"2214443@virtualwindow.co.za"}
-            />
-            <ContactCard
-              contactName={"Vian Du Plessis"}
-              contactEmail={"22132432@virtualwindow.co.za"}
-            />
-          </div>
+    <div className={styles.container}>
+      <SideNavigation />
+      <div className={styles.centerContent}>
+        <h2>Contact</h2>
+        <br />
+        <h4>Staff:</h4>
+        {/* <AnswerBoxComponent /> */}
+        <div className={styles.contacts}>
+          <ContactCard
+            contactName={"Mike Maynard (Subject head)"}
+            contactEmail={"mike@openwindow.co.za"}
+            image={mike}
+          />
+          <ContactCard
+            contactName={"Armand Pretorius"}
+            contactEmail={"armand@openwindow.co.za"}
+            image={armand}
+          />
+          <ContactCard
+            contactName={"Tsungai Katsuro"}
+            contactEmail={"tsungai@openwindow.co.za"}
+            image={tsungai}
+          />
+          <ContactCard
+            contactName={"Leo Kuyper 2nd year/Creative Computing"}
+            contactEmail={"leo@openwindow.co.za"}
+            image={leo}
+          />
+          <ContactCard
+            contactName={"Carlo Kuyper 1st year/Creative Computing"}
+            contactEmail={"carlo@openwindow.co.za"}
+            image={carlo}
+          />
         </div>
-        <RightContainer />
+        <br />
+        <h4>Creators:</h4>
+        <div className={styles.contacts}>
+          <ContactCard
+            contactName={"Anchen Ayres"}
+            contactEmail={"21100284@virtualwindow.co.za"}
+            image={anchen}
+          />
+          <ContactCard
+            contactName={"Cameron Godwin"}
+            contactEmail={"200109@virtualwindow.co.za"}
+            image={cameron}
+          />
+          <ContactCard
+            contactName={"Leander van Aarde"}
+            contactEmail={"200211@virtualwindow.co.za"}
+            image={leander}
+          />
+          <ContactCard
+            contactName={"Liam Wedge"}
+            contactEmail={"21100218@virtualwindow.co.za"}
+            image={liam}
+          />
+          <ContactCard
+            contactName={"Vian Du Plessis"}
+            contactEmail={"21100483@virtualwindow.co.za"}
+            image={vian}
+          />
+        </div>
       </div>
+      <RightContainer />
+    </div>
   );
 }
