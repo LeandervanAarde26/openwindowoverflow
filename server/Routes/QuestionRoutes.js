@@ -126,61 +126,6 @@ router.patch('/api/votes/:type', async (req, res) => {
     }
 });
 
-router.get('/api/test', async(req, res) => {
-    let {te} = req.body;
-    console.log("hey")
-    console.log("this will be a big no no from me " + te)
-
-/*     const answer = await Question.findOne({
-        _id: questionId,
-        "answers._id": answerId
-    })
-
-    console.log(answer)
-    res.send(answer) */
-})
-
-/* router.patch('/api/answerVotes/:type', async(req, res) => {
-    let {userId, answerId, questionId, upVotes, downVotes} = req.body;
-    let type = req.params.type;
-
-    if(type == 'up') {
-        const answer = await Question.updateOne({
-            _id: questionId,
-            "answers._id": answerId
-        },{
-            $inc:{'answers.$.rating': 1},
-            $set:{
-                'answers.$.votes.up': upVotes,
-                'answers.$.votes.down': downVotes
-            }
-        })
-
-        if(!answer){
-            return res.status(400).json({msg: 'Comment was not updated'})
-        } else {
-            return res.send(true)
-        }
-    } else if(type == 'down') {
-        const answer = await Question.updateOne({
-            _id: questionId,
-            "answers._id": answerId
-        },{
-            $inc:{'answers.$.rating': -1},
-            $set:{
-                'answers.$.votes.up': upVotes,
-                'answers.$.votes.down': downVotes
-            }
-        })
-
-        if(!answer){
-            return res.status(400).json({msg: 'Comment was not updated'})
-        } else {
-            return res.send(true)
-        }
-    }
-}); */
-
 router.patch('/api/questionVote/:type', async (req, res) => {
     let {questionId, upVotes, downVotes} = req.body;
     let type = req.params.type;
@@ -264,11 +209,7 @@ router.patch('/api/answerVote/:type', async (req, res) => {
 router.patch('/api/flagcomment/:id', async (req, res) => {
     let questionId = req.params.id
     let {commentId, flagged} = req.body
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 12596730598986863c367d9d4ff037d1aaa77990
     if(!questionId){
         return res.status(400).json({msg: 'No Question found with id'})
     }
