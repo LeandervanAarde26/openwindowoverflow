@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 import Input from '../../Components/Input/Input.component';
 import Button from '../../Components/Button/Button.component';
+import { useSearchParams } from "react-router-dom";
 
 const defaultValues = {
     password: '',
@@ -12,38 +13,39 @@ const defaultValues = {
 }
 
 const Newpassword = () => {
-
+    const [searchParams] = useSearchParams();
     const [values, setValues] = useState(defaultValues)
     const { password, confirmPassword } = values
     const [error, setError] = useState(false);
     const [clickable, setClickable] = useState(true);
     const navigate = useNavigate()
+    const id = searchParams.get("id")
 
     const handleChange = (e) => {
         const { name, value } = e.target
 
-        const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        let correctEmail =
-            value.includes("@openwindow.co.za") ||
-            value.includes("@virtualwindow.co.za");
-        const emailCheck = emailRegex.test(value);
-
-
         setValues({ ...values, [name]: value })
-
-        if (name == "email" && value.length > 2) {
-            if (emailCheck && correctEmail) {
-                setError(false);
-                setClickable(true);
-            } else {
-                setError(true);
-                setClickable(false);
-            }
-        } else {
-            setError(false);
-            setClickable(true);
-        }
     }
+
+   const handleClick = () =>{
+
+    if (values.password !== values.confirmPassword){
+        setError(true)
+    } else{
+        let payload = {password: values.password}
+        console.log(id);
+        axios.post(`http://localhost:5001/api/passreset/${id}`, payload)
+        .then(res => {
+            console.log(payload)
+            console.log(res)
+            // navigate("/")
+            // setOpenModal(prev => !prev)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+   }
 
 
 
@@ -59,7 +61,7 @@ const Newpassword = () => {
             <div className={styles.right}>
                 <h3>Enter details below to reset your password!</h3>
                 <Input
-                    label={error ? " Passwords do not match" : "password"}
+                    label={error ? " Passwords do not match" : "New password"}
                     value={password}
                     type="password"
                     name="password"
@@ -68,7 +70,7 @@ const Newpassword = () => {
                 />
 
                 <Input
-                    label={"Confirm Passwords"}
+                    label={"Confirm Password"}
                     value={confirmPassword}
                     type="password"
                     name="confirmPassword"
@@ -83,7 +85,7 @@ const Newpassword = () => {
                             <Button
                                 buttonType={'primary'}
                                 children={'Reset Password'}
-                            // onClick={resetPassword}
+                                onClick={handleClick}
                             />
                             :
                             null

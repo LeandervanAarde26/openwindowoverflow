@@ -223,6 +223,7 @@ router.patch('/api/flagComment', async (req, res) => {
     }
 });
 
+
 // Get flagged comments 
 router.get('/api/getflagged', async (req, res) =>{
     const questions =await Question.find( { 'comments.flagged' : { $all:  true  } } )

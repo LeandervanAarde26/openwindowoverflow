@@ -53,7 +53,7 @@ function App() {
           if (!res.data) {
             if (
               location.pathname != "/register" ||
-              location.pathname != "/Auth" ||
+              location.pathname != "/auth" ||
               location.pathname != "/updatepassword"
             ) {
               navigate("/");
