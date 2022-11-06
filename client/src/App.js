@@ -26,6 +26,7 @@ import Profile from "./Routes/Profile/Profile.route";
 import FollowTags from "./Routes/FollowTags/FollowTags.route";
 import Contact from "./Routes/Contact/Contact.route";
 import Admin from "./Routes/Admin/Admin.route";
+import AddArticle from "./Components/AddArticle/AddArticle.component";
 // import PostedArticles from "./Routes/PostedArticles/PostedArticles.route";
 
 function App() {
@@ -108,6 +109,7 @@ function App() {
             <Route path="/choosetags" element={<FollowTags />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/addArticle" element={<AddArticle/>}/>
 
             {/* INSERT ROUTES HERE */}
           </Routes>

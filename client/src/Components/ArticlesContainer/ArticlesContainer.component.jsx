@@ -1,5 +1,6 @@
 /* React */
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 /* Styling */
 import styles from "./ArticlesContainer.module.scss";
@@ -12,6 +13,7 @@ import Button from '../Button/Button.component';
 const ArticlesContainer = () => {
     const [data, setData] = useState()
     const [busy, setBusy] = useState(true)
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get('http://localhost:5001/api/getarticles')
@@ -25,6 +27,10 @@ const ArticlesContainer = () => {
             })
     }, []);
 
+    const add = (e) =>{
+        navigate('/addArticle')
+      }
+
     return (
         <div className={styles.outer}>
             <div className={styles.top}>
@@ -32,7 +38,7 @@ const ArticlesContainer = () => {
                 <Button
                     buttonType={'primary'}
                     children={'Add Article'}
-                    // onClick={ask}
+                    onClick={add}
 
                 />
             </div>
@@ -46,7 +52,7 @@ const ArticlesContainer = () => {
                     data.map(i => (<Article
                         key={i._id}
                         heading={i.title}
-                        auth={i.author}
+                        auth={i.author.username}
                         link={i.link}
                         desc={i.description}
                     />))
