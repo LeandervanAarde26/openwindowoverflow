@@ -8,8 +8,10 @@ import axios from "axios";
 import { RerenderContext } from "../../Contexts/Rerenders.context";
 import AddAdmin from "../../Components/AddAdmin/AddAdmin.component";
 import AddTag from "../../Components/AddTag/AddTag.component";
+import { useNavigate } from "react-router";
 
 const AdminRoute = () => {
+    const navigate = useNavigate();
     const [flagged, setFlagged] = useState();
     const [busy, setBusy] = useState(true);
     const { update, setUpdate } = useContext(RerenderContext);
@@ -18,20 +20,6 @@ const AdminRoute = () => {
         axios.get("http://localhost:5001/api/getflagged")
         .then((res) => {
             console.log(res.data);
-            // let arr = res.data.map(i => i.filter(x => x.comments.flagged))
-            // let test = res.data.map(x => x.filter(x => x.comments.flagged == true))
-            // console.log("🚀 ~ file: Admin.route.jsx ~ line 23 ~ .then ~ test", test)
-            // let yes = res.data.flatMap(x => x.comment.flagged)
-            // console.log("🚀 ~ file: Admin.route.jsx ~ line 25 ~ .then ~ yes", yes)
-            // console.log("🚀 ~ file: Admin.route.jsx ~ line 22 ~ .then ~ arr", arr)
-            let test = res.data.map((i) => (
-                i.comments.map((x) => 
-                x.flagged ? x.comment : ''
-                )
-            ))
-            console.log("🚀 ~ file: Admin.route.jsx ~ line 32 ~ .then ~ test", test)
-
-
             setFlagged(res.data);
             setBusy(false);
             console.log(res.data[0].comments[0].flags)
@@ -42,27 +30,47 @@ const AdminRoute = () => {
 
     }, [update]);
 
+    const deleteComment = (commentId, questionId) => {
+        console.log(commentId)
+        console.log(questionId)
+        axios.patch(`http://localhost:5001/api/deleteComment/${commentId}/${questionId}`)
+        .then(res =>{
+            console.log(res)
+            setUpdate(prev => !prev)
+        })
+        .catch(err =>{
+            console.log(err)
+        }) 
+    }
+
+    const goToQuestion = (e) => { 
+        navigate(`/Question/${e}`) 
+    }
+
   return busy ? null : (
     <div className={styles.container}>
       <SideNavigation />
       <div className={styles.middle}>
         <h3>Flagged Comments</h3>
         <div className={styles.flaggedContainer}>
-            {flagged.map((i) => (
+            {flagged.map((i) => 
+                i.comments.map((x) => 
+                x.flagged ? 
                 <FlaggedComment
-                    key={i._id}
-                    commentTitle={i.comments.map((c) =>
-                        c.flagged ? c.comment : null
-                    )}
+                    key={x._id}
+                    commentTitle={x.comment}
                     questionId={i._id}
+                    commentId={x._id}
                     askedUser={i.author.username}
-                    commentUser={i.comments.map((b) =>
-                        b.flagged ? b.user.username : null
-                    )}
-                    commId={i.comments.map((c) => (c.flagged ? c._id : null))}
-                    flags={i.comments.flags}
+                    commentUser={x.user.username}
+                    commId={x._id}
+                    flags={x.flags.length}
+                    onClick={(commentId, questionId) => deleteComment(x._id, i._id)}
+                    goToQuestion={(e) => goToQuestion(i._id)}
                 />
-            ))}
+                : ''
+                ))  
+            }
         </div>
 
         <h3 className={styles.breakHeading}>Oldest unanswered Questions</h3>

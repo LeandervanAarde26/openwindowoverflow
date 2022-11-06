@@ -20,23 +20,6 @@ const FlaggedComment = (props) => {
     const navigate = useNavigate()
     const { update, setUpdate } = useContext(RerenderContext);
 
-    const goToQuestion = () => { navigate(`/Question/${props.questionId}`) }
-
-    const deleteFunction = (e) =>{
-       let  arr = props.commId.filter(x => x !== null);
-        console.log("fired")
-    //    console.log(arr[0])
-
-       axios.patch(`http://localhost:5001/api/deletecomment/${arr[0]}/${props.questionId}`)
-       .then(res =>{
-        console.log(res)
-        setUpdate(prev => !prev)
-       })
-       .catch(err =>{
-        console.log(err)
-       })   
-    }
-
     return (
         <div className={styles.container}>
             <div className={styles.container__top}>
@@ -63,7 +46,7 @@ const FlaggedComment = (props) => {
                     id={props.questionId}
                     buttonType='primary'
                     children='View'
-                    onClick={goToQuestion}
+                    onClick={props.goToQuestion}
                 />
                 {
                     props.flags > 0 &&
@@ -71,17 +54,16 @@ const FlaggedComment = (props) => {
                     <p>
                         {
                             props.flags < 2
-                            ? props.flags + 'Flag'
-                            : props.flags + 'Flags'
+                            ? props.flags + ' Flag'
+                            : props.flags + ' Flags'
                         }
                     </p>
                 }
 
-
                 <Icon
                     className={styles.bin}
                     icon={ic_bin}
-                    onClick={deleteFunction}
+                    onClick={props.onClick}
                 />
             </div>
         </div>

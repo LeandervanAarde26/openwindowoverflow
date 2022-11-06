@@ -41,9 +41,10 @@ function App() {
     let val = sessionStorage.getItem("currentUser");
 
     if (val == null || val == "") {
-      if (location.pathname != "/register" || location.pathname != "/Auth" || location.pathname != "/updatepassword") {
-        navigate("/");
+      if (location.pathname == "/register" || location.pathname == "/Auth" || location.pathname == "/updatepassword") {
         console.log("Fuckoff2")
+      } else {
+        navigate('/')
       }
     } else {
       axios
@@ -72,9 +73,13 @@ function App() {
   return (
     <ValidUserContext.Provider value={{ validUser, setValidUser }}>
       <div className="App">
-        <NavBar />
+        {
+            location.pathname == 'register' || location.pathname == '/' 
+            ? ''
+            : <NavBar />
+        }
         {location.pathname === "/" ||
-          location.pathname === "/Register" ||
+          location.pathname === "/register" ||
           location.pathname === "/UserValidation" ||
           location.pathname === "/Choosetags" ? (
           <TransitionGroup style={{ display: "flex", flex: 1 }}>
