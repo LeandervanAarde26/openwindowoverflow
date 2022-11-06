@@ -209,8 +209,6 @@ router.post('/api/registeruser', async (req, res) => {
 });
 
 
-
-
 //Validate the new user
 // http://localhost:5001/api/validateUser
 
@@ -323,7 +321,145 @@ router.get('/api/getUserQuestionsandAnswers/:id', async (req, res) => {
 
 
 
+router.post('/api/resetpassword', async (req, res) =>{
+    const user = await userSchema.findOne({
+        email: req.body.email
+    })
 
+    if(!user){
+        res.status(404).json({msg: "User with email has not been found!"})
+    }
+    let userIdLink = "http://localhost:3000/updatepassword?id=" + user._id;
+
+    let mailContent = `<div 
+    style="
+        text-align: center;
+        width: 100%;
+        max-width: 50%;
+        background-color: #FFFFFF;
+        margin: auto;
+        border-radius: 50px;
+        padding: 50px 10px;
+        color: black;
+    "
+>
+    <div 
+        style="
+            margin: auto;
+            gap: 30px;
+            background-color: #F0F0F0;
+            width: 100%;
+            padding: 40px 20px;
+            color: black;
+        "
+    >
+
+        <div
+            style="
+                textAlign: center;
+                gap: 30px;
+                margin-bottom: 40px;
+                color: black;
+            "
+        >
+            <img
+                src='https://openoverflow.s3.af-south-1.amazonaws.com/Vector.png'
+                style="
+                    height: 50px;
+                    color: black;
+                "
+            />
+
+            <h1
+                style="
+                    width: 100%;
+                    font-weight: 400;
+                    color: black;
+                "
+            >
+                Hi, <b>${user.username}</b> !
+            </h1>
+
+            <p
+                style="
+                    fontSize: 18px;
+                    color: black;
+                "
+            >
+                Forgotten your password? Let's reset it!
+            </p>
+        </div>
+        <div 
+            className={styles.bottom}
+            style="
+                margin: auto;
+                text-align: center;
+                width: 50%;
+                padding: 20px;
+                background-color: #FFFFFF;
+                border-radius: 50px;
+                gap: 20px;
+                color: black;
+            "
+        >
+            <img 
+                src='https://openoverflow.s3.af-south-1.amazonaws.com/email_Image.png'
+                style="
+                    height: 100px;
+                    margin-bottom: 20px;
+                    color: black;
+                "
+            />
+
+            <p
+                style="
+                    text-align: center;
+                    margin-bottom: 20px;
+                    color: black;
+                "
+            >
+               Click on the link below to edit your existing password into something more memorable! 
+            </p>
+
+            <button
+                style="
+                    padding: 10px 5px;
+                    background-color: black;
+                "}}"
+            >
+                <a href=${userIdLink}
+                    style="color: white;"
+                >Get Started</a>
+            </button>
+        </div>
+    </div>
+</div>`
+
+const transporter = nodeMailer.createTransport({
+    host: "mail.openoverflow.co.za",
+    port: 465,
+    secure: true,
+    auth: {
+        user: "welcome@openoverflow.co.za",
+        pass: "F)!lO4f3%6qp"
+    }
+});
+
+const mailInformation = {
+    from: '"OpenOverflow welcome" <welcome@openoverflow.com>',
+    to: email,
+    subject: "Welcome! Let's verify!",
+    html: mailContent
+}
+
+transporter.sendMail(mailInformation, (error, info) => {
+    if (error) {
+        return console.log(error)
+    }
+    console.log(`message sent to ${username}`, info.messageId)
+    res.status(200).json({msg: "Message was sent to user"})
+})
+});
 
 
 

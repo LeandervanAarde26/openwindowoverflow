@@ -27,6 +27,8 @@ import FollowTags from "./Routes/FollowTags/FollowTags.route";
 import Contact from "./Routes/Contact/Contact.route";
 import Admin from "./Routes/Admin/Admin.route";
 import AddArticle from "./Components/AddArticle/AddArticle.component";
+import ForgotPassword from "./Routes/Forgotpassword/ForgotPassword.Route";
+import Newpassword from "./Routes/NewPassword/Newpassword.component";
 // import PostedArticles from "./Routes/PostedArticles/PostedArticles.route";
 
 function App() {
@@ -89,6 +91,7 @@ function App() {
                 <Route path="/choosetags" element={<FollowTags />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/forgotpassword" element={<ForgotPassword/>}/>
               
               
                 {/* INSERT ROUTES HERE */}
@@ -110,7 +113,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/addArticle" element={<AddArticle/>}/>
-
+            <Route path="/forgotpassword" element={<ForgotPassword/>}/>
+            <Route path="/updatepassword" element={<Newpassword/>}/>
             {/* INSERT ROUTES HERE */}
           </Routes>
         )}

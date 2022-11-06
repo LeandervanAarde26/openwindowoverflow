@@ -55,6 +55,7 @@ const ArticlesContainer = () => {
                         auth={i.author.username}
                         link={i.link}
                         desc={i.description}
+                        likes={i.likes}
                     />))
                 }
             </div>

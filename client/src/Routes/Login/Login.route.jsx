@@ -31,6 +31,10 @@ const Login = () => {
     const Register = () => {
         navigate("/Register")
     }
+
+    const forget = () =>{
+        navigate("/forgotpassword")
+    }
     
     useEffect(() => {
         document.title = "Sign In"
@@ -120,7 +124,7 @@ const Login = () => {
                                 buttonSize={styles.buttonSize}
                                 onClick={signInUser}
                             />
-                            <p className={styles.reset}>Forgot password</p>
+                            <p className={styles.reset} onClick={forget}>Forgot password</p>
 
                             <p className={styles.option}>Don't have an Account?<span onClick={Register} className={styles.option2}> Sign Up</span></p>
 

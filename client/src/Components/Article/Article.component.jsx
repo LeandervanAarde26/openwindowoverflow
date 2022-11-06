@@ -3,7 +3,7 @@ import styles from "./Article.module.scss"
 import ic_like from "../../Assets/Icons/ic_like.svg"
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button.component';
-const Article = ({ heading, auth, link, desc }) => {
+const Article = ({ heading, auth, link, desc, likes }) => {
     return (
         <div className={styles.container}>
             <div className={styles.left}>
@@ -25,7 +25,7 @@ const Article = ({ heading, auth, link, desc }) => {
                 <Icon
                     icon={ic_like}
                 />
-                <p>10 Likes</p>
+                <p>{likes} Likes</p>
             </div>
         </div>
     );

@@ -20,10 +20,7 @@ const AddArticle = () => {
         const { name, value } = e.target;
         setNewValues({ ...newValues, [name]: value })
     }
-
-    console.log(newValues)
-
-    const addArticle = () =>{
+    const addArticle = () => {
         let payload = {
             description: newValues.description,
             title: newValues.title,
@@ -31,12 +28,13 @@ const AddArticle = () => {
         }
         console.log(payload)
         axios.post(`http://localhost:5001/api/addarticles/${user}`, payload)
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err =>{
-            console.log(err)
-        })
+            .then(res => {
+                console.log(res)
+                setNewValues(defaultVals)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
 
@@ -77,7 +75,6 @@ const AddArticle = () => {
                     />
                 </div>
             </div>
-
             <RightContainer />
         </div>
     );
