@@ -23,6 +23,22 @@
             & :nth-child(3) {
                 transform: rotate(180deg);
             }
+
+            .upVote {
+                svg {
+                    *[fill] {
+                        fill: $orange;
+                    }
+                }
+            }
+
+            .downVote {
+                svg {
+                    *[fill] {
+                        fill: $orange;
+                    }
+                }
+            }
         }
     }
 

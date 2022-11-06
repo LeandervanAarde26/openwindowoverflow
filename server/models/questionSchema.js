@@ -59,6 +59,10 @@ const question = mongoose.Schema({
                 type: Number,
                 default: 0
             }, 
+            votes: {
+                up: [{type: ObjectId}],
+                down: [{type: ObjectId}]
+            },
             resolved: {
                 type: Boolean,
                 default: false,

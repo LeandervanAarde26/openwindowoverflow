@@ -44,7 +44,6 @@ router.get('/api/question/:id', async (req, res) => {
     const question = await Question.findOne({
         _id: id,
     })
-    console.log(question)
 
     res.status(200).json(question)
 });
@@ -57,10 +56,8 @@ router.patch('/api/question/answer/:userId/:questionId', async (req, res) => {
     const selectedUser = await User.findOne({
         _id: user,
     }).select('username');
-    console.log("🚀 ~ file: QuestionRoutes.js ~ line 56 ~ router.patch ~ selectedUser", selectedUser)
 
     const Question = await questionSchema.findById(question)
-    console.log("🚀 ~ file: QuestionRoutes.js ~ line 60 ~ router.patch ~ Question", Question)
 
     Question.answers.push({
         "user": selectedUser,
@@ -93,7 +90,6 @@ router.patch('/api/addComment/:id', async (req, res) => {
         _id: user,
     }).select('username');
 
-    console.log("🚀 ~ file: QuestionRoutes.js ~ line 13 ~ router.post ~ user", auth)
 
     addComment.comments.push(
         {
@@ -130,10 +126,144 @@ router.patch('/api/votes/:type', async (req, res) => {
     }
 });
 
+router.get('/api/test', async(req, res) => {
+    let {te} = req.body;
+    console.log("hey")
+    console.log("this will be a big no no from me " + te)
+
+/*     const answer = await Question.findOne({
+        _id: questionId,
+        "answers._id": answerId
+    })
+
+    console.log(answer)
+    res.send(answer) */
+})
+
+/* router.patch('/api/answerVotes/:type', async(req, res) => {
+    let {userId, answerId, questionId, upVotes, downVotes} = req.body;
+    let type = req.params.type;
+
+    if(type == 'up') {
+        const answer = await Question.updateOne({
+            _id: questionId,
+            "answers._id": answerId
+        },{
+            $inc:{'answers.$.rating': 1},
+            $set:{
+                'answers.$.votes.up': upVotes,
+                'answers.$.votes.down': downVotes
+            }
+        })
+
+        if(!answer){
+            return res.status(400).json({msg: 'Comment was not updated'})
+        } else {
+            return res.send(true)
+        }
+    } else if(type == 'down') {
+        const answer = await Question.updateOne({
+            _id: questionId,
+            "answers._id": answerId
+        },{
+            $inc:{'answers.$.rating': -1},
+            $set:{
+                'answers.$.votes.up': upVotes,
+                'answers.$.votes.down': downVotes
+            }
+        })
+
+        if(!answer){
+            return res.status(400).json({msg: 'Comment was not updated'})
+        } else {
+            return res.send(true)
+        }
+    }
+}); */
+
+router.patch('/api/questionVote/:type', async (req, res) => {
+    let {questionId, upVotes, downVotes} = req.body;
+    let type = req.params.type;
+
+    if(type == 'up') {
+        const question = await Question.updateOne({
+            _id: questionId
+        }, {
+            $inc: {rating: 1},
+            $set: {
+                'votes.up': upVotes, 
+                'votes.down': downVotes, 
+            }
+        })
+
+        if(!question){
+            return res.status(400).json({msg: 'Question vote was not updated'})
+        } else {
+            return res.send(true)
+        }
+    } else if(type == 'down') {
+        const question = await Question.updateOne({
+            _id: questionId
+        }, {
+            $inc: {rating: -1},
+            $set: {
+                'votes.up': upVotes, 
+                'votes.down': downVotes, 
+            }
+        })
+
+        if(!question){
+            return res.status(400).json({msg: 'Question vote was not updated'})
+        } else {
+            return res.send(true)
+        }
+    }
+})
+
+router.patch('/api/answerVote/:type', async (req, res) => {
+    let {questionId, answerId, upVotes, downVotes} = req.body;
+    let type = req.params.type;
+
+    if(type == 'up') {
+        const answer = await Question.updateOne({
+            _id: questionId,
+            "answers._id": answerId
+        },{
+            $inc:{'answers.$.rating': 1},
+            $set:{
+                'answers.$.votes.up': upVotes,
+                'answers.$.votes.down': downVotes
+            }
+        })
+        
+        if(!answer){
+            return res.status(400).json({msg: 'Answer vote was not updated'})
+        } else {
+            return res.send(true)
+        }
+    } else if(type == 'down') {
+        const answer = await Question.updateOne({
+            _id: questionId,
+            "answers._id": answerId
+        },{
+            $inc:{'answers.$.rating': -1},
+            $set:{
+                'answers.$.votes.up': upVotes,
+                'answers.$.votes.down': downVotes
+            }
+        })
+    
+        if(!answer){
+            return res.status(400).json({msg: 'Answer vote was not updated'})
+        } else {
+            return res.send(true)
+        }
+    }
+})
+
 router.patch('/api/flagcomment/:id', async (req, res) => {
     let questionId = req.params.id
     let {commentId, flagged} = req.body
-    console.log(questionId)
 
     if(!questionId){
         return res.status(400).json({msg: 'No Question found with id'})
@@ -176,7 +306,6 @@ router.get('/api/gettoprated', async (req, res) =>{
 router.get('/api/getsimiliar/:tag/:id', async(req, res) =>{
     const tag = req.params.tag
     const curr = req.params.id
-    console.log(tag)
     const similiar = await Question.find( { tags: { $all: [ tag ] } } ).limit(3)
 
     if(!similiar){
@@ -184,6 +313,6 @@ router.get('/api/getsimiliar/:tag/:id', async(req, res) =>{
     }
 
     return res.status(200).json(similiar)
-})
+});
 
 module.exports = router; 

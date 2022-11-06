@@ -13,6 +13,8 @@ import Button from "../Button/Button.component";
 /* Icons/Images */
 import ic_arrow from "../../Assets/Icons/ic_arrow.svg";
 import CodePreview from "../CodePreview/CodePreview.component";
+import { useEffect } from "react";
+import axios from "axios";
 
 const AnswerBoxComponent = (props) => {
     const [code, setCode] = useState(`const [code, setCode] = useState('');
@@ -21,27 +23,22 @@ const onChange = (e) => {
     //This is just a sample to show what it will look like
 }`);
 
-    const onChange = (e) => {
-    setCode(e.target.value);
-        //This is just a sample to show what it will look like
-    };
-
-    const markAnswer = () => {
-        // What to do when questions is marked as correct
-    };
-
     return (
         <div className={styles.container}>
             <div className={styles.top}>
                 <div className={styles.voting}>
                     <Icon 
+                        onClick={props.upVote}
                         icon={ic_arrow} 
+                        className={props.didUpVote && styles.upVote}
                     />
                     <h5>
                         {props.votes}
                     </h5>
                     <Icon 
+                        onClick={props.downVote}
                         icon={ic_arrow} 
+                        className={props.didDownVote && styles.downVote}
                     />
                     </div>
                     <div className={styles.answer}>
@@ -58,11 +55,11 @@ const onChange = (e) => {
             {
                 props.answerImage === "" || !props.answerImage
                 ?
-                null
+                    null
                 :
-                <div className={styles.imageCon}>
-                <img src={props.answerImage}/>
-            </div>
+                    <div className={styles.imageCon}>
+                        <img src={props.answerImage}/>
+                    </div>
             }
 
             {
