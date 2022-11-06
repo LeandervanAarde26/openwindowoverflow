@@ -7,6 +7,7 @@ import Preview from "../../Components/Preview/Preview.component";
 import axios from "axios";
 import { RerenderContext } from "../../Contexts/Rerenders.context";
 import AddAdmin from "../../Components/AddAdmin/AddAdmin.component";
+import AddTag from "../../Components/AddTag/AddTag.component";
 
 const AdminRoute = () => {
   const [flagged, setFlagged] = useState();
@@ -57,8 +58,10 @@ const AdminRoute = () => {
             <AddAdmin />
           </div>
 
-          <div className={styles.addTag}>{/* Place preview components */}</div>
-        </div>
+            <div className={styles.addTag}>
+              <AddTag />
+            </div>
+          </div>
 
         <div className={styles.tagOverview}>
           {/* Place preview components */}
