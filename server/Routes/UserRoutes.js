@@ -25,13 +25,13 @@ router.post('/api/loginuser', async (req, res) => {
 
 
     const correctPassword = await user.comparePassword(password);
-
-    console.log(correctPassword)
-
+        
+    console.log(user.password)
     if (!correctPassword) {
-        console.log("Please make sure all fieds are correct password")
+        // console.log("Correct" , correctPassword)
+        // console.log("Your", password)
         return res.status(404).json({ msg: 'User does not exist' });
-    }
+    } 
 
     if (!user.activeAccount) {
         return res.status(400).json({ msg: "The user account is not verified!" })
@@ -464,41 +464,27 @@ router.post('/api/resetpassword', async (req, res) => {
 });
 
 
-router.patch('/api/passreset/:id', async(req, res) =>{
-    const {password} = req.body
-
- 
+router.post('/api/passreset/:id', async (req, res) => {
+    const { password } = req.body
 
     const editUser = await userSchema.findOneAndUpdate(
-        { _id: req.params.id },
+        { _id: req.params.id},
         {
             $set: {
                 password: password
             },
         }
-    );
+    ).select(["username", "password", "email"])
 
-    bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(password, salt, function (err, hash) {
-            editUser.password = hash;
-            editUser.save();
-        });
-      });
-    
     if (!editUser) {
         res.status(400).json({ msg: "Something went wrong in the update, please try again", user: NaN })
     }
+
+    // console.log(editUser)
+
     // await editUser.save()
     res.status(200).json({ msg: "User has been updated", user: editUser })
 
-  
-    // await user.save()
-    // .then(async user => {
-    //     res.status(200).json({ msg: "User has been updated", user: user })
-    // })
-    // .catch(err =>{
-    //     res.status(400).json({ msg: `The user was not updated, there was an eror:`, err: err });
-    // }) 
 })
 
 

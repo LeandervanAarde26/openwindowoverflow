@@ -228,34 +228,34 @@ router.patch('/api/flagComment', async (req, res) => {
     console.log("test " + flagged)
 });
 
-router.patch('/api/flagcomment/:id', async (req, res) => {
-    let questionId = req.params.id
-    let {commentId, flagged} = req.body
+// router.patch('/api/flagcomment/:id', async (req, res) => {
+//     let questionId = req.params.id
+//     let {commentId, flagged} = req.body
 
-    if(!questionId){
-        return res.status(400).json({msg: 'No Question found with id'})
-    }
+//     if(!questionId){
+//         return res.status(400).json({msg: 'No Question found with id'})
+//     }
 
-    const question = await Question.findById(questionId);
-    if(!question) {
-        return res.status(400).json({msg: `No question with ${id} was found.`});
-    }
+//     const question = await Question.findById(questionId);
+//     if(!question) {
+//         return res.status(400).json({msg: `No question with ${id} was found.`});
+//     }
   
-    const comment = await Question.updateOne({
-        _id: questionId,
-        "comments._id": commentId
-    },{
-        $set:{
-            'comments.$.flagged': true
-        }
-    })
+//     const comment = await Question.updateOne({
+//         _id: questionId,
+//         "comments._id": commentId
+//     },{
+//         $set:{
+//             'comments.$.flagged': true
+//         }
+//     })
 
-   if(!comment){
-    return res.status(400).json({msg: 'Comment was not updated'})
-   }
+//    if(!comment){
+//     return res.status(400).json({msg: 'Comment was not updated'})
+//    }
 
-   return res.status(204).json({msg: `Comment ${commentId} was successfully updated.`})
-});
+//    return res.status(204).json({msg: `Comment ${commentId} was successfully updated.`})
+// });
 
 // Get flagged comments 
 router.get('/api/getflagged', async (req, res) =>{
