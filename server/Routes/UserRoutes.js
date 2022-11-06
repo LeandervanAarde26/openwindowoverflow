@@ -33,8 +33,8 @@ router.post('/api/loginuser', async (req, res) => {
         return res.status(404).json({ msg: 'User does not exist' });
     }
 
-    if(!user.activeAccount){
-        return res.status(400).json({msg: "The user account is not verified!"})
+    if (!user.activeAccount) {
+        return res.status(400).json({ msg: "The user account is not verified!" })
     }
 
     // console.log(user.activeAccount)
@@ -71,7 +71,7 @@ router.post('/api/registeruser', async (req, res) => {
                 });
 
                 let userLink = 'http://localhost:3000/Auth?id=' + findUser._id
-                
+
                 let mailContent = `<div 
                 style="
                     text-align: center;
@@ -232,7 +232,7 @@ router.patch('/api/validateUser/:id', async (req, res) => {
                     { _id: userId },
                     { $set: { activeAccount: true } }
                 );
-                res.status(200).json({user: authorisedUser.username, msg: 'Account has been validated', stat: true, })
+                res.status(200).json({ user: authorisedUser.username, msg: 'Account has been validated', stat: true, })
             } else {
                 res.status(400).json({ msg: 'Profile was not verified', stat: false })
             }
@@ -258,10 +258,10 @@ router.get('/api/individualuser/:id', async (req, res) => {
 })
 
 // http://localhost:5001/api/edituser/:
-router.patch('/api/edituser/:id', async (req, res) =>{
-    const {username, currentStudyYear, userDescription, githubLink, userImage} = req.body
+router.patch('/api/edituser/:id', async (req, res) => {
+    const { username, currentStudyYear, userDescription, githubLink, userImage } = req.body
     const editUser = await userSchema.updateOne(
-        {_id: req.params.id},
+        { _id: req.params.id },
         {
             $set: {
                 username: username,
@@ -273,11 +273,11 @@ router.patch('/api/edituser/:id', async (req, res) =>{
         }
     );
 
-   if (! editUser){
-    res.status(400).json({msg: "Something went wrong in the update, please try again", user: NaN})
-   }
+    if (!editUser) {
+        res.status(400).json({ msg: "Something went wrong in the update, please try again", user: NaN })
+    }
 
-   res.status(200).json({msg: "User has been update", user: editUser})
+    res.status(200).json({ msg: "User has been update", user: editUser })
 })
 
 router.get('/api/auth/:id', async (req, res) => {
@@ -286,18 +286,18 @@ router.get('/api/auth/:id', async (req, res) => {
 
     if (isValidId) {
         const user = await userSchema.findById(req.params.id);
-        
+
         if (!user) {
             res
-            .send(false)
+                .send(false)
         } else {
             res
-            .status(200)
-            .send(true)
+                .status(200)
+                .send(true)
         }
     } else {
         res
-        .send(false)
+            .send(false)
     }
 });
 
@@ -306,30 +306,32 @@ router.get('/api/getUserQuestionsandAnswers/:id', async (req, res) => {
     console.log(id);
 
     const question = await questionSchema.find(
-        {"author._id": {$eq: ObjectId(id)}}
-        );
+        { "author._id": { $eq: ObjectId(id) } }
+    );
 
     const test = await questionSchema.find(
-        {"answers.user._id": {$eq: ObjectId(id)}}
+        { "answers.user._id": { $eq: ObjectId(id) } }
     )
 
     res
-    .status(200)
-    .json({questions: question, answers: test})
+        .status(200)
+        .json({ questions: question, answers: test })
 });
 
 
 
 
-router.post('/api/resetpassword', async (req, res) =>{
+router.post('/api/resetpassword', async (req, res) => {
     const user = await userSchema.findOne({
         email: req.body.email
     })
 
-    if(!user){
-        res.status(404).json({msg: "User with email has not been found!"})
+    if (!user) {
+        res.status(404).json({ msg: "User with email has not been found!" })
     }
     let userIdLink = "http://localhost:3000/updatepassword?id=" + user._id;
+
+    console.log(userIdLink)
 
     let mailContent = `<div 
     style="
@@ -435,30 +437,30 @@ router.post('/api/resetpassword', async (req, res) =>{
     </div>
 </div>`
 
-const transporter = nodeMailer.createTransport({
-    host: "mail.openoverflow.co.za",
-    port: 465,
-    secure: true,
-    auth: {
-        user: "welcome@openoverflow.co.za",
-        pass: "F)!lO4f3%6qp"
-    }
-});
+    const transporter = nodeMailer.createTransport({
+        host: "mail.openoverflow.co.za",
+        port: 465,
+        secure: true,
+        auth: {
+            user: "welcome@openoverflow.co.za",
+            pass: "F)!lO4f3%6qp"
+        }
+    });
 
-const mailInformation = {
-    from: '"OpenOverflow welcome" <welcome@openoverflow.com>',
-    to: email,
-    subject: "Welcome! Let's verify!",
-    html: mailContent
-}
-
-transporter.sendMail(mailInformation, (error, info) => {
-    if (error) {
-        return console.log(error)
+    const mailInformation = {
+        from: '"OpenOverflow welcome" <welcome@openoverflow.com>',
+        to: user.email,
+        subject: "Welcome! Let's verify!",
+        html: mailContent
     }
-    console.log(`message sent to ${username}`, info.messageId)
-    res.status(200).json({msg: "Message was sent to user"})
-})
+
+    transporter.sendMail(mailInformation, (error, info) => {
+        if (error) {
+            return console.log(error)
+        }
+        console.log(`message sent to ${username}`, info.messageId)
+        res.status(200).json({ msg: "Message was sent to user" })
+    })
 });
 
 
@@ -481,7 +483,7 @@ router.post('/api/addAmin', async (req, res) => {
             userRole: "Admin",
             currentStudyYear: 0,
             userDescription: '',
-    
+
         });
 
         newUser.save()
@@ -493,7 +495,7 @@ router.post('/api/addAmin', async (req, res) => {
                 });
 
                 let userLink = 'http://localhost:3000/Auth?id=' + findUser._id
-                
+
                 let mailContent = `<div 
                 style="
                     text-align: center;

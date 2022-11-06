@@ -45,18 +45,17 @@ const ForgotPassword = () => {
     }
 
     const resetPassword = () =>{
-        let payload = values.email
-        navigate("/updatepassword")
+        let payload = {email: values.email}
 
-        // axios.post('http://localhost:5001/api/resetpassword', payload)
-        // .then(res => {
-        //     console.log(payload)
-        //     console.log(res)
-        //     // setOpenModal(prev => !prev)
-        // })
-        // .catch(err => {
-        //     console.log(err)
-        // })
+        axios.post('http://localhost:5001/api/resetpassword', payload)
+        .then(res => {
+            console.log(payload)
+            console.log(res)
+            // setOpenModal(prev => !prev)
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     console.log(values)
