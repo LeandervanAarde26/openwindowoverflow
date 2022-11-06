@@ -14,7 +14,7 @@
         @include headingThree();
     }
 
-    .flaggedContainer{
+    .flaggedContainer, .addAdmin, .addTag, .tagOverview{
         padding-top: 15px;
         padding-bottom: 15px;
         flex: 1;

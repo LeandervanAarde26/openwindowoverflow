@@ -56,7 +56,18 @@ const AdminRoute = () => {
           <h3 className={styles.breakHeading}>Oldest unanswered Questions</h3>
           <div className={styles.flaggedContainer}>
             {/* Place preview components */}
+          </div>
 
+          <div className={styles.addAdmin}>
+            {/* Place preview components */}
+          </div>
+
+          <div className={styles.addTag}>
+            {/* Place preview components */}
+          </div>
+
+          <div className={styles.tagOverview}>
+            {/* Place preview components */}
           </div>
         </div>
         <RightContainer />

@@ -36,8 +36,7 @@ const FlaggedComment = (props) => {
        })
        .catch(err =>{
         console.log(err)
-       })
-   
+       })   
     }
 
     return (
