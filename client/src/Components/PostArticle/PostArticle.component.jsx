@@ -8,6 +8,9 @@ import { IoMdThumbsUp } from "react-icons/io";
 import spinner from "../../Assets/loadingGif.gif";
 
 export default function PostArticle({ articles }) {
+  // SEARCH FILTER
+  const [searchTerm, setSearchTerm] = useState("");
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [link, setLink] = useState("");
@@ -70,8 +73,18 @@ export default function PostArticle({ articles }) {
       </div>
 
       {/* POSTED ARTICLES */}
+      <h4 style={{ marginTop: "2rem", float: "left" }}>
+        Browse through our featured articles below
+      </h4>
+      <input
+        type="text"
+        placeholder="Search our list of articles..."
+        id={styles.searchBar}
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+        }}
+      />
       <div className={styles.postedArticles}>
-        <h4>Browse through our featured articles below</h4>
         {!articles?.length ? (
           <img
             src={spinner}
@@ -85,23 +98,33 @@ export default function PostArticle({ articles }) {
             }}
           />
         ) : (
-          articles?.map((article, key) => (
-            <div className={styles.articleCon} key={key}>
-              <h3>{article.title}</h3>
-              <p>{article.description}</p>
+          articles
+            ?.filter((val) => {
+              if (searchTerm == "") {
+                return val;
+              } else if (
+                val.title.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return val;
+              }
+            })
+            .map((article, key) => (
+              <div className={styles.articleCon} key={key}>
+                <h3>{article.title}</h3>
+                <p>{article.description}</p>
 
-              <div id={styles.likes}>
-                <IoMdThumbsUp id={styles.thumb} />
-                <h5>{article.likes}</h5>
-                <br />
+                <div id={styles.likes}>
+                  <IoMdThumbsUp id={styles.thumb} />
+                  <h5>{article.likes}</h5>
+                  <br />
+                </div>
+
+                <h6>Author: {article.author}</h6>
+                <a href={article.link} target="_blank">
+                  Continue reading!
+                </a>
               </div>
-
-              <h6>Author: {article.author}</h6>
-              <a href={article.link} target="_blank">
-                Continue reading!
-              </a>
-            </div>
-          ))
+            ))
         )}
       </div>
     </>
