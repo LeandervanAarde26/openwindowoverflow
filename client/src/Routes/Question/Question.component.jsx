@@ -85,74 +85,63 @@ const Question = () => {
         setImage(URL.createObjectURL(e.target.files[0]))
         let img = e.target.files[0]
         setDataBaseImage(img)
-        // console.log(img.name)
     }
 
     const [userId, setUserId] = useState('');
     const [rerender, setRerender] = useState(false);
-    const [upVotes, setUpVotes] = useState([]);
-    const [downVotes, setDownVotes] = useState([]);
     const [didDownVote, setDidDownVote] = useState(false);
     const [didUpVote, setDidUpVote] = useState(false);
     useEffect(() => {
         let user = sessionStorage.getItem('currentUser')
         setUserId(user)
+        console.log("this did also actually rerender")
 
         axios.get('http://localhost:5001/api/question/' + questionId.questionId)
+        .then(res => {
+            if (res.data.votes.up.includes(user)) {
+                setDidUpVote(true);
+            } else if (res.data.votes.down.includes(user)) {
+                setDidDownVote(true);
+            } else {
+                setDidDownVote(false);
+                setDidUpVote(false);
+            }
+            setQuestionData(res.data);
+
+            let tags = res.data.tags
+            axios.get(`http://localhost:5001/api/getsimiliar/${tags[0]}/${questionId.questionId}`)
             .then(res => {
-                if (res.data.votes.up.includes(user)) {
-                    setDidUpVote(true);
-                } else if (res.data.votes.down.includes(user)) {
-                    setDidDownVote(true);
-                } else {
-                    setDidDownVote(false);
-                    setDidUpVote(false);
-                }
-                setUpVotes(res.data.votes.up);
-                setDownVotes(res.data.votes.down);
-                setQuestionData(res.data);
-
-                let tags = res.data.tags
-                // console.log(tags[0])
-                axios.get(`http://localhost:5001/api/getsimiliar/${tags[0]}/${questionId.questionId}`)
-                    .then(res => {
-                        console.log(res)
-                        setSimiliar(res.data)
-                        setBusy(false)
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
-
+                setSimiliar(res.data)
+                setBusy(false)
             })
-
             .catch(err => {
                 console.log(err)
             })
+
+        })
+        .catch(err => {
+            console.log(err)
+        })
         setRerender(false);
     }, [rerender, questionId.questionId]);
 
-
-
     const handleClick = (e) => {
-
         if(databaseImage == null){
             if (formValues.answer === '' || formValues.code == '') {
                 console.log('please fill out answer')
             } else {
                 axios.patch(`http://localhost:5001/api/question/answer/${userId}/${questionId.questionId}`, formValues)
-                    .then(res => {
-                        console.log(res.data)
-                        if (res.data) {
-                            setRerender(true)
-                        }
-                        setDat(res.data)
-                        setBusy(false)
-                        setTags(res.data.tags)
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
+                .then(res => {
+                    if (res.data) {
+                        setRerender(true)
+                    }
+                    setDat(res.data)
+                    setBusy(false)
+                    setTags(res.data.tags)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
             }
         } else{
             const newImage = `https://openoverflow.s3.af-south-1.amazonaws.com/${databaseImage.name.replace(/\s/g, '')}`
@@ -174,7 +163,6 @@ const Question = () => {
 
             axios.patch(`http://localhost:5001/api/question/answer/${userId}/${questionId.questionId}`, data)
             .then(res => {
-                console.log(res.data)
                 if (res.data) {
                     setRerender(true)
                 }
@@ -186,7 +174,7 @@ const Question = () => {
                 console.log(err)
             })
         }
- 
+
     }
 
     // Change for answers
@@ -213,16 +201,16 @@ const Question = () => {
             comment: commentVal.comments
         }
         axios.patch(`http://localhost:5001/api/addComment/${questionId.questionId}`, payload)
-            .then(res => {
-                if (res.data.state) {
-                    setRerender(true)
-                    setComment(prev => !prev)
-                    setCommentVal(userComment)
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        .then(res => {
+            if (res.data.state) {
+                setRerender(true)
+                setComment(prev => !prev)
+                setCommentVal(userComment)
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     const loadMoreComments = () => {
@@ -241,103 +229,195 @@ const Question = () => {
         }
     }
 
-    const castVote = (e) => {
-        let upvotes = upVotes;
-        let downvotes = downVotes;
-
-        if (e == 'up' && !upVotes.includes(userId)) {
-            if (downVotes.includes(userId)) {
-                console.log("had a downvote")
-                let newdownvotes = downvotes.filter((x) => x !== userId);
+    const questionUpVote = (upVotes, downVotes) => {
+        if(!upVotes.includes(userId)) {
+            if(downVotes.includes(userId)) {
+                let newDownVotes = downVotes.filter((x) => x !== userId);
 
                 let data = {
                     questionId: questionId.questionId,
                     userId: userId,
-                    upVotes: upvotes,
-                    downVotes: newdownvotes
+                    upVotes: upVotes,
+                    downVotes: newDownVotes
                 }
 
-                axios.patch('http://localhost:5001/api/votes/up', data)
-                    .then(res => {
-                        console.log(res);
-                        if (res.data) {
-                            setRerender(true);
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    })
-
+                axios.patch('http://localhost:5001/api/questionVote/up', data)
+                .then(res => {
+                    if (res.data) {
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
             } else {
-                console.log("Had no downvotes")
-                upvotes.push(userId);
-                console.log(upvotes)
+                let votes = upVotes;
+                votes.push(userId);
 
                 let data = {
                     questionId: questionId.questionId,
                     userId: userId,
-                    upVotes: upvotes,
-                    downVotes: downvotes
+                    upVotes: votes,
+                    downVotes: downVotes
                 }
 
-                axios.patch('http://localhost:5001/api/votes/up', data)
-                    .then(res => {
-                        console.log(res)
-                        if (res.data) {
-                            setRerender(true);
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    })
-            }
-        } else if (e == 'down' && !downVotes.includes(userId)) {
-            if (upVotes.includes(userId)) {
-                // console.log("had a upvote")
-                let newupvotes = upvotes.filter((x) => x !== userId);
-
-                let data = {
-                    questionId: questionId.questionId,
-                    userId: userId,
-                    upVotes: newupvotes,
-                    downVotes: downvotes
-                }
-
-                axios.patch('http://localhost:5001/api/votes/down', data)
-                    .then(res => {
-                        // console.log(res);
-                        if (res.data) {
-                            setRerender(true);
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    })
-            } else {
-                downvotes.push(userId);
-
-                let data = {
-                    questionId: questionId.questionId,
-                    userId: userId,
-                    upVotes: upvotes,
-                    downVotes: downvotes
-                }
-
-                axios.patch('http://localhost:5001/api/votes/down', data)
-                    .then(res => {
-                        console.log(res);
-                        if (res.data) {
-                            setRerender(true);
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    })
+                axios.patch('http://localhost:5001/api/questionVote/up', data)
+                .then(res => {
+                    if (res.data) {
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
             }
         }
     }
 
-    console.log(questionData)
+    const questionDownVote = (upVotes, downVotes) => {
+        // First of all check if user has not already downVoted.
+        if(!downVotes.includes(userId)) {
+            // Then checks if user has not previously upVoted
+            if(upVotes.includes(userId)) {
+                let newUpVotes = upVotes.filter((x) => x !== userId)
+
+                let data = {
+                    questionId: questionId.questionId,
+                    userId: userId,
+                    upVotes: newUpVotes,
+                    downVotes: downVotes
+                }
+
+                axios.patch('http://localhost:5001/api/questionVote/down', data)
+                .then(res => {
+                    if (res.data) {
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            } else {
+                let votes = downVotes
+                votes.push(userId)
+
+                let data = {
+                    questionId: questionId.questionId,
+                    userId: userId,
+                    upVotes: upVotes,
+                    downVotes: votes
+                }
+
+                axios.patch('http://localhost:5001/api/questionVote/down', data)
+                .then(res => {
+                    if (res.data) {
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            }
+        }
+    }
+
+    const answerUpVote = (answerId, upVotes, downVotes) => {
+        // First of all check if user has not already upVoted.
+        if(!upVotes.includes(userId)) {
+            // Then checks if user has not previously downVoted
+            if(downVotes.includes(userId)) {
+                let newDownVotes = downVotes.filter((x) => x !== userId);
+
+                let data = {
+                    questionId: questionId.questionId,
+                    userId: userId,
+                    answerId: answerId,
+                    upVotes: upVotes,
+                    downVotes: newDownVotes
+                }
+
+                axios.patch('http://localhost:5001/api/answerVote/up', data)
+                .then(res => {
+                    if (res.data) {
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            } else {
+                let votes = upVotes;
+                votes.push(userId);
+
+                let data = {
+                    questionId: questionId.questionId,
+                    userId: userId,
+                    answerId: answerId,
+                    upVotes: votes,
+                    downVotes: downVotes
+                }
+
+                axios.patch('http://localhost:5001/api/answerVote/up', data)
+                .then(res => {
+                    if (res.data) {
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            }
+        }
+    }
+
+    const answerDownVote = (answerId, upVotes, downVotes) => {
+        // First of all check if user has not already downVoted.
+        if(!downVotes.includes(userId)) {
+            // Then checks if user has not previously upVoted
+            if(upVotes.includes(userId)) {
+                let newUpVotes = upVotes.filter((x) => x !== userId)
+
+                let data = {
+                    questionId: questionId.questionId,
+                    userId: userId,
+                    answerId: answerId,
+                    upVotes: newUpVotes,
+                    downVotes: downVotes
+                }
+
+                axios.patch('http://localhost:5001/api/answerVote/down', data)
+                .then(res => {
+                    if (res.data) {
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            } else {
+                let votes = downVotes
+                votes.push(userId)
+
+                let data = {
+                    questionId: questionId.questionId,
+                    userId: userId,
+                    answerId: answerId,
+                    upVotes: upVotes,
+                    downVotes: votes
+                }
+
+                axios.patch('http://localhost:5001/api/answerVote/down', data)
+                .then(res => {
+                    if (res.data) {
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            }
+        }
+    }
 
     return (
         <div className={styles.container}>
@@ -353,8 +433,8 @@ const Question = () => {
                     image={questionData.Images}
                     upVoted={didUpVote}
                     downVoted={didDownVote}
-                    upVoteClick={(e) => castVote("up")}
-                    downVoteClick={(e) => castVote("down")}
+                    upVoteClick={(upVotes, downVotes) => questionUpVote(questionData.votes.up, questionData.votes.down)}
+                    downVoteClick={(upVotes, downVotes) => questionDownVote(questionData.votes.up, questionData.votes.down)}
                 />
 
                 <div className={styles.comments}>
@@ -393,6 +473,19 @@ const Question = () => {
                                     code={x.code}
                                     votes={x.rating}
                                     answerImage={x.images}
+                                    upVote={(answerId, upVotes, downVotes) => answerUpVote(x._id, x.votes.up, x.votes.down)}
+                                    downVote={(answerId, upVotes, downVotes) => answerDownVote(x._id, x.votes.up, x.votes.down)}
+                                    didDownVote={
+                                        x.votes.down.includes(userId)
+                                        ? true
+                                        : false
+                                    }
+                                    didUpVote={
+                                        x.votes.up.includes(userId)
+                                        ? true
+                                        : false
+                                    }
+                                    rerender={value => setRerender(value)}
                                 />
                             )
                             :
