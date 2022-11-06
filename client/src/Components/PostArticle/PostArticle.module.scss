@@ -35,6 +35,19 @@
         width: 1050px;
         height: 25vh;
         resize: none;
+        
+    }
+    #articleAuthor {
+        border-color: $orange;
+        margin-top: 10px;
+        width: 1050px;
+        height: 7vh;
+        resize: none;
+        margin-bottom: 2%;
+    }
+    ::placeholder {
+       text-align: center;
+        
     }
     
 }
@@ -81,4 +94,10 @@
         font-size: large;
         margin-left:0.8rem;
     }
+    #loadingSpinner {
+        height: 10px;
+        display: block;
+        margin: auto;
+    }
+    
 }

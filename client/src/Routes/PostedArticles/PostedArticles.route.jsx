@@ -10,10 +10,12 @@ export default function PostedArticles() {
   const [articles, setArticles] = useState();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5001/api/getarticles")
-      .then((res) => setArticles(res.data))
-      .catch((err) => console.log(err));
+    setTimeout(() => {
+      axios
+        .get("http://localhost:5001/api/getarticles")
+        .then((res) => setArticles(res.data))
+        .catch((err) => console.log(err));
+    }, 3000);
   });
   return (
     <>
