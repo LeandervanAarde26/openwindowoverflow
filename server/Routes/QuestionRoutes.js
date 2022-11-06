@@ -169,6 +169,33 @@ router.get('/api/getflagged', async (req, res) =>{
     return res.status(200).json(questions)
 })
 
+//Delete flagged comment 
+
+router.patch('/api/deletecomment/:id/:questionId' , async (req, res) =>{
+    let commentId = req.params.id
+    let QId = req.params.questionId
+    
+    const question = await Question.findOne( { _id : QId})
+
+    if(!question){
+        res.status(400).json("comment not found")
+    }
+
+    const comment = await Question.updateOne({
+        _id: QId,
+        "comments._id": commentId
+    },{
+        $pull:{'comments':{_id: commentId}}
+    })
+
+    if(!comment){
+        return res.status(400).json({msg: 'Comment was not updated'})
+       }
+    
+    return res.status(204).json({msg: `Comment ${commentId} was successfully updated.`})
+
+})
+
 
 router.get('/api/gettoprated', async (req, res) =>{
     const topRated = await Question.find().sort({rating: -1}).limit(3)

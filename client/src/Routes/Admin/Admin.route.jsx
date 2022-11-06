@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styles from "./Admin.module.scss";
 import SideNavigation from "../../Components/sideNavigation/SideNavigation.component";
 import RightContainer from "../../Components/RightContainer/RightContainer.component";
 import FlaggedComment from '../../Components/FlaggedComment/FlaggedComment.component'
 import Preview from "../../Components/Preview/Preview.component";
 import axios from 'axios'
+import { RerenderContext } from "../../Contexts/Rerenders.context";
 
 
 const AdminRoute = () => {
   const [flagged, setFlagged] = useState()
   const [busy, setBusy] = useState(true)
+  const { update, setUpdate } = useContext(RerenderContext);
 
   useEffect(() => {
 
@@ -23,7 +25,9 @@ const AdminRoute = () => {
         console.log(err)
       })
 
-  }, [])
+  }, [update])
+
+
 
   return (
     busy
@@ -35,14 +39,7 @@ const AdminRoute = () => {
         <div className={styles.middle}>
           <h3>Flagged Comments</h3>
           <div className={styles.flaggedContainer}>
-            {/* @Cameron please set the state in the useEffect and map the components below to show what is needed 
-             - Question id needs to be present so we can navigate to the Question
-             - Who the asked user us 
-             - Who the commented user is 
-             - Comment needs to be the title. 
-       
-           */}
-            {/* const {commentTitle, questionId, askedUser, commentUser} = props */}
+
             {flagged.map(i => (
               <FlaggedComment
                 key={i._id}
@@ -50,6 +47,8 @@ const AdminRoute = () => {
                 questionId={i._id}
                 askedUser={i.author.username}
                 commentUser={i.comments.map(b => b.flagged ? b.user.username : null)}
+                commId={i.comments.map(c => c.flagged ? c._id : null)}
+               
               />
             ))}
           </div>

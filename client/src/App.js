@@ -10,6 +10,7 @@ import "./StyleSource/variables.scss";
 /* Context */
 import { ValidUserContext } from "./Contexts/Register.context";
 
+
 /* Components */
 import NavBar from "./Components/NavigationBar/NavBar";
 import Footer from "./Components/Footer/Footer";

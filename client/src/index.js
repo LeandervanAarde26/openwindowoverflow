@@ -8,12 +8,15 @@ import App from './App';
 
 /* Context */
 import { TagProvider } from './Contexts/Register.context';
+import { RenderProvider } from './Contexts/Rerenders.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <TagProvider>
-            <App />
+            <RenderProvider>
+                <App />
+            </RenderProvider>
         </TagProvider>
     </BrowserRouter>
 );
