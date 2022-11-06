@@ -85,13 +85,10 @@ const Question = () => {
         setImage(URL.createObjectURL(e.target.files[0]))
         let img = e.target.files[0]
         setDataBaseImage(img)
-        // console.log(img.name)
     }
 
     const [userId, setUserId] = useState('');
     const [rerender, setRerender] = useState(false);
-    const [upVotes, setUpVotes] = useState([]);
-    const [downVotes, setDownVotes] = useState([]);
     const [didDownVote, setDidDownVote] = useState(false);
     const [didUpVote, setDidUpVote] = useState(false);
     useEffect(() => {
@@ -100,59 +97,51 @@ const Question = () => {
         console.log("this did also actually rerender")
 
         axios.get('http://localhost:5001/api/question/' + questionId.questionId)
+        .then(res => {
+            if (res.data.votes.up.includes(user)) {
+                setDidUpVote(true);
+            } else if (res.data.votes.down.includes(user)) {
+                setDidDownVote(true);
+            } else {
+                setDidDownVote(false);
+                setDidUpVote(false);
+            }
+            setQuestionData(res.data);
+
+            let tags = res.data.tags
+            axios.get(`http://localhost:5001/api/getsimiliar/${tags[0]}/${questionId.questionId}`)
             .then(res => {
-                if (res.data.votes.up.includes(user)) {
-                    setDidUpVote(true);
-                } else if (res.data.votes.down.includes(user)) {
-                    setDidDownVote(true);
-                } else {
-                    setDidDownVote(false);
-                    setDidUpVote(false);
-                }
-                setUpVotes(res.data.votes.up);
-                setDownVotes(res.data.votes.down);
-                setQuestionData(res.data);
-
-                let tags = res.data.tags
-                // console.log(tags[0])
-                axios.get(`http://localhost:5001/api/getsimiliar/${tags[0]}/${questionId.questionId}`)
-                    .then(res => {
-                        setSimiliar(res.data)
-                        setBusy(false)
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
-
+                setSimiliar(res.data)
+                setBusy(false)
             })
-
             .catch(err => {
                 console.log(err)
             })
+
+        })
+        .catch(err => {
+            console.log(err)
+        })
         setRerender(false);
     }, [rerender, questionId.questionId]);
 
-
-
     const handleClick = (e) => {
-
         if(databaseImage == null){
             if (formValues.answer === '' || formValues.code == '') {
                 console.log('please fill out answer')
             } else {
                 axios.patch(`http://localhost:5001/api/question/answer/${userId}/${questionId.questionId}`, formValues)
-                    .then(res => {
-                        console.log(res.data)
-                        if (res.data) {
-                            setRerender(true)
-                        }
-                        setDat(res.data)
-                        setBusy(false)
-                        setTags(res.data.tags)
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
+                .then(res => {
+                    if (res.data) {
+                        setRerender(true)
+                    }
+                    setDat(res.data)
+                    setBusy(false)
+                    setTags(res.data.tags)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
             }
         } else{
             const newImage = `https://openoverflow.s3.af-south-1.amazonaws.com/${databaseImage.name.replace(/\s/g, '')}`
@@ -174,7 +163,6 @@ const Question = () => {
 
             axios.patch(`http://localhost:5001/api/question/answer/${userId}/${questionId.questionId}`, data)
             .then(res => {
-                console.log(res.data)
                 if (res.data) {
                     setRerender(true)
                 }
@@ -186,7 +174,7 @@ const Question = () => {
                 console.log(err)
             })
         }
- 
+
     }
 
     // Change for answers
@@ -213,16 +201,16 @@ const Question = () => {
             comment: commentVal.comments
         }
         axios.patch(`http://localhost:5001/api/addComment/${questionId.questionId}`, payload)
-            .then(res => {
-                if (res.data.state) {
-                    setRerender(true)
-                    setComment(prev => !prev)
-                    setCommentVal(userComment)
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        .then(res => {
+            if (res.data.state) {
+                setRerender(true)
+                setComment(prev => !prev)
+                setCommentVal(userComment)
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     const loadMoreComments = () => {
