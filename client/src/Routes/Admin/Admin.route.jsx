@@ -14,6 +14,35 @@ const AdminRoute = () => {
   const [busy, setBusy] = useState(true);
   const { update, setUpdate } = useContext(RerenderContext);
 
+
+  const data = [
+    {
+      id: 1,
+      languages: ["HTML", "JavaScript"],
+    },
+    {
+      id: 2,
+      languages: ["JavaScript"],
+    },
+    {
+      id: 3,
+      languages: ["JavaScript", "Python"],
+    },
+    {
+      id: 4,
+      languages: ["JavaScript"],
+    }
+  ];
+
+  const filters =  ['Python', 'HTML']
+
+  const filterByLanguage = ( list, filters ) => {
+    return list.filter( x => filters.some( filter => x.languages.includes(filter) ))
+  }
+
+  console.log( filterByLanguage(data, filters ) )
+
+
   useEffect(() => {
     axios.get("http://localhost:5001/api/getflagged")
     .then((res) => {
@@ -72,3 +101,6 @@ const AdminRoute = () => {
 };
 
 export default AdminRoute;
+
+
+

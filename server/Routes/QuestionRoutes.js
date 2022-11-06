@@ -81,7 +81,6 @@ router.patch('/api/answerquestion/:id', async (res, req) => {
     res.status(200).json(question)
 })
 
-// http://localhost:5001/api/addComment/
 router.patch('/api/addComment/:id', async (req, res) => {
     let {comment, user} = req.body
 
@@ -103,7 +102,6 @@ router.patch('/api/addComment/:id', async (req, res) => {
     addComment.save()
     res.status(200).json({ msg: addComment, state: true })
 });
-
 
 router.patch('/api/votes/:type', async (req, res) => {
     let {questionId, upVotes, downVotes} = req.body
@@ -162,7 +160,7 @@ router.patch('/api/questionVote/:type', async (req, res) => {
             return res.send(true)
         }
     }
-})
+});
 
 router.patch('/api/answerVote/:type', async (req, res) => {
     let {questionId, answerId, upVotes, downVotes} = req.body;
@@ -203,7 +201,31 @@ router.patch('/api/answerVote/:type', async (req, res) => {
             return res.send(true)
         }
     }
-})
+});
+
+router.patch('/api/flagComment', async (req, res) => {
+    let {questionId, commentId, flags, flagged} = req.body;
+
+    const comment = await Question.updateOne({
+        _id: questionId,
+        "comments._id": commentId
+    }, {
+        $set: {
+            'comments.$.flags': flags,
+            'comments.$.flagged': flagged
+        }
+    })
+
+    if(!comment){
+        return res.status(400).json({msg: 'Comment was not updated'})
+    } else {
+        return res.send(true);
+    }
+    console.log(questionId)
+    console.log("comment " + commentId)
+    console.log("test " + flags)
+    console.log("test " + flagged)
+});
 
 router.patch('/api/flagcomment/:id', async (req, res) => {
     let questionId = req.params.id
@@ -246,7 +268,6 @@ router.get('/api/getflagged', async (req, res) =>{
 })
 
 //Delete flagged comment 
-
 router.patch('/api/deletecomment/:id/:questionId' , async (req, res) =>{
     let commentId = req.params.id
     let QId = req.params.questionId

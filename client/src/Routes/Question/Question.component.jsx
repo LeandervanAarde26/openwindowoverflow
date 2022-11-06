@@ -117,12 +117,12 @@ const Question = () => {
             .catch(err => {
                 console.log(err)
             })
-
         })
         .catch(err => {
             console.log(err)
         })
         setRerender(false);
+        console.log("hey")
     }, [rerender, questionId.questionId]);
 
     const handleClick = (e) => {
@@ -174,7 +174,6 @@ const Question = () => {
                 console.log(err)
             })
         }
-
     }
 
     // Change for answers
@@ -419,6 +418,50 @@ const Question = () => {
         }
     }
 
+    const flagComment = (id, flags) => {
+        if(flags.includes(userId)) {
+            let newFlags = flags.filter((x) => x !== userId);
+
+            let data = {
+                questionId: questionId.questionId,
+                commentId: id,
+                flags: newFlags,
+                flagged: newFlags.length < 1 ? false : true
+            }
+
+            axios.patch('http://localhost:5001/api/flagComment', data)
+            .then(res => {
+                if(res.data) {
+                    setRerender(true);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        } else {
+            let flagsArr = flags;
+            flagsArr.push(userId);
+            console.log("🚀 ~ file: Question.component.jsx ~ line 434 ~ flagComment ~ newFlags", flagsArr)
+
+            let data = {
+                questionId: questionId.questionId,
+                commentId: id,
+                flags: flagsArr,
+                flagged: flagsArr.length < 1 ? false : true
+            }
+
+            axios.patch('http://localhost:5001/api/flagComment', data)
+            .then(res => {
+                if(res.data) {
+                    setRerender(true);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }
+    }
+
     return (
         <div className={styles.container}>
             <SideNavigation />
@@ -447,7 +490,12 @@ const Question = () => {
                                 comment={i.comment}
                                 key={index}
                                 questionId={questionId.questionId}
-                                flagged={i.flagged}
+                                flagged={
+                                    i.flags.includes(userId)
+                                    ? true
+                                    : false
+                                }
+                                clickFlag={(id, flags) => flagComment(i._id, i.flags)}
                             />
                         ))}
                         loadMore={loadMoreComments}

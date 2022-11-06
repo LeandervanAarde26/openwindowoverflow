@@ -42,11 +42,12 @@ const question = mongoose.Schema({
             commentDate: {
                 type: Date,
                 default: Date.now()
-            }, 
+            },
             flagged: {
                 type: Boolean,
                 default: false
             },
+            flags: [{type: ObjectId}],
             flaggedDate:{type: Date},
             comment: String,
         }
