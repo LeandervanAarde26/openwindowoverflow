@@ -27,6 +27,8 @@ import FollowTags from "./Routes/FollowTags/FollowTags.route";
 import Contact from "./Routes/Contact/Contact.route";
 import Admin from "./Routes/Admin/Admin.route";
 import AddArticle from "./Components/AddArticle/AddArticle.component";
+import ForgotPassword from "./Routes/Forgotpassword/ForgotPassword.Route";
+import Newpassword from "./Routes/NewPassword/Newpassword.component";
 // import PostedArticles from "./Routes/PostedArticles/PostedArticles.route";
 
 function App() {
@@ -39,8 +41,9 @@ function App() {
     let val = sessionStorage.getItem("currentUser");
 
     if (val == null || val == "") {
-      if (location.pathname != "/register") {
+      if (location.pathname != "/register" || location.pathname != "/Auth" || location.pathname != "/updatepassword") {
         navigate("/");
+        console.log("Fuckoff2")
       }
     } else {
       axios
@@ -49,9 +52,11 @@ function App() {
           if (!res.data) {
             if (
               location.pathname != "/register" ||
-              location.pathname != "/Auth"
+              location.pathname != "/Auth" ||
+              location.pathname != "/updatepassword"
             ) {
               navigate("/");
+              console.log("Fuckoff")
             }
             setValidUser(false);
           } else {
@@ -69,9 +74,9 @@ function App() {
       <div className="App">
         <NavBar />
         {location.pathname === "/" ||
-        location.pathname === "/Register" ||
-        location.pathname === "/UserValidation" ||
-        location.pathname === "/Choosetags" ? (
+          location.pathname === "/Register" ||
+          location.pathname === "/UserValidation" ||
+          location.pathname === "/Choosetags" ? (
           <TransitionGroup style={{ display: "flex", flex: 1 }}>
             <CSSTransition key={location.key} classNames="slide" timeout={600}>
               <Routes location={location}>
@@ -89,8 +94,9 @@ function App() {
                 <Route path="/choosetags" element={<FollowTags />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/admin" element={<Admin />} />
-              
-              
+                <Route path="/forgotpassword" element={<ForgotPassword />} />
+                <Route path="/updatepassword" element={<Newpassword />} />
+
                 {/* INSERT ROUTES HERE */}
               </Routes>
             </CSSTransition>
@@ -109,8 +115,9 @@ function App() {
             <Route path="/choosetags" element={<FollowTags />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<Admin />} />
-            <Route path="/addArticle" element={<AddArticle/>}/>
-
+            <Route path="/addArticle" element={<AddArticle />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/updatepassword" element={<Newpassword />} />
             {/* INSERT ROUTES HERE */}
           </Routes>
         )}
