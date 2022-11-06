@@ -133,8 +133,7 @@ router.patch('/api/votes/:type', async (req, res) => {
 router.patch('/api/flagcomment/:id', async (req, res) => {
     let questionId = req.params.id
     let {commentId, flagged} = req.body
-    console.log(questionId)
-
+    
     if(!questionId){
         return res.status(400).json({msg: 'No Question found with id'})
     }
@@ -143,13 +142,13 @@ router.patch('/api/flagcomment/:id', async (req, res) => {
     if(!question) {
         return res.status(400).json({msg: `No question with ${id} was found.`});
     }
-
+  
     const comment = await Question.updateOne({
         _id: questionId,
         "comments._id": commentId
     },{
         $set:{
-            'comments.$.flagged': flagged
+            'comments.$.flagged': true
         }
     })
 
@@ -160,6 +159,16 @@ router.patch('/api/flagcomment/:id', async (req, res) => {
    return res.status(204).json({msg: `Comment ${commentId} was successfully updated.`})
 });
 
+// Get flagged comments 
+router.get('/api/getflagged', async (req, res) =>{
+    const questions =await Question.find( { 'comments.flagged' : { $all:  true  } } )
+    if(!questions){
+        return res.status(404).json({msg: "No Questions were found"})
+    }
+
+    return res.status(200).json(questions)
+})
+
 
 router.get('/api/gettoprated', async (req, res) =>{
     const topRated = await Question.find().sort({rating: -1}).limit(3)
@@ -167,7 +176,6 @@ router.get('/api/gettoprated', async (req, res) =>{
     if(!topRated){
         return res.status(400).json({msg: 'Data not found'})
     }
-
     return res.status(200).json(topRated)
 });
 
