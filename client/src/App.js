@@ -74,7 +74,7 @@ function App() {
     <ValidUserContext.Provider value={{ validUser, setValidUser }}>
       <div className="App">
         {
-            location.pathname == 'register' || location.pathname == '/' 
+            location.pathname == '/register' || location.pathname == '/' || location.pathname == "/Auth" || location.pathname == "/updatepassword"
             ? ''
             : <NavBar />
         }
