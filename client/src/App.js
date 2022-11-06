@@ -26,86 +26,96 @@ import Profile from "./Routes/Profile/Profile.route";
 import FollowTags from "./Routes/FollowTags/FollowTags.route";
 import Contact from "./Routes/Contact/Contact.route";
 import Admin from "./Routes/Admin/Admin.route";
+import PostedArticles from "./Routes/PostedArticles/PostedArticles.route";
 
 function App() {
-    //Get Location of User
-    const location = useLocation();
-    const navigate = useNavigate();
-    const [validUser, setValidUser] = useState(false);
+  //Get Location of User
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [validUser, setValidUser] = useState(false);
 
-    useEffect(() => {
-        let val = sessionStorage.getItem("currentUser");
-        
-        if (val == null || val == '') {
-            if(location.pathname != '/register') {
-                navigate('/')
+  useEffect(() => {
+    let val = sessionStorage.getItem("currentUser");
+
+    if (val == null || val == "") {
+      if (location.pathname != "/register") {
+        navigate("/");
+      }
+    } else {
+      axios
+        .get("http://localhost:5001/api/auth/" + val)
+        .then((res) => {
+          if (!res.data) {
+            if (
+              location.pathname != "/register" ||
+              location.pathname != "/Auth"
+            ) {
+              navigate("/");
             }
-        } else {
-            axios.get('http://localhost:5001/api/auth/' + val)
-            .then(res => {
-                if (!res.data) {
-                    if(location.pathname != '/register' || location.pathname != '/Auth') {
-                        navigate('/')
-                    }
-                    setValidUser(false);
-                } else {
-                    setValidUser(true);
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        }
-    }, []);
+            setValidUser(false);
+          } else {
+            setValidUser(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
-    return (
-        <ValidUserContext.Provider value={{validUser, setValidUser}}>
-            <div className="App">
-                <NavBar />
-                {location.pathname === "/" ||
-                location.pathname === "/Register" ||
-                location.pathname === "/UserValidation" ||
-                location.pathname === "/Choosetags" ? (
-                    <TransitionGroup style={{ display: "flex", flex: 1 }}>
-                    <CSSTransition key={location.key} classNames="slide" timeout={600}>
-                        <Routes location={location}>
-                            <Route path="/" index element={<Login />} />
-                            <Route path="/register" element={<Register />} />
-                            <Route path="/Auth" element={<ValidateUser/>} />
-                            <Route path="/home" element={<Home />} />
-                            <Route path="/articles" element={<Home />} />
-                            <Route path="/profile/:username/:userId" element={<Profile />} />
-                            <Route path="/question/:questionId" element={<Question />} />
-                            <Route path="/question/ask" element={<AskQuestion />} />
-                            <Route path="/choosetags" element={<FollowTags />} />
-                            <Route path="/contact" element={<Contact />} />
-                            <Route path="/admin" element={<Admin />} />
-                            <Route path="/articles" element={<Home />} />
-                        {/* INSERT ROUTES HERE */}
-                        </Routes>
-                    </CSSTransition>
-                    </TransitionGroup>
-                ) : (
-                    <Routes location={location}>
-                        <Route path="/" index element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/Auth" element={<ValidateUser/>} />
-                        <Route path="/home" element={<Home />} />
-                        <Route path="/articles" element={<Home />} />
-                        <Route path="/test" element={<Components />} />
-                        <Route path="/profile/:userId" element={<Profile />} />
-                        <Route path="/question/:questionId" element={<Question />} />
-                        <Route path="/question/ask" element={<AskQuestion />} />
-                        <Route path="/choosetags" element={<FollowTags />} />
-                        <Route path="/contact" element={<Contact />} />
-                        <Route path="/admin" element={<Admin />} />
-                    {/* INSERT ROUTES HERE */}
-                    </Routes>
-                )}
-                <Footer />
-            </div>
-        </ValidUserContext.Provider>
-    );
+  return (
+    <ValidUserContext.Provider value={{ validUser, setValidUser }}>
+      <div className="App">
+        <NavBar />
+        {location.pathname === "/" ||
+        location.pathname === "/Register" ||
+        location.pathname === "/UserValidation" ||
+        location.pathname === "/Choosetags" ? (
+          <TransitionGroup style={{ display: "flex", flex: 1 }}>
+            <CSSTransition key={location.key} classNames="slide" timeout={600}>
+              <Routes location={location}>
+                <Route path="/" index element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/Auth" element={<ValidateUser />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/articles" element={<Home />} />
+                <Route
+                  path="/profile/:username/:userId"
+                  element={<Profile />}
+                />
+                <Route path="/question/:questionId" element={<Question />} />
+                <Route path="/question/ask" element={<AskQuestion />} />
+                <Route path="/choosetags" element={<FollowTags />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/admin" element={<PostedArticles />} />
+                <Route path="/articles" element={<Home />} />
+
+                {/* INSERT ROUTES HERE */}
+              </Routes>
+            </CSSTransition>
+          </TransitionGroup>
+        ) : (
+          <Routes location={location}>
+            <Route path="/" index element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/Auth" element={<ValidateUser />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/articles" element={<PostedArticles />} />
+            <Route path="/test" element={<Components />} />
+            <Route path="/profile/:userId" element={<Profile />} />
+            <Route path="/question/:questionId" element={<Question />} />
+            <Route path="/question/ask" element={<AskQuestion />} />
+            <Route path="/choosetags" element={<FollowTags />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<Admin />} />
+
+            {/* INSERT ROUTES HERE */}
+          </Routes>
+        )}
+        <Footer />
+      </div>
+    </ValidUserContext.Provider>
+  );
 }
 
 export default App;

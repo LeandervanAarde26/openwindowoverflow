@@ -1,0 +1,43 @@
+@import '../../StyleSource/variables.scss';
+
+.container {
+    display: flex;
+    flex: 1;
+    
+
+    .articleContent {
+        width: 100%;
+        
+    }
+
+    h5 {
+       padding-top: 2rem;
+       padding-bottom: 1rem;
+    }
+
+    #articleTitle {
+        border-color: $orange;
+        margin-top: 10px;
+        width: 1050px;
+        height: 7vh;
+        resize: none;
+    }
+    #articleLink {
+        border-color: $orange;
+        margin-top: 10px;
+        width: 1050px;
+        height: 7vh;
+        resize: none;
+    }
+    #articleDescription {
+        border-color: $orange;
+        margin-top: 10px;
+        width: 1050px;
+        height: 25vh;
+        resize: none;
+    }
+    
+}
+.postedArticles {
+        padding-top: 40px;
+    }

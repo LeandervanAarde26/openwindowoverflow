@@ -1,0 +1,12 @@
+@import '../../StyleSource/variables.scss';
+
+.container {
+    display: flex;
+    flex: 1;
+    
+
+    .articlesComp {
+        flex: 1;
+        
+    }
+}

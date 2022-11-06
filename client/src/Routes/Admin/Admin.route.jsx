@@ -19,8 +19,6 @@ const AdminRoute = () => {
             Oldest unanswered questions
           </h2>
         </div>
-
-        {/* <AskQuestionComponent /> */}
       </div>
     </>
   );
