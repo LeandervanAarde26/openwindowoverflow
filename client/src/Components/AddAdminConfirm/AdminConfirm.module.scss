@@ -1,8 +1,10 @@
 @import "../../StyleSource/variables.scss";
 
+@import "../../StyleSource/variables.scss";
+
 .modalContainer {
-    width: 100%;
-    height: 100%;
+    width: 1250vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.374);
     position: fixed;
     z-index: +99999;

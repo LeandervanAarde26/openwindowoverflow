@@ -5,6 +5,8 @@ import AWS from "aws-sdk"
 import Default from "../../Assets/LoginImage.png"
 import Button from '../Button/Button.component';
 import axios from 'axios';
+import RegComplete from '../RegCompleteModal/RegComplete.component';
+import AdminConfirm from '../AddAdminConfirm/AdminConfirm.component';
 
 const defaultValues = {
     username: "",
@@ -33,6 +35,7 @@ const AddAdmin = () => {
     const [clickable, setClickable] = useState(true);
     const [passErrr, setpasswordError] = useState(false);
     const [regErr, setRegErr] = useState(false)
+    const [openModal, setOpenModal] = useState(false)
 
     const getImages = async (e) => {
         setImage(URL.createObjectURL(e.target.files[0]))
@@ -89,6 +92,7 @@ const AddAdmin = () => {
                     axios.post('http://localhost:5001/api/addAmin', payload)
                     .then(res =>{
                             console.log(res.data)
+                            setOpenModal(prev => !prev)
                     })
                     .catch(err =>{
                         console.log(err)
@@ -120,6 +124,7 @@ const AddAdmin = () => {
                     axios.post('http://localhost:5001/api/addAmin', payload)
                     .then(res =>{
                             console.log(res.data)
+                            setOpenModal(prev => !prev)
                     })
                     .catch(err =>{
                         console.log(err)
@@ -133,6 +138,7 @@ const AddAdmin = () => {
 
 
     return (
+        <>
         <div className={styles.container}>
 
             <h3>Add an Admin</h3>
@@ -206,7 +212,11 @@ const AddAdmin = () => {
                     :
                         null
                 }
+                 
         </div>
+
+         {openModal && <AdminConfirm name={formValues.username} email={formValues.email} something={setOpenModal(false)}  />}
+        </>
     );
 };
 
