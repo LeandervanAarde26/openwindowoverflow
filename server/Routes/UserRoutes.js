@@ -42,7 +42,6 @@ router.post('/api/loginuser', async (req, res) => {
     res.status(200).json(user)
 });
 
-
 // Register a new user 
 // http://localhost:5001/api/registeruser
 

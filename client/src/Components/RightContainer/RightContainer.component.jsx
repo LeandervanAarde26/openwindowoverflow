@@ -80,7 +80,7 @@ const RightContainer = ({ simliliar, topRated, questionid }) => {
 
                         </div>
                         :
-                        location.pathname === "/home"
+                        location.pathname === "/home" || location.pathname === "/admin"
                             ?
                             <div className={styles.topRatedQuestions}>
                                 <h4>Top Rated Questions</h4>
