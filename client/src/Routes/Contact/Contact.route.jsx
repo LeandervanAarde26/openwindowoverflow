@@ -16,10 +16,10 @@ import { useLocation } from "react-router";
 import QuestionsContainer from "../../Components/QuestionsContainer/QuestionsContainer.component";
 // admin images
 import mike from "../../Assets/AdminImages/mikeProfile.png";
-import armand from "../../Assets/AdminImages/armandProfile.jpg";
-import tsungai from "../../Assets/AdminImages/tsungai.jpg";
-import leo from "../../Assets/AdminImages/leo.jpg";
-import carlo from "../../Assets/AdminImages/carlo.jpg";
+import armand from "../../Assets/AdminImages/armandProfile.png";
+import tsungai from "../../Assets/AdminImages/tsungaiProfile.png";
+import leo from "../../Assets/AdminImages/leoProfile.png";
+import carlo from "../../Assets/AdminImages/carloProfile.png";
 
 // creator images
 import leander from "../../Assets/AdminImages/leander.jpg";
