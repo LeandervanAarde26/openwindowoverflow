@@ -24,11 +24,7 @@ const AdminConfirm = ({ name, email, something }) => {
 
                     <div className={styles.buttonContainer}>
                   
-                        <Button
-                            buttonType={"black"}
-                            children={"Close notification"}
-                            onClick= {something}
-                        />
+                    {something}
                
                 </div>
             </div>

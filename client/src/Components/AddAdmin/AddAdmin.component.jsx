@@ -92,7 +92,8 @@ const AddAdmin = () => {
                     axios.post('http://localhost:5001/api/addAmin', payload)
                     .then(res =>{
                             console.log(res.data)
-                            setOpenModal(prev => !prev)
+                            setOpenModal(true)
+                            setFormValues(defaultValues)
                     })
                     .catch(err =>{
                         console.log(err)
@@ -124,7 +125,7 @@ const AddAdmin = () => {
                     axios.post('http://localhost:5001/api/addAmin', payload)
                     .then(res =>{
                             console.log(res.data)
-                            setOpenModal(prev => !prev)
+                            setOpenModal(true)
                     })
                     .catch(err =>{
                         console.log(err)
@@ -215,7 +216,7 @@ const AddAdmin = () => {
                  
         </div>
 
-         {openModal && <AdminConfirm name={formValues.username} email={formValues.email} something={setOpenModal(false)}  />}
+         {openModal && <AdminConfirm name={formValues.username} email={formValues.email} something={ <Button buttonType={"black"} children={"Close notification"} onClick={setOpenModal(false)} />} />}
         </>
     );
 };
