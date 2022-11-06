@@ -19,17 +19,15 @@ import axios from 'axios';
 const FlaggedComment = (props) => {
     const navigate = useNavigate()
     const { update, setUpdate } = useContext(RerenderContext);
-    const { commentTitle, questionId, askedUser, commentUser, commId} = props
 
-    const goToQuestion = () => { navigate(`/Question/${questionId}`) }
+    const goToQuestion = () => { navigate(`/Question/${props.questionId}`) }
 
     const deleteFunction = (e) =>{
-       let  arr = commId.filter(x => x !== null);
+       let  arr = props.commId.filter(x => x !== null);
         console.log("fired")
     //    console.log(arr[0])
-    console.log(questionId)
 
-       axios.patch(`http://localhost:5001/api/deletecomment/${arr[0]}/${questionId}`)
+       axios.patch(`http://localhost:5001/api/deletecomment/${arr[0]}/${props.questionId}`)
        .then(res =>{
         console.log(res)
         setUpdate(prev => !prev)
@@ -42,7 +40,7 @@ const FlaggedComment = (props) => {
     return (
         <div className={styles.container}>
             <div className={styles.container__top}>
-                <h4>{commentTitle}</h4>
+                <h4>{props.commentTitle}</h4>
             </div>
             <div className={styles.container__info}>
                 <div className={styles['container__info--content']}>
@@ -50,25 +48,35 @@ const FlaggedComment = (props) => {
                         icon={ic_user}
                     />
 
-                    <p><strong>{askedUser}</strong> asked question</p>
+                    <p><strong>{props.askedUser}</strong> asked question</p>
                 </div>
                 <div className={styles['container__info--content']}>
                     <Icon
                         icon={ic_user}
                     />
 
-                    <p><strong>{commentUser}</strong> commented</p>
+                    <p><strong>{props.commentUser}</strong> commented</p>
                 </div>
             </div>
             <div className={styles.container__bottom}>
                 <Button
-                    id={questionId}
+                    id={props.questionId}
                     buttonType='primary'
                     children='View'
                     onClick={goToQuestion}
                 />
+                {
+                    props.flags > 0 &&
 
-                <p>10 Flags</p>
+                    <p>
+                        {
+                            props.flags < 2
+                            ? props.flags + 'Flag'
+                            : props.flags + 'Flags'
+                        }
+                    </p>
+                }
+
 
                 <Icon
                     className={styles.bin}

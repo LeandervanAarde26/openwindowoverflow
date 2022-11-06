@@ -441,7 +441,6 @@ const Question = () => {
         } else {
             let flagsArr = flags;
             flagsArr.push(userId);
-            console.log("🚀 ~ file: Question.component.jsx ~ line 434 ~ flagComment ~ newFlags", flagsArr)
 
             let data = {
                 questionId: questionId.questionId,

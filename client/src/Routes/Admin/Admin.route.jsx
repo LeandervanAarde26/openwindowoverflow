@@ -10,50 +10,37 @@ import AddAdmin from "../../Components/AddAdmin/AddAdmin.component";
 import AddTag from "../../Components/AddTag/AddTag.component";
 
 const AdminRoute = () => {
-  const [flagged, setFlagged] = useState();
-  const [busy, setBusy] = useState(true);
-  const { update, setUpdate } = useContext(RerenderContext);
+    const [flagged, setFlagged] = useState();
+    const [busy, setBusy] = useState(true);
+    const { update, setUpdate } = useContext(RerenderContext);
+
+    useEffect(() => {
+        axios.get("http://localhost:5001/api/getflagged")
+        .then((res) => {
+            console.log(res.data);
+            // let arr = res.data.map(i => i.filter(x => x.comments.flagged))
+            // let test = res.data.map(x => x.filter(x => x.comments.flagged == true))
+            // console.log("🚀 ~ file: Admin.route.jsx ~ line 23 ~ .then ~ test", test)
+            // let yes = res.data.flatMap(x => x.comment.flagged)
+            // console.log("🚀 ~ file: Admin.route.jsx ~ line 25 ~ .then ~ yes", yes)
+            // console.log("🚀 ~ file: Admin.route.jsx ~ line 22 ~ .then ~ arr", arr)
+            let test = res.data.map((i) => (
+                i.comments.map((x) => 
+                x.flagged ? x.comment : ''
+                )
+            ))
+            console.log("🚀 ~ file: Admin.route.jsx ~ line 32 ~ .then ~ test", test)
 
 
-  const data = [
-    {
-      id: 1,
-      languages: ["HTML", "JavaScript"],
-    },
-    {
-      id: 2,
-      languages: ["JavaScript"],
-    },
-    {
-      id: 3,
-      languages: ["JavaScript", "Python"],
-    },
-    {
-      id: 4,
-      languages: ["JavaScript"],
-    }
-  ];
+            setFlagged(res.data);
+            setBusy(false);
+            console.log(res.data[0].comments[0].flags)
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 
-  const filters =  ['Python', 'HTML']
-
-  const filterByLanguage = ( list, filters ) => {
-    return list.filter( x => filters.some( filter => x.languages.includes(filter) ))
-  }
-
-  console.log( filterByLanguage(data, filters ) )
-
-
-  useEffect(() => {
-    axios.get("http://localhost:5001/api/getflagged")
-    .then((res) => {
-        console.log(res.data);
-        setFlagged(res.data);
-        setBusy(false);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-  }, [update]);
+    }, [update]);
 
   return busy ? null : (
     <div className={styles.container}>
@@ -61,20 +48,21 @@ const AdminRoute = () => {
       <div className={styles.middle}>
         <h3>Flagged Comments</h3>
         <div className={styles.flaggedContainer}>
-          {flagged.map((i) => (
-            <FlaggedComment
-              key={i._id}
-              commentTitle={i.comments.map((c) =>
-                c.flagged ? c.comment : null
-              )}
-              questionId={i._id}
-              askedUser={i.author.username}
-              commentUser={i.comments.map((b) =>
-                b.flagged ? b.user.username : null
-              )}
-              commId={i.comments.map((c) => (c.flagged ? c._id : null))}
-            />
-          ))}
+            {flagged.map((i) => (
+                <FlaggedComment
+                    key={i._id}
+                    commentTitle={i.comments.map((c) =>
+                        c.flagged ? c.comment : null
+                    )}
+                    questionId={i._id}
+                    askedUser={i.author.username}
+                    commentUser={i.comments.map((b) =>
+                        b.flagged ? b.user.username : null
+                    )}
+                    commId={i.comments.map((c) => (c.flagged ? c._id : null))}
+                    flags={i.comments.flags}
+                />
+            ))}
         </div>
 
         <h3 className={styles.breakHeading}>Oldest unanswered Questions</h3>
