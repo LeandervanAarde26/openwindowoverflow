@@ -9,7 +9,6 @@
     padding-top: 15px;
     padding-left: 20px;
 
-
     h3{
         @include headingThree();
     }
@@ -20,13 +19,12 @@
         flex: 1;
         display: flex;
         gap: 10px;
-        justify-content: center;
         flex-wrap: wrap;
 
         .noFlags{
             @include smallText();
             color: grey;
-            margin-top: 5vh;
+            margin-top: 225vh;
             margin-bottom: 5vh;
         }
     }
@@ -41,10 +39,8 @@
             padding-bottom: 15px;
             display: flex;
             gap: 10px;
-            justify-content: center;
             flex-wrap: wrap;
         }
     }
-
    }
 }

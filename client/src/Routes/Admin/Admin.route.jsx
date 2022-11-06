@@ -15,16 +15,15 @@ const AdminRoute = () => {
   const { update, setUpdate } = useContext(RerenderContext);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5001/api/getflagged")
-      .then((res) => {
+    axios.get("http://localhost:5001/api/getflagged")
+    .then((res) => {
         console.log(res.data);
         setFlagged(res.data);
         setBusy(false);
-      })
-      .catch((err) => {
+    })
+    .catch((err) => {
         console.log(err);
-      });
+    });
   }, [update]);
 
   return busy ? null : (

@@ -83,13 +83,12 @@ router.patch('/api/answerquestion/:id', async (res, req) => {
 
 // http://localhost:5001/api/addComment/
 router.patch('/api/addComment/:id', async (req, res) => {
-    let { comment, user } = req.body
+    let {comment, user} = req.body
 
     const addComment = await Question.findById(req.params.id)
     const auth = await User.findOne({
         _id: user,
     }).select('username');
-
 
     addComment.comments.push(
         {
@@ -107,7 +106,7 @@ router.patch('/api/addComment/:id', async (req, res) => {
 
 
 router.patch('/api/votes/:type', async (req, res) => {
-    let { userId, questionId, upVotes, downVotes } = req.body
+    let {questionId, upVotes, downVotes} = req.body
     let type = req.params.type;
 
     const editQuestion = await Question.findById(questionId);
@@ -238,6 +237,7 @@ router.patch('/api/flagcomment/:id', async (req, res) => {
 // Get flagged comments 
 router.get('/api/getflagged', async (req, res) =>{
     const questions =await Question.find( { 'comments.flagged' : { $all:  true  } } )
+    console.log(questions);
     if(!questions){
         return res.status(404).json({msg: "No Questions were found"})
     }
