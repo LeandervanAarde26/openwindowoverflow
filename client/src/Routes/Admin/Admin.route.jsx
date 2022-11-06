@@ -7,6 +7,7 @@ import Preview from "../../Components/Preview/Preview.component";
 import axios from 'axios'
 import { RerenderContext } from "../../Contexts/Rerenders.context";
 import AddAdmin from "../../Components/AddAdmin/AddAdmin.component";
+import AddTag from "../../Components/AddTag/AddTag.component";
 
 
 const AdminRoute = () => {
@@ -65,7 +66,7 @@ const AdminRoute = () => {
             </div>
 
             <div className={styles.addTag}>
-              {/* Place preview components */}
+              <AddTag />
             </div>
           </div>
 
