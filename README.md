@@ -253,12 +253,16 @@ What aspects of this final build contribute to the `Above And Beyond` Component 
 To see a run through of the application, click below:
 [View Demonstration](https://drive.google.com/uc?export=view&id=1cNGq8l3L4jkYujGfNEWfyXQMHyyK0_H3)
 
-See the [open issues](https://github.com/LeandervanAarde/cde-booking/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/LeandervanAarde/openoverflow/issues) for a list of proposed features (and known issues).
 
 <!-- AUTHORS -->
 ## Authors
 
-* [Leander van Aarde](https://github.com/LeandervanAarde/fikaclothing)
+* [Leander van Aarde](https://github.com/LeandervanAarde)
+* [Vian Du Plessis](https://github.com/Vian-du-Plessis)
+* [Anchen Ayres](https://github.com/AnchenAyres)
+* [Liam Wedge](https://github.com/NoSleepTillLambos)
+* [Cameron Godwin](https://github.com/GodwinCameron)
 
 <!-- LICENSE -->
 ## License
@@ -268,13 +272,20 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 <!-- LICENSE -->
 ## Contact
 
-* **leander van Aarde** -(mailto: Leander.vaonline@gmail.com) - [@instagram_handle](https://www.instagram.com/_.leander_e/) 
-* **Project Link** - https://github.com/LeandervanAarde/fikaclothing
+* **Leander van Aarde** -(mailto: Leander.vaonline@gmail.com) - [@instagram_handle](https://www.instagram.com/_.leander_e/) 
+
+* **Vian Du Plessis** -(mailto: viandupie@gmail.com) - [@instagram_handle](https://www.instagram.com/the_official_vian/) 
+
+* **Anchen Ayres** -(mailto: Leander.vaonline@gmail.com) - [@instagram_handle](https://www.instagram.com/_.leander_e/) 
+
+* **Cameron Godwin** -(mailto: Leander.vaonline@gmail.com) - [@instagram_handle](https://www.instagram.com/_.leander_e/) 
+
+* **Liam Wedge** -(mailto: Leander.vaonline@gmail.com) - [@instagram_handle](https://www.instagram.com/_.leander_e/) 
+
+* **Project Link** - https://github.com/LeandervanAarde/openoverflow
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 <!-- all resources that you used and Acknowledgements here -->
 * [Stack overflow](https://stackoverflow.com/)
-* [Images](https://www.nike.com/za/)
-* [Images](https://www.adidas.co.za/outlet?cm_mmc=AdieSEM_Google_Search-_-adidas_Brand_GSN_Exact_AWO-_-Brand-_-adidas_brand-_-dv:eCom-_-cn:adidas_Brand_GSN_Exact_AWO-_-pc:Google_Search&cm_mmc1=ZA&cm_mmc2=PPC-Multiple-brand-Multiple-BM-ZA-EMEA-eCom-Paid_Search&gclid=Cj0KCQjw08aYBhDlARIsAA_gb0fw39zkUktuakE1CdeBlNpQDyePBn8pLW94A1wBcFBMpJRJ9OzMshgaAuKuEALw_wcB&gclsrc=aw.ds)
 * [AWS](https://aws.amazon.com/free/?trk=73c6744c-29f5-4966-bdc7-8599174c182d&sc_channel=ps&s_kwcid=AL!4422!3!444219541634!e!!g!!aws&ef_id=Cj0KCQjw08aYBhDlARIsAA_gb0dnWqHWmnxuX0ZVFEOC_r6m2A0mZyKIQs8dfv0rhrp3zZW2lVW1QPUaAkS7EALw_wcB:G:s&s_kwcid=AL!4422!3!444219541634!e!!g!!aws)
