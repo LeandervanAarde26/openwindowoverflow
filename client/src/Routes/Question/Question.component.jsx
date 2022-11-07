@@ -480,8 +480,6 @@ const Question = () => {
     }
 
     const markAsUnResolved = (answerId, answerById) => {
-        console.log(answerId)
-        console.log(answerById)
         let data = {
             answerId: answerId,
             userId: userId,
@@ -596,12 +594,12 @@ const Question = () => {
             {
                 busy 
                 ?
-                null
+                    null
                 :
-                <RightContainer
-                simliliar={sim}
-                questionid = {questionId.questionId}
-            />
+                    <RightContainer
+                        simliliar={sim}
+                        questionid = {questionId.questionId}
+                    />
             }
         </div>
     );

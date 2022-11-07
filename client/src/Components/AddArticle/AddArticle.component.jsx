@@ -4,6 +4,7 @@ import RightContainer from '../RightContainer/RightContainer.component';
 import SideNavigation from '../sideNavigation/SideNavigation.component';
 import styles from "./AddArticle.module.scss";
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const defaultVals = {
     title: '',
@@ -15,6 +16,7 @@ const AddArticle = () => {
     const [newValues, setNewValues] = useState(defaultVals)
     const { title, link, description } = newValues
     const user = sessionStorage.getItem('currentUser');
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,15 +30,16 @@ const AddArticle = () => {
         }
         console.log(payload)
         axios.post(`http://localhost:5001/api/addarticles/${user}`, payload)
-            .then(res => {
-                console.log(res)
-                setNewValues(defaultVals)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        .then(res => {
+            if(res.data) {
+                navigate('/articles');
+            }
+            setNewValues(defaultVals)
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
-
 
     return (
         <div className={styles.container}>

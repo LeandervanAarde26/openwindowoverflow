@@ -29,21 +29,14 @@ import QuestionsContainer from '../QuestionsContainer/QuestionsContainer.compone
 import ArticlesContainer from '../ArticlesContainer/ArticlesContainer.component';
 import { useEffect } from 'react';
 
-const ProfileContainer = ({ image, user, year, questions, answers, badges, tags, aboutUser, github, userId, ...otherProps }) => {
+const ProfileContainer = ({image, user, year, score, questions, answers, badges, tags, aboutUser, github, userId, ...otherProps }) => {
     // Context used for Rerender
     const { setCurrentUser } = useContext(RegisterContext);
     const [editState, setEditState] = useState(false)
-    const [score, setScore] = useState()
     // Replace this const with the actual Axios Call
     const listBadges = Userbadges
     // Badges 
-    const tester = listBadges.map((i, index) => (
-        index === 0
-            ?
-            <Badges key={index} title={i.title} image={i.badgeImage} description={i.badgeDescription} id={styles.left} />
-            :
-            <Badges key={index} title={i.title} image={i.badgeImage} description={i.badgeDescription} />
-    ))
+
     // These are the "default form values for the users, So that they can see what the values were before"
     const [formValues, setFormValues] = useState({
         username: user,
@@ -85,34 +78,27 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
 
     const [userQuestions, setUserQuestions] = useState([]);
     const [userAnswers, setUserAnswers] = useState([]);
+    const [myBadges, setMyBadges] = useState([]);
     useEffect(() => {
         axios.get(`http://localhost:5001/api/getUserQuestionsandAnswers/${userId}`)
         .then(res => {
             // console.log(res)
             setUserQuestions(res.data.questions);
             setUserAnswers(res.data.answers);
-            console.log(res.data.answers)
-
-            let questions = res.data.questions.map(i => i.rating)
-            let sumQuestions = questions.reduce((prev,curr,index)=>{return prev+curr },0) 
-
-            let answers = res.data.answers.map(i => i.answers.map(b => b.rating))
-            let sumAnswers = answers.reduce((prev,curr,index)=>{return prev+curr },0) 
-
-            let length = answers.length + questions.length
-            let total = sumAnswers + sumQuestions
-
-            let percentage = (total / length) * 100
-
-            setScore(percentage)
-           
         })
         .catch(err => {
-
+            console.log(err)
         })
-    }, []);
 
-    console.log(score)
+        console.log(badges)
+        setMyBadges(
+            listBadges.map((i, index) => (
+                badges.includes(i.title) ?
+                    <Badges key={index} title={i.title} image={i.badgeImage} description={i.badgeDescription} />
+                : ''
+                )
+        ))
+    }, []);
 
     return (
         <div className={styles.outer}>
@@ -169,7 +155,7 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                                 <p className={styles.accomplishments}>{userQuestions.length} {userQuestions.length < 2 ? "Question" : "Questions"}</p>
                                 <p className={styles.accomplishments}>{userAnswers.length} {userAnswers.length < 2 ? "Answer" : "Answers"}</p>
                             </div>
-                            <p className={styles.reputation}>Overall reputation: <span className={styles.rep}>{isNaN(score) ? "0" : score}%</span></p>
+                            <p className={styles.reputation}>Overall reputation: <span className={styles.rep}>{score}</span></p>
 
                             {
                                 editState
@@ -248,7 +234,8 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                 <div className={styles.right}>
                     <h4>Earned badges</h4>
                     <BadgeContainer
-                        children={tester}
+
+                        children={myBadges}
                     />
                 </div>
             </div>

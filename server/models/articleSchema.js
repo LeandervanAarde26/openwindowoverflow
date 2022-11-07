@@ -20,7 +20,11 @@ const articleSchema = mongoose.Schema({
     type: Number,
     required: false,
   },
-  likesList: [{type: ObjectId}]
+  likesList: [{type: ObjectId}],
+  date: {
+    type: Date,
+    default: Date.now()
+  }
 });
 
 module.exports = mongoose.model("articles", articleSchema);

@@ -11,8 +11,7 @@ var mongoose = require('mongoose');
 const { ObjectId } = require('mongodb');
 
 router.patch('/api/resolveQuestion', async (req, res) => {
-    let {answerId, userId, questionId, answerUser} = req.body;
-    console.log(req.body)
+    let {answerId, questionId, answerUser} = req.body;
     
     const answeredUser = await User.findOne({
         _id: answerUser

@@ -47,25 +47,24 @@ function App() {
         navigate('/')
       }
     } else {
-      axios
-        .get("http://localhost:5001/api/auth/" + val)
+        axios.get("http://localhost:5001/api/auth/" + val)
         .then((res) => {
-          if (!res.data) {
+            if (!res.data) {
             if (
-              location.pathname != "/register" ||
-              location.pathname != "/auth" ||
-              location.pathname != "/updatepassword"
+                location.pathname != "/register" ||
+                location.pathname != "/auth" ||
+                location.pathname != "/updatepassword"
             ) {
-              navigate("/");
-              console.log("Fuckoff")
+                navigate("/");
+                console.log("Fuckoff")
             }
             setValidUser(false);
-          } else {
+            } else {
             setValidUser(true);
-          }
+            }
         })
         .catch((err) => {
-          console.log(err);
+            console.log(err);
         });
     }
   }, []);

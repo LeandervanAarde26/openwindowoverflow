@@ -37,6 +37,10 @@ const users = mongoose.Schema({
         type: String,
         default: "student"
     },
+    userScore: {
+        type: Number,
+        default: 0
+    },
     userSuspension: {
         type: Number,
         default: 0
@@ -58,7 +62,7 @@ const users = mongoose.Schema({
         },
     },
     currentStudyYear: Number,
-    earnedBadges: [{ type: mongoose.Schema.Types.ObjectId, ref: 'badges' }],
+    earnedBadges: [{ type: String}],
     followedTags: [String],
     userQuestions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'questions' }],
     userAnswers: [

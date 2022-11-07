@@ -21,7 +21,10 @@ const question = mongoose.Schema({
     author:{type: Object},
     answeredBy: {type: Object,
         // author: {type: String},
-        date: {type: Date, default: Date.now()}
+        date: {type: Date, default: Date.now()},
+        default: {
+            date: ''
+        }
     },
     postedDate: {
         type: Date,
