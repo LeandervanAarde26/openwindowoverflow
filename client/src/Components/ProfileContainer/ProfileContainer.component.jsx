@@ -11,8 +11,9 @@ import BadgeContainer from '../BadgeContainer/BadgeContainer.component';
 import Badges from '../Badges/Badges.component';
 import UserReputation from '../UserReputation/UserReputation.component';
 import MyQuestionsAnswers from '../MyQuestionsAnswers/MyQuestionsAnswers.component';
-import MyQuestionsAnswersContainer from '../MyQuestionsAnswersContainer/MyQuestionsAnswersContainer.component';
+
 import Input from "../Input/Input.component"
+import Article from '../Article/Article.component';
 /* Icons/Images */
 import Github from "../../Assets/Github.png";
 import Car from "../../Assets/car.jpg";
@@ -33,6 +34,13 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
     // Context used for Rerender
     const { setCurrentUser } = useContext(RegisterContext);
     const [editState, setEditState] = useState(false)
+<<<<<<< HEAD
+=======
+    const [score, setScore] = useState()
+    const [articles, setArticles] = useState([])
+    // const [busy, setBusy] = useState(true)
+
+>>>>>>> e43dc8a92eb3434e3fe08a4f40bed2fda230f8e5
     // Replace this const with the actual Axios Call
     const listBadges = Userbadges
     // Badges 
@@ -81,6 +89,7 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
     const [myBadges, setMyBadges] = useState([]);
     useEffect(() => {
         axios.get(`http://localhost:5001/api/getUserQuestionsandAnswers/${userId}`)
+<<<<<<< HEAD
         .then(res => {
             // console.log(res)
             setUserQuestions(res.data.questions);
@@ -99,6 +108,47 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
                 )
         ))
     }, []);
+=======
+            .then(res => {
+                // console.log(res)
+                setUserQuestions(res.data.questions);
+                setUserAnswers(res.data.answers);
+                console.log(res.data.answers)
+
+                let questions = res.data.questions.map(i => i.rating)
+                let sumQuestions = questions.reduce((prev, curr, index) => { return prev + curr }, 0)
+
+                let answers = res.data.answers.map(i => i.answers.map(b => b.rating))
+                let sumAnswers = answers.reduce((prev, curr, index) => { return prev + curr }, 0)
+
+                let length = answers.length + questions.length
+                let total = sumAnswers + sumQuestions
+
+                let percentage = Math.floor((total / length) * 100)
+                console.log(percentage)
+
+                setScore(percentage)
+
+            })
+            .catch(err => {
+
+            })
+    }, []);
+
+    useEffect(() => {
+        axios.get(`http://localhost:5001/api/findArticleById/${userId}`)
+            .then(res => {
+                console.log(res)
+                setArticles(res.data)
+
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },[])
+
+    console.log(score)
+>>>>>>> e43dc8a92eb3434e3fe08a4f40bed2fda230f8e5
 
     return (
         <div className={styles.outer}>
@@ -245,7 +295,7 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
 
                     <div className={styles.content}>
                         {
-                            userQuestions.map((x, index) => 
+                            userQuestions.map((x, index) =>
                                 <MyQuestionsAnswers
                                     title={x.title}
                                     votes={x.rating}
@@ -259,19 +309,38 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
                 <div className={styles.answers}>
                     <h4>Answers</h4>
                     <div className={styles.content}>
-                    {
-                        userAnswers.map((x, index) => 
-                            <MyQuestionsAnswers
-                                title={x.title}
-                                votes={x.rating}
-                                answers={x.answers.length}
-                                resolved={x.resolved}
-                            />
-                        )
-                    }
+                        {
+                            userAnswers.map((x, index) =>
+                                <MyQuestionsAnswers
+                                    title={x.title}
+                                    votes={x.rating}
+                                    answers={x.answers.length}
+                                    resolved={x.resolved}
+                                />
+                            )
+                        }
                     </div>
                 </div>
+
+                <div className={styles.articles}>
+                <h4>Articles </h4>
+                {
+                    articles.map(i => (<Article
+                        key={i._id}
+                        heading={i.title}
+                        auth={i.author.username}
+                        link={i.link}
+                        desc={i.description}
+                        likes={i.likes}
+                        liked={i.likesList.includes(userId) ? true : false}
+                    />))
+                }
             </div>
+
+            </div>
+
+
+
         </div>
     );
 };

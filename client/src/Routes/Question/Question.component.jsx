@@ -14,9 +14,8 @@ import RightContainer from '../../Components/RightContainer/RightContainer.compo
 import SideNavigation from '../../Components/sideNavigation/SideNavigation.component';
 import AnswerBoxComponent from '../../Components/AnswerBox/AnswerBox.component';
 import axios from 'axios';
-import image from "../../Assets/DefaultProfileImages/Default5.png"
 /* Icons/Images */
-import tester from "../../Assets/code.png"
+
 import AWS from "aws-sdk"
 
 // Default form values for the answer
@@ -92,58 +91,53 @@ const Question = () => {
         let user = sessionStorage.getItem('currentUser')
         setUserId(user)
 
-        axios.get('http://localhost:5001/api/test')
-        .then(res => {
-            console.log(res)
-        })
-
         axios.get('http://localhost:5001/api/question/' + questionId.questionId)
-        .then(res => {
-            if (res.data.votes.up.includes(user)) {
-                setDidUpVote(true);
-            } else if (res.data.votes.down.includes(user)) {
-                setDidDownVote(true);
-            } else {
-                setDidDownVote(false);
-                setDidUpVote(false);
-            }
-            setQuestionData(res.data);
-
-            let tags = res.data.tags
-            axios.get(`http://localhost:5001/api/getsimiliar/${tags[0]}/${questionId.questionId}`)
             .then(res => {
-                setSimiliar(res.data)
-                setBusy(false)
+                if (res.data.votes.up.includes(user)) {
+                    setDidUpVote(true);
+                } else if (res.data.votes.down.includes(user)) {
+                    setDidDownVote(true);
+                } else {
+                    setDidDownVote(false);
+                    setDidUpVote(false);
+                }
+                setQuestionData(res.data);
+
+                let tags = res.data.tags
+                axios.get(`http://localhost:5001/api/getsimiliar/${tags[0]}/${questionId.questionId}`)
+                    .then(res => {
+                        setSimiliar(res.data)
+                        setBusy(false)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
             })
             .catch(err => {
                 console.log(err)
             })
-        })
-        .catch(err => {
-            console.log(err)
-        })
         setRerender(false);
     }, [rerender, questionId.questionId]);
 
     const handleClick = (e) => {
-        if(databaseImage == null){
+        if (databaseImage == null) {
             if (formValues.answer === '' || formValues.code == '') {
                 console.log('please fill out answer')
             } else {
                 axios.patch(`http://localhost:5001/api/question/answer/${userId}/${questionId.questionId}`, formValues)
-                .then(res => {
-                    if (res.data) {
-                        setRerender(true)
-                    }
-                    setDat(res.data)
-                    setBusy(false)
-                    setTags(res.data.tags)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+                    .then(res => {
+                        if (res.data) {
+                            setRerender(true)
+                        }
+                        setDat(res.data)
+                        setBusy(false)
+                        setTags(res.data.tags)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
             }
-        } else{
+        } else {
             const newImage = `https://openoverflow.s3.af-south-1.amazonaws.com/${databaseImage.name.replace(/\s/g, '')}`
             const temp = databaseImage.name.replace(/\s/g, '')
 
@@ -157,22 +151,22 @@ const Question = () => {
 
             let data = {
                 answer: formValues.answer,
-                code:formValues.code,
+                code: formValues.code,
                 Images: newImage
             }
 
             axios.patch(`http://localhost:5001/api/question/answer/${userId}/${questionId.questionId}`, data)
-            .then(res => {
-                if (res.data) {
-                    setRerender(true)
-                }
-                setDat(res.data)
-                setBusy(false)
-                setTags(res.data.tags)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+                .then(res => {
+                    if (res.data) {
+                        setRerender(true)
+                    }
+                    setDat(res.data)
+                    setBusy(false)
+                    setTags(res.data.tags)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
         }
     }
 
@@ -200,16 +194,16 @@ const Question = () => {
             comment: commentVal.comments
         }
         axios.patch(`http://localhost:5001/api/addComment/${questionId.questionId}`, payload)
-        .then(res => {
-            if (res.data.state) {
-                setRerender(true)
-                setComment(prev => !prev)
-                setCommentVal(userComment)
-            }
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(res => {
+                if (res.data.state) {
+                    setRerender(true)
+                    setComment(prev => !prev)
+                    setCommentVal(userComment)
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     const loadMoreComments = () => {
@@ -229,8 +223,8 @@ const Question = () => {
     }
 
     const questionUpVote = (upVotes, downVotes) => {
-        if(!upVotes.includes(userId)) {
-            if(downVotes.includes(userId)) {
+        if (!upVotes.includes(userId)) {
+            if (downVotes.includes(userId)) {
                 let newDownVotes = downVotes.filter((x) => x !== userId);
 
                 let data = {
@@ -241,14 +235,14 @@ const Question = () => {
                 }
 
                 axios.patch('http://localhost:5001/api/questionVote/up', data)
-                .then(res => {
-                    if (res.data) {
-                        setRerender(true);
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                    .then(res => {
+                        if (res.data) {
+                            setRerender(true);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             } else {
                 let votes = upVotes;
                 votes.push(userId);
@@ -261,23 +255,23 @@ const Question = () => {
                 }
 
                 axios.patch('http://localhost:5001/api/questionVote/up', data)
-                .then(res => {
-                    if (res.data) {
-                        setRerender(true);
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                    .then(res => {
+                        if (res.data) {
+                            setRerender(true);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             }
         }
     }
 
     const questionDownVote = (upVotes, downVotes) => {
         // First of all check if user has not already downVoted.
-        if(!downVotes.includes(userId)) {
+        if (!downVotes.includes(userId)) {
             // Then checks if user has not previously upVoted
-            if(upVotes.includes(userId)) {
+            if (upVotes.includes(userId)) {
                 let newUpVotes = upVotes.filter((x) => x !== userId)
 
                 let data = {
@@ -288,14 +282,14 @@ const Question = () => {
                 }
 
                 axios.patch('http://localhost:5001/api/questionVote/down', data)
-                .then(res => {
-                    if (res.data) {
-                        setRerender(true);
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                    .then(res => {
+                        if (res.data) {
+                            setRerender(true);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             } else {
                 let votes = downVotes
                 votes.push(userId)
@@ -308,23 +302,23 @@ const Question = () => {
                 }
 
                 axios.patch('http://localhost:5001/api/questionVote/down', data)
-                .then(res => {
-                    if (res.data) {
-                        setRerender(true);
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                    .then(res => {
+                        if (res.data) {
+                            setRerender(true);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             }
         }
     }
 
     const answerUpVote = (answerId, upVotes, downVotes) => {
         // First of all check if user has not already upVoted.
-        if(!upVotes.includes(userId)) {
+        if (!upVotes.includes(userId)) {
             // Then checks if user has not previously downVoted
-            if(downVotes.includes(userId)) {
+            if (downVotes.includes(userId)) {
                 let newDownVotes = downVotes.filter((x) => x !== userId);
 
                 let data = {
@@ -336,14 +330,14 @@ const Question = () => {
                 }
 
                 axios.patch('http://localhost:5001/api/answerVote/up', data)
-                .then(res => {
-                    if (res.data) {
-                        setRerender(true);
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                    .then(res => {
+                        if (res.data) {
+                            setRerender(true);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             } else {
                 let votes = upVotes;
                 votes.push(userId);
@@ -357,23 +351,23 @@ const Question = () => {
                 }
 
                 axios.patch('http://localhost:5001/api/answerVote/up', data)
-                .then(res => {
-                    if (res.data) {
-                        setRerender(true);
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                    .then(res => {
+                        if (res.data) {
+                            setRerender(true);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             }
         }
     }
 
     const answerDownVote = (answerId, upVotes, downVotes) => {
         // First of all check if user has not already downVoted.
-        if(!downVotes.includes(userId)) {
+        if (!downVotes.includes(userId)) {
             // Then checks if user has not previously upVoted
-            if(upVotes.includes(userId)) {
+            if (upVotes.includes(userId)) {
                 let newUpVotes = upVotes.filter((x) => x !== userId)
 
                 let data = {
@@ -385,14 +379,14 @@ const Question = () => {
                 }
 
                 axios.patch('http://localhost:5001/api/answerVote/down', data)
-                .then(res => {
-                    if (res.data) {
-                        setRerender(true);
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                    .then(res => {
+                        if (res.data) {
+                            setRerender(true);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             } else {
                 let votes = downVotes
                 votes.push(userId)
@@ -406,20 +400,20 @@ const Question = () => {
                 }
 
                 axios.patch('http://localhost:5001/api/answerVote/down', data)
-                .then(res => {
-                    if (res.data) {
-                        setRerender(true);
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
+                    .then(res => {
+                        if (res.data) {
+                            setRerender(true);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             }
         }
     }
 
     const flagComment = (id, flags) => {
-        if(flags.includes(userId)) {
+        if (flags.includes(userId)) {
             let newFlags = flags.filter((x) => x !== userId);
 
             let data = {
@@ -430,14 +424,14 @@ const Question = () => {
             }
 
             axios.patch('http://localhost:5001/api/flagComment', data)
-            .then(res => {
-                if(res.data) {
-                    setRerender(true);
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            })
+                .then(res => {
+                    if (res.data) {
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
         } else {
             let flagsArr = flags;
             flagsArr.push(userId);
@@ -450,14 +444,14 @@ const Question = () => {
             }
 
             axios.patch('http://localhost:5001/api/flagComment', data)
-            .then(res => {
-                if(res.data) {
-                    setRerender(true);
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            })
+                .then(res => {
+                    if (res.data) {
+                        setRerender(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
         }
     }
 
@@ -465,36 +459,36 @@ const Question = () => {
         let data = {
             answerId: answerId,
             userId: userId,
-            questionId: questionId.questionId, 
+            questionId: questionId.questionId,
             answerUser: answerById
         }
         axios.patch('http://localhost:5001/api/resolveQuestion', data)
-        .then(res => {
-            if(res.data) {
-                setRerender(true);
-            }
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(res => {
+                if (res.data) {
+                    setRerender(true);
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     const markAsUnResolved = (answerId, answerById) => {
         let data = {
             answerId: answerId,
             userId: userId,
-            questionId: questionId.questionId, 
+            questionId: questionId.questionId,
             answerUser: answerById
         }
         axios.patch('http://localhost:5001/api/unResolveQuestion', data)
-        .then(res => {
-            if(res.data) {
-                setRerender(true);
-            }
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(res => {
+                if (res.data) {
+                    setRerender(true);
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     return (
@@ -527,8 +521,8 @@ const Question = () => {
                                 questionId={questionId.questionId}
                                 flagged={
                                     i.flags.includes(userId)
-                                    ? true
-                                    : false
+                                        ? true
+                                        : false
                                 }
                                 clickFlag={(id, flags) => flagComment(i._id, i.flags)}
                             />
@@ -566,13 +560,13 @@ const Question = () => {
                                     downVote={(answerId, upVotes, downVotes) => answerDownVote(x._id, x.votes.up, x.votes.down)}
                                     didDownVote={
                                         x.votes.down.includes(userId)
-                                        ? true
-                                        : false
+                                            ? true
+                                            : false
                                     }
                                     didUpVote={
                                         x.votes.up.includes(userId)
-                                        ? true
-                                        : false
+                                            ? true
+                                            : false
                                     }
                                     rerender={value => setRerender(value)}
                                 />
@@ -586,12 +580,13 @@ const Question = () => {
                     <PostAnswer
                         onChange={handleChange}
                         handleClick={handleClick}
-                        getImg = {getImages}
+                        getImg={getImages}
                         image={image}
                     />
                 </div>
             </div>
             {
+<<<<<<< HEAD
                 busy 
                 ?
                     null
@@ -599,6 +594,15 @@ const Question = () => {
                     <RightContainer
                         simliliar={sim}
                         questionid = {questionId.questionId}
+=======
+                busy
+                    ?
+                    null
+                    :
+                    <RightContainer
+                        simliliar={sim}
+                        questionid={questionId.questionId}
+>>>>>>> e43dc8a92eb3434e3fe08a4f40bed2fda230f8e5
                     />
             }
         </div>

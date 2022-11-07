@@ -99,7 +99,7 @@ const NavBar = () => {
                 <div className={styles.containerOuter__search}>
                     <SearchBar
                         label={"Search"}
-                        placeholder={"Search..."}
+                        placeholder={"Search Questions..."}
                         handleSearch={handleSearch}
                     />
                 </div>

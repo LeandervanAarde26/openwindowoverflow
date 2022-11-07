@@ -7,17 +7,12 @@ import AWS from "aws-sdk"
 /* Styling */
 import styles from './AskQuestion.module.scss';
 
-/* Default image */
-
-import defaultImage from "../../Assets/def ASk.png"
-
 /* Components */
 import RightContainer from '../../Components/RightContainer/RightContainer.component';
 import SideNavigation from '../../Components/sideNavigation/SideNavigation.component';
 import Tags from '../../Components/Tags/Tags.component';
 import Button from '../../Components/Button/Button.component';
 import CodePreview from '../../Components/CodePreview/CodePreview.component';
-import Input from "../../Components/Input/Input.component"
 import style from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark';
 import { useNavigate } from 'react-router';
 

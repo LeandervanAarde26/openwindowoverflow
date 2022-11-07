@@ -9,9 +9,8 @@ import styles from "./Profile.module.scss";
 /* Components */
 import SideNavigation from '../../Components/sideNavigation/SideNavigation.component';
 import ProfileContainer from '../../Components/ProfileContainer/ProfileContainer.component';
-import UserReputation from '../../Components/UserReputation/UserReputation.component';
 import Tags from '../../Components/Tags/Tags.component';
-import ProfileCard from '../../Components/Profile/ProfileCard';
+
 
 // Images 
 import imageOne from "../../Assets/DefaultProfileImages/Default1.png";
@@ -23,7 +22,6 @@ import EditProfileImage from '../../Components/EditProfileImage/EditProfileImage
 
 /* Context */
 import { RegisterContext } from '../../Contexts/Register.context';
-import MyQuestionsAnswersContainer from '../../Components/MyQuestionsAnswersContainer/MyQuestionsAnswersContainer.component';
 
 
 // http://localhost:5001/api/individualuser/:

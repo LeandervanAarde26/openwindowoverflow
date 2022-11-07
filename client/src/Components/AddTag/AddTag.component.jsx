@@ -6,36 +6,51 @@ import { useState } from 'react';
 import FollowedTags from '../FollowedTagsComponent/FollowedTags.component';
 import FollowableTags from "../FollowableTags/FollowableTags.component"
 import Button from '../Button/Button.component';
+import axios from 'axios';
 
 const defaultVals = {
     tagName: '',
     tagDescription: ''
 }
 
+
 const AddTag = () => {
-const [formVals, setFormVals] = useState(defaultVals)
-const {tagName, tagDescription} = formVals
+    const [formVals, setFormVals] = useState(defaultVals)
+    const { tagName, tagDescription } = formVals
 
 
 
     const handleChange = (e) => {
-    let {name, value} = e.target
-    setFormVals({...formVals, [name]: value})
-        
+        let { name, value } = e.target
+        setFormVals({ ...formVals, [name]: value })
+    }
+  
+    const postNewTag = () => {
+        let payload = {
+            name: formVals.tagName,
+            description: formVals.tagDescription
+        }
+        axios.post(`http://localhost:5001/api/addTag/`, payload)
+            .then(res => {
+                
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
     }
 
-    console.log(formVals)
 
 
     return (
         <div className={styles.container}>
             <h3>Create a Tag</h3>
-       
+
             <p className={styles.note}>Note*</p>
             <p>Tags added here will become avalible to all users when setting up and account or when creating
                 a question, tags should represent technologies, languages, topics or other relevant categorisation
             </p>
-       
+
             <Input
                 label={"Enter Tag Name"}
                 name="tagName"
@@ -48,7 +63,7 @@ const {tagName, tagDescription} = formVals
                 name="tagDescription"
                 type="text"
                 value={tagDescription}
-            onChange={handleChange}
+                onChange={handleChange}
             />
             <h4>The new Tag will look like this:</h4>
             <FollowableTags
@@ -61,6 +76,7 @@ const {tagName, tagDescription} = formVals
                 <Button
                     buttonType={"primary"}
                     children={"Add tag"}
+                    onClick={postNewTag}
                 />
             </div>
         </div>

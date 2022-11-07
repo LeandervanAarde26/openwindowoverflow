@@ -21,7 +21,6 @@ const ArticlesContainer = () => {
         setUserId(sessionStorage.getItem('currentUser'))
         axios.get('http://localhost:5001/api/getarticles')
             .then(res => {
-                console.log(res)
                 setData(res.data)
                 setBusy(false)
             })

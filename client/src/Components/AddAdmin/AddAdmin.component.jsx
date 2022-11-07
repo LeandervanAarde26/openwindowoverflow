@@ -41,7 +41,6 @@ const AddAdmin = () => {
         setImage(URL.createObjectURL(e.target.files[0]))
         let img = e.target.files[0]
         setDataBaseImage(img)
-        // console.log(img.name)
     }
 
     useEffect(() => {
@@ -91,7 +90,6 @@ const AddAdmin = () => {
 
                     axios.post('http://localhost:5001/api/addAmin', payload)
                     .then(res =>{
-                            console.log(res.data)
                             setOpenModal(true)
                             setFormValues(defaultValues)
                     })
@@ -124,7 +122,6 @@ const AddAdmin = () => {
 
                     axios.post('http://localhost:5001/api/addAmin', payload)
                     .then(res =>{
-                            console.log(res.data)
                             setOpenModal(true)
                     })
                     .catch(err =>{
@@ -133,7 +130,6 @@ const AddAdmin = () => {
                     })
                 }
             }
-            console.log(isEmpty)
         }
     };
 

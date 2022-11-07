@@ -13,7 +13,6 @@ import { ValidUserContext } from "./Contexts/Register.context";
 /* Components */
 import NavBar from "./Components/NavigationBar/NavBar";
 import Footer from "./Components/Footer/Footer";
-import Components from "./Routes/Components/Components";
 import Question from "./Routes/Question/Question.component";
 import ValidateUser from "./Routes/ValidateUser/ValidateUser.component";
 import AskQuestion from "./Routes/Question/AskQuestion";
@@ -112,7 +111,6 @@ function App() {
             <Route path="/Auth" element={<ValidateUser />} />
             <Route path="/home" element={<Home />} />
             <Route path="/articles" element={<Home />} />
-            <Route path="/test" element={<Components />} />
             <Route path="/profile/:userId" element={<Profile />} />
             <Route path="/Question/:questionId" element={<Question />} />
             <Route path="/question/ask" element={<AskQuestion />} />
