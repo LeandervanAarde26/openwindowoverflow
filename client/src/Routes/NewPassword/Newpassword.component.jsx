@@ -6,6 +6,7 @@ import axios from 'axios';
 import Input from '../../Components/Input/Input.component';
 import Button from '../../Components/Button/Button.component';
 import { useSearchParams } from "react-router-dom";
+import PasswordResetValidation from '../../Components/PasswordResetVal/PasswordResetValidation.component';
 
 const defaultValues = {
     password: '',
@@ -20,6 +21,7 @@ const Newpassword = () => {
     const [clickable, setClickable] = useState(true);
     const navigate = useNavigate()
     const id = searchParams.get("id")
+    const [open, setOpen] = useState(false)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -39,7 +41,7 @@ const Newpassword = () => {
             console.log(payload)
             console.log(res.data)
             // navigate("/")
-            // setOpenModal(prev => !prev)
+            setOpen(prev => !prev)
         })
         .catch(err => {
             console.log(err)
@@ -47,9 +49,8 @@ const Newpassword = () => {
     }
    }
 
-
-
     return (
+       <>
         <div className={styles.container}>
             <div className={styles.left}>
                 <img
@@ -92,7 +93,11 @@ const Newpassword = () => {
                     }
                 </div>
             </div>
+            {open && <PasswordResetValidation/>}
         </div>
+
+   
+       </>
     );
 };
 
