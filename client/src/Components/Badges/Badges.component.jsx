@@ -7,13 +7,8 @@ import styles from './Badges.module.scss'
 
 
 const Badges = ({image, title, description, ...otherProps}) => {
-    const [showDescription, setShowDescription] = useState(false);
-    const hoverDesc = () => setShowDescription(true)
-    const hideDesc = () => setShowDescription(false)
-
-
     return (
-        <div onMouseEnter={hoverDesc} onMouseLeave={hideDesc}
+        <div
             className={styles.container} 
             {...otherProps}
         >
@@ -24,7 +19,7 @@ const Badges = ({image, title, description, ...otherProps}) => {
             </div>
             <div className={styles.container__badgeTitle}>
                 <h5>{title}</h5>
-                { showDescription ? <p className={styles.badgeDescription}>{description}</p> : null}
+                <p className={styles.badgeDescription}>{description}</p>
             </div>
         </div>
     );

@@ -76,6 +76,8 @@ const Profile = () => {
             <div className={styles.container}>
                 <SideNavigation />
                 <ProfileContainer
+                    badges={userInfo.earnedBadges}
+                    score={userInfo.userScore}
                     github={userInfo.githubLink}
                     onClick={handleClick}
                     userId = {profile.userId}
@@ -84,7 +86,7 @@ const Profile = () => {
                     year={userInfo.currentStudyYear}
                     questions={userInfo.userQuestions.length}
                     answers={userInfo.userAnswers.length}
-                    badges={userInfo.earnedBadges.length}
+                    // badges={userInfo.earnedBadges.length}
                     tags={userInfo.followedTags.map((tag, index) => (<Tags key={index} title={tag} />))}
                     aboutUser = {userInfo.userDescription ? userInfo.userDescription : ""}
                 />

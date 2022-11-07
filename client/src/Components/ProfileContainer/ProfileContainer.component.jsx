@@ -11,9 +11,7 @@ import BadgeContainer from '../BadgeContainer/BadgeContainer.component';
 import Badges from '../Badges/Badges.component';
 import UserReputation from '../UserReputation/UserReputation.component';
 import MyQuestionsAnswers from '../MyQuestionsAnswers/MyQuestionsAnswers.component';
-
 import Input from "../Input/Input.component"
-import Article from '../Article/Article.component';
 /* Icons/Images */
 import Github from "../../Assets/Github.png";
 import Car from "../../Assets/car.jpg";
@@ -30,24 +28,14 @@ import QuestionsContainer from '../QuestionsContainer/QuestionsContainer.compone
 import ArticlesContainer from '../ArticlesContainer/ArticlesContainer.component';
 import { useEffect } from 'react';
 
-const ProfileContainer = ({ image, user, year, questions, answers, badges, tags, aboutUser, github, userId, ...otherProps }) => {
+const ProfileContainer = ({image, user, year, score, questions, answers, badges, tags, aboutUser, github, userId, ...otherProps }) => {
     // Context used for Rerender
     const { setCurrentUser } = useContext(RegisterContext);
     const [editState, setEditState] = useState(false)
-    const [score, setScore] = useState()
-    const [articles, setArticles] = useState([])
-    // const [busy, setBusy] = useState(true)
-
     // Replace this const with the actual Axios Call
     const listBadges = Userbadges
     // Badges 
-    const tester = listBadges.map((i, index) => (
-        index === 0
-            ?
-            <Badges key={index} title={i.title} image={i.badgeImage} description={i.badgeDescription} id={styles.left} />
-            :
-            <Badges key={index} title={i.title} image={i.badgeImage} description={i.badgeDescription} />
-    ))
+
     // These are the "default form values for the users, So that they can see what the values were before"
     const [formValues, setFormValues] = useState({
         username: user,
@@ -89,45 +77,25 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
 
     const [userQuestions, setUserQuestions] = useState([]);
     const [userAnswers, setUserAnswers] = useState([]);
+    const [myBadges, setMyBadges] = useState([]);
     useEffect(() => {
         axios.get(`http://localhost:5001/api/getUserQuestionsandAnswers/${userId}`)
-            .then(res => {
-                // console.log(res)
-                setUserQuestions(res.data.questions);
-                setUserAnswers(res.data.answers);
-                console.log(res.data.answers)
+        .then(res => {
+            setUserQuestions(res.data.questions);
+            setUserAnswers(res.data.answers);
+        })
+        .catch(err => {
+            console.log(err)
+        })
 
-                let questions = res.data.questions.map(i => i.rating)
-                let sumQuestions = questions.reduce((prev, curr, index) => { return prev + curr }, 0)
-
-                let answers = res.data.answers.map(i => i.answers.map(b => b.rating))
-                let sumAnswers = answers.reduce((prev, curr, index) => { return prev + curr }, 0)
-
-                let length = answers.length + questions.length
-                let total = sumAnswers + sumQuestions
-
-                let percentage = Math.floor((total / length) * 100)
-                console.log(percentage)
-
-                setScore(percentage)
-
-            })
-            .catch(err => {
-
-            })
+        setMyBadges(
+            listBadges.map((i, index) => (
+                badges.includes(i.title) ?
+                    <Badges key={index} title={i.title} image={i.badgeImage} description={i.badgeDescription} />
+                : ''
+                )
+        ))
     }, []);
-
-    useEffect(() => {
-        axios.get(`http://localhost:5001/api/findArticleById/${userId}`)
-            .then(res => {
-                console.log(res)
-                setArticles(res.data)
-
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    },[])
 
     console.log(score)
 
@@ -186,7 +154,7 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                                 <p className={styles.accomplishments}>{userQuestions.length} {userQuestions.length < 2 ? "Question" : "Questions"}</p>
                                 <p className={styles.accomplishments}>{userAnswers.length} {userAnswers.length < 2 ? "Answer" : "Answers"}</p>
                             </div>
-                            <p className={styles.reputation}>Overall reputation: <span className={styles.rep}>{isNaN(score) ? "0" : score}%</span></p>
+                            <p className={styles.reputation}>Overall reputation: <span className={styles.rep}>{score}</span></p>
 
                             {
                                 editState
@@ -265,7 +233,8 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                 <div className={styles.right}>
                     <h4>Earned badges</h4>
                     <BadgeContainer
-                        children={tester}
+
+                        children={myBadges}
                     />
                 </div>
             </div>
@@ -275,7 +244,7 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
 
                     <div className={styles.content}>
                         {
-                            userQuestions.map((x, index) =>
+                            userQuestions.map((x, index) => 
                                 <MyQuestionsAnswers
                                     title={x.title}
                                     votes={x.rating}
@@ -289,38 +258,19 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
                 <div className={styles.answers}>
                     <h4>Answers</h4>
                     <div className={styles.content}>
-                        {
-                            userAnswers.map((x, index) =>
-                                <MyQuestionsAnswers
-                                    title={x.title}
-                                    votes={x.rating}
-                                    answers={x.answers.length}
-                                    resolved={x.resolved}
-                                />
-                            )
-                        }
+                    {
+                        userAnswers.map((x, index) => 
+                            <MyQuestionsAnswers
+                                title={x.title}
+                                votes={x.rating}
+                                answers={x.answers.length}
+                                resolved={x.resolved}
+                            />
+                        )
+                    }
                     </div>
                 </div>
-
-                <div className={styles.articles}>
-                <h4>Articles </h4>
-                {
-                    articles.map(i => (<Article
-                        key={i._id}
-                        heading={i.title}
-                        auth={i.author.username}
-                        link={i.link}
-                        desc={i.description}
-                        likes={i.likes}
-                        liked={i.likesList.includes(userId) ? true : false}
-                    />))
-                }
             </div>
-
-            </div>
-
-
-
         </div>
     );
 };

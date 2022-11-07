@@ -586,13 +586,17 @@ const Question = () => {
                 </div>
             </div>
             {
-                busy
-                    ?
+
+                busy 
+                ?
                     null
-                    :
+                :
                     <RightContainer
                         simliliar={sim}
-                        questionid={questionId.questionId}
+                        questionid = {questionId.questionId}
+
+
+
                     />
             }
         </div>

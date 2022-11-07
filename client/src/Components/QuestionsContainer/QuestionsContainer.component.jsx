@@ -36,7 +36,7 @@ const QuestionsContainer = () => {
     axios.get('http://localhost:5001/api/questions')
       .then(res => {
         let data = res.data;
-        let today = new Date();
+/*         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
         let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         let yyyy = today.getFullYear();
@@ -49,7 +49,7 @@ const QuestionsContainer = () => {
               (new Date(today).getTime() - new Date(x.postedDate).getTime()) / (1000 * 3600 * 24)
             ),
           };
-        });
+        }); */
 
         console.log(data);
 
@@ -117,7 +117,7 @@ const QuestionsContainer = () => {
             user={i.author.username}
             question={i.question}
             date={new Date(i.postedDate).toString().slice(0, 16)}
-            timePassed={i.timePassed}
+            timePassed={i.resolved ? new Date(i.answeredBy.date).toString().slice(0, 16) : ''}
             askTime={i.askTime}
             userImage= {i.author.userImage}
             nav={() => navigate(`/Question/${i._id}`)}

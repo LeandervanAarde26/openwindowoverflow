@@ -9,6 +9,7 @@ const router = express();
 router.get("/api/getarticles", (req, res) => {
   article
     .find()
+    .sort({date: -1})
     .then((article) => res.json(article))
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });
@@ -30,7 +31,7 @@ router.post("/api/addarticles/:id", async (req, res) => {
 
   newArticle
     .save()
-    .then(() => res.json("New Article has been posted!"))
+    .then(() => res.send("True"))
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 

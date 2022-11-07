@@ -2,87 +2,57 @@
     {
         "title": "Murmurer",
         "badgeImage": "level1.svg",
-        "badgeDescription": "Post and answer at least 5 tickets."
+        "badgeDescription": "Post and/or answer at least 5 tickets."
     },
     {
         "title": "Mumbler",
         "badgeImage": "level2.svg",
-        "badgeDescription": "Post and answer at least 10 tickets."
+        "badgeDescription": "Post and/or answer at least 10 tickets."
     },
     {
         "title": "Whisperer",
         "badgeImage": "level3.svg",
-        "badgeDescription": "Post and answer at least 12 tickets."
+        "badgeDescription": "Post and/or answer at least 12 tickets."
     },
     {
         "title": "Chatterer",
         "badgeImage": "level4.svg",
-        "badgeDescription": "Post and answer at least 20 tickets."
+        "badgeDescription": "Post and/or answer at least 20 tickets."
     },
     {
         "title": "Chatterbox",
         "badgeImage": "level5.svg",
-        "badgeDescription": "Post and answer at least 25 tickets."
+        "badgeDescription": "Post and/or answer at least 25 tickets."
     },
     {
         "title": "Loud Mouth",
         "badgeImage": "level6.svg",
-        "badgeDescription": "Post and answer at least 35 tickets."
+        "badgeDescription": "Post and/or answer at least 35 tickets."
     },
     {
         "title": "Screamer",
         "badgeImage": "level7.svg",
-        "badgeDescription": "Post and answer at least 40 tickets."
+        "badgeDescription": "Post and/or answer at least 40 tickets."
     },
     {
         "title": "Know-it-all",
         "badgeImage": "level8.svg",
-        "badgeDescription": "Post and answer at least 50 tickets."
+        "badgeDescription": "Post and/or answer at least 50 tickets."
     },
     {
         "title": "Response Guru",
         "badgeImage": "level9.svg",
-        "badgeDescription": "Post and answer at least 70 tickets."
-    },
-    {
-        "title": "Bug Finder",
-        "badgeImage": "badgebug.svg",
-        "badgeDescription": "Solve at least 10 'bug related' tickets."
-    },
-    {
-        "title": "Security Defender",
-        "badgeImage": "badgefox.svg",
-        "badgeDescription": "Solve any 'security' related ticket."
-    },
-    {
-        "title": "Computer Tamer",
-        "badgeImage": "badgehappypc.svg",
-        "badgeDescription": "Solve any 'crash' related ticket."
-    },
-    {
-        "title": "Project Manager",
-        "badgeImage": "badgemultiscreen.svg",
-        "badgeDescription": "Suggest a solution that solves a 'group project' related ticket."
-    },
-    {
-        "title": "Networker",
-        "badgeImage": "badgenetwork.svg",
-        "badgeDescription": "Solve at lest 5 tickets realted to any connection based problem."
+        "badgeDescription": "Post and/or answer at least 70 tickets."
     },
     {
         "title": "Phone App Slinger",
         "badgeImage": "badgephoneapp.svg",
-        "badgeDescription": "Solve any 10 iOS, Android, Kotlin, XTML, Swift or any other phone app related tickets."
+        "badgeDescription": "Solve any 10 iOS, Android, Kotlin, XML, Swift or any other phone app related tickets."
     },
     {
         "title": "Book-Bot",
         "badgeImage": "badgestudybot.svg",
         "badgeDescription": "Resolve at least 50 tickets."
-    },
-    {
-        "title": "Syntax Genius",
-        "badgeImage": "badgesyntax.svg",
-        "badgeDescription": "Solve 20 syntax issues found in tickets."
     },
     {
         "title": "Wireframer",

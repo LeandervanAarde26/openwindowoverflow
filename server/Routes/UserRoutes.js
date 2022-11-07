@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const { isValidObjectId } = require('mongoose');
 const { ObjectId } = require('mongodb');
 const { findOneAndUpdate } = require('../models/userSchema');
+const articleSchema = require('../models/articleSchema');
 
 // Login the user
 // http://localhost:5001/api/loginuser
@@ -247,6 +248,137 @@ router.patch('/api/validateUser/:id', async (req, res) => {
 //Get information about the user
 // http://localhost:5001/api/individualuser/:
 router.get('/api/individualuser/:id', async (req, res) => {
+    // Total Questions by User
+    const totalQuestions = await questionSchema.find({
+        'author._id': ObjectId(req.params.id)
+    });
+    let totalQuestionsScore = totalQuestions.length * 0.5;
+
+    // Total Ratings by User
+    let total = 0;
+    totalQuestions.forEach(element => {
+        total = total + element.rating
+    }); 
+    
+    // Total Answers by User
+    const totalAnswers = await questionSchema.find({
+        'answers.user._id': ObjectId(req.params.id)
+    });
+    let totalAnswersScore = totalAnswers.length * 1;
+
+    // Total Ratings by User
+    let answerVoteTotal = 0;
+    let answerResolvedTotal = 0;
+    let totalAnswered = 0;
+    console.log(totalAnswers)
+    totalAnswers.forEach(x => {
+        x.answers.forEach(i => {
+            if(i.user._id == req.params.id) {
+                answerVoteTotal = answerVoteTotal + i.rating;
+                totalAnswered++;
+
+                if(i.resolved) {
+                    answerResolvedTotal++;
+                }
+            }
+        })
+    });
+
+    // Total Articles by User
+    const totalArticles = await articleSchema.find({
+        'author._id': ObjectId(req.params.id)
+    });
+    let totalArticlesScore = totalArticles.length * 0.2;
+
+    let totalScore = (totalQuestionsScore) + (total) + (totalAnswersScore) + (answerVoteTotal) + (answerResolvedTotal) + (totalArticlesScore)
+
+    //Give User Badges
+    let badges = [];
+    let totalPostedandAnsweredTickets = totalQuestions.length + totalAnswered;
+    if(totalPostedandAnsweredTickets >= 5) {
+        badges.push('Murmurer')
+    }
+
+    if(totalPostedandAnsweredTickets >= 10) {
+        badges.push('Mumbler')
+    }
+
+    if(totalPostedandAnsweredTickets >= 12) {
+        badges.push('Whisperer')
+    }
+
+    if(totalPostedandAnsweredTickets >= 20) {
+        badges.push('Chatterer')
+    }
+
+    if(totalPostedandAnsweredTickets >= 25) {
+        badges.push('Chatterbox')
+    }
+
+    if(totalPostedandAnsweredTickets >= 35) {
+        badges.push('Loud Mouth')
+    }
+
+    if(totalPostedandAnsweredTickets >= 40) {
+        badges.push('Screamer')
+    }
+
+    if(totalPostedandAnsweredTickets >= 50) {
+        badges.push('Know-it-all')
+    }
+
+    if(totalPostedandAnsweredTickets >= 70) {
+        badges.push('Response Guru')
+    }
+
+    let solvedPhoneProblemsCount = 0;
+    const totalPhoneAnswersSolved = await questionSchema.find({
+        resolved: true,
+        'answers.user._id': ObjectId(req.params.id)
+    });
+    let phoneTags = ['Kotlin', 'Swift', 'SwiftUI', 'React-Native', 'iOS', 'XML']
+    totalPhoneAnswersSolved.forEach(x => {
+        if(phoneTags.some(i => x.tags.includes(i))) {
+            solvedPhoneProblemsCount++;
+        }
+    });
+
+    if(solvedPhoneProblemsCount >= 10) {
+        badges.push('Phone App Slinger')
+    }
+
+    if(answerResolvedTotal >= 50) {
+        badges.push('Book-Bot')
+    }
+
+    let solvedLayoutIssuesCount = 0;
+    const totalLayoutIssuesSolved = await questionSchema.find({
+        'answers.user._id': ObjectId(req.params.id)
+    });
+    let layoutTags = ['CSS', 'SCSS'];
+    totalLayoutIssuesSolved.forEach(x => {
+        if(layoutTags.some(i => x.tags.includes(i))) {
+            solvedLayoutIssuesCount++;
+        }
+    })
+
+    if(solvedLayoutIssuesCount >= 25) {
+        badges.push('Wireframer')
+    }
+
+    const updateUser = await userSchema.updateOne({
+        _id: req.params.id
+    }, {
+        $set: {
+            'earnedBadges': badges,
+            'userScore': totalScore
+        }
+    })
+
+    if(!updateUser){
+        return res.status(400).json({msg: 'User could was not updated'})
+    } 
+
     const user = await userSchema.findById(req.params.id);
 
     if (!user) {
@@ -291,9 +423,7 @@ router.get('/api/auth/:id', async (req, res) => {
             res
                 .send(false)
         } else {
-            res
-                .status(200)
-                .send(true)
+            res.status(200).send(true)
         }
     } else {
         res

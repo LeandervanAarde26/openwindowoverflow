@@ -110,7 +110,7 @@ const NavBar = () => {
                         children={"Sign out"}
                     />
 
-                    <div className={styles["containerOuter__login--dropdown"]}>
+{/*                     <div className={styles["containerOuter__login--dropdown"]}>
                         <NavLink to="/">
                             <Icon
                                 className={styles["containerOuter__login--trophy"]}
@@ -125,7 +125,7 @@ const NavBar = () => {
                     <Icon
                         className={styles["containerOuter__login--trophy"]}
                         icon={inbox}
-                    />
+                    /> */}
                 </div>
                 <div className={styles.containerOuter__profile}>
                     <ProfileCard profileImage={logo} function={goToProfile} />

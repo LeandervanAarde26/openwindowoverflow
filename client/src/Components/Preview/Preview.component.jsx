@@ -9,16 +9,9 @@ import ic_votes from '../../Assets/Icons/ic_clipboard.svg';
 import ic_answers from '../../Assets/Icons/ic_checkmark.svg';
 import ic_correct from '../../Assets/Icons/ic_correct.svg';
 import ic_star from '../../Assets/Icons/ic_star.svg';
+import { useEffect } from "react";
 
 const Preview = ({ title, date, tags, timePassed, user, resolved, answers, votes, goodQuestion, askTime, question, id, nav, userImage }) => {
-
-    const testClick = () => {
-        console.log('hey')
-    }
-
-    const testClick2 = (e) => {
-        console.log('sfhey')
-    }
 
     return (
         <div 
@@ -75,7 +68,6 @@ const Preview = ({ title, date, tags, timePassed, user, resolved, answers, votes
                             <Tags
                                 key={index}
                                 title={i}
-                                onClick={testClick}
                             />
                         )
                     }
@@ -101,15 +93,7 @@ const Preview = ({ title, date, tags, timePassed, user, resolved, answers, votes
                         resolved &&
                         <>
                             <strong>{user}</strong>&nbsp;answered question  {
-                                timePassed > 365 && timePassed < (365 * 2)
-                                    ? Math.round(timePassed / 365) + ' Year ago'
-                                    : timePassed == 0 || timePassed == -0
-                                        ? 'Today'
-                                        : timePassed == 1
-                                            ? timePassed + ' Day ago'
-                                            : timePassed > (365 * 2)
-                                                ? Math.round(timePassed / 365) + ' Years ago'
-                                                : timePassed + ' Days ago'
+                                timePassed
                             }
                         </>
                     }
