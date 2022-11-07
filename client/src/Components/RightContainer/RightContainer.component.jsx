@@ -60,7 +60,7 @@ const RightContainer = ({ simliliar, topRated, questionid }) => {
             />
           ))}
         </div>
-      ) : location.pathname === "/home" || location.pathname === "/admin" ? (
+      ) : location.pathname === "/home" || location.pathname === "/admin" || location.pathname === "/articles"? (
         <div className={styles.topRatedQuestions}>
           <h4>Top Rated Questions</h4>
           {topR.map((i) => (

@@ -19,8 +19,8 @@ const question = mongoose.Schema({
         default: false
     },
     author:{type: Object},
-    answeredBy: {
-        author: {type: String},
+    answeredBy: {type: Object,
+        // author: {type: String},
         date: {type: Date, default: Date.now()}
     },
     postedDate: {

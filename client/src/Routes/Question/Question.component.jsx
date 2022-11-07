@@ -40,9 +40,6 @@ const bucket = new AWS.S3({
     region: region
 })
 
-
-
-
 const Question = () => {
     const [image, setImage] = useState(null);
     const [databaseImage, setDataBaseImage] = useState(null)
@@ -94,7 +91,6 @@ const Question = () => {
     useEffect(() => {
         let user = sessionStorage.getItem('currentUser')
         setUserId(user)
-        console.log("this did also actually rerender")
 
         axios.get('http://localhost:5001/api/test')
         .then(res => {
@@ -127,7 +123,6 @@ const Question = () => {
             console.log(err)
         })
         setRerender(false);
-        console.log("hey")
     }, [rerender, questionId.questionId]);
 
     const handleClick = (e) => {
@@ -466,6 +461,44 @@ const Question = () => {
         }
     }
 
+    const markAsResolved = (answerId, answerById) => {
+        let data = {
+            answerId: answerId,
+            userId: userId,
+            questionId: questionId.questionId, 
+            answerUser: answerById
+        }
+        axios.patch('http://localhost:5001/api/resolveQuestion', data)
+        .then(res => {
+            if(res.data) {
+                setRerender(true);
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    const markAsUnResolved = (answerId, answerById) => {
+        console.log(answerId)
+        console.log(answerById)
+        let data = {
+            answerId: answerId,
+            userId: userId,
+            questionId: questionId.questionId, 
+            answerUser: answerById
+        }
+        axios.patch('http://localhost:5001/api/unResolveQuestion', data)
+        .then(res => {
+            if(res.data) {
+                setRerender(true);
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
     return (
         <div className={styles.container}>
             <SideNavigation />
@@ -521,6 +554,12 @@ const Question = () => {
                             ?
                             questionData.answers.map((x, index) =>
                                 <AnswerBoxComponent
+                                    owner={questionData.author._id == userId ? true : false}
+                                    answered={questionData.resolved ? true : false}
+                                    key={x._id}
+                                    markUnResolved={(answerId, answerById) => markAsUnResolved(x._id, x.user._id)}
+                                    markResolved={(answerId, answerById) => markAsResolved(x._id, x.user._id)}
+                                    correct={x.resolved ? true : false}
                                     answer={x.answer}
                                     code={x.code}
                                     votes={x.rating}

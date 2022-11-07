@@ -126,7 +126,11 @@ function App() {
             {/* INSERT ROUTES HERE */}
           </Routes>
         )}
-        <Footer />
+                {
+            location.pathname == '/register' || location.pathname == '/' || location.pathname == "/Auth" || location.pathname == "/updatepassword"
+            ? ''
+            : <Footer />
+        }
       </div>
     </ValidUserContext.Provider>
   );
