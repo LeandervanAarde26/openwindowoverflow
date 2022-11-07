@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 
 const articleSchema = mongoose.Schema({
@@ -19,6 +20,7 @@ const articleSchema = mongoose.Schema({
     type: Number,
     required: false,
   },
+  likesList: [{type: ObjectId}]
 });
 
 module.exports = mongoose.model("articles", articleSchema);

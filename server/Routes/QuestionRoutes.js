@@ -28,7 +28,6 @@ router.post('/api/askquestion', async (req, res) => {
     let answeredBy = answeredUser;
 
     const doc = new Question({ title, author, question, code, tags, Images, answeredBy });
-
     await doc.save();
 
     res.send(doc._id);
@@ -222,51 +221,26 @@ router.patch('/api/flagComment', async (req, res) => {
     } else {
         return res.send(true);
     }
-    console.log(questionId)
-    console.log("comment " + commentId)
-    console.log("test " + flags)
-    console.log("test " + flagged)
 });
-
-// router.patch('/api/flagcomment/:id', async (req, res) => {
-//     let questionId = req.params.id
-//     let {commentId, flagged} = req.body
-
-//     if(!questionId){
-//         return res.status(400).json({msg: 'No Question found with id'})
-//     }
-
-//     const question = await Question.findById(questionId);
-//     if(!question) {
-//         return res.status(400).json({msg: `No question with ${id} was found.`});
-//     }
-  
-//     const comment = await Question.updateOne({
-//         _id: questionId,
-//         "comments._id": commentId
-//     },{
-//         $set:{
-//             'comments.$.flagged': true
-//         }
-//     })
-
-//    if(!comment){
-//     return res.status(400).json({msg: 'Comment was not updated'})
-//    }
-
-//    return res.status(204).json({msg: `Comment ${commentId} was successfully updated.`})
-// });
 
 // Get flagged comments 
 router.get('/api/getflagged', async (req, res) =>{
     const questions =await Question.find( { 'comments.flagged' : { $all:  true  } } )
-    console.log(questions);
     if(!questions){
         return res.status(404).json({msg: "No Questions were found"})
     }
 
     return res.status(200).json(questions)
-})
+});
+
+router.get('/api/getUnAnswered', async (req, res) => {
+    const questions = await Question.find({
+        'answers': {$not: { $elemMatch: { $exists: true } } }
+    }).sort({postedDate: 1})
+
+    console.log(questions)
+    res.send(questions)
+});
 
 //Delete flagged comment 
 router.patch('/api/deleteComment/:id/:questionId' , async (req, res) =>{
@@ -288,9 +262,21 @@ router.patch('/api/deleteComment/:id/:questionId' , async (req, res) =>{
 
     if(!comment){
         return res.status(400).json({msg: 'Comment was not updated'})
-       }
+    }
     
-    return res.status(204).json({msg: `Comment ${commentId} was successfully updated.`})
+    return res.send(true)
+});
+
+router.patch('/api/deleteQuestion/:questionId', async (req, res) => {
+    let questionId = req.params.questionId;
+
+    const question = await Question.deleteOne(ObjectId(questionId));
+
+    if(!question) {
+        return res.status(400).json({msg: 'Question was not deleted'});
+    }
+
+    return res.send(true);
 });
 
 
@@ -323,7 +309,6 @@ router.get('/api/test', async (req, res) => {
         "comments._id": ObjectId('6367fe5929cac5e529c9e2f9')
     })
     res.send(comments)
-    console.log(comments)
-})
+});
 
 module.exports = router; 

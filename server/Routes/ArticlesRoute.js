@@ -58,6 +58,42 @@ router.patch("/api/updatearticle/:id", (req, res) => {
     .catch((err) => res.status(400).json(`Error: ${err}`));
 })
 
+router.patch("/api/likeArticle/:type", async (req, res) => {
+    let type = req.params.type;
+    let {artId, list} = req.body;
+
+    if(type == 'up') {
+        const art = await article.updateOne({
+            _id: artId
+        }, {
+            $inc: {likes: 1},
+            $set: {
+                'likesList': list
+            }
+        })
+
+        if(!art){
+            return res.status(400).json({msg: 'Question vote was not updated'})
+        } else {
+            return res.send(true)
+        }
+    } else if(type == 'down') {
+        const art = await article.updateOne({
+            _id: artId
+        }, {
+            $inc: {likes: -1},
+            $set: {
+                'likesList': list
+            }
+        })
+
+        if(!art){
+            return res.status(400).json({msg: 'Question vote was not updated'})
+        } else {
+            return res.send(true)
+        }
+    }
+});
 
 
 // find and delete

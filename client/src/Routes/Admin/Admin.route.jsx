@@ -3,6 +3,7 @@ import styles from "./Admin.module.scss";
 import SideNavigation from "../../Components/sideNavigation/SideNavigation.component";
 import RightContainer from "../../Components/RightContainer/RightContainer.component";
 import FlaggedComment from "../../Components/FlaggedComment/FlaggedComment.component";
+import UnAnsweredQuestion from "../../Components/UnAnsweredQuestions/UnAnsweredQuestion.component";
 import Preview from "../../Components/Preview/Preview.component";
 import axios from "axios";
 import { RerenderContext } from "../../Contexts/Rerenders.context";
@@ -13,30 +14,39 @@ import { useNavigate } from "react-router";
 const AdminRoute = () => {
     const navigate = useNavigate();
     const [flagged, setFlagged] = useState();
+    const [old, setOld] = useState([]);
     const [busy, setBusy] = useState(true);
     const { update, setUpdate } = useContext(RerenderContext);
+    const [rerender, setRerender] = useState(false);
 
     useEffect(() => {
         axios.get("http://localhost:5001/api/getflagged")
         .then((res) => {
-            console.log(res.data);
             setFlagged(res.data);
             setBusy(false);
-            console.log(res.data[0].comments[0].flags)
         })
         .catch((err) => {
             console.log(err);
         });
 
-    }, [update]);
+        axios.get("http://localhost:5001/api/getUnAnswered")
+        .then((res) => {
+            setOld(res.data)
+            console.log(res.data)
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+        setRerender(false);
+    }, [update, rerender]);
 
     const deleteComment = (commentId, questionId) => {
-        console.log(commentId)
-        console.log(questionId)
         axios.patch(`http://localhost:5001/api/deleteComment/${commentId}/${questionId}`)
         .then(res =>{
-            console.log(res)
-            setUpdate(prev => !prev)
+            if(res.data) {
+                setRerender(true)
+            }
         })
         .catch(err =>{
             console.log(err)
@@ -45,6 +55,19 @@ const AdminRoute = () => {
 
     const goToQuestion = (e) => { 
         navigate(`/Question/${e}`) 
+    }
+
+    const deleteQuestion = (e) => {
+        console.log(e)
+        axios.patch(`http://localhost:5001/api/deleteQuestion/${e}`)
+        .then(res =>{
+            if(res.data) {
+                setRerender(true)
+            }
+        })
+        .catch(err =>{
+            console.log(err)
+        })
     }
 
   return busy ? null : (
@@ -75,7 +98,18 @@ const AdminRoute = () => {
 
         <h3 className={styles.breakHeading}>Oldest unanswered Questions</h3>
         <div className={styles.flaggedContainer}>
-          {/* Place preview components */}
+            {
+                old.length > 0 &&
+                old.map((i) => 
+                    <UnAnsweredQuestion
+                        key={i._id}
+                        questionTitle={i.title}
+                        askedUser={i.author.username}
+                        onClick={(e) => deleteQuestion(i._id)}
+                        goToQuestion={(e) => goToQuestion(i._id)}
+                    />
+                    )
+            }
         </div>
         <div className={styles.innerCon}>
           <div className={styles.addAdmin}>
