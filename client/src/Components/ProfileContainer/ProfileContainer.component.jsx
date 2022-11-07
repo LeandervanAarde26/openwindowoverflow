@@ -27,11 +27,14 @@ import axios from 'axios';
 import QuestionsContainer from '../QuestionsContainer/QuestionsContainer.component';
 import ArticlesContainer from '../ArticlesContainer/ArticlesContainer.component';
 import { useEffect } from 'react';
+import Article from '../Article/Article.component';
 
 const ProfileContainer = ({image, user, year, score, questions, answers, badges, tags, aboutUser, github, userId, ...otherProps }) => {
     // Context used for Rerender
     const { setCurrentUser } = useContext(RegisterContext);
     const [editState, setEditState] = useState(false)
+    const [articles, setArticles] = useState()
+    const [busy, setBusy] = useState(true)
     // Replace this const with the actual Axios Call
     const listBadges = Userbadges
     // Badges 
@@ -69,6 +72,7 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
             .then(res => {
                 setEditState(prev => !prev);
                 setCurrentUser(userId);
+               
             })
             .catch(err => {
                 console.log(err);
@@ -95,6 +99,19 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
                 : ''
                 )
         ))
+
+        axios.get(`http://localhost:5001/api/findArticleById/${userId}`)
+        .then(res => {
+            setArticles(res.data)
+            console.log(res.data)
+            setBusy(false)
+        })
+        .catch(err => {
+            console.log(err)
+        });
+
+
+
     }, []);
 
     console.log(score)
@@ -270,6 +287,17 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
                     }
                     </div>
                 </div>
+              
+                    <div className={styles.articles}>
+                    <h4>Articles</h4>
+                        {
+                          busy
+                          ?
+                          null
+                          :
+                          articles.map( i => (<Article auth={i.author.username} link={i.link} desc={i.description} />))
+                        }
+                    </div>
             </div>
         </div>
     );
