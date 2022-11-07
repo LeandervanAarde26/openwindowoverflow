@@ -11,9 +11,7 @@ import BadgeContainer from '../BadgeContainer/BadgeContainer.component';
 import Badges from '../Badges/Badges.component';
 import UserReputation from '../UserReputation/UserReputation.component';
 import MyQuestionsAnswers from '../MyQuestionsAnswers/MyQuestionsAnswers.component';
-
 import Input from "../Input/Input.component"
-import Article from '../Article/Article.component';
 /* Icons/Images */
 import Github from "../../Assets/Github.png";
 import Car from "../../Assets/car.jpg";
@@ -34,6 +32,72 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
     // Context used for Rerender
     const { setCurrentUser } = useContext(RegisterContext);
     const [editState, setEditState] = useState(false)
+    // Replace this const with the actual Axios Call
+    const listBadges = Userbadges
+    // Badges 
+
+    // These are the "default form values for the users, So that they can see what the values were before"
+    const [formValues, setFormValues] = useState({
+        username: user,
+        currentStudyYear: year,
+        githubLink: github,
+        userDescription: aboutUser
+    })
+    // These are the default form values for a user that is logged in.
+    const { username, currentStudyYear, githubLink, userDescription } = formValues
+
+    // This will set the state for the UI to update accordingly between being able to update your profile
+    const editInformation = () => {
+        setEditState(prev => !prev)
+    }
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value })
+    }
+
+    const updateInformation = () => {
+        const payload = {
+            username: formValues.username,
+            currentStudyYear: formValues.currentStudyYear,
+            userDescription: formValues.userDescription,
+            githubLink: formValues.githubLink,
+            userImage: image
+        }
+
+        axios.patch(`http://localhost:5001/api/edituser/${userId}`, payload)
+            .then(res => {
+                setEditState(prev => !prev);
+                setCurrentUser(userId);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    const [userQuestions, setUserQuestions] = useState([]);
+    const [userAnswers, setUserAnswers] = useState([]);
+    const [myBadges, setMyBadges] = useState([]);
+    useEffect(() => {
+        axios.get(`http://localhost:5001/api/getUserQuestionsandAnswers/${userId}`)
+        .then(res => {
+            setUserQuestions(res.data.questions);
+            setUserAnswers(res.data.answers);
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+        setMyBadges(
+            listBadges.map((i, index) => (
+                badges.includes(i.title) ?
+                    <Badges key={index} title={i.title} image={i.badgeImage} description={i.badgeDescription} />
+                : ''
+                )
+        ))
+    }, []);
+
+    console.log(score)
 
     return (
         <div className={styles.outer}>
