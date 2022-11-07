@@ -12,9 +12,8 @@ import { RerenderContext } from "../../Contexts/Rerenders.context";
 
 /* Icons/Images */
 import ic_user from '../../Assets/Icons/ic_user.svg';
-import ic_flag from '../../Assets/Icons/ic_flag.svg';
 import ic_bin from '../../Assets/Icons/ic_bin.svg';
-import axios from 'axios';
+
 
 const FlaggedComment = (props) => {
     const navigate = useNavigate()

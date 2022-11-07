@@ -16,6 +16,7 @@ const FollowedTags = () => {
     const [tags, setTags] = useState()
     const [busy, setBusy] = useState(true)
     const {validUser, setValidUser} = useContext(ValidUserContext);
+  
     
     useEffect(() => {
        let user = sessionStorage.getItem("currentUser");
@@ -23,11 +24,10 @@ const FollowedTags = () => {
         if (user != null && validUser) {
             axios.get(`http://localhost:5001/api/individualuser/${user}`)
             .then(res =>{
-                // console.log(res);
                 let data = res.data
         
-                // console.log(data)
-                setTags(res.data.followedTags.map((tag, index) => (<Tags key={index} title={tag}/>)))
+
+                setTags(res.data.followedTags)
                 setBusy(false)
                 
             })
@@ -35,9 +35,12 @@ const FollowedTags = () => {
                 console.log(err)
             })
         }
-    }, []) 
+    }, []);
 
-    // console.log(tags)
+ 
+  
+
+    // onClick={filter}
 
     return(
         busy
@@ -49,7 +52,7 @@ const FollowedTags = () => {
                 Followed tags
             </div>
             <div className={styles.tags}>
-                {tags}
+                {tags.map((tag, index) => (<Tags key={index} title={tag} />))}
             </div>
         </div>
     );
