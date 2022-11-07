@@ -34,127 +34,6 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
     // Context used for Rerender
     const { setCurrentUser } = useContext(RegisterContext);
     const [editState, setEditState] = useState(false)
-<<<<<<< HEAD
-=======
-    const [score, setScore] = useState()
-    const [articles, setArticles] = useState([])
-    // const [busy, setBusy] = useState(true)
-
-<<<<<<< HEAD
->>>>>>> e43dc8a92eb3434e3fe08a4f40bed2fda230f8e5
-=======
->>>>>>> e43dc8a92eb3434e3fe08a4f40bed2fda230f8e5
-    // Replace this const with the actual Axios Call
-    const listBadges = Userbadges
-    // Badges 
-
-    // These are the "default form values for the users, So that they can see what the values were before"
-    const [formValues, setFormValues] = useState({
-        username: user,
-        currentStudyYear: year,
-        githubLink: github,
-        userDescription: aboutUser
-    })
-    // These are the default form values for a user that is logged in.
-    const { username, currentStudyYear, githubLink, userDescription } = formValues
-
-    // This will set the state for the UI to update accordingly between being able to update your profile
-    const editInformation = () => {
-        setEditState(prev => !prev)
-    }
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormValues({ ...formValues, [name]: value })
-    }
-
-    const updateInformation = () => {
-        const payload = {
-            username: formValues.username,
-            currentStudyYear: formValues.currentStudyYear,
-            userDescription: formValues.userDescription,
-            githubLink: formValues.githubLink,
-            userImage: image
-        }
-
-        axios.patch(`http://localhost:5001/api/edituser/${userId}`, payload)
-            .then(res => {
-                setEditState(prev => !prev);
-                setCurrentUser(userId);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }
-
-    const [userQuestions, setUserQuestions] = useState([]);
-    const [userAnswers, setUserAnswers] = useState([]);
-    const [myBadges, setMyBadges] = useState([]);
-    useEffect(() => {
-        axios.get(`http://localhost:5001/api/getUserQuestionsandAnswers/${userId}`)
-<<<<<<< HEAD
-<<<<<<< HEAD
-        .then(res => {
-            // console.log(res)
-            setUserQuestions(res.data.questions);
-            setUserAnswers(res.data.answers);
-        })
-        .catch(err => {
-            console.log(err)
-        })
-
-        console.log(badges)
-        setMyBadges(
-            listBadges.map((i, index) => (
-                badges.includes(i.title) ?
-                    <Badges key={index} title={i.title} image={i.badgeImage} description={i.badgeDescription} />
-                : ''
-                )
-        ))
-    }, []);
-=======
-=======
->>>>>>> e43dc8a92eb3434e3fe08a4f40bed2fda230f8e5
-            .then(res => {
-                // console.log(res)
-                setUserQuestions(res.data.questions);
-                setUserAnswers(res.data.answers);
-                console.log(res.data.answers)
-
-                let questions = res.data.questions.map(i => i.rating)
-                let sumQuestions = questions.reduce((prev, curr, index) => { return prev + curr }, 0)
-
-                let answers = res.data.answers.map(i => i.answers.map(b => b.rating))
-                let sumAnswers = answers.reduce((prev, curr, index) => { return prev + curr }, 0)
-
-                let length = answers.length + questions.length
-                let total = sumAnswers + sumQuestions
-
-                let percentage = Math.floor((total / length) * 100)
-                console.log(percentage)
-
-                setScore(percentage)
-
-            })
-            .catch(err => {
-
-            })
-    }, []);
-
-    useEffect(() => {
-        axios.get(`http://localhost:5001/api/findArticleById/${userId}`)
-            .then(res => {
-                console.log(res)
-                setArticles(res.data)
-
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    },[])
-
-    console.log(score)
->>>>>>> e43dc8a92eb3434e3fe08a4f40bed2fda230f8e5
 
     return (
         <div className={styles.outer}>
@@ -301,7 +180,7 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
 
                     <div className={styles.content}>
                         {
-                            userQuestions.map((x, index) =>
+                            userQuestions.map((x, index) => 
                                 <MyQuestionsAnswers
                                     title={x.title}
                                     votes={x.rating}
@@ -315,38 +194,19 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
                 <div className={styles.answers}>
                     <h4>Answers</h4>
                     <div className={styles.content}>
-                        {
-                            userAnswers.map((x, index) =>
-                                <MyQuestionsAnswers
-                                    title={x.title}
-                                    votes={x.rating}
-                                    answers={x.answers.length}
-                                    resolved={x.resolved}
-                                />
-                            )
-                        }
+                    {
+                        userAnswers.map((x, index) => 
+                            <MyQuestionsAnswers
+                                title={x.title}
+                                votes={x.rating}
+                                answers={x.answers.length}
+                                resolved={x.resolved}
+                            />
+                        )
+                    }
                     </div>
                 </div>
-
-                <div className={styles.articles}>
-                <h4>Articles </h4>
-                {
-                    articles.map(i => (<Article
-                        key={i._id}
-                        heading={i.title}
-                        auth={i.author.username}
-                        link={i.link}
-                        desc={i.description}
-                        likes={i.likes}
-                        liked={i.likesList.includes(userId) ? true : false}
-                    />))
-                }
             </div>
-
-            </div>
-
-
-
         </div>
     );
 };
