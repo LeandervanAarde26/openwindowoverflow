@@ -28,6 +28,25 @@ const {tagName, tagDescription} = formVals
     console.log(formVals)
 
 
+    const handleClick = () =>{
+        let payload = {
+            tag: formVals.tagName,
+            description: formVals.tagDescription
+        }
+
+        axios.post('http://localhost:5001/api/addtag', payload)
+        .then(res =>{
+            console.log(res)
+            setFormVals(defaultVals)
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+    }
+
+
+
+
     return (
         <div className={styles.container}>
             <h3>Create a Tag</h3>
@@ -62,6 +81,7 @@ const {tagName, tagDescription} = formVals
                 <Button
                     buttonType={"primary"}
                     children={"Add tag"}
+                    onClick={handleClick}
                 />
             </div>
         </div>

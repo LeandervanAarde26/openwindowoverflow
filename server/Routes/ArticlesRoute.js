@@ -1,6 +1,8 @@
 const article = require("../models/articleSchema");
 const User = require("../models/userSchema");
 const express = require("express");
+const articleSchema = require("../models/articleSchema");
+const { ObjectId } = require("mongodb");
 const router = express();
 
 // Get All articles
@@ -56,6 +58,22 @@ router.patch("/api/updatearticle/:id", (req, res) => {
     .save()
     .then(() => res.json("Article has been updated!"))
     .catch((err) => res.status(400).json(`Error: ${err}`));
+});
+
+
+router.get('/api/findArticleById/:id', async (req, res) =>{
+    let id = req.params.id;
+
+    const articles = await article.find(
+        { "author._id": { $eq: ObjectId(id) } }
+    );
+
+    if(!articles){
+        return res.status(400).json({msg: "No articles posted by user"})
+    }
+
+   return  res.status(200).json(articles)
+
 })
 
 router.patch("/api/likeArticle/:type", async (req, res) => {

@@ -12,27 +12,43 @@ router.get('/api/getalltags', async (req, res) =>{
 router.post('/api/addtag', async (req, res) =>{
     const {tag, description} = req.body
 
+    console.log(tag)
+    console.log(description)
+
     const checkTag = await tagsSchema.findOne({
         name: tag
     });
 
-    if(checkTag){
-        res.status(401).json({msg: "Tag already exists"})
+    console.log(checkTag)
+
+    if(!checkTag){
+    
+        const newTag = new tagsSchema({
+            name: tag,
+            Description: description
+        })
+    
+        console.log(newTag)
+    
+        try {
+        await newTag.save()
+        .then(res =>{
+           return res.status(200).json(res)
+        })
+        .catch(err =>{
+            // return res.status(200).json(res)
+           return res.status(401).json("Could not be added" + err)
+        }) 
+        } catch (error) {
+            console.log(err)
+        }
+        // console.log(newTag)
     }
 
-    const newTag = new tagsSchema({
-        name: tag,
-        description: description
-    })
-
-    if(!newTag){
-        res.status(400).json({msg: "Tag could not be added"})
-    }
-
-    await newTag()
+    res.status(400).json({msg: "Tag already exists"})
 
 
-    res.status(200).jsppn(newTag)
+
 
 })
 
