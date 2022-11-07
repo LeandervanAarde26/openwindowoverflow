@@ -40,6 +40,9 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
     const [articles, setArticles] = useState([])
     // const [busy, setBusy] = useState(true)
 
+<<<<<<< HEAD
+>>>>>>> e43dc8a92eb3434e3fe08a4f40bed2fda230f8e5
+=======
 >>>>>>> e43dc8a92eb3434e3fe08a4f40bed2fda230f8e5
     // Replace this const with the actual Axios Call
     const listBadges = Userbadges
@@ -90,6 +93,7 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
     useEffect(() => {
         axios.get(`http://localhost:5001/api/getUserQuestionsandAnswers/${userId}`)
 <<<<<<< HEAD
+<<<<<<< HEAD
         .then(res => {
             // console.log(res)
             setUserQuestions(res.data.questions);
@@ -109,6 +113,8 @@ const ProfileContainer = ({image, user, year, score, questions, answers, badges,
         ))
     }, []);
 =======
+=======
+>>>>>>> e43dc8a92eb3434e3fe08a4f40bed2fda230f8e5
             .then(res => {
                 // console.log(res)
                 setUserQuestions(res.data.questions);

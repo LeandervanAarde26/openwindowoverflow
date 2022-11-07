@@ -587,6 +587,7 @@ const Question = () => {
             </div>
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 busy 
                 ?
                     null
@@ -595,6 +596,8 @@ const Question = () => {
                         simliliar={sim}
                         questionid = {questionId.questionId}
 =======
+=======
+>>>>>>> e43dc8a92eb3434e3fe08a4f40bed2fda230f8e5
                 busy
                     ?
                     null
@@ -602,6 +605,9 @@ const Question = () => {
                     <RightContainer
                         simliliar={sim}
                         questionid={questionId.questionId}
+<<<<<<< HEAD
+>>>>>>> e43dc8a92eb3434e3fe08a4f40bed2fda230f8e5
+=======
 >>>>>>> e43dc8a92eb3434e3fe08a4f40bed2fda230f8e5
                     />
             }
