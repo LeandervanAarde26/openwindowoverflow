@@ -10,6 +10,57 @@ const router = express();
 var mongoose = require('mongoose');
 const { ObjectId } = require('mongodb');
 
+router.patch('/api/resolveQuestion', async (req, res) => {
+    let {answerId, userId, questionId, answerUser} = req.body;
+    console.log(req.body)
+    
+    const answeredUser = await User.findOne({
+        _id: answerUser
+    }).select('username')
+
+    const question = await Question.updateOne({
+        _id: questionId,
+        "answers._id": answerId
+    }, {
+        $set: {
+            answeredBy: {
+                _id: answeredUser._id,
+                username: answeredUser.username,
+                date: new Date()
+            },
+            resolved: true,
+            'answers.$.resolved': true
+        }
+    })
+
+    if(!question){
+        return res.status(400).json({msg: 'Question could not be marked as resolved'})
+    } else {
+        return res.send(true)
+    }
+});
+
+router.patch('/api/unResolveQuestion', async (req, res) => {
+    let {answerId, questionId} = req.body;
+
+    const question = await Question.updateOne({
+        _id: questionId,
+        "answers._id": answerId
+    }, {
+        $set: {
+            answeredBy: {},
+            resolved: false,
+            'answers.$.resolved': false
+        }
+    })
+
+    if(!question){
+        return res.status(400).json({msg: 'Question could not be marked as resolved'})
+    } else {
+        return res.send(true)
+    }
+});
+
 
 router.post('/api/askquestion', async (req, res) => {
     let { title, author, question, code, tags, Images } = req.body;
@@ -21,13 +72,7 @@ router.post('/api/askquestion', async (req, res) => {
 
     author = user
 
-    const answeredUser = await User.findOne({
-        _id: author
-    }).select('username')
-
-    let answeredBy = answeredUser;
-
-    const doc = new Question({ title, author, question, code, tags, Images, answeredBy });
+    const doc = new Question({ title, author, question, code, tags, Images });
     await doc.save();
 
     res.send(doc._id);

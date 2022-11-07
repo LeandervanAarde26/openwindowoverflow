@@ -11,7 +11,9 @@ import Icon from "../Icon/Icon";
 import Button from "../Button/Button.component";
 
 /* Icons/Images */
+import ic_correct from "../../Assets/Icons/ic_correct.svg";
 import ic_arrow from "../../Assets/Icons/ic_arrow.svg";
+import ic_correct_answer from "../../Assets/Icons/ic_correct_answer.svg";
 import CodePreview from "../CodePreview/CodePreview.component";
 import { useEffect } from "react";
 import axios from "axios";
@@ -46,11 +48,20 @@ const onChange = (e) => {
                     </div>
             </div>
 
-            <div className={styles.code}>
-                <CodePreview
-                    children={props.code}
-                />
+            <div className={styles.answerContainer}>
+                { props.correct &&
+                    <Icon
+                        icon={ic_correct_answer}
+                    />
+                }
+
+                <div className={styles.code}>
+                    <CodePreview
+                        children={props.code}
+                    />
+                </div>
             </div>
+
 
             {
                 props.answerImage === "" || !props.answerImage
@@ -63,15 +74,27 @@ const onChange = (e) => {
             }
 
             {
-                !props.answered &&                
+                !props.answered && props.owner ?         
                 <div className={styles.bottom}>
                     <h6>Did this answer your question? </h6>
 
                     <Button 
                         children={"Mark as resolved"} 
-                        buttonType={"primary"} 
+                        buttonType={"primary"}
+                        onClick={props.markResolved}
                     />
                 </div>
+                : props.owner && props.answered ?
+                <div className={styles.bottom}>
+                    <h6>Did this answer your question? </h6>
+
+                    <Button 
+                        children={"Mark as un-resolved"} 
+                        buttonType={"primary"}
+                        onClick={props.markUnResolved}
+                    />
+                </div>
+                : ''
             }
         </div>
     );

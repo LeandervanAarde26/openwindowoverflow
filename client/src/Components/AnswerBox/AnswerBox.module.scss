@@ -52,11 +52,25 @@
         word-wrap: break-word;
     }
 
-    .code {
-        @include headingSix();
-        border: 1px solid $orange;
-        color: $black;
+    .answerContainer {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        svg {
+            *[fill] {
+                fill: $success;
+            }
+        }
+
+        .code {
+            width: 100%;
+            @include headingSix();
+            border: 1px solid $orange;
+            color: $black;
+        }
     }
+
 
     .imageCon{
         max-width: 100%;
