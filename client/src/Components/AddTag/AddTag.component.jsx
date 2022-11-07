@@ -6,6 +6,7 @@ import { useState } from 'react';
 import FollowedTags from '../FollowedTagsComponent/FollowedTags.component';
 import FollowableTags from "../FollowableTags/FollowableTags.component"
 import Button from '../Button/Button.component';
+import axios from 'axios';
 
 const defaultVals = {
     tagName: '',

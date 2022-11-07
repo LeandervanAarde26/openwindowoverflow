@@ -102,7 +102,8 @@ const ProfileContainer = ({ image, user, year, questions, answers, badges, tags,
             let length = answers.length + questions.length
             let total = sumAnswers + sumQuestions
 
-            let percentage = (total / length) * 100
+            let percentage = Math.floor((total / length) * 100)
+            console.log(percentage)
 
             setScore(percentage)
            
