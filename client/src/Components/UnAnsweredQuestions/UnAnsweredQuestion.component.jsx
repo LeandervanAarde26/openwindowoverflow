@@ -1,6 +1,5 @@
 /* React */
 import React, {useContext} from 'react';
-import { useNavigate } from 'react-router';
 
 /* Styling */
 import styles from './UnAnsweredQuestion.module.scss';
@@ -17,8 +16,6 @@ import ic_bin from '../../Assets/Icons/ic_bin.svg';
 import axios from 'axios';
 
 const UnAnsweredQuestion = (props) => {
-    const navigate = useNavigate()
-    const { update, setUpdate } = useContext(RerenderContext);
 
     return (
         <div className={styles.container}>

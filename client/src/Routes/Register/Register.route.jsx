@@ -118,7 +118,6 @@ const Register = () => {
                 setCurrentUser(payload);
                 navigate("/Choosetags");
             }
-            console.log(isEmpty)
         }
     };
 

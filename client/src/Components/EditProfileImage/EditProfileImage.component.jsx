@@ -1,11 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Button from '../Button/Button.component';
 import styles from "./EditProfileImage.module.scss"
 import ProfileCard from '../Profile/ProfileCard';
 const EditProfileImage = ({images, changeImage, selected, closeModal, selectImage}) => {
-    const [userImage, setUserImage] = useState()
-
-
 
     return (
         <div className={styles.modalContainer}>

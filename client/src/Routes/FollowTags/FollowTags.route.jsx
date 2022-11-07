@@ -20,7 +20,7 @@ import RegComplete from "../../Components/RegCompleteModal/RegComplete.component
 
 
 const FollowTags = () => {
-    const navigate = useNavigate();
+
     const { validUser, setValidUser } = useContext(ValidUserContext);
     const [tag, setTags] = useState();
     const { removeFromTags, tags, currentUser, setCurrentUser } = useContext(RegisterContext);

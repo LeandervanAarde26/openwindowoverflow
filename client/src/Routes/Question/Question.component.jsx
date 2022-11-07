@@ -14,9 +14,8 @@ import RightContainer from '../../Components/RightContainer/RightContainer.compo
 import SideNavigation from '../../Components/sideNavigation/SideNavigation.component';
 import AnswerBoxComponent from '../../Components/AnswerBox/AnswerBox.component';
 import axios from 'axios';
-import image from "../../Assets/DefaultProfileImages/Default5.png"
 /* Icons/Images */
-import tester from "../../Assets/code.png"
+
 import AWS from "aws-sdk"
 
 // Default form values for the answer
@@ -91,11 +90,6 @@ const Question = () => {
     useEffect(() => {
         let user = sessionStorage.getItem('currentUser')
         setUserId(user)
-
-        axios.get('http://localhost:5001/api/test')
-            .then(res => {
-                console.log(res)
-            })
 
         axios.get('http://localhost:5001/api/question/' + questionId.questionId)
             .then(res => {
@@ -480,8 +474,6 @@ const Question = () => {
     }
 
     const markAsUnResolved = (answerId, answerById) => {
-        console.log(answerId)
-        console.log(answerById)
         let data = {
             answerId: answerId,
             userId: userId,

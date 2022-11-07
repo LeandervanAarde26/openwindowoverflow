@@ -4,7 +4,6 @@ import SideNavigation from "../../Components/sideNavigation/SideNavigation.compo
 import RightContainer from "../../Components/RightContainer/RightContainer.component";
 import FlaggedComment from "../../Components/FlaggedComment/FlaggedComment.component";
 import UnAnsweredQuestion from "../../Components/UnAnsweredQuestions/UnAnsweredQuestion.component";
-import Preview from "../../Components/Preview/Preview.component";
 import axios from "axios";
 import { RerenderContext } from "../../Contexts/Rerenders.context";
 import AddAdmin from "../../Components/AddAdmin/AddAdmin.component";

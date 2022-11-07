@@ -24,18 +24,17 @@ const Login = () => {
     const navigate = useNavigate()
     const [error, setError] = useState(false)
     const [authErr, setAuthErr] = useState(false)
-    const [passwordError, setpasswordError] = useState(false)
     const [clickable, setClickable] = useState(true);
-    const {setCurrentUser, currentUser} = useContext(RegisterContext)
+    const { setCurrentUser, currentUser } = useContext(RegisterContext)
 
     const Register = () => {
         navigate("/register")
     }
 
-    const forget = () =>{
+    const forget = () => {
         navigate("/forgotpassword")
     }
-    
+
     useEffect(() => {
         document.title = "Sign In"
     }, [])
@@ -47,9 +46,9 @@ const Login = () => {
         const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         let correctEmail = value.includes("@openwindow.co.za") || value.includes("@virtualwindow.co.za");
         // Check if the correct email is supplied by checking it against the regex
-        if(name === "email"){
+        if (name === "email") {
             const emailCheck = emailRegex.test(value);
-                
+
             if (value.length > 3) {
                 if (emailCheck && correctEmail) {
                     setError(false);
@@ -66,24 +65,24 @@ const Login = () => {
         setFormValues({ ...formValues, [name]: value });
     }
 
-    const signInUser = (e) =>{
-        let payload ={
+    const signInUser = (e) => {
+        let payload = {
             email: formValues['email'].trim(),
             password: formValues['password'].trim(),
         }
 
         axios.post('http://localhost:5001/api/loginuser', payload)
-        .then(res =>{
-            navigate("/home")
-            setCurrentUser({userId: res.data._id, username: res.data.username})
-            console.log(res.data._id);
-            sessionStorage.setItem("currentUser", res.data._id)
-            sessionStorage.setItem("userName", res.data.username)
-        })
-        .catch(err =>{
-            console.log(err)
-            setAuthErr(true)
-        })
+            .then(res => {
+                navigate("/home")
+                setCurrentUser({ userId: res.data._id, username: res.data.username })
+                console.log(res.data._id);
+                sessionStorage.setItem("currentUser", res.data._id)
+                sessionStorage.setItem("userName", res.data.username)
+            })
+            .catch(err => {
+                console.log(err)
+                setAuthErr(true)
+            })
     }
 
     return (
@@ -115,8 +114,8 @@ const Login = () => {
                 </form>
 
                 {
-                    clickable 
-                    ?
+                    clickable
+                        ?
                         <>
                             <Button
                                 buttonType={'black'}
@@ -127,15 +126,8 @@ const Login = () => {
                             <p className={styles.reset} onClick={forget}>Forgot password</p>
 
                             <p className={styles.option}>Don't have an Account?<span onClick={Register} className={styles.option2}> Sign Up</span></p>
-
-                            {/* <Button
-                                buttonType={'secondary'}
-                                children={'Sign Up'}
-                                buttonSize={styles.secondary}
-                                onClick={Register}
-                            /> */}
                         </>
-                    :
+                        :
                         null
                 }
             </div>

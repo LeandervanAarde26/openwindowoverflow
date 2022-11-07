@@ -26,10 +26,8 @@ const AddArticle = () => {
             title: newValues.title,
             link: newValues.link
         }
-        console.log(payload)
         axios.post(`http://localhost:5001/api/addarticles/${user}`, payload)
             .then(res => {
-                console.log(res)
                 setNewValues(defaultVals)
             })
             .catch(err => {

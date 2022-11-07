@@ -11,7 +11,7 @@ import BadgeContainer from '../BadgeContainer/BadgeContainer.component';
 import Badges from '../Badges/Badges.component';
 import UserReputation from '../UserReputation/UserReputation.component';
 import MyQuestionsAnswers from '../MyQuestionsAnswers/MyQuestionsAnswers.component';
-import MyQuestionsAnswersContainer from '../MyQuestionsAnswersContainer/MyQuestionsAnswersContainer.component';
+
 import Input from "../Input/Input.component"
 import Article from '../Article/Article.component';
 /* Icons/Images */

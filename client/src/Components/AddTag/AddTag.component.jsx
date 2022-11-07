@@ -24,22 +24,15 @@ const AddTag = () => {
         let { name, value } = e.target
         setFormVals({ ...formVals, [name]: value })
     }
-    console.log(formVals)
-
-
-    // name:{
-    // Description:{
-
-
+  
     const postNewTag = () => {
         let payload = {
             name: formVals.tagName,
             description: formVals.tagDescription
         }
-        console.log(payload)
         axios.post(`http://localhost:5001/api/addTag/`, payload)
             .then(res => {
-                console.log(res)
+                
             })
             .catch(err => {
                 console.log(err)

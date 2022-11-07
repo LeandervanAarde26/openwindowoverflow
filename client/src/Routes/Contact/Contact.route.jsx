@@ -10,10 +10,7 @@ import ContactCard from "../../Components/Contact/ContactCard";
 import AnswerBoxComponent from "../../Components/AnswerBox/AnswerBox.component";
 // import AnswerBoxComponent from "../../Components/AnswerBox/AnswerBox.component";
 import RightContainer from "../../Components/RightContainer/RightContainer.component";
-import ArticlesContainer from "../../Components/ArticlesContainer/ArticlesContainer.component";
-import { useState } from "react";
-import { useLocation } from "react-router";
-import QuestionsContainer from "../../Components/QuestionsContainer/QuestionsContainer.component";
+
 // admin images
 import mike from "../../Assets/AdminImages/mikeProfile.png";
 import armand from "../../Assets/AdminImages/armandProfile.png";
@@ -29,8 +26,6 @@ import vian from "../../Assets/AdminImages/vian.jpg";
 import liam from "../../Assets/AdminImages/liam.png";
 
 export default function Contact() {
-  const [currentLocation, setCurrentLocation] = useState();
-  const pathName = useLocation();
   return (
     <div className={styles.container}>
       <SideNavigation />

@@ -10,7 +10,6 @@ import { RegisterContext } from '../../Contexts/Register.context';
 
 /* Components */
 import Button from '../Button/Button.component';
-import Tags from '../Tags/Tags.component';
 
 const FollowableTags = ({ tag, number, today, desc, }) => {
     const {addtoTags} = useContext(RegisterContext)
