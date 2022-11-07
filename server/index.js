@@ -15,7 +15,7 @@ const uri = process.env.DB_CONNECTION;
 // const db = mongoose.connection.useDb('dbname')
 
 //app.use
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "http://localhost:3001" }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(userRouter);
