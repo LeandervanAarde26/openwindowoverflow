@@ -34,10 +34,10 @@ const Newpassword = () => {
     } else{
         let payload = {password: values.password}
         console.log(id);
-        axios.post(`http://localhost:5001/api/passreset/${id}`, payload)
+        axios.patch(`http://localhost:5001/api/passreset/${id}`, payload)
         .then(res => {
             console.log(payload)
-            console.log(res)
+            console.log(res.data)
             // navigate("/")
             // setOpenModal(prev => !prev)
         })

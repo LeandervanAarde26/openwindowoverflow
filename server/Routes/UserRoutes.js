@@ -7,6 +7,7 @@ const nodeMailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 const { isValidObjectId } = require('mongoose');
 const { ObjectId } = require('mongodb');
+const { findOneAndUpdate } = require('../models/userSchema');
 
 // Login the user
 // http://localhost:5001/api/loginuser
@@ -23,15 +24,14 @@ router.post('/api/loginuser', async (req, res) => {
         return res.status(404).json({ msg: 'User does not exist' });
     }
 
-
     const correctPassword = await user.comparePassword(password);
-        
+
     console.log(user.password)
     if (!correctPassword) {
-        // console.log("Correct" , correctPassword)
+        console.log("Correct", correctPassword)
         // console.log("Your", password)
-        return res.status(404).json({ msg: 'User does not exist' });
-    } 
+        return res.status(404).json({ msg: 'User does not exist2' });
+    }
 
     if (!user.activeAccount) {
         return res.status(400).json({ msg: "The user account is not verified!" })
@@ -464,29 +464,50 @@ router.post('/api/resetpassword', async (req, res) => {
 });
 
 
-router.post('/api/passreset/:id', async (req, res) => {
+router.patch('/api/passreset/:id', async (req, res) => {
     const { password } = req.body
+    const  userId  = req.params.id;
 
-    const editUser = await userSchema.findOneAndUpdate(
-        { _id: req.params.id},
-        {
-            $set: {
-                password: password
-            },
-        }
-    ).select(["username", "password", "email"])
+    const user = await userSchema.findOne({
+        _id: userId
+    })
 
-    if (!editUser) {
-        res.status(400).json({ msg: "Something went wrong in the update, please try again", user: NaN })
+    if (!user) {
+        res.status(400).json({ msg: 'user has not been found' })
     }
 
-    // console.log(editUser)
+    console.log(user)
 
-    // await editUser.save()
-    res.status(200).json({ msg: "User has been updated", user: editUser })
+    try {
+        const decryptedToken = jwt.verify(
+            user.userToken,
+            process.env.SECRET_TOKEN
+        );
+        const authenticateduser = await userSchema.findOne({
+            _id: userId,
+            username: decryptedToken.username,
+            email: decryptedToken.email,
+        });
 
-})
+        console.log(decryptedToken)
+        const salt = await bcrypt.genSalt(10);
+        const hashPass = await bcrypt.hash(password, salt);
 
+        if (authenticateduser) {
+            const updated = await userSchema.updateOne(
+                { _id: req.params.id },
+                { $set: { password: hashPass } }
+            )
+        } else {
+            res.status(400).json({ msg: "Not working" })
+        }
+
+        res.status(200).jsonp({msg: "All good"})
+    } catch (error) {
+        res.json({ success: false, msg: "Invalid Token" });
+    }
+
+});
 
 //Add an admin
 
