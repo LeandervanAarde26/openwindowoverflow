@@ -13,7 +13,7 @@ const defaultValues = {
 const ForgotPassword = () => {
 
     const [values, setValues] = useState(defaultValues)
-    const { email} = values
+    const { email } = values
     const [error, setError] = useState(false);
     const [clickable, setClickable] = useState(true);
     const navigate = useNavigate()
@@ -44,18 +44,22 @@ const ForgotPassword = () => {
         }
     }
 
-    const resetPassword = () =>{
-        let payload = {email: values.email}
+    const resetPassword = () => {
+        let payload = { email: values.email }
 
         axios.post('http://localhost:5001/api/resetpassword', payload)
-        .then(res => {
-            console.log(payload)
-            console.log(res)
-            // setOpenModal(prev => !prev)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(res => {
+                console.log(payload)
+                console.log(res)
+                // setOpenModal(prev => !prev)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    const goHome = () => {
+        navigate("/")
     }
 
     console.log(values)
@@ -83,11 +87,14 @@ const ForgotPassword = () => {
                     {
                         clickable
                             ?
-                            <Button
-                                buttonType={'primary'}
-                                children={'Reset Password'}
-                                onClick={resetPassword}
-                            />
+                            <a href='https://mail.google.com/mail/u/0/#inbox'>
+                                <Button
+                                    buttonType={'primary'}
+                                    children={'Reset Password'}
+                                    onClick={resetPassword}
+                                />
+                            </a>
+
                             :
                             null
                     }
@@ -95,6 +102,7 @@ const ForgotPassword = () => {
                     <Button
                         buttonType={'outline'}
                         children={'Go Back'}
+                        onClick={goHome}
                     />
                 </div>
 

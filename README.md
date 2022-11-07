@@ -21,7 +21,7 @@
   </a>
 <!-- https://drive.google.com/file/d/19JkfDgvGLzHQ1AVMvgv9rLTFR0HzJBVq/view?usp=sharing -->
   
-  <h3 align="center">Fika sneakers ecommerce</h3>
+  <h3 align="center">OpenOverflow</h3>
 
   <p align="center">
 This project is an ecommerce web application where users can view, choose and buy a different range of sneakers, this application also has an admin section that can edit stock and orders. 
@@ -72,15 +72,15 @@ This project is an ecommerce web application where users can view, choose and bu
 
 ### Project Description
 
-Welcome to Fika Clothing! This project was an introduction into a full MERN Stack project, using Express, Node, Mongo, React, Mongoose as the main technologies for this project. This is an e-commerce application that focuses on Sneaker sales, this project allows users to create accounts, view and order sneakers. It also has an aspect that allows admins to manage the inventory of the entire application
+As a team we were expected to build a full MERN stack application similar to Stack Overflow which would be used for the next generation of Open Window Development students. This application will allow students to post development based questions and answers, vote for the best solutions and earn points which will be benificial to their profile through badges, trophies and status.  
 
 ### Built With
 * [SASS](https://sass-lang.com/)
 * [React](https://reactjs.org/)
-* [MongoDb Atlas](https://www.mongodb.com/)
+* [Node]
 * [Express](https://expressjs.com/)
-* [Axios](https://axios-http.com/docs/intro)
-* [Amazon AWS(S3 Buckets)](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Categories=categories%23storage&trk=66264cd8-3b73-416c-9693-ea7cf4fe846a&sc_channel=ps&s_kwcid=AL!4422!3!536455883963!e!!g!!aws%20s3%20cloud%20storage&ef_id=Cj0KCQjw08aYBhDlARIsAA_gb0ex45Ax3vWHQEi4xufEh342SikQIAlQKww1ZY4NFVuiJv2z-zfy_3caAlc1EALw_wcB:G:s&s_kwcid=AL!4422!3!536455883963!e!!g!!aws%20s3%20cloud%20storage&awsf.Free%20Tier%20Types=*all)
+* [MongoDB]
+* [Amazon AWS (S3 Buckets)](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Categories=categories%23storage&trk=66264cd8-3b73-416c-9693-ea7cf4fe846a&sc_channel=ps&s_kwcid=AL!4422!3!536455883963!e!!g!!aws%20s3%20cloud%20storage&ef_id=Cj0KCQjw08aYBhDlARIsAA_gb0ex45Ax3vWHQEi4xufEh342SikQIAlQKww1ZY4NFVuiJv2z-zfy_3caAlc1EALw_wcB:G:s&s_kwcid=AL!4422!3!536455883963!e!!g!!aws%20s3%20cloud%20storage&awsf.Free%20Tier%20Types=*all)
 
 <!-- GETTING STARTED -->
 <!-- Make sure to add appropriate information about what prerequesite technologies the user would need and also the steps to install your project on their own mashines -->
@@ -115,11 +115,9 @@ Run the following in the command-line to install all the required dependencies:
 
 4. No API keys are required
 
-5. Ensure that you have a MongoDB database setup that follows the structure of the JSON file inside of the project. 
+5. Ensure that Nodemon, Express and Mongo are installed as dependancies   </br>
 
-6. Ensure that Nodemon, Express and Mongo are installed as dependancies   </br>
-
-7. Place "dev" in package.json and to start the back end run the following in your terminal (ensure that code is running on port 5002) </br>
+6. Place "dev" in package.json and to start the back end run the following in your terminal (ensure that code is running on port 5002) </br>
    ```sh
    npm run dev 
    ```
@@ -134,28 +132,31 @@ Run the following in the command-line to install all the required dependencies:
 ![image2](https://drive.google.com/uc?export=view&id=1oXXHJ75UTolK1Fx_yzHC1fjD-p1j339l)
 
 
-### See all the newest products and featured brands! 
-On the home page all users can see the 10 latest products that have been added onto the database, thus the "newest products". Underneath users will be able to view the Featured brands that Fika offers! 
+### User Profile Management
+The users are able to login, register, authenticate, validate, logout and delete their accounts. User data will be protected by using Bcrypt or a similar level of password hashing and all users must have a valid Open Window email adress to register and an avatar must be selected.
 
-### Filter all products
-Users can filter all their products on the all products page to see specific brands or sort in a certain manner eg. Highest - Lowest (price). 
+### User Profile and Achievements
+Each user has a profile which shows thier past questions, answers and their score. Based on the upvotes and downvotes, users accure and lose their points.Badges, trophies and status is based on the acuured points each user achieves.
 
-### Search Products
-Looking for a specific product? Fika has a searchbar that allows users to search for any available product that Fika has on the website. 
+### Admin Rights
+The user permission allows admins to monitor questions and answers, and allows them to delete any irrelevant qestions or answers.
 
-### View your cart at any time!
-View all the items in your cart that you have bought! Cart will dynamically update everytime you add an item into it, this will clear once you have purchased, refreshed the application
+### User Security and Registration
+As previously explained all passwords are hashed to comply with safety requirements and email authentication and password resets are also made available to the ussers.
 
 ![image3](https://drive.google.com/uc?export=view&id=1Y0L1dj2CV-1NOcrBL5Z2-uU_7vW-SSoG)
 
-### Like what you see? view it and review it on the individual product page
-Fika has an individual product page that holds 4 images of each product so that users can view it from every angle, colours are also visually showcased along with the sizes, discount and it will show if the shoe is in stock or not. If you are not sure about the shoe, take a look at the reviews and decide for yourself :D. Users also have the opportunity to leave a review and view other shoes on the site
+### Questions
+The user is able to post questions which contain a text box, image upload for the screenshots, and a block for code snippets. A voting system is put in place where other users are able to vote the quality of the question asked. In order to filter through the questions they must consist of a title, description and tags allowing the top rated questions to be placed at the top of the questions page.
 
-### Dont have an account? Sign up!
-Fika has an account system that will allow users to login/out of their accounts or sign up if they don't have an account. Viewers will only be able to add to their cart once they are logged in. 
+### Answers
+The user is able to post answers which also contains a text box, image upload for any screenshots, and a block for code snippets. A voting system is put in place in order for other users to vote on the quality of the answers
 
-### All managed, in one place
-Admin page has been provided so that admins can edit/view update and delete stock. Admins can also dispatch any orders that have been placed. 
+### Articles
+Part of signing up, the user will have to choose certain tags to follow which they might be interested in. The recommended articles will be listed in the articles page based on the tags the user has selected. Through this the users are able to filter through all the tags, follow any new tags which they find interesting and "like" any of the tags they deemed helpful or insightful.
+
+### Search and Results
+The users are able to filter through and search for questions and the results are displayed on the results page.
 
 <!-- CONCEPT PROCESS -->
 <!-- Briefly explain your concept ideation process -->
@@ -172,7 +173,7 @@ Throughout the conceptual process of this application , I had started taking mor
 
 ![image7](https://drive.google.com/uc?export=view&id=1DyQ1Odspv3moaKG0TD8eC-hrzH0jjZea)
 ### Wireframes
-Wireframing was one of the most important aspects of this project, I wanted to create an application that was pleasing to the viewer and that functioned well. Wireframing was the most time consuming aspect of this project considering that I had also created designs for this project beforehand. 
+As part of the ideation process, Figma helped the wireframing process as it was a crucial part to determining all the important information for the project and to ensure that everything is displayed in a creative yet functional manner.
 ![image6](https://drive.google.com/uc?export=view&id=1eVpD0UuiBSgq_hDE1oaZLEW4iznOIikz)
 ![image8](https://drive.google.com/uc?export=view&id=1vKAs1lwSBQbaV_Wxx5T8lO3aFgWFiU4G)
 ![image9](https://drive.google.com/uc?export=view&id=1FtlZz4_vqHLaMjifonwUaHfShA7czli8)

@@ -450,7 +450,7 @@ router.post('/api/resetpassword', async (req, res) => {
     const mailInformation = {
         from: '"OpenOverflow welcome" <welcome@openoverflow.com>',
         to: user.email,
-        subject: "Welcome! Let's verify!",
+        subject: "Password Reset!",
         html: mailContent
     }
 
