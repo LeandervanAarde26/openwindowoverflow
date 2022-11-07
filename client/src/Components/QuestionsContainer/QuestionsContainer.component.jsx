@@ -1,20 +1,36 @@
 /* React */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 /* Styling */
 import styles from "./QuestionsContainer.module.scss";
 /* Components */
 import Preview from "../Preview/Preview.component";
-import IntroductionHome from "../IntroductionHome/IntroductionHome.component";
 import Button from "../Button/Button.component"
+import { ValidUserContext } from "../../Contexts/Register.context";
 
 const QuestionsContainer = () => {
   const [questions, setQuestions] = useState([]);
   const navigate = useNavigate();
+  const [tags, setTags] = useState([])
+  const {validUser, setValidUser} = useContext(ValidUserContext);
+  const [active, setActive] = useState()
+  const [prev, setPrev] = useState()
+
   const ask = (e) =>{
     navigate('/question/ask')
   }
+  const [arr, setArr] = useState([])
+
+//   const filter = (e) =>{
+//     var arry = [];
+//      let el = e.target.innerText
+    
+//      const exists = arr.find(i => i === el);
+//      if(!exists){
+//         setArr( arr => [...arr, el] );
+//      }
+    
 
   useEffect(() => {
     axios.get('http://localhost:5001/api/questions')
@@ -38,17 +54,49 @@ const QuestionsContainer = () => {
         console.log(data);
 
         setQuestions(data);
+        setPrev(data)
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
+  useEffect(() => {
+    let user = sessionStorage.getItem("currentUser");
+
+     if (user != null && validUser) {
+         axios.get(`http://localhost:5001/api/individualuser/${user}`)
+         .then(res =>{
+             let data = res.data
+             setTags(res.data.followedTags)
+             
+         })
+         .catch(err =>{
+             console.log(err)
+         })
+     }
+ }, []);
+ 
+
+ const findIt = (e) =>{
+  setQuestions(prev)
+  setActive(e.target.value)
+ 
+  const FilteredItems = questions.filter(item => item.tags.includes(e.target.value))
+  setQuestions(FilteredItems)
+ }
+
+ console.log(questions)
 
   return (
     <div className={styles.outer}>
       <div className={styles.top}>
         <h3>Questions</h3>
+        <select  onChange={findIt}>
+            {
+              tags.map(i => <option value={i}>{i.toUpperCase()}</option>)
+            }
+        </select>
         <Button
           buttonType={'primary'}
           children={'ask question'}

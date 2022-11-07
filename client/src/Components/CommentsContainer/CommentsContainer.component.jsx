@@ -5,9 +5,8 @@ import React from 'react';
 import styles from "./CommentsContainer.module.scss";
 
 /* Components */
-import Comment from '../Comment/Comment.component';
 import Button from '../Button/Button.component';
-import Input from "../../Components/Input/Input.component"
+
 
 const CommentsContainer = ({ children, loadMore, commentEnd, commentable, comval, activeComment, post,  ...otherProps }) => {
     return (

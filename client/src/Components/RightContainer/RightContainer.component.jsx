@@ -1,13 +1,11 @@
 /* React */
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { useNavigate } from "react-router";
 /* Styling */
 import styles from "./RightContainer.module.scss";
 
 /* Components */
 import Button from "../Button/Button.component";
-import AdSenseContainer from "../AdSenseContainer/AdSenseContainer.component";
 import FollowedTags from "../FollowedTagsComponent/FollowedTags.component";
 import TopRatedQuestion from "../TopRatedQuestion/TopRatedQuestion.component";
 
