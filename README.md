@@ -17,19 +17,19 @@
 <p align="center">
 
   <a href="https://github.com/LeandervanAarde/fikaclothing">
-    <img src="https://drive.google.com/uc?export=view&id=1MEy6V-tVrd3FkTM24YOaSwcs_qLEA0KU" alt="Logo" width="140">
+    <img src="https://drive.google.com/uc?export=view&id=1xBr2NxxFOauw1FDt6jiUYLSzXYuUIRNr" alt="Logo" width="140">
   </a>
 <!-- https://drive.google.com/file/d/19JkfDgvGLzHQ1AVMvgv9rLTFR0HzJBVq/view?usp=sharing -->
   
   <h3 align="center">OpenOverflow</h3>
 
   <p align="center">
-This project is an ecommerce web application where users can view, choose and buy a different range of sneakers, this application also has an admin section that can edit stock and orders. 
+    Q&A web application using the MERN Stack , this application focuses on developers and any questions that they may have!  
     <br />
-    <!--<p align="center"> Find the official website for the Center of Diabetes and Endocrinology : <a href="https://www.cdediabetes.co.za/"> here</a> </p> -->
    <br />
    <br />
-[View Demonstration](https://drive.google.com/uc?export=view&id=1cNGq8l3L4jkYujGfNEWfyXQMHyyK0_H3)
+     ·
+ <a href="https://github.com/LeandervanAarde/fikaclothing/issues">Video Demonstration</a>
    <!-- INSERT UP UP -->
     ·
     <a href="https://github.com/LeandervanAarde/fikaclothing/issues">Report Bug</a>
@@ -67,7 +67,7 @@ This project is an ecommerce web application where users can view, choose and bu
 ## About the Project
 <!-- header image of project -->
 
-<!-- https://drive.google.com/file/d/1oXXHJ75UTolK1Fx_yzHC1fjD-p1j339l/view?usp=sharing -->
+![image10](https://drive.google.com/uc?export=view&id=1gjF5p5_3KW6-6Y_V9EfYmxCaH4n7qSX9)
 
 
 ### Project Description
@@ -77,9 +77,9 @@ As a team we were expected to build a full MERN stack application similar to Sta
 ### Built With
 * [SASS](https://sass-lang.com/)
 * [React](https://reactjs.org/)
-* [Node]
+* [Node](https://nodejs.org/en/)
 * [Express](https://expressjs.com/)
-* [MongoDB]
+* [MongoDB](https://www.mongodb.com/)
 * [Amazon AWS (S3 Buckets)](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Categories=categories%23storage&trk=66264cd8-3b73-416c-9693-ea7cf4fe846a&sc_channel=ps&s_kwcid=AL!4422!3!536455883963!e!!g!!aws%20s3%20cloud%20storage&ef_id=Cj0KCQjw08aYBhDlARIsAA_gb0ex45Ax3vWHQEi4xufEh342SikQIAlQKww1ZY4NFVuiJv2z-zfy_3caAlc1EALw_wcB:G:s&s_kwcid=AL!4422!3!536455883963!e!!g!!aws%20s3%20cloud%20storage&awsf.Free%20Tier%20Types=*all)
 
 <!-- GETTING STARTED -->
@@ -98,12 +98,12 @@ Ensure that you have the latest version of [NPM](https://www.npmjs.com/) install
 Here are a couple of ways to clone this repo:
 
 1. GitHub Desktop </br>
-Enter `https://github.com/LeandervanAarde/fikaclothing.git` into the URL field and press the `Clone` button.
+Enter `https://github.com/LeandervanAarde/openoverflow.git` into the URL field and press the `Clone` button.
 
 2. Clone Repository </br>
 Run the following in the command-line to clone the project:
    ```sh
-   git clone https://github.com/LeandervanAarde/fikaclothing.git
+   git clone https://github.com/LeandervanAarde/openoverflow.git
    ```
     Open `Software` and select `File | Open...` from the menu. Select cloned directory and press `Open` button
 
@@ -128,8 +128,8 @@ Run the following in the command-line to install all the required dependencies:
 
 <!-- note how you can use your gitHub link. Just make a path to your assets folder -->
 
-<!-- ![image2](https://drive.google.com/uc?export=view&id=1oXXHJ75UTolK1Fx_yzHC1fjD-p1j339l) -->
-![image2](https://drive.google.com/uc?export=view&id=1oXXHJ75UTolK1Fx_yzHC1fjD-p1j339l)
+ ![image2](https://drive.google.com/uc?export=view&id=1eb6vlFrczp-T09sJ_60bk6AA3CvBxBJl) 
+![image3](https://drive.google.com/uc?export=view&id=1IeP8ddhw7mnjbu6it42OtSBAqke4x4Hy)
 
 
 ### User Profile Management
@@ -144,7 +144,7 @@ The user permission allows admins to monitor questions and answers, and allows t
 ### User Security and Registration
 As previously explained all passwords are hashed to comply with safety requirements and email authentication and password resets are also made available to the ussers.
 
-![image3](https://drive.google.com/uc?export=view&id=1Y0L1dj2CV-1NOcrBL5Z2-uU_7vW-SSoG)
+![image4](https://drive.google.com/uc?export=view&id=1TgGrlghaueqzYoKSb2nE3b2bRHmeojTN)
 
 ### Questions
 The user is able to post questions which contain a text box, image upload for the screenshots, and a block for code snippets. A voting system is put in place where other users are able to vote the quality of the question asked. In order to filter through the questions they must consist of a title, description and tags allowing the top rated questions to be placed at the top of the questions page.
@@ -171,14 +171,11 @@ Throughout the conceptual process of this application , I had started taking mor
 
 ### Ideation
 
-![image7](https://drive.google.com/uc?export=view&id=1DyQ1Odspv3moaKG0TD8eC-hrzH0jjZea)
+![image5](https://drive.google.com/uc?export=view&id=1lN5Qyvkiv9E8Z1K3EAVHAkgQ2Pmpkxa4)
 ### Wireframes
 As part of the ideation process, Figma helped the wireframing process as it was a crucial part to determining all the important information for the project and to ensure that everything is displayed in a creative yet functional manner.
-![image6](https://drive.google.com/uc?export=view&id=1eVpD0UuiBSgq_hDE1oaZLEW4iznOIikz)
-![image8](https://drive.google.com/uc?export=view&id=1vKAs1lwSBQbaV_Wxx5T8lO3aFgWFiU4G)
-![image9](https://drive.google.com/uc?export=view&id=1FtlZz4_vqHLaMjifonwUaHfShA7czli8)
-![image10](https://drive.google.com/uc?export=view&id=1JyB1IyiGPcYHZyXKnvhh-WZuyorNXCh_)
 
+![image6](https://drive.google.com/uc?export=view&id=1IeP8ddhw7mnjbu6it42OtSBAqke4x4Hy)
 
 
 
@@ -196,11 +193,11 @@ The `Development Process` is the technical implementations and functionality don
 * Working searchbar in the project that will return the correct data
 * SASS was implemented in order to make styling more efficient and easier to understand, this could also assist with consistency of colours throughout the project.
 * AWS buckets implemented for images, thus making the program run faster due to less memory taken up in the actual project. 
-* Filters and sorting implemented to aid users in the search for shoes. 
-* Colours loaded dynamically through the database along with the sizes 
-* Reviews section where users can leave a review and view all the other reviews 
-* Going back a page implemented through useNavigate(-1)
-* orders are tracked and dates are dynamically populated for dispatch 
+* User data used in order to pipulate bades and reliability score
+* Users can post and go read articles aswell as like articles 
+* Comments on a question that can also be flagged  
+* Upvote and downvotes on questions and answers
+* Oldest unanswered questions, flagged comments and answered can be reviewed by an Admin
 
 #### Highlights
 <!-- stipulated the highlight you experienced with the project -->
