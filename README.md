@@ -1,18 +1,18 @@
 <!-- Repository Information & Links-->
 <br />
 
-![GitHub repo size](https://img.shields.io/github/repo-size/LeandervanAarde/fikaclothing)
-![GitHub watchers](https://img.shields.io/github/watchers/LeandervanAarde/fikaclothing)
-![GitHub language count](https://img.shields.io/github/languages/count/LeandervanAarde/fikaclothing)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/LeandervanAarde/fikaclothing)
-![GitHub dependancies](https://img.shields.io/depfu/dependencies/github/LeandervanAarde/fikaclothing)
+![GitHub repo size](https://img.shields.io/github/repo-size/LeandervanAarde/openwindowoverflow)
+![GitHub watchers](https://img.shields.io/github/watchers/LeandervanAarde/openwindowoverflow)
+![GitHub language count](https://img.shields.io/github/languages/count/LeandervanAarde/openwindowoverflow)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/LeandervanAarde/openwindowoverflow)
+![GitHub dependancies](https://img.shields.io/depfu/dependencies/github/LeandervanAarde/openwindowoverflow)
 
 <!-- LeandervanAarde/FikaClothing -->
 
 <!-- HEADER SECTION -->
-<h3 align="center" style="padding:0;margin:0;">Leander van Aarde</h3>
+<h3 align="center" style="padding:0;margin:0;">Anchen Ayres, Cameron Godwin, Leander van Aarde, Liam Wedge , Vian Du plessis</h3>
 <h5 align="center" style="padding:0;margin:0;">200211</h5>
-<h6 align="center">DV200 - Term 3 Fika Clothing Ecommerce | 2022</h6>
+<h6 align="center">DV200 - Term 4, OpenOverflow| 2022</h6>
 </br>
 <p align="center">
 
