@@ -92,11 +92,11 @@ const QuestionsContainer = () => {
     <div className={styles.outer}>
       <div className={styles.top}>
         <h3>Questions</h3>
-        <select  onChange={findIt}>
+        {/* <select  onChange={findIt}>
             {
               tags.map(i => <option value={i}>{i.toUpperCase()}</option>)
             }
-        </select>
+        </select> */}
         <Button
           buttonType={'primary'}
           children={'ask question'}

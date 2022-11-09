@@ -595,7 +595,7 @@ router.post('/api/resetpassword', async (req, res) => {
 
 
 router.patch('/api/passreset/:id', async (req, res) => {
-    const { password } = req.body
+    const  password  = req.body.password
     const  userId  = req.params.id;
 
     const user = await userSchema.findOne({

@@ -35,7 +35,8 @@ const Newpassword = () => {
         setError(true)
     } else{
         let payload = {password: values.password}
-        console.log(id);
+        // console.log(id);
+        console.log(payload)
         axios.patch(`http://localhost:5001/api/passreset/${id}`, payload)
         .then(res => {
             console.log(payload)
