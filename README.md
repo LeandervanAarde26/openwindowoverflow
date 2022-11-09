@@ -18,6 +18,7 @@
 
   <a href="https://github.com/LeandervanAarde/fikaclothing">
     <img src="https://drive.google.com/uc?export=view&id=1xBr2NxxFOauw1FDt6jiUYLSzXYuUIRNr" alt="Logo" width="140">
+    
   </a>
 <!-- https://drive.google.com/file/d/19JkfDgvGLzHQ1AVMvgv9rLTFR0HzJBVq/view?usp=sharing -->
   
@@ -67,7 +68,7 @@
 ## About the Project
 <!-- header image of project -->
 
-![image10](https://drive.google.com/uc?export=view&id=1gjF5p5_3KW6-6Y_V9EfYmxCaH4n7qSX9)
+![image10](https://drive.google.com/uc?export=view&id=1gPBZJP03Q2MxDw088Vy-R8aWOhHjVK4m)
 
 
 ### Project Description
@@ -117,7 +118,7 @@ Run the following in the command-line to install all the required dependencies:
 
 5. Ensure that Nodemon, Express and Mongo are installed as dependancies   </br>
 
-6. Place "dev" in package.json and to start the back end run the following in your terminal (ensure that code is running on port 5002) </br>
+6. Place "dev" in package.json and to start the back end run the following in your terminal (ensure that code is running on port 5001) </br>
    ```sh
    npm run dev 
    ```
@@ -164,7 +165,7 @@ The users are able to filter through and search for questions and the results ar
 ## Concept Process
 
 The `Conceptual Process` is the set of actions, activities and research that was done when starting this project. <br>
-For this application, I wanted to create something as close to a real ecommerce website as I possibly could while considering the time constraint that was set in place, I wanted to create something that would be attractive to the "users". Fika clothing was approached in more of a website, taking inspiration from websites such as the official VANS website and Takealot.  
+For this application, we wanted to create a ticket management sight heavily inspired by StackOverflow to hopefully be the cornerstone to future dev related questions and a learning plateform that would hopefully be adopted and used by Open Window Institution University. Almost all features and design direction was built around the concept that future users would engage with on a university learning level as well as with the mantainability of the sit kept in mind.  
 <br> 
 Throughout the conceptual process of this application , I had started taking more consideration of components and how the application should be structured, this would make it easier for myself to create reusable component and for future developers to uderstand how the project is structured. This would make the entire process smoother, I had also learned about MONGODB Atlas, a NoSQL database that would be used alongside NODE and Express. 
 
@@ -193,7 +194,7 @@ The `Development Process` is the technical implementations and functionality don
 * Working searchbar in the project that will return the correct data
 * SASS was implemented in order to make styling more efficient and easier to understand, this could also assist with consistency of colours throughout the project.
 * AWS buckets implemented for images, thus making the program run faster due to less memory taken up in the actual project. 
-* User data used in order to pipulate bades and reliability score
+* User data used in order to pipulate badges and reliability score
 * Users can post and go read articles aswell as like articles 
 * Comments on a question that can also be flagged  
 * Upvote and downvotes on questions and answers
@@ -207,15 +208,15 @@ The `Development Process` is the technical implementations and functionality don
 
 #### Challenges
 <!-- stipulated the challenges you faced with the project and why you think you faced it or how you think you'll solve it (if not solved) -->
-* One of my largest challenges in this project was considering how all the required fields were going to be laid out, this was more of a front end issue and I do thinnk I can improve on this aspect.  
+* One of my largest challenges in this project was considering how all the required fields were going to be laid out, this was more of a front end issue and I do think I can improve on this aspect.  
 * The creation of my database has been a major struggle, I think I tried to make it more complex, but it has been a good struggle and I have definetly learned a lot about how to better structure things in the future 
-* One of my BIGGEST issues in this project lays within my cart, unfortunately the way I have set it up, it can only handle one variation at a time, this is a problem that I am actively investigating and will fix. 
+
 
 #### Above And Beyond
 
 What aspects of this final build contribute to the `Above And Beyond` Component of your brief?
 <!-- what did you learn outside of the classroom and implement into your project-->
-* Implementation of reviews, this was fairly ease considering my DB structure, but it worked out for the best. 
+* Implementation of voting, this was fairly easy considering my DB structure, but it worked out for the best. 
 * AWS buckets
 * AWS buckets, this was used for image storage as opposed to using multer and the local machine. This was exciting because I dont think other students were able to achieve this.
 
@@ -228,19 +229,19 @@ What aspects of this final build contribute to the `Above And Beyond` Component 
 <!-- stipulate functionality and improvements that can be implemented in the future. -->
 * IN future I would like to do more server side rendering and focus on the backend.
  
-* A fututre implementation is making the project a more accurate ecommerce website, this would make it more appealing.
+* A fututre implementation is making the project a more accurate ticket management website, this would make it more appealing.
 
 <!-- MOCKUPS -->
 ## Final Outcome
 
 ### Mockups
 
-![image10](https://drive.google.com/uc?export=view&id=1D2ma2-aVcSnSGjWGr7jR-s6f7K2yYVIG)
+![image22](https://drive.google.com/uc?export=view&id=1b5EgYScth_1sf1EbzqIsgwJ-vKRCXNbd)
 
 
-![image11](https://drive.google.com/uc?export=view&id=1MgG8gj8d_mE2aF25ZkXNcijICEb0zWNM)
+![image11](https://drive.google.com/uc?export=view&id=1b5EgYScth_1sf1EbzqIsgwJ-vKRCXNbd)
 
-![image12](https://drive.google.com/uc?export=view&id=1DyQ1Odspv3moaKG0TD8eC-hrzH0jjZea)
+![image12](https://drive.google.com/uc?export=view&id=1DmPwYvurN0V54_Gn2AWDzovRIQcZYcvk)
 
 ![image13](https://drive.google.com/uc?export=view&id=1Y0L1dj2CV-1NOcrBL5Z2-uU_7vW-SSoG)
 
