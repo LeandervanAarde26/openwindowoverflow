@@ -277,11 +277,6 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 
 * **Vian Du Plessis** -(mailto: viandupie@gmail.com) - [@instagram_handle](https://www.instagram.com/the_official_vian/) 
 
-* **Anchen Ayres** -(mailto: Leander.vaonline@gmail.com) - [@instagram_handle](https://www.instagram.com/_.leander_e/) 
-
-* **Cameron Godwin** -(mailto: Leander.vaonline@gmail.com) - [@instagram_handle](https://www.instagram.com/_.leander_e/) 
-
-* **Liam Wedge** -(mailto: Leander.vaonline@gmail.com) - [@instagram_handle](https://www.instagram.com/_.leander_e/) 
 
 * **Project Link** - https://github.com/LeandervanAarde/openoverflow
 
